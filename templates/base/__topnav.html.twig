@@ -1,0 +1,61 @@
+<ul class="nav navbar-nav ml-auto">
+    <div class="row mr-1">
+        <!-- Button trigger modal -->
+        <a class="ml-auto mr-2 mr-sm-4"
+           href="{{ helpUrl }}" target="_blank">
+            <img src="{{ asset('images/question.png') }}" class="iconSytle" title="{{ 'Hilfe'|trans }}">
+        </a>
+
+
+        <a class="ml-auto mr-2 mr-sm-4"
+           data-toggle="modal"
+           data-target="#modalAdressbook">
+            <img src="{{ asset('images/agenda.png') }}" class="iconSytle" title="{{ 'Adressbuch'|trans }}">
+        </a>
+        <a class="ml-auto mr-2 mr-sm-4"
+           data-toggle="modal"
+           data-target="#settings">
+            <img src="{{ asset('images/settings.svg') }}" class="iconSytle"
+                 title="{{ 'Jitsi-Meet-Servereinstellungen'|trans }}">
+        </a>
+        <!-- Button trigger modal -->
+        <a class="ml-auto mr-2 mr-sm-4"
+           data-toggle="modal"
+           data-target="#sideModalTR">
+            <img src="{{ asset('images/profil.svg') }}" class="iconSytle" title="{{ 'Profil'|trans }}">
+        </a>
+
+
+        <li class="nav-item dropdown">
+            <a class=" dropdown-toggle ml-auto mr-2 mr-sm-4" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <img src="{{ asset('/images/locale/'~app.request.locale~'.png') }}" class="iconSytle">
+            </a>
+            <div class="dropdown-menu" style="min-width: unset; background-color: unset; border: none">
+                <a class="dropdown-item" href="{{ path("dashboard", {"_locale": "de"}) }}"><img
+                            src="{{ asset('/images/locale/de.png') }}" class="iconSytle" alt="Deutsch"></a>
+                <a class="dropdown-item" href="{{ path("dashboard", {"_locale": "en"}) }}"><img
+                            src="{{ asset('/images/locale/en.png') }}" class="iconSytle" alt="English"></a>
+                <a class="dropdown-item" href="{{ path("dashboard", {"_locale": "fr"}) }}"><img
+                            src="{{ asset('/images/locale/fr.png') }}" class="iconSytle" alt="French"></a>
+                <a class="dropdown-item" href="{{ path("dashboard", {"_locale": "es"}) }}"><img
+                            src="{{ asset('/images/locale/es.png') }}" class="iconSytle" alt="Español"></a>
+                <a class="dropdown-item" href="{{ path("dashboard", {"_locale": "vi"}) }}"><img
+                            src="{{ asset('/images/locale/vi.png') }}" class="iconSytle" alt="Tiếng Việt"></a>
+                <a class="dropdown-item" href="{{ path("dashboard", {"_locale": "zh"}) }}"><img
+                            src="{{ asset('/images/locale/zh.png') }}" class="iconSytle" alt="中国人"></a>
+
+            </div>
+        </li>
+        <!-- Basic dropdown -->
+
+        <!-- Basic dropdown -->
+        <a href="{{ path('app_logout') }}"><img src="{{ asset('images/logout.svg') }}" class="iconSytle"
+                                                title="{{ 'Logout'|trans }}"></a>
+
+    </div>
+
+    <!-- To change the direction of the modal animation change .right class -->
+    <!-- Side Modal Top Right -->
+
+</ul>

@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block CTA %}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+
+        <!-- Tabs navs -->
+        <div class="d-md-block d-none">
+            <ul class="nav nav-tabs mb-3 " id="ex1" role="tablist">
+                <li class="nav-item">
+                    <a data-toggle="tab"
+                       class="nav-link active"
+                       id="ex1-tab-1-tab"
+                       data-mdb-toggle="tab"
+                       href="#ex1-tabs-1"
+                       role="tab"
+                       aria-controls="ex1-tabs-1"
+                       aria-selected="true"
+                    >{{ 'Zukünftige Konferenzen'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab"
+                       class="nav-link"
+                       id="ex1-tab-2-tab"
+                       data-mdb-toggle="tab"
+                       href="#ex1-tabs-2"
+                       role="tab"
+                       aria-controls="ex1-tabs-2"
+                       aria-selected="false"
+                    >{{ 'Vergangene Konferenzen'|trans }}</a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="d-md-none tabDropdown">
+            <button class="caretdown btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">{{ 'Zukünftige Konferenzen'|trans }}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item dropdownTabToggle"
+                   href="#ex1-tab-1-tab">
+                    {{ 'Zukünftige Konferenzen'|trans }}
+                </a>
+                <a href="#ex1-tab-2-tab"
+                   class="dropdown-item dropdownTabToggle">
+                    {{ 'Vergangene Konferenzen'|trans }}
+                </a>
+
+            </div>
+        </div>
+        <!-- Tabs navs -->
+
+        <!-- Tabs content -->
+        <div class="tab-content" id="ex1-content">
+            <div
+                    class="tab-pane fade show active"
+                    id="ex1-tabs-1"
+                    role="tabpanel"
+                    aria-labelledby="ex1-tab-1"
+            >
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ path('room_new') }}" class="loadContent">
+                            <div class="card card-body bg-success btn">
+                                <p class="mt-2 mb-2 text-center">
+                                    {{ 'Eine Konferenz planen'|trans }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ path('schedule_admin_new') }}" class="loadContent">
+                            <div class="card card-body btn-outline-success btn ">
+                                <p class="mt-2 mb-2 text-center">
+                                    {{ 'Einen Termin finden'|trans }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% if myScheduledMeeting(app.user)|length > 0 %}
+                    <h4 style="padding-top: 16px" class="h4-responsive pl-xl-3">{{ 'Terminplanung'|trans }} </h4>
+                    {% for r in myScheduledMeeting(app.user) %}
+                        {% include 'dashboard/__roomCard.html.twig' with {'room':r} %}
+                    {% endfor %}
+                {% endif %}
+                {% if  roomsFuture |length == 0 %}
+                    <div class="card card-body">
+                        <p class="text-center">
+                            {% trans with {'{url}':path('room_new')} %}
+                            Aktuell sind keine Konferenzen vorhanden. Erstellen Sie
+                            <u><a href="{url}" class="loadContent">hier</a></u>
+                            eine neue Konferenz.
+                        {% endtrans %}
+                        </p>
+                    </div>
+                {% elseif todayRooms |length == 0 %}
+                    <h4 style="padding-top: 16px" class="h4-responsive pl-xl-3">{{ 'Heute'|trans }} </h4>
+                    <div class="card card-body">
+                        <p class="text-center">{{ 'Heute steht keine Jitsi Meet Konferenz an.'|trans }}</p>
+                    </div>
+                {% endif %}
+                {% set locale =  app.request.locale %}
+                {% for date in roomsFuture %}
+                    <h4 style="padding-top: 16px"
+                        class="h4-responsive pl-xl-3">{{ date[0].start|format_date(pattern="EEEE",locale=locale) }}
+                        | {{ date[0].start|format_datetime('long', 'none', locale=locale) }}</h4>
+                    {% for room in date %}
+                        {% include 'dashboard/__roomCard.html.twig' with {'room':room} %}
+                    {% endfor %}
+                {% endfor %}
+
+
+            </div>
+            <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                {% if roomsPast |length == 0 %}
+                    <div class="card card-body">
+                        <p class="text-center">{{ 'Aktuell sind keine vergangenen Konferenzen vorhanden.'|trans }}</p>
+                    </div>
+                {% endif %}
+                {% for room in roomsPast %}
+                    {% include 'dashboard/__roomPast.html.twig' with {'room':room} %}
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Tabs content -->
+    </div>
+
+{% endblock %}

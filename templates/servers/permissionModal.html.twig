@@ -1,0 +1,22 @@
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+        <div class="modal-header  light-blue darken-3 white-text">
+            <h5 class="modal-title">{{ title }}</h5>
+            <button style="color: white" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                {% for user in users %}
+                    <li>{{ user.email }} <a class="confirmHref" href="{{ path('server_user_remove',{'id':server.id,'user':user.id}) }}"> <i class="fa fa-trash"></i></a></li>
+                {% endfor %}
+            </ul>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
