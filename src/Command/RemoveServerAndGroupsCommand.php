@@ -37,13 +37,13 @@ class RemoveServerAndGroupsCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $serverId = $input->getArgument('serverId');
         $keycloakGroup = $input->getArgument('keycloakGroup');
-        $server = null;
-        $server = $this->em->getRepository(Standort::class)->find($serverId);
-        if (!$server) {
+        $standort = null;
+        $standort = $this->em->getRepository(Standort::class)->find($serverId);
+        if (!$standort) {
             $io->error('This server is not available.');
             return Command::FAILURE;
         }
-        $groupServer = $this->em->getRepository(KeycloakGroupsToStandorts::class)->findOneBy(array('server'=>$server,'keycloakGroup'=>$keycloakGroup));
+        $groupServer = $this->em->getRepository(KeycloakGroupsToStandorts::class)->findOneBy(array('standort'=>$standort,'keycloakGroup'=>$keycloakGroup));
 
         if (!$groupServer){
             $io->error('This Connection is not set');
@@ -55,7 +55,7 @@ class RemoveServerAndGroupsCommand extends Command
 
 
 
-        $io->success('We removed the '.$keycloakGroup.' group from the server '.$server->getUrl());
+        $io->success('We removed the '.$keycloakGroup.' group from the server '.$standort->getName());
 
         return Command::SUCCESS;
     }

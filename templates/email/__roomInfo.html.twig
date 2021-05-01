@@ -14,20 +14,14 @@
     {{ 'Geplante Dauer'|trans }}: {{ room.duration }} {{ 'Minuten'|trans }}</p>
 <spacer size="16"></spacer>
 <p>
-    {% trans with {'{email}': user.email,'{uid}': room.uid} %}
-        Folgende Daten benötigen Sie um der Konferenz beizutreten:<br>
-        Ihre E-Mail-Adresse: {email}<br>
-        Konferenz ID: {uid}
-    {% endtrans %}
+
 </p>
 <spacer size="16"></spacer>
-<p>
-    <a href="{{ url }}">{{ 'Klicken Sie hier um direkt zu der Videokonferenz zu gelangen.'|trans }}</a>
-</p>
+
 
 <p>
-    {% if server is defined and  server is not null and server|validateLicense and server.serverEmailBody is not null %}
-    {{ server.serverEmailBody|nl2br }}
+    {% if standort is defined and  standort is not null and standort|validateLicense and standort.serverEmailBody is not null %}
+    {{ standort.serverEmailBody|nl2br }}
     {% endif %}
 </p>
 

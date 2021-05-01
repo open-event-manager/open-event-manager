@@ -32,7 +32,7 @@ class NotificationService
         $this->translator = $translator;
     }
 
-    function createIcs(Rooms $rooms, User $user, $url, $method = 'REQUEST')
+    function createIcs(Rooms $rooms, User $user, $method = 'REQUEST')
     {
         $this->ics = new IcsService();
         $this->ics->setMethod($method);
@@ -46,15 +46,12 @@ class NotificationService
             array(
                 'uid' => md5($rooms->getUid()),
                 'location' => $this->translator->trans('Jitsi Konferenz'),
-                'description' => $this->translator->trans('Sie wurden zu einer Videokonferenz auf dem Jitsi Server {server} hinzugefügt.', array('{server}' => $rooms->getStandort()->getUrl())) .
+                'description' => $this->translator->trans('Sie wurden zu einem Event in: {name} hinzugefügt.', array('{name}' => $rooms->getStandort()->getName())) .
                     '\n\n' .
                     $this->translator->trans('Über den beigefügten Link können Sie ganz einfach zur Videokonferenz beitreten.\nName: {name} \nModerator: {moderator} ', array('{name}' => $rooms->getName(), '{moderator}' => $rooms->getModerator()->getFirstName() . ' ' . $rooms->getModerator()->getLastName()))
                     . '\n\n' .
-                    $this->translator->trans('Folgende Daten benötigen Sie um der Konferenz beizutreten:\nKonferenz ID: {id} \nIhre E-Mail-Adresse: {email}',array('{id}'=>$rooms->getUid(),'{email}'=>$user->getEmail()))
-                    . '\n\n' .
-                    $url .
                     '\n\n'.
-                    $this->translator->trans('Sie erhalten diese E-Mail, weil Sie zu einer Videokonferenz eingeladen wurden.'),
+                    $this->translator->trans('Sie erhalten diese E-Mail, weil Sie zu einem Event eingeladen wurden.'),
                 'dtstart' => $rooms->getStart()->format('Ymd') . "T" . $rooms->getStart()->format("His"),
                 'dtend' => $rooms->getEnddate()->format('Ymd') . "T" . $rooms->getEnddate()->format("His"),
                 'summary' => $rooms->getName(),

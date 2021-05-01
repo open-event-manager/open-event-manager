@@ -35,7 +35,7 @@
                     class="fa fa-info-circle"></i></a></h5>
     <p class="text-black-50 small">
         {{ 'Moderator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
-        {{ 'Server'|trans }}: {{ room.server.url }}<br>
+        {{ 'Standort'|trans }}: {{ room.standort.name }}<br>
         {{ 'Anzahl Teilnehmer'|trans }}: {% if room.public and room.maxParticipants is not null %}{% trans with {'{from}':room.user|length, '{to}':room.maxParticipants} %}{from} von {to}{% endtrans%}{% else %}{{ room.user|length }}{% endif %}
     </p>
 

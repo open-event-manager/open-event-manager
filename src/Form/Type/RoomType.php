@@ -29,10 +29,10 @@ class RoomType extends AbstractType
     {
 
         $builder
-            ->add('server', EntityType::class, [
-                'choice_label' => 'url',
+            ->add('standort', EntityType::class, [
+                'choice_label' => 'name',
                 'class' => Standort::class,
-                'choices' => $options['server'],
+                'choices' => $options['standort'],
                 'label' => 'label.serverKonferenz',
                 'translation_domain' => 'form',
                 'multiple' => false,
@@ -70,7 +70,7 @@ class RoomType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'server'=>array(),
+            'standort'=>array(),
         ]);
 
     }
