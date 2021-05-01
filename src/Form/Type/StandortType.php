@@ -24,18 +24,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ServerType extends AbstractType
+class StandortType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $builder
-            ->add('url', TextType::class, ['required' => true, 'label' => 'lable.serverUrl', 'translation_domain' => 'form', 'help' => 'help.serverUrl'])
-            ->add('appId', TextType::class, ['required' => false, 'label' => 'label.appId', 'translation_domain' => 'form'])
-            ->add('appSecret', TextType::class, ['required' => false, 'label' => 'label.appSecret', 'translation_domain' => 'form'])
-            ->add('url', TextType::class, ['required' => true, 'label' => 'lable.serverUrl', 'translation_domain' => 'form', 'help' => 'help.serverUrl'])
+            ->add('name', TextType::class, ['required' => true, 'label' => 'label.standort.name', 'translation_domain' => 'form', ])
+            ->add('street', TextType::class, ['required' => false, 'label' => 'label.standort.street', 'translation_domain' => 'form', ])
+            ->add('number', TextType::class, ['required' => false, 'label' => 'label.standort.number', 'translation_domain' => 'form', ])
+            ->add('plz', TextType::class, ['required' => true, 'label' => 'label.standort.plz', 'translation_domain' => 'form', ])
+            ->add('city', TextType::class, ['required' => true, 'label' => 'label.standort.city', 'translation_domain' => 'form',])
+            ->add('directions', TextareaType::class, ['required' => false, 'label' => 'label.standort.directions', 'translation_domain' => 'form', ])
             ->add('licenseKey', TextType::class, ['required' => false, 'label' => 'label.serverLicenseKey', 'translation_domain' => 'form'])
-            ->add('featureEnableByJWT', CheckboxType::class, ['required' => false, 'label' => 'label.featureEnalbeByJwt','help'=>'help.featureEnalbeByJwt', 'translation_domain' => 'form'])
             ->add('submit', SubmitType::class, ['attr' => array('class' => 'btn btn-outline-primary'), 'label' => 'label.speichern', 'translation_domain' => 'form']);
     }
 

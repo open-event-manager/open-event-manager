@@ -20,20 +20,6 @@ class Standort
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $url;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $appId;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $appSecret;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="servers")
@@ -121,10 +107,7 @@ class Standort
      */
     private $showStaticBackgroundColor;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $featureEnableByJWT = false;
+
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -137,9 +120,44 @@ class Standort
     private $serverEmailBody;
 
     /**
-     * @ORM\OneToMany(targetEntity=KeycloakGroupsToServers::class, mappedBy="server")
+     * @ORM\OneToMany(targetEntity=KeycloakGroupsToStandorts::class, mappedBy="server")
      */
     private $keycloakGroups;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $street;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $number;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $roomnumber;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $plz;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $directions;
 
 
     public function __construct()
@@ -155,41 +173,6 @@ class Standort
         return $this->id;
     }
 
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    public function getAppId(): ?string
-    {
-        return $this->appId;
-    }
-
-    public function setAppId(?string $appId): self
-    {
-        $this->appId = $appId;
-
-        return $this;
-    }
-
-    public function getAppSecret(): ?string
-    {
-        return $this->appSecret;
-    }
-
-    public function setAppSecret(?string $appSecret): self
-    {
-        $this->appSecret = $appSecret;
-
-        return $this;
-    }
 
     /**
      * @return Collection|User[]
@@ -425,17 +408,6 @@ class Standort
         return $this;
     }
 
-    public function getFeatureEnableByJWT(): ?bool
-    {
-        return $this->featureEnableByJWT;
-    }
-
-    public function setFeatureEnableByJWT(?bool $featureEnableByJWT): self
-    {
-        $this->featureEnableByJWT = $featureEnableByJWT;
-
-        return $this;
-    }
 
     public function getServerEmailHeader(): ?string
     {
@@ -462,31 +434,115 @@ class Standort
     }
 
     /**
-     * @return Collection|KeycloakGroupsToServers[]
+     * @return Collection|KeycloakGroupsToStandorts[]
      */
     public function getKeycloakGroups(): Collection
     {
         return $this->keycloakGroups;
     }
 
-    public function addKeycloakGroup(KeycloakGroupsToServers $keycloakGroup): self
+    public function addKeycloakGroup(KeycloakGroupsToStandorts $keycloakGroup): self
     {
         if (!$this->keycloakGroups->contains($keycloakGroup)) {
             $this->keycloakGroups[] = $keycloakGroup;
-            $keycloakGroup->setServer($this);
+            $keycloakGroup->setStandort($this);
         }
 
         return $this;
     }
 
-    public function removeKeycloakGroup(KeycloakGroupsToServers $keycloakGroup): self
+    public function removeKeycloakGroup(KeycloakGroupsToStandorts $keycloakGroup): self
     {
         if ($this->keycloakGroups->removeElement($keycloakGroup)) {
             // set the owning side to null (unless already changed)
-            if ($keycloakGroup->getServer() === $this) {
-                $keycloakGroup->setServer(null);
+            if ($keycloakGroup->getStandort() === $this) {
+                $keycloakGroup->setStandort(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(?string $street): self
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getNumber(): ?string
+    {
+        return $this->number;
+    }
+
+    public function setNumber(?string $number): self
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getRoomnumber(): ?string
+    {
+        return $this->roomnumber;
+    }
+
+    public function setRoomnumber(?string $roomnumber): self
+    {
+        $this->roomnumber = $roomnumber;
+
+        return $this;
+    }
+
+    public function getPlz(): ?string
+    {
+        return $this->plz;
+    }
+
+    public function setPlz(string $plz): self
+    {
+        $this->plz = $plz;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getDirections(): ?string
+    {
+        return $this->directions;
+    }
+
+    public function setDirections(?string $directions): self
+    {
+        $this->directions = $directions;
 
         return $this;
     }

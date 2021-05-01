@@ -119,7 +119,7 @@ class APIRoomController extends AbstractController
     {
 
         $user = $keycloakService->getUSer($request->get('email'), $request->get('keycloakId'));
-        $server = $serverUserManagment->getServersFromUser($user);
+        $server = $serverUserManagment->getStandortsFromUser($user);
 
         $serv = array();
         $res = array();

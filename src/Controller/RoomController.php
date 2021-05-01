@@ -64,7 +64,7 @@ class RoomController extends AbstractController
             $snack = $translator->trans('Konferenz erfolgreich erstellt');
             $title = $translator->trans('Neue Konferenz erstellen');
         }
-        $servers = $serverUserManagment->getServersFromUser($this->getUser());
+        $servers = $serverUserManagment->getStandortsFromUser($this->getUser());
 
 
         $form = $this->createForm(RoomType::class, $room, ['server' => $servers, 'action' => $this->generateUrl('room_new', ['id' => $room->getId()])]);

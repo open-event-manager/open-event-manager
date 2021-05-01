@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=KeycloakGroupsToServersRepository::class)
  */
-class KeycloakGroupsToServers
+class KeycloakGroupsToStandorts
 {
     /**
      * @ORM\Id
@@ -21,7 +21,7 @@ class KeycloakGroupsToServers
      * @ORM\ManyToOne(targetEntity=Standort::class, inversedBy="keycloakGroups")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $server;
+    private $standort;
 
     /**
      * @ORM\Column(type="text")
@@ -33,14 +33,14 @@ class KeycloakGroupsToServers
         return $this->id;
     }
 
-    public function getServer(): ?Standort
+    public function getStandort(): ?Standort
     {
-        return $this->server;
+        return $this->standort;
     }
 
-    public function setServer(?Standort $server): self
+    public function setStandort(?Standort $standort): self
     {
-        $this->server = $server;
+        $this->standort = $standort;
 
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\KeycloakGroupsToServers;
+use App\Entity\KeycloakGroupsToStandorts;
 use App\Entity\Standort;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -43,14 +43,14 @@ class ConnectServerAndGroupsCommand extends Command
             $io->error('This server is not available.');
             return Command::FAILURE;
         }
-        $groupServer = $this->em->getRepository(KeycloakGroupsToServers::class)->findOneBy(array('server'=>$server,'keycloakGroup'=>$keycloakGroup));
+        $groupServer = $this->em->getRepository(KeycloakGroupsToStandorts::class)->findOneBy(array('server'=>$server,'keycloakGroup'=>$keycloakGroup));
 
         if ($groupServer){
             $io->error('This Server is already connected to this group');
             return Command::FAILURE;
         }
-        $groupServer = new KeycloakGroupsToServers();
-        $groupServer->setServer($server);
+        $groupServer = new KeycloakGroupsToStandorts();
+        $groupServer->setStandort($server);
         $groupServer->setKeycloakGroup($keycloakGroup);
         $this->em->persist($groupServer);
         $this->em->flush();

@@ -28,7 +28,7 @@ class AdHocMeetingController extends AbstractController
         if(!in_array($user,$this->getUser()->getAddressbook()->toArray())){
             return $this->redirectToRoute('dashboard',array('snack'=>$translator->trans('Fehler, Der User wurde nicht gefunden')));
         }
-        $servers = $serverUserManagment->getServersFromUser($this->getUser());
+        $servers = $serverUserManagment->getStandortsFromUser($this->getUser());
 
         if(!in_array($server,$servers)){
             return $this->redirectToRoute('dashboard',array('color'=>'danger','snack'=>$translator->trans('Fehler, Der Server wurde nicht gefunden')));

@@ -5,7 +5,7 @@ namespace App\Service;
 
 
 use App\Entity\EmailDomainsToServers;
-use App\Entity\KeycloakGroupsToServers;
+use App\Entity\KeycloakGroupsToStandorts;
 use App\Entity\Standort;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,39 +31,39 @@ class ServerUserManagment
      * default server for all users
      * keycloakserver by group or domain
      */
-    public function getServersFromUser(User $user)
+    public function getStandortsFromUser(User $user)
     {
-        $servers = array();
+        $standorts = array();
         //here we add theserver which is directed connected to a user
-        $servers = $user->getStandort()->toArray();
+        $standorts = $user->getStandort()->toArray();
 
 
-        // here we add the servers from thekeycloak group
+        // here we add the standorts from thekeycloak group
         if ($user->getGroups()) {
             foreach ($user->getGroups() as $data1) {
-                $tmpG = $this->em->getRepository(KeycloakGroupsToServers::class)->findBy(array('keycloakGroup' => $data1));
+                $tmpG = $this->em->getRepository(KeycloakGroupsToStandorts::class)->findBy(array('keycloakGroup' => $data1));
                 foreach ($tmpG as $data2) {
-                    if (!in_array($data2->getServer(), $servers)) {
-                        $servers[] = $data2->getServer();
+                    if (!in_array($data2->getStandort(), $standorts)) {
+                        $standorts[] = $data2->getStandort();
                     }
                 }
             }
         }
 
         $domain = explode('@', $user->getEmail())[1];
-        $tmpE = $this->em->getRepository(KeycloakGroupsToServers::class)->findBy(array('keycloakGroup' =>$domain ));
+        $tmpE = $this->em->getRepository(KeycloakGroupsToStandorts::class)->findBy(array('keycloakGroup' =>$domain ));
         foreach ($tmpE as $data2) {
-            if (!in_array($data2->getServer(), $servers)) {
-                $servers[] = $data2->getServer();
+            if (!in_array($data2->getServer(), $standorts)) {
+                $standorts[] = $data2->getStandort();
             }
         }
 
         $default = $this->em->getRepository(Standort::class)->find($this->parameter->get('default_jitsi_server_id'));
         //here we add the default group which is set in the env
-        if ($default && !in_array($default, $servers)) {
-            $servers[] = $default;
+        if ($default && !in_array($default, $standorts)) {
+            $standorts[] = $default;
         }
 
-        return $servers;
+        return $standorts;
     }
 }
