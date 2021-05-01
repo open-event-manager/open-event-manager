@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\License;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Service\MailerService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +41,7 @@ class ReminderLizenseController extends AbstractController
         $message = '';
         try {
             foreach ($license as $data) {
-                $server = $this->getDoctrine()->getRepository(Server::class)->findOneBy(array('licenseKey' => $data->getLicenseKey()));
+                $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(array('licenseKey' => $data->getLicenseKey()));
                 if($server){
                     $mailerService->sendEmail(
                         $server->getAdministrator()->getEmail(),

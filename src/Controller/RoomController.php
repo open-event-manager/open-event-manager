@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Rooms;
 use App\Entity\Scheduling;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Form\Type\NewMemberType;
 use App\Form\Type\RoomType;
@@ -238,8 +238,8 @@ class RoomController extends AbstractController
 
         if ($this->getUser() === $room->getModerator()) {
 
-            $servers = $this->getUser()->getServers()->toarray();
-            $default = $this->getDoctrine()->getRepository(Server::class)->find($this->getParameter('default_jitsi_server_id'));
+            $servers = $this->getUser()->getStandort()->toarray();
+            $default = $this->getDoctrine()->getRepository(Standort::class)->find($this->getParameter('default_jitsi_server_id'));
             if ($default) {
                 $servers[] = $default;
             }

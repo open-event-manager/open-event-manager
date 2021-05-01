@@ -10,7 +10,7 @@ namespace App\Service;
 
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Firebase\JWT\JWT;
@@ -37,7 +37,7 @@ class ServerService
         $this->translator = $translator;
     }
 
-    function addPermission(Server $server, User $user)
+    function addPermission(Standort $server, User $user)
     {
         $content = $this->twig->render('email/serverPermission.html.twig', ['user' => $user, 'server' => $server]);
         $subject = $this->translator->trans('Sie wurden zu einem Jitsi-Meet-Server hinzugefügt');
@@ -58,7 +58,7 @@ class ServerService
         $counter = 0;
         $tmp = $slug;
         while (true) {
-            $server = $this->em->getRepository(Server::class)->findOneBy(['slug' => $tmp]);
+            $server = $this->em->getRepository(Standort::class)->findOneBy(['slug' => $tmp]);
             if (!$server) {
                 return $tmp;
             } else{

@@ -9,7 +9,7 @@
 namespace App\Service;
 
 
-use App\Entity\Server;
+use App\Entity\Standort;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -38,7 +38,7 @@ class MailerService
         $this->licenseService = $licenseService;
     }
 
-    public function buildTransport(Server $server)
+    public function buildTransport(Standort $server)
     {
 
         if ($server->getSmtpHost()) {
@@ -58,7 +58,7 @@ class MailerService
         }
     }
 
-    public function sendEmail($to, $betreff, $content, Server $server, $attachment = array()):bool
+    public function sendEmail($to, $betreff, $content, Standort $server, $attachment = array()):bool
     {
 
         try {
@@ -71,7 +71,7 @@ class MailerService
         return $res;
     }
 
-    private function sendViaSwiftMailer($to, $betreff, $content, Server $server, $attachment = array()):bool
+    private function sendViaSwiftMailer($to, $betreff, $content, Standort $server, $attachment = array()):bool
     {
         $this->buildTransport($server);
         if ($server->getSmtpHost() && $this->licenseService->verify($server)) {

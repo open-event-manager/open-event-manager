@@ -10,7 +10,7 @@ namespace App\Service;
 
 
 use App\Entity\License;
-use App\Entity\Server;
+use App\Entity\Standort;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -32,7 +32,7 @@ class LicenseService
         $this->parameterBag = $parameterBag;
     }
 
-    function verify(Server $server): bool
+    function verify(Standort $server): bool
     {
         $license = $this->em->getRepository(License::class)->findOneBy(array('licenseKey' => $server->getLicenseKey()));
 
@@ -110,7 +110,7 @@ class LicenseService
 
         return array('error' => false, 'licenseKey' => $license->getLicenseKey());
     }
-    public function validUntil(Server $server){
+    public function validUntil(Standort $server){
         $license= $this->em->getRepository(License::class)->findOneBy(array('licenseKey' => $server->getLicenseKey()));
         return $license->getValidUntil();
     }

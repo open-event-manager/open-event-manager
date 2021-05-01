@@ -11,7 +11,7 @@ namespace App\Service;
 
 use App\Entity\Rooms;
 use App\Entity\RoomsUser;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Firebase\JWT\JWT;
@@ -64,17 +64,17 @@ class RoomService
         } else {
             $moderator = false;
         }
-        $serverUrl = $room->getServer()->getUrl();
+        $serverUrl = $room->getStandort()->getUrl();
         $serverUrl = str_replace('https://', '', $serverUrl);
         $serverUrl = str_replace('http://', '', $serverUrl);
         $jitsi_server_url = $type . $serverUrl;
-        $jitsi_jwt_token_secret = $room->getServer()->getAppSecret();
+        $jitsi_jwt_token_secret = $room->getStandort()->getAppSecret();
 
 
         $payload = array(
             "aud" => "jitsi_admin",
-            "iss" => $room->getServer()->getAppId(),
-            "sub" => $room->getServer()->getUrl(),
+            "iss" => $room->getStandort()->getAppId(),
+            "sub" => $room->getStandort()->getUrl(),
             "room" => $room->getUid(),
             "context" => [
                 'user' => [
@@ -89,7 +89,7 @@ class RoomService
                 'private-message' => true,
 
         );
-        if ($room->getServer()->getFeatureEnableByJWT()) {
+        if ($room->getStandort()->getFeatureEnableByJWT()) {
             if ($room->getDissallowScreenshareGlobal()) {
                 $screen['screen-sharing'] = false;
                 if (($roomUser && $roomUser->getShareDisplay()) || $user === $room->getModerator()) {
@@ -106,7 +106,7 @@ class RoomService
             $payload['context']['features'] = $screen;
         }
         $token = JWT::encode($payload, $jitsi_jwt_token_secret);
-        if (!$room->getServer()->getAppId() || !$room->getServer()->getAppSecret()) {
+        if (!$room->getStandort()->getAppId() || !$room->getStandort()->getAppSecret()) {
             $url = $jitsi_server_url . '/' . $room->getUid();
         } else {
             $url = $jitsi_server_url . '/' . $room->getUid() . '?jwt=' . $token;

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Service\ServerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -34,7 +34,7 @@ class AddSlugToServerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $server = $this->em->getRepository(Server::class)->findAll();
+        $server = $this->em->getRepository(Standort::class)->findAll();
         $counter = 0;
         foreach ($server as $data){
             if(!$data->getSlug()){

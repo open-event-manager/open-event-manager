@@ -8,7 +8,7 @@ use App\Entity\Rooms;
 use App\Entity\RoomsUser;
 use App\Entity\SchedulingTime;
 use App\Entity\SchedulingTimeUser;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Service\LicenseService;
 use App\Service\MessageService;

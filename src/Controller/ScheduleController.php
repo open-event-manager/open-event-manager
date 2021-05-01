@@ -212,7 +212,7 @@ class ScheduleController extends AbstractController
             return $this->redirectToRoute('join_index_no_slug', ['snack' => $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.'), 'color' => 'danger']);
         }
 
-        $server = $scheduling->getRoom()->getServer();
+        $server = $scheduling->getRoom()->getStandort();
 
 
 

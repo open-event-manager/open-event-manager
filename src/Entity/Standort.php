@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ServerRepository;
+use App\Repository\StandortRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ServerRepository::class)
+ * @ORM\Entity(repositoryClass=StandortRepository::class)
  */
-class Server
+class Standort
 {
 
     /**
@@ -227,7 +227,7 @@ class Server
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms[] = $room;
-            $room->setServer($this);
+            $room->setStandort($this);
         }
 
         return $this;
@@ -237,8 +237,8 @@ class Server
     {
         if ($this->rooms->removeElement($room)) {
             // set the owning side to null (unless already changed)
-            if ($room->getServer() === $this) {
-                $room->setServer(null);
+            if ($room->getStandort() === $this) {
+                $room->setStandort(null);
             }
         }
 

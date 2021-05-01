@@ -10,7 +10,7 @@ namespace App\Form\Type;
 
 
 use App\Entity\AuditTomAbteilung;
-use App\Entity\Server;
+use App\Entity\Standort;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -31,7 +31,7 @@ class RoomType extends AbstractType
         $builder
             ->add('server', EntityType::class, [
                 'choice_label' => 'url',
-                'class' => Server::class,
+                'class' => Standort::class,
                 'choices' => $options['server'],
                 'label' => 'label.serverKonferenz',
                 'translation_domain' => 'form',

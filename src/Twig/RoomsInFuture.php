@@ -5,7 +5,7 @@ namespace App\Twig;
 use App\Entity\Checklist;
 use App\Entity\MyUser;
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Service\LicenseService;
 use App\Service\MessageService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,7 +36,7 @@ class RoomsInFuture extends AbstractExtension
         ];
     }
 
-    public function roomsinFuture(Server $server)
+    public function roomsinFuture(Standort $server)
     {
         $now = new \DateTime();
         $qb = $this->em->getRepository(Rooms::class)->createQueryBuilder('rooms');

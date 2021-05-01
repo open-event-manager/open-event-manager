@@ -40,10 +40,10 @@ class Rooms
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Server::class, inversedBy="rooms")
+     * @ORM\ManyToOne(targetEntity=Standort::class, inversedBy="rooms")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $server;
+    private $standort;
 
     /**
      * @ORM\Column(type="text")
@@ -220,14 +220,14 @@ class Rooms
         return $this;
     }
 
-    public function getServer(): ?Server
+    public function getStandort(): ?Standort
     {
-        return $this->server;
+        return $this->standort;
     }
 
-    public function setServer(?Server $server): self
+    public function setStandort(?Standort $standort): self
     {
-        $this->server = $server;
+        $this->standort = $standort;
 
         return $this;
     }

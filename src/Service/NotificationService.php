@@ -9,7 +9,7 @@
 namespace App\Service;
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -46,7 +46,7 @@ class NotificationService
             array(
                 'uid' => md5($rooms->getUid()),
                 'location' => $this->translator->trans('Jitsi Konferenz'),
-                'description' => $this->translator->trans('Sie wurden zu einer Videokonferenz auf dem Jitsi Server {server} hinzugefügt.', array('{server}' => $rooms->getServer()->getUrl())) .
+                'description' => $this->translator->trans('Sie wurden zu einer Videokonferenz auf dem Jitsi Server {server} hinzugefügt.', array('{server}' => $rooms->getStandort()->getUrl())) .
                     '\n\n' .
                     $this->translator->trans('Über den beigefügten Link können Sie ganz einfach zur Videokonferenz beitreten.\nName: {name} \nModerator: {moderator} ', array('{name}' => $rooms->getName(), '{moderator}' => $rooms->getModerator()->getFirstName() . ' ' . $rooms->getModerator()->getLastName()))
                     . '\n\n' .
@@ -66,7 +66,7 @@ class NotificationService
         return $this->ics->toString();
     }
 
-    function sendNotification($content, $subject, User $user, Server $server, $attachement = array()):bool
+    function sendNotification($content, $subject, User $user, Standort $server, $attachement = array()):bool
     {
         return $this->mailer->sendEmail(
             $user->getEmail(),
@@ -81,7 +81,7 @@ class NotificationService
     }
 
 
-    function sendCron($content, $subject, User $user, Server $server):bool
+    function sendCron($content, $subject, User $user, Standort $server):bool
     {
        return $this->mailer->sendEmail(
             $user->getEmail(),

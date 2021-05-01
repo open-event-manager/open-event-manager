@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Server;
+use App\Entity\Standort;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ class MoreFeaturesController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $server = $this->getDoctrine()->getRepository(Server::class)->find($request->get('id'));
+        $server = $this->getDoctrine()->getRepository(Standort::class)->find($request->get('id'));
         return new JsonResponse(array('feature' => array('enableFeateureJwt' => $server->getFeatureEnableByJWT()?true:false)));
     }
 }

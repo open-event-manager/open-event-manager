@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Entity\KeycloakGroupsToServers;
-use App\Entity\Server;
+use App\Entity\Standort;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -38,7 +38,7 @@ class RemoveServerAndGroupsCommand extends Command
         $serverId = $input->getArgument('serverId');
         $keycloakGroup = $input->getArgument('keycloakGroup');
         $server = null;
-        $server = $this->em->getRepository(Server::class)->find($serverId);
+        $server = $this->em->getRepository(Standort::class)->find($serverId);
         if (!$server) {
             $io->error('This server is not available.');
             return Command::FAILURE;

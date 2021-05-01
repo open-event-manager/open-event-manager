@@ -18,7 +18,7 @@ class KeycloakGroupsToServers
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Server::class, inversedBy="keycloakGroups")
+     * @ORM\ManyToOne(targetEntity=Standort::class, inversedBy="keycloakGroups")
      * @ORM\JoinColumn(nullable=false)
      */
     private $server;
@@ -33,12 +33,12 @@ class KeycloakGroupsToServers
         return $this->id;
     }
 
-    public function getServer(): ?Server
+    public function getServer(): ?Standort
     {
         return $this->server;
     }
 
-    public function setServer(?Server $server): self
+    public function setServer(?Standort $server): self
     {
         $this->server = $server;
 

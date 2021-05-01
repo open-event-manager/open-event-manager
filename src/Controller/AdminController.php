@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Service\AdminService;
 use Doctrine\DBAL\Types\DateType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -21,7 +21,7 @@ class AdminController extends AbstractController
      * @Route("/admin/server/{server}", name="admin_server")
      * @ParamConverter("server", class="App\Entity\Server",options={"mapping": {"server": "id"}})
      */
-    public function server(Server $server, AdminService $adminService, HttpClientInterface $httpClient, TranslatorInterface $translator)
+    public function server(Standort $server, AdminService $adminService, HttpClientInterface $httpClient, TranslatorInterface $translator)
     {
         $countPart = 0;
         foreach ($server->getRooms() as $room) {

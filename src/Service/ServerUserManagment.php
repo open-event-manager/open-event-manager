@@ -6,7 +6,7 @@ namespace App\Service;
 
 use App\Entity\EmailDomainsToServers;
 use App\Entity\KeycloakGroupsToServers;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -35,7 +35,7 @@ class ServerUserManagment
     {
         $servers = array();
         //here we add theserver which is directed connected to a user
-        $servers = $user->getServers()->toArray();
+        $servers = $user->getStandort()->toArray();
 
 
         // here we add the servers from thekeycloak group
@@ -58,7 +58,7 @@ class ServerUserManagment
             }
         }
 
-        $default = $this->em->getRepository(Server::class)->find($this->parameter->get('default_jitsi_server_id'));
+        $default = $this->em->getRepository(Standort::class)->find($this->parameter->get('default_jitsi_server_id'));
         //here we add the default group which is set in the env
         if ($default && !in_array($default, $servers)) {
             $servers[] = $default;
