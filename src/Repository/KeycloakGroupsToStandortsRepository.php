@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method KeycloakGroupsToStandorts[]    findAll()
  * @method KeycloakGroupsToStandorts[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class KeycloakGroupsToServersRepository extends ServiceEntityRepository
+class KeycloakGroupsToStandortsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

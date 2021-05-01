@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\KeycloakGroupsToServersRepository;
+use App\Repository\KeycloakGroupsToStandortsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=KeycloakGroupsToServersRepository::class)
+ * @ORM\Entity(repositoryClass=KeycloakGroupsToStandortsRepository::class)
  */
 class KeycloakGroupsToStandorts
 {
