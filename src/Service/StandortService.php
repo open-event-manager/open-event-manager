@@ -20,7 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 
-class ServerService
+class StandortService
 {
     private $em;
     private $logger;
@@ -37,11 +37,11 @@ class ServerService
         $this->translator = $translator;
     }
 
-    function addPermission(Standort $server, User $user)
+    function addPermission(Standort $standort, User $user)
     {
-        $content = $this->twig->render('email/serverPermission.html.twig', ['user' => $user, 'server' => $server]);
-        $subject = $this->translator->trans('Sie wurden zu einem Jitsi-Meet-Server hinzugefügt');
-        $this->notification->sendNotification($content, $subject, $user,$server);
+        $content = $this->twig->render('email/serverPermission.html.twig', ['user' => $user, 'standort' => $standort]);
+        $subject = $this->translator->trans('Sie wurden zu einem Open-Event-Manager Standort hinzugefügt');
+        $this->notification->sendNotification($content, $subject, $user,$standort);
 
         return true;
     }

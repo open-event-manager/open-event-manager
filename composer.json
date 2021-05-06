@@ -12,6 +12,7 @@
     "knpuniversity/oauth2-client-bundle": "^2.5",
     "laminas/laminas-code": "^3.4",
     "laminas/laminas-escaper": "^2.6",
+    "phpoffice/phpspreadsheet": "^1.17",
     "sensio/framework-extra-bundle": "^5.2",
     "stevenmaguire/oauth2-keycloak": "^2.2",
     "symfony/apache-pack": "^1.0",

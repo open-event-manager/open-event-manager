@@ -58,10 +58,10 @@ class ScheduleController extends AbstractController
             $snack = $translator->trans('Terminplanung erfolgreich erstellt');
             $title = $translator->trans('Neue Terminplanung erstellen');
         }
-        $servers = $serverUserManagment->getStandortsFromUser($this->getUser());
+        $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
 
 
-        $form = $this->createForm(RoomType::class, $room, ['server' => $servers, 'action' => $this->generateUrl('schedule_admin_new', ['id' => $room->getId()])]);
+        $form = $this->createForm(RoomType::class, $room, ['standort' => $standort, 'action' => $this->generateUrl('schedule_admin_new', ['id' => $room->getId()])]);
 
         $form->remove('scheduleMeeting');
         $form->remove('start');

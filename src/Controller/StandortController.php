@@ -13,7 +13,7 @@ use App\Form\Type\RoomType;
 use App\Form\Type\StandortType;
 use App\Service\LicenseService;
 use App\Service\MailerService;
-use App\Service\ServerService;
+use App\Service\StandortService;
 use App\Service\ServerUserManagment;
 use App\Service\UserService;
 use App\Service\InviteService;
@@ -30,7 +30,7 @@ class StandortController extends AbstractController
     /**
      * @Route("/server/add", name="servers_add")
      */
-    public function serverAdd(Request $request, ValidatorInterface $validator, ServerService $serverService, TranslatorInterface $translator)
+    public function serverAdd(Request $request, ValidatorInterface $validator, StandortService $serverService, TranslatorInterface $translator)
     {
         if ($request->get('id')) {
             $standort = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(array('id' => $request->get('id')));
@@ -71,7 +71,7 @@ class StandortController extends AbstractController
     /**
      * @Route("/server/enterprise", name="servers_enterprise")
      */
-    public function serverEnterprise(Request $request, ValidatorInterface $validator, ServerService $serverService, TranslatorInterface $translator, LicenseService $licenseService)
+    public function serverEnterprise(Request $request, ValidatorInterface $validator, StandortService $serverService, TranslatorInterface $translator, LicenseService $licenseService)
     {
 
         $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(array('id' => $request->get('id')));
@@ -103,7 +103,7 @@ class StandortController extends AbstractController
     /**
      * @Route("/server/add-user", name="server_add_user")
      */
-    public function roomAddUser(Request $request, InviteService $inviteService, ServerService $serverService, TranslatorInterface $translator)
+    public function roomAddUser(Request $request, InviteService $inviteService, StandortService $serverService, TranslatorInterface $translator)
     {
         $newMember = array();
         $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['id' => $request->get('id')]);
@@ -164,7 +164,7 @@ class StandortController extends AbstractController
      * @Route("/server/delete", name="server_delete")
      */
     public
-    function serverDelete(Request $request, TranslatorInterface $translator, ServerService $serverService)
+    function serverDelete(Request $request, TranslatorInterface $translator, StandortService $serverService)
     {
 
         $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['id' => $request->get('id')]);

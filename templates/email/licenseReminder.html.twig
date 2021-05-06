@@ -1,12 +1,12 @@
 {% extends 'email/base.html.twig' %}
 {% block header %}
-    -- {{ server.url }} --
+    -- {{ standort.name }} --
 {% endblock %}
 
 {% block content %}
     <h4 class="text-center">
-        {% trans with {'{url}':server.url,'{date}':license.validUntil|date('d.m.Y') } %}
-            Ihre Lizenz für den Jitsi-Meet-Server mit der Url: {url} läuft am {date} aus
+        {% trans with {'{name}':standort.name,'{date}':license.validUntil|date('d.m.Y') } %}
+            Ihre Lizenz für den Standort: {name} läuft am {date} aus
         {% endtrans %}
     </h4>
     <b>
@@ -14,7 +14,7 @@
     </b>
     <p>
         {% trans %}
-        Ihre Jitsi-Admin-Enterprise Lizenz läuft bald aus. <br>
+        Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. <br>
             Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.
         {% endtrans %}
     </p>

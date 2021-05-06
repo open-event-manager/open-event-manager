@@ -45,9 +45,9 @@ label:
   serverPrivacyPolicy: Datenschutzhinweise für diesen Server
   serverEmailHeader: Individuelle Überschrift für Email
   serverEmailBody: Individuellen Content für Email
-  serverLicenseKey: Jitsi-Admin-Lizenkey eingeben
+  serverLicenseKey: Event-Manager Lizenzkey eingeben
   apiKey: Api-Key für diesen Server
-  agenda: Kurze Agenda für dieses Meeting (Markdown)
+  agenda: Kurze Agenda für dieses Event (Markdown)
   staticBackgroundColor: Hintergrundfarbe auf der Joinseite festlegen
   schowStaticBackgroundColor: Zeige eine feste Farbe, anstatt Bildern auf der Joinseite
   puplicRoom: Öffentliche Konferenz

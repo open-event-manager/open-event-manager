@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Standort;
-use App\Service\ServerService;
+use App\Service\StandortService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,7 +17,7 @@ class AddSlugToServerCommand extends Command
     protected static $defaultName = 'app:addSlugToServer';
     private $em;
     private $serverService;
-    public function __construct(string $name = null,EntityManagerInterface $entityManager,ServerService $serverService)
+    public function __construct(string $name = null, EntityManagerInterface $entityManager, StandortService $serverService)
     {
         parent::__construct($name);
         $this->em = $entityManager;

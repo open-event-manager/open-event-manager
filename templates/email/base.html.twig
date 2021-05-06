@@ -1,6 +1,6 @@
 {% apply inky_to_html|inline_css(source('@css/foundation-emails.css')) %}
     {% if room is defined and standort is not defined %}
-        {% set server = room.standort %}
+        {% set standort = room.standort %}
     {% endif %}
     <style type="text/css">
         body,
