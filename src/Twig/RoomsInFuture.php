@@ -36,15 +36,15 @@ class RoomsInFuture extends AbstractExtension
         ];
     }
 
-    public function roomsinFuture(Standort $server)
+    public function roomsinFuture(Standort $standort)
     {
         $now = new \DateTime();
         $qb = $this->em->getRepository(Rooms::class)->createQueryBuilder('rooms');
-        $qb->andWhere('rooms.server = :server')
+        $qb->andWhere('rooms.standort = :standort')
             ->andWhere('rooms.showRoomOnJoinpage = true')
             ->andWhere('rooms.start > :now')
             ->andWhere($qb->expr()->isNotNull('rooms.moderator'))
-            ->setParameter('server', $server)
+            ->setParameter('standort', $standort)
             ->setParameter('now', $now)
             ->orderBy('rooms.start', 'ASC');
         $rooms = $qb->getQuery()->getResult();
