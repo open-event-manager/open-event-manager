@@ -9,7 +9,7 @@
 namespace App\Service;
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -27,7 +27,7 @@ class AdminService
         $this->em = $entityManager;
     }
 
-    public function createChart(Server $server)
+    public function createChart(Standort $server)
     {
         $rooms = $this->em->getRepository(Rooms::class)->findBy(['server'=>$server]);
 

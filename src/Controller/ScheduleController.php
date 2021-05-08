@@ -58,10 +58,10 @@ class ScheduleController extends AbstractController
             $snack = $translator->trans('Terminplanung erfolgreich erstellt');
             $title = $translator->trans('Neue Terminplanung erstellen');
         }
-        $servers = $serverUserManagment->getServersFromUser($this->getUser());
+        $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
 
 
-        $form = $this->createForm(RoomType::class, $room, ['server' => $servers, 'action' => $this->generateUrl('schedule_admin_new', ['id' => $room->getId()])]);
+        $form = $this->createForm(RoomType::class, $room, ['standort' => $standort, 'action' => $this->generateUrl('schedule_admin_new', ['id' => $room->getId()])]);
 
         $form->remove('scheduleMeeting');
         $form->remove('start');
@@ -212,11 +212,11 @@ class ScheduleController extends AbstractController
             return $this->redirectToRoute('join_index_no_slug', ['snack' => $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.'), 'color' => 'danger']);
         }
 
-        $server = $scheduling->getRoom()->getServer();
+        $standort = $scheduling->getRoom()->getStandort();
 
 
 
-        return $this->render('schedule/schedulePublic.html.twig', array('user' => $user, 'scheduling' => $scheduling, 'room' => $scheduling->getRoom(), 'server' => $server));
+        return $this->render('schedule/schedulePublic.html.twig', array('user' => $user, 'scheduling' => $scheduling, 'room' => $scheduling->getRoom(), 'standort' => $standort));
     }
 
     /**

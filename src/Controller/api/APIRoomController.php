@@ -4,7 +4,7 @@ namespace App\Controller\api;
 
 use App\Entity\ApiKeys;
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Service\api\KeycloakService;
 
@@ -43,7 +43,7 @@ class APIRoomController extends AbstractController
         $apiKey = $request->headers->get('Authorization');
         // skip beyond "Bearer "
         $apiKey = substr($apiKey, 7);
-        $server = $this->getDoctrine()->getRepository(Server::class)->findServerWithEmailandUrl($serverUrl, $email, $apiKey);
+        $server = $this->getDoctrine()->getRepository(Standort::class)->findServerWithEmailandUrl($serverUrl, $email, $apiKey);
         if (!$server && $licenseService->verify($server) ) {
             return new JsonResponse(array('error' => true, 'text' => 'No Server found'));
         }
@@ -74,7 +74,7 @@ class APIRoomController extends AbstractController
         $apiKey = $request->headers->get('Authorization');
         // skip beyond "Bearer "
         $apiKey = substr($apiKey, 7);
-        if($room->getServer()->getApiKey() !== $apiKey){
+        if($room->getStandort()->getApiKey() !== $apiKey){
             return new JsonResponse(array('error' => true, 'text' => 'No Server found'));
         }
         $roomService->deleteRoom($room);
@@ -102,7 +102,7 @@ class APIRoomController extends AbstractController
         $apiKey = $request->headers->get('Authorization');
         // skip beyond "Bearer "
         $apiKey = substr($apiKey, 7);
-        $server = $this->getDoctrine()->getRepository(Server::class)->findServerWithEmailandUrl($serverUrl, $room->getModerator()->getEmail(),$apiKey);
+        $server = $this->getDoctrine()->getRepository(Standort::class)->findServerWithEmailandUrl($serverUrl, $room->getModerator()->getEmail(),$apiKey);
         //If there is no server, then we take the default server which is accessabl for all jitsi admin users
         if (!$server && $licenseService->verify($server) ) {
             return new JsonResponse(array('error' => true, 'text' => 'No Server found'));
@@ -119,7 +119,7 @@ class APIRoomController extends AbstractController
     {
 
         $user = $keycloakService->getUSer($request->get('email'), $request->get('keycloakId'));
-        $server = $serverUserManagment->getServersFromUser($user);
+        $server = $serverUserManagment->getStandortsFromUser($user);
 
         $serv = array();
         $res = array();

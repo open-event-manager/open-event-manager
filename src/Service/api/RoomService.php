@@ -5,7 +5,7 @@ namespace App\Service\api;
 
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 
 use App\Service\InviteService;
@@ -28,7 +28,7 @@ class RoomService
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function createRoom(User $user, Server $server, \DateTime $start, $duration, $name)
+    public function createRoom(User $user, Standort $server, \DateTime $start, $duration, $name)
     {
         // We initialize the Room with the data;
 
@@ -42,7 +42,7 @@ class RoomService
         $room->setUidReal(md5(uniqid('h2-invent', true)));
         $room->setStart($start);
         $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
-        $room->setServer($server);
+        $room->setStandort($server);
 
         $this->em->persist($room);
         $this->em->flush();
@@ -50,7 +50,7 @@ class RoomService
         return $room;
     }
 
-    public function editRoom(Rooms $room, Server $server, \DateTime $start, $duration, $name)
+    public function editRoom(Rooms $room, Standort $server, \DateTime $start, $duration, $name)
     {
         // We initialize the Room with the data;
 
@@ -60,7 +60,7 @@ class RoomService
         $room->setSequence(0);
         $room->setStart($start);
         $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
-        $room->setServer($server);
+        $room->setStandort($server);
 
         $this->em->persist($room);
         $this->em->flush();
@@ -150,7 +150,7 @@ class RoomService
         $res['duration'] = $room->getDuration();
         $res['name'] = $room->getName();
         $res['moderator'] = $room->getModerator() ? $room->getModerator()->getEmail() : '';
-        $res['server'] = $room->getServer()->getUrl();
+        $res['server'] = $room->getStandort()->getUrl();
         $res['joinBrowser'] = $this->urlGenerator->generate('room_join', array('t' => 'b', 'room' => $room->getId()), UrlGenerator::ABSOLUTE_URL);
         $res['joinApp'] = $this->urlGenerator->generate('room_join', array('t' => 'a', 'room' => $room->getId()), UrlGenerator::ABSOLUTE_URL);
         return $res;

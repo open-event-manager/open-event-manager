@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Rooms;
 use App\Entity\Scheduling;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Form\Type\NewMemberType;
 use App\Form\Type\RoomType;
@@ -64,10 +64,10 @@ class RoomController extends AbstractController
             $snack = $translator->trans('Konferenz erfolgreich erstellt');
             $title = $translator->trans('Neue Konferenz erstellen');
         }
-        $servers = $serverUserManagment->getServersFromUser($this->getUser());
+        $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
 
 
-        $form = $this->createForm(RoomType::class, $room, ['server' => $servers, 'action' => $this->generateUrl('room_new', ['id' => $room->getId()])]);
+        $form = $this->createForm(RoomType::class, $room, ['standort' => $standort, 'action' => $this->generateUrl('room_new', ['id' => $room->getId()])]);
         if ($request->get('id')){
             $form->remove('scheduleMeeting');
         }
@@ -225,7 +225,7 @@ class RoomController extends AbstractController
      * @Route("/room/clone", name="room_clone")
      */
     public
-    function roomClone(Request $request, UserService $userService, TranslatorInterface $translator)
+    function roomClone(Request $request, UserService $userService, TranslatorInterface $translator,ServerUserManagment $serverUserManagment)
     {
 
         $roomOld = $this->getDoctrine()->getRepository(Rooms::class)->find($request->get('room'));
@@ -238,13 +238,9 @@ class RoomController extends AbstractController
 
         if ($this->getUser() === $room->getModerator()) {
 
-            $servers = $this->getUser()->getServers()->toarray();
-            $default = $this->getDoctrine()->getRepository(Server::class)->find($this->getParameter('default_jitsi_server_id'));
-            if ($default) {
-                $servers[] = $default;
-            }
+            $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
 
-            $form = $this->createForm(RoomType::class, $room, ['server' => $servers, 'action' => $this->generateUrl('room_clone', ['room' => $room->getId()])]);
+            $form = $this->createForm(RoomType::class, $room, ['standort' => $standort, 'action' => $this->generateUrl('room_clone', ['room' => $room->getId()])]);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {

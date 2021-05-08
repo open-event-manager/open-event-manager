@@ -6,7 +6,7 @@ use App\Entity\Checklist;
 use App\Entity\MyUser;
 use App\Entity\Rooms;
 use App\Entity\RoomsUser;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Service\LicenseService;
 use App\Service\MessageService;

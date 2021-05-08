@@ -63,7 +63,7 @@ class APIUserController extends AbstractController
         $apiKey = $request->headers->get('Authorization');
         // skip beyond "Bearer "
         $apiKey = substr($apiKey, 7);
-         if ($room->getServer()->getApiKey() !== $apiKey ||  !$licenseService->verify($room->getServer()) ) {
+         if ($room->getStandort()->getApiKey() !== $apiKey ||  !$licenseService->verify($room->getStandort()) ) {
             return new JsonResponse(array('error' => true, 'text' => 'No Server found'));
         }
         $email = $request->get('email');
@@ -80,7 +80,7 @@ class APIUserController extends AbstractController
         $apiKey = $request->headers->get('Authorization');
         // skip beyond "Bearer "
         $apiKey = substr($apiKey, 7);
-        if ($room->getServer()->getApiKey() !== $apiKey ||  !$licenseService->verify($room->getServer()) ) {
+        if ($room->getStandort()->getApiKey() !== $apiKey ||  !$licenseService->verify($room->getStandort()) ) {
             return new JsonResponse(array('error' => true, 'text' => 'No Server found'));
         }
         $email = $request->get('email');

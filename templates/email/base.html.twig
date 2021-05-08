@@ -1,6 +1,6 @@
 {% apply inky_to_html|inline_css(source('@css/foundation-emails.css')) %}
-    {% if room is defined and server is not defined %}
-        {% set server = room.server %}
+    {% if room is defined and standort is not defined %}
+        {% set standort = room.standort %}
     {% endif %}
     <style type="text/css">
         body,
@@ -24,8 +24,8 @@
         <row>
             <columns>
                 <h1 class="text-center">
-                    {% if server is defined and  server is not null and server|validateLicense and server.serverEmailHeader is not null %}
-                        {{ server.serverEmailHeader }}
+                    {% if standort is defined and  standort is not null and standort|validateLicense and standort.serverEmailHeader is not null %}
+                        {{ standort.serverEmailHeader }}
                     {% else %}
                         {% block header %}
 
@@ -50,14 +50,14 @@
                 <center>
                     {% if laF_emailTextLogin == 1 %}
                         <p style="text-align: center">
-                            {% if server is defined and  server is not null and server|validateLicense %}
-                                {% trans with {'{url}':laF_baseUrl~path('dashboard')} %}Sie wollen diese Konferenz komfortabel in einer Übersicht verwalten?
+                            {% if standort is defined and  standort is not null and standort|validateLicense %}
+                                {% trans with {'{url}':laF_baseUrl~path('dashboard')} %}Sie wollen dieses Event komfortabel in einer Übersicht verwalten?
                                     <br>
                                     Dann melden Sie sich <a href="{url}">hier</a>&nbsp;an.
                                 {% endtrans %}
                             {% else %}
-                                {% trans with {'{url}':laF_baseUrl~path('dashboard')} %}Sie wollen selber eine Videokonferenz
-                                    <b>kostenlos</b> planen oder diese Konferenz komfortabel
+                                {% trans with {'{url}':laF_baseUrl~path('dashboard')} %}Sie wollen selber ein Event
+                                    <b>kostenlos</b> planen oder dieses Event komfortabel
                                                      in einer Übersicht verwalten?<br>
                                     Dann melden Sie sich <a href="{url}">hier</a>&nbsp;<b>kostenlos</b>
                                     an.
@@ -70,9 +70,9 @@
                 <spacer size="16"></spacer>
                 <p>
                     {% if room is defined %}
-                        {{ 'Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste von dieser Konferenz stehen.'|trans }}
+                        {{ 'Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste dieses Events  stehen.'|trans }}
                     {% else %}
-                        {{ 'Sie erhalten diese E-Mail, da Sie zu einem Jitsi Server hinzugefügt wurden.'|trans }}
+                        {{ 'Sie erhalten diese E-Mail, da Sie als Organisator zu einem Standort hinzugefügt wurden.'|trans }}
                     {% endif %}
                 </p>
                 <spacer size="32"></spacer>
@@ -88,7 +88,7 @@
         </row>
         <center>
             <small>
-                <a href="https://jitsi-admin.de">{{ 'Powered by Jitsi Manager, die Open Source Jitsi Planer Software'|trans }}</a>
+                <a href="https://jitsi-admin.de">{{ 'Powered by Open Event Manager, die Open Source Event Managment Software'|trans }}</a>
             </small>
         </center>
 

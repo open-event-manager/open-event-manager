@@ -1,26 +1,21 @@
 [deutsch](README_de.md)
 
 ![Server](docs/images/header.png)
-# Jitsi Manager
+# Open Event Manager
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
-[![Crowdin](https://badges.crowdin.net/jitsi-admin/localized.svg)](https://crowdin.com/project/jitsi-admin)
-
-Jitsi Manager or Jitsi Admin is a tool to manage Jitsi conferences and server with JWT
-
-### Known from
-
-![Server](docs/images/ct-logo.png)
+[![Crowdin](https://badges.crowdin.net/open-event-manager/localized.svg)](https://crowdin.com/project/open-event-manager)
+Open Event Manager is a tool to manage conferences
 
 
 
 ### Mailing List
 
-If you want to be notified, if there are new updates or releases, you can subscribe to the __Jitsi Admin Update__ mailing list.
+If you want to be notified, if there are new updates or releases, you can subscribe to the __Open Event Manger Update__ mailing list.
 H2 invent will send out information to the mailing list concering releases, updates or new features.
 This is __not__ a marketing-newsletter.
 
-If you want to join the mailing list just click on the link [Mailing List](https://verteiler.h2-invent.com/?p=subscribe&id=1) and enter your email address.
+If you want to join the mailing list just click on the link [Mailing List](https://verteiler.h2-invent.com/?p=subscribe&id=2) and enter your email address.
 We use a double-opt-in process where you will receive a confirmation email containing a link with with you confirm, that you want to join to mailing list.
 
 It is always possible to leave the mailing list.
@@ -36,10 +31,11 @@ We cooperate with the city administrations of Baden-Baden, Bretten, Bruchsal, BÃ
 ## Translation
 Please help us to improve our localiczation
 
-[![Crowdin](https://badges.crowdin.net/jitsi-admin/localized.svg)](https://crowdin.com/project/jitsi-admin)
+[![Crowdin](https://badges.crowdin.net/open-event-manager/localized.svg)](https://crowdin.com/project/open-event-manager)
+
 # Features
 
-The following features are already part of Jitsi Administrator:
+The following features are already part of Open Event Manager:
 
 * Managing of conferences
 * Managing of Jitsi servers with JWT enabled

@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\KeycloakGroupsToServers;
+use App\Entity\KeycloakGroupsToStandorts;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method KeycloakGroupsToServers|null find($id, $lockMode = null, $lockVersion = null)
- * @method KeycloakGroupsToServers|null findOneBy(array $criteria, array $orderBy = null)
- * @method KeycloakGroupsToServers[]    findAll()
- * @method KeycloakGroupsToServers[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method KeycloakGroupsToStandorts|null find($id, $lockMode = null, $lockVersion = null)
+ * @method KeycloakGroupsToStandorts|null findOneBy(array $criteria, array $orderBy = null)
+ * @method KeycloakGroupsToStandorts[]    findAll()
+ * @method KeycloakGroupsToStandorts[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class KeycloakGroupsToServersRepository extends ServiceEntityRepository
+class KeycloakGroupsToStandortsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, KeycloakGroupsToServers::class);
+        parent::__construct($registry, KeycloakGroupsToStandorts::class);
     }
 
     // /**

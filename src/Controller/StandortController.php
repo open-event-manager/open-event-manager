@@ -2,18 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\KeycloakGroupsToServers;
+use App\Entity\KeycloakGroupsToStandorts;
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Form\Type\EnterpriseType;
 use App\Form\Type\NewMemberType;
 use App\Form\Type\NewPermissionType;
 use App\Form\Type\RoomType;
-use App\Form\Type\ServerType;
+use App\Form\Type\StandortType;
 use App\Service\LicenseService;
 use App\Service\MailerService;
-use App\Service\ServerService;
+use App\Service\StandortService;
 use App\Service\ServerUserManagment;
 use App\Service\UserService;
 use App\Service\InviteService;
@@ -25,60 +25,56 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class ServersController extends AbstractController
+class StandortController extends AbstractController
 {
     /**
      * @Route("/server/add", name="servers_add")
      */
-    public function serverAdd(Request $request, ValidatorInterface $validator, ServerService $serverService, TranslatorInterface $translator)
+    public function serverAdd(Request $request, ValidatorInterface $validator, StandortService $serverService, TranslatorInterface $translator)
     {
         if ($request->get('id')) {
-            $server = $this->getDoctrine()->getRepository(Server::class)->findOneBy(array('id' => $request->get('id')));
-            if ($server->getAdministrator() !== $this->getUser()) {
+            $standort = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(array('id' => $request->get('id')));
+            if ($standort->getAdministrator() !== $this->getUser()) {
                 return $this->redirectToRoute('dashboard', ['snack' => 'Keine Berechtigung']);
             }
-            $title = $translator->trans('Jitsi-Meet-Server bearbeiten');
+            $title = $translator->trans('Standort bearbeiten');
         } else {
-            $title = $translator->trans('Jitsi-Meet-Server erstellen');
-            $server = new Server();
-            $server->addUser($this->getUser());
-            $server->setAdministrator($this->getUser());
+            $title = $translator->trans('Neuen Standort erstellen');
+            $standort = new Standort();
+            $standort->addUser($this->getUser());
+            $standort->setAdministrator($this->getUser());
         }
 
-        $form = $this->createForm(ServerType::class, $server, ['action' => $this->generateUrl('servers_add', ['id' => $server->getId()])]);
+        $form = $this->createForm(StandortType::class, $standort, ['action' => $this->generateUrl('servers_add', ['id' => $standort->getId()])]);
         $form->handleRequest($request);
 
         $errors = array();
         if ($form->isSubmitted() && $form->isValid()) {
-            $server = $form->getData();
-            $url = $server->getUrl();
-            $url = str_replace('https://', '', $url);
-            $url = str_replace('http://', '', $url);
-            $server->setUrl($url);
-            $errors = $validator->validate($server);
+            $standort = $form->getData();
+            $errors = $validator->validate($standort);
             if (count($errors) == 0) {
                 $em = $this->getDoctrine()->getManager();
-                if (!$server->getSlug()) {
-                    $slug = $serverService->makeSlug($server->getUrl());
-                    $server->setSlug($slug);
+                if (!$standort->getSlug()) {
+                    $slug = $serverService->makeSlug($standort->getName());
+                    $standort->setSlug($slug);
                 }
-                $em->persist($server);
+                $em->persist($standort);
                 $em->flush();
                 return $this->redirectToRoute('dashboard');
             }
         }
 
-        return $this->render('servers/__addServerModal.html.twig', array('form' => $form->createView(), 'title' => $title, 'server' => $server));
+        return $this->render('servers/__addServerModal.html.twig', array('form' => $form->createView(), 'title' => $title, 'standort' => $standort));
 
     }
 
     /**
      * @Route("/server/enterprise", name="servers_enterprise")
      */
-    public function serverEnterprise(Request $request, ValidatorInterface $validator, ServerService $serverService, TranslatorInterface $translator, LicenseService $licenseService)
+    public function serverEnterprise(Request $request, ValidatorInterface $validator, StandortService $serverService, TranslatorInterface $translator, LicenseService $licenseService)
     {
 
-        $server = $this->getDoctrine()->getRepository(Server::class)->findOneBy(array('id' => $request->get('id')));
+        $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(array('id' => $request->get('id')));
         if ($server->getAdministrator() !== $this->getUser() || !$licenseService->verify($server)) {
             return $this->redirectToRoute('dashboard', ['snack' => 'Keine Berechtigung']);
         }
@@ -107,10 +103,10 @@ class ServersController extends AbstractController
     /**
      * @Route("/server/add-user", name="server_add_user")
      */
-    public function roomAddUser(Request $request, InviteService $inviteService, ServerService $serverService, TranslatorInterface $translator)
+    public function roomAddUser(Request $request, InviteService $inviteService, StandortService $serverService, TranslatorInterface $translator)
     {
         $newMember = array();
-        $server = $this->getDoctrine()->getRepository(Server::class)->findOneBy(['id' => $request->get('id')]);
+        $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['id' => $request->get('id')]);
         if ($server->getAdministrator() !== $this->getUser()) {
             return $this->redirectToRoute('dashboard', ['snack' => 'Keine Berechtigung']);
         }
@@ -129,7 +125,7 @@ class ServersController extends AbstractController
                 foreach ($lines as $line) {
                     $newMember = trim($line);
                     $user = $inviteService->newUser($newMember);
-                    $user->addServer($server);
+                    $user->addStandort($server);
                     $em->persist($user);
                     $serverService->addPermission($server, $user);
                 }
@@ -150,7 +146,7 @@ class ServersController extends AbstractController
     function serverUserRemove(Request $request, TranslatorInterface $translator)
     {
 
-        $server = $this->getDoctrine()->getRepository(Server::class)->findOneBy(['id' => $request->get('id')]);
+        $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['id' => $request->get('id')]);
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $request->get('user')]);
         $snack = $translator->trans('Keine Berechtigung');
         if ($server->getAdministrator() === $this->getUser() || $user === $this->getUser()) {
@@ -168,14 +164,14 @@ class ServersController extends AbstractController
      * @Route("/server/delete", name="server_delete")
      */
     public
-    function serverDelete(Request $request, TranslatorInterface $translator, ServerService $serverService)
+    function serverDelete(Request $request, TranslatorInterface $translator, StandortService $serverService)
     {
 
-        $server = $this->getDoctrine()->getRepository(Server::class)->findOneBy(['id' => $request->get('id')]);
+        $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['id' => $request->get('id')]);
         $snack = $translator->trans('Keine Berechtigung');
         if ($server->getAdministrator() === $this->getUser()) {
             $em = $this->getDoctrine()->getManager();
-            $groupServer = $this->getDoctrine()->getRepository(KeycloakGroupsToServers::class)->findBy(array('server' => $server));
+            $groupServer = $this->getDoctrine()->getRepository(KeycloakGroupsToStandorts::class)->findBy(array('server' => $server));
             foreach ($groupServer as $data) {
                 $em->remove($data);
             }
@@ -198,7 +194,7 @@ class ServersController extends AbstractController
     function servercheckEmail(Request $request, TranslatorInterface $translator, MailerService $mailerService)
     {
         $res = ['snack' => $translator->trans('SMTP Einstellungen korrekt. Sie sollten in Kürze eine Email erhalten'), 'color' => 'success'];
-        $server = $this->getDoctrine()->getRepository(Server::class)->find($request->get('id'));
+        $server = $this->getDoctrine()->getRepository(Standort::class)->find($request->get('id'));
         if (!$server || $server->getAdministrator() != $this->getUser()) {
 
             $res = ['snack' => $translator->trans('Fehler, der Server ist nicht registriert'), 'color' => 'danger'];

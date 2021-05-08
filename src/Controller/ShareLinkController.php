@@ -84,7 +84,7 @@ class ShareLinkController extends AbstractController
         $errors = array();
         $snack = $translator->trans('Bitte geben Sie ihre Daten ein');
         $color = 'success';
-        $server = null;
+        $standort = null;
         if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants())) {
             $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
             $color = 'danger';
@@ -103,11 +103,11 @@ class ShareLinkController extends AbstractController
             }
 
         }
-        $server = $rooms->getServer();
+        $standort = $rooms->getStandort();
         return $this->render('share_link/subscribe.html.twig', [
             'form' => $form->createView(),
             'snack' => $snack,
-            'server' => $server,
+            'standort' => $standort,
             'room' => $rooms,
             'color' => $color,
         ]);
@@ -121,14 +121,14 @@ class ShareLinkController extends AbstractController
     {
         $subscriber = $this->em->getRepository(Subscriber::class)->findOneBy(array('uid' => $uid));
         $res = $subcriptionService->acceptSub($subscriber);
-        $server = null;
+        $standort = null;
         if ($subscriber) {
-            $server = $subscriber->getRoom()->getServer();
+            $standort = $subscriber->getRoom()->getStandort();
         }
 
         $message = $res['message'];
         $title = $res['title'];
 
-        return $this->render('share_link/subscribeSuccess.html.twig', array('server' => $server, 'message' => $message, 'title' => $title));
+        return $this->render('share_link/subscribeSuccess.html.twig', array('standort' => $standort, 'message' => $message, 'title' => $title));
     }
 }

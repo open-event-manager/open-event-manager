@@ -10,7 +10,7 @@ namespace App\Service;
 
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Firebase\JWT\JWT;
@@ -20,7 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 
-class ServerService
+class StandortService
 {
     private $em;
     private $logger;
@@ -37,11 +37,11 @@ class ServerService
         $this->translator = $translator;
     }
 
-    function addPermission(Server $server, User $user)
+    function addPermission(Standort $standort, User $user)
     {
-        $content = $this->twig->render('email/serverPermission.html.twig', ['user' => $user, 'server' => $server]);
-        $subject = $this->translator->trans('Sie wurden zu einem Jitsi-Meet-Server hinzugefügt');
-        $this->notification->sendNotification($content, $subject, $user,$server);
+        $content = $this->twig->render('email/serverPermission.html.twig', ['user' => $user, 'standort' => $standort]);
+        $subject = $this->translator->trans('Sie wurden zu einem Open-Event-Manager Standort hinzugefügt');
+        $this->notification->sendNotification($content, $subject, $user,$standort);
 
         return true;
     }
@@ -58,7 +58,7 @@ class ServerService
         $counter = 0;
         $tmp = $slug;
         while (true) {
-            $server = $this->em->getRepository(Server::class)->findOneBy(['slug' => $tmp]);
+            $server = $this->em->getRepository(Standort::class)->findOneBy(['slug' => $tmp]);
             if (!$server) {
                 return $tmp;
             } else{

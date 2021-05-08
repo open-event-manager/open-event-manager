@@ -10,7 +10,7 @@ namespace App\Form\Type;
 
 
 use App\Entity\AuditTomAbteilung;
-use App\Entity\Server;
+use App\Entity\Standort;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -29,10 +29,10 @@ class RoomType extends AbstractType
     {
 
         $builder
-            ->add('server', EntityType::class, [
-                'choice_label' => 'url',
-                'class' => Server::class,
-                'choices' => $options['server'],
+            ->add('standort', EntityType::class, [
+                'choice_label' => 'name',
+                'class' => Standort::class,
+                'choices' => $options['standort'],
                 'label' => 'label.serverKonferenz',
                 'translation_domain' => 'form',
                 'multiple' => false,
@@ -57,10 +57,7 @@ class RoomType extends AbstractType
                 ]
             ])
             ->add('scheduleMeeting',CheckboxType::class,array('required'=>false,'label' => 'label.scheduleMeeting', 'translation_domain' => 'form'))
-            ->add('onlyRegisteredUsers',CheckboxType::class,array('required'=>false,'label' => 'label.nurRegistriertenutzer', 'translation_domain' => 'form'))
-            ->add('dissallowScreenshareGlobal',CheckboxType::class,array('required'=>false,'label' => 'label.dissallowScreenshareGlobal', 'translation_domain' => 'form'))
-            ->add('dissallowPrivateMessage',CheckboxType::class,array('required'=>false,'label' => 'label.dissallowPrivateMessage', 'translation_domain' => 'form'))
-            ->add('public',CheckboxType::class,array('required'=>false,'label' => 'label.puplicRoom', 'translation_domain' => 'form'))
+             ->add('public',CheckboxType::class,array('required'=>false,'label' => 'label.puplicRoom', 'translation_domain' => 'form'))
             ->add('showRoomOnJoinpage',CheckboxType::class,array('required'=>false,'label' => 'label.showRoomOnJoinpage', 'translation_domain' => 'form'))
             ->add('maxParticipants',NumberType::class,array('required'=>false,'label' => 'label.maxParticipants', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
             ->add('waitinglist',CheckboxType::class,array('required'=>false,'label' => 'label.waitinglist', 'translation_domain' => 'form'))
@@ -70,7 +67,7 @@ class RoomType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'server'=>array(),
+            'standort'=>array(),
         ]);
 
     }

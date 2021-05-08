@@ -9,7 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Form\Type\JoinViewType;
 use App\Service\ServerUserManagment;
@@ -47,10 +47,10 @@ class DashboardController extends AbstractController
         $form->handleRequest($request);
 
         $user = $this->getDoctrine()->getRepository(User::class)->findAll();
-        $server = $this->getDoctrine()->getRepository(Server::class)->findAll();
+        $standort = $this->getDoctrine()->getRepository(Standort::class)->findAll();
         $rooms = $this->getDoctrine()->getRepository(Rooms::class)->findAll();
 
-        return $this->render('dashboard/start.html.twig', ['form' => $form->createView(),'user'=>$user, 'server'=>$server, 'rooms'=>$rooms]);
+        return $this->render('dashboard/start.html.twig', ['form' => $form->createView(),'user'=>$user, 'standort'=>$standort, 'rooms'=>$rooms]);
     }
 
 
@@ -75,12 +75,7 @@ class DashboardController extends AbstractController
         $roomsNow = $this->getDoctrine()->getRepository(Rooms::class)->findRuningRooms($this->getUser());
         $roomsToday = $this->getDoctrine()->getRepository(Rooms::class)->findTodayRooms($this->getUser());
 
-        $servers = $serverUserManagment->getServersFromUser($this->getUser());
-        $default = $this->getDoctrine()->getRepository(Server::class)->find($this->getParameter('default_jitsi_server_id'));
-
-        if ($default && !in_array($default,$servers)) {
-            $servers[] = $default;
-        }
+        $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
 
         return $this->render('dashboard/index.html.twig', [
             'roomsFuture' => $future,
@@ -88,7 +83,7 @@ class DashboardController extends AbstractController
             'runningRooms'=>$roomsNow,
             'todayRooms' => $roomsToday,
             'snack' => $request->get('snack'),
-            'servers'=>$servers,
+            'standort'=>$standort,
         ]);
     }
 

@@ -21,7 +21,7 @@
                        role="tab"
                        aria-controls="ex1-tabs-1"
                        aria-selected="true"
-                    >{{ 'Zukünftige Konferenzen'|trans }}</a>
+                    >{{ 'Zukünftige Events'|trans }}</a>
                 </li>
                 <li class="nav-item">
                     <a data-toggle="tab"
@@ -32,7 +32,7 @@
                        role="tab"
                        aria-controls="ex1-tabs-2"
                        aria-selected="false"
-                    >{{ 'Vergangene Konferenzen'|trans }}</a>
+                    >{{ 'Vergangene Events'|trans }}</a>
                 </li>
 
 
@@ -40,16 +40,16 @@
         </div>
         <div class="d-md-none tabDropdown">
             <button class="caretdown btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">{{ 'Zukünftige Konferenzen'|trans }}
+                    aria-haspopup="true" aria-expanded="false">{{ 'Zukünftige Events'|trans }}
             </button>
             <div class="dropdown-menu">
                 <a class="dropdown-item dropdownTabToggle"
                    href="#ex1-tab-1-tab">
-                    {{ 'Zukünftige Konferenzen'|trans }}
+                    {{ 'Zukünftige Events'|trans }}
                 </a>
                 <a href="#ex1-tab-2-tab"
                    class="dropdown-item dropdownTabToggle">
-                    {{ 'Vergangene Konferenzen'|trans }}
+                    {{ 'Vergangene Events'|trans }}
                 </a>
 
             </div>
@@ -69,7 +69,7 @@
                         <a href="{{ path('room_new') }}" class="loadContent">
                             <div class="card card-body bg-success btn">
                                 <p class="mt-2 mb-2 text-center">
-                                    {{ 'Eine Konferenz planen'|trans }}
+                                    {{ 'Ein Event planen'|trans }}
                                 </p>
                             </div>
                         </a>
@@ -94,16 +94,16 @@
                     <div class="card card-body">
                         <p class="text-center">
                             {% trans with {'{url}':path('room_new')} %}
-                            Aktuell sind keine Konferenzen vorhanden. Erstellen Sie
+                            Aktuell sind keine Events vorhanden. Erstellen Sie
                             <u><a href="{url}" class="loadContent">hier</a></u>
-                            eine neue Konferenz.
+                            eine neues Event.
                         {% endtrans %}
                         </p>
                     </div>
                 {% elseif todayRooms |length == 0 %}
                     <h4 style="padding-top: 16px" class="h4-responsive pl-xl-3">{{ 'Heute'|trans }} </h4>
                     <div class="card card-body">
-                        <p class="text-center">{{ 'Heute steht keine Jitsi Meet Konferenz an.'|trans }}</p>
+                        <p class="text-center">{{ 'Heute steht keine Event an.'|trans }}</p>
                     </div>
                 {% endif %}
                 {% set locale =  app.request.locale %}
@@ -121,7 +121,7 @@
             <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                 {% if roomsPast |length == 0 %}
                     <div class="card card-body">
-                        <p class="text-center">{{ 'Aktuell sind keine vergangenen Konferenzen vorhanden.'|trans }}</p>
+                        <p class="text-center">{{ 'Aktuell sind keine vergangenen Events vorhanden.'|trans }}</p>
                     </div>
                 {% endif %}
                 {% for room in roomsPast %}

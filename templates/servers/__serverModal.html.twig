@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="h4-responsive w-100"
-                    id="myModalLabel">{% trans %}Jitsi-Meet-Servereinstellungen{% endtrans %}</h4>
+                    id="myModalLabel">{% trans %}Meine Standorte{% endtrans %}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
             <div class="modal-body">
                 {% if laf_CreateServerOpenToEveryone == 1 or (laf_keycloakGroupToCreateServer in app.user.groups) %}
                     <a href="{{ path('servers_add') }}" data-dismiss="modal"
-                       class="btn btn-primary loadContent">{{ 'Server hinzufügen'|trans }}</a>
+                       class="btn btn-primary loadContent">{{ 'Standort hinzufügen'|trans }}</a>
                 {% else %}
                     <p>
                         {% trans %}
@@ -26,27 +26,27 @@
 
                     <p><a href="mailto:{{ laf_administratorEmail }}">{{ laf_administratorEmail }}</a></p>
                 {% endif %}
-                {% for server in servers%}
+                {% for s in standort%}
                     <div class="card card-body mb-1">
                         <div class="row">
 
                             <div class="col-md-4">
-                                {{ server.url }}
+                                {{ s.name }}
                             </div>
 
                             <div class="col-md-4">
-                                {% if server.administrator == app.user %}
-                                    {% if server|validateLicense %}
-                                        <a href="{{ path('servers_enterprise',{'id':server.id}) }}" data-dismiss="modal"
+                                {% if s.administrator == app.user %}
+                                    {% if s|validateLicense %}
+                                        <a href="{{ path('servers_enterprise',{'id':s.id}) }}" data-dismiss="modal"
                                            class="loadContent"><span
                                                     class="badge badge-success">pro</span> {{ 'Enterprise Einstellungen'|trans }}
                                         </a>
                                         <br>
-                                        <a href="{{ path('server_check_email',{'id':server.id}) }}">
+                                        <a href="{{ path('server_check_email',{'id':s.id}) }}">
                                             <span
                                                     class="badge badge-success">pro</span> {{ 'Teste SMTP'|trans }}</a>
                                         <br>
-                                        <a href="{{ path('join_index',{'slug':server.slug}) }}" target="_blank">
+                                        <a href="{{ path('join_index',{'slug':s.slug}) }}" target="_blank">
                                             <span
                                                     class="badge badge-success">pro</span> {{ 'Meine Join-Seite'|trans }}
                                         </a>
@@ -55,21 +55,21 @@
                                 {% endif %}
                             </div>
                             <div class="col-md-4">
-                                {% if server.administrator == app.user %}
-                                    <a href="{{ path('servers_add',{'id':server.id}) }}" data-dismiss="modal"
+                                {% if s.administrator == app.user %}
+                                    <a href="{{ path('servers_add',{'id':s.id}) }}" data-dismiss="modal"
                                        class="loadContent">{{ 'Bearbeiten'|trans }}</a>
                                     <br>
-                                    <a href="{{ path('server_add_user',{'id':server.id}) }}" data-dismiss="modal"
+                                    <a href="{{ path('server_add_user',{'id':s.id}) }}" data-dismiss="modal"
                                        class="loadContent">{{ 'Organisatoren'|trans }}</a>
                                     <br>
-                                    <a href="{{ path('admin_server',{'server':server.id}) }}" data-dismiss="modal"
+                                    <a href="{{ path('admin_server',{'server':s.id}) }}" data-dismiss="modal"
                                        class="loadContent">{{ 'Statistiken'|trans }}</a>
                                     <br>
-                                    <a href="{{ path('server_delete',{'id':server.id}) }}" data-dismiss="modal"
+                                    <a href="{{ path('server_delete',{'id':s.id}) }}" data-dismiss="modal"
                                        class="confirmHref">{{ 'Server löschen'|trans }}</a>
 
                                 {% else %}
-                                    {% if server in app.user.servers %}
+                                    {% if s in app.user.standort %}
                                     <a class="confirmHref"
                                        href="{{ path('server_user_remove',{'id':server.id,'user':app.user.id}) }}"><i
                                                 class="fa fa-trash"></i></a>

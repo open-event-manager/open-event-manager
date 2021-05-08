@@ -77,9 +77,9 @@ class User extends BaseUser
     private $rooms;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Server::class, mappedBy="user")
+     * @ORM\ManyToMany(targetEntity=Standort::class, mappedBy="user")
      */
-    private $servers;
+    private $standort;
 
     /**
      * @ORM\OneToMany(targetEntity=Rooms::class, mappedBy="moderator")
@@ -87,9 +87,9 @@ class User extends BaseUser
     private $roomModerator;
 
     /**
-     * @ORM\OneToMany(targetEntity=Server::class, mappedBy="administrator")
+     * @ORM\OneToMany(targetEntity=Standort::class, mappedBy="administrator")
      */
-    private $serverAdmins;
+    private $standortAdmins;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="addressbookInverse")
@@ -136,9 +136,9 @@ class User extends BaseUser
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
-        $this->servers = new ArrayCollection();
+        $this->standort = new ArrayCollection();
         $this->roomModerator = new ArrayCollection();
-        $this->serverAdmins = new ArrayCollection();
+        $this->standortAdmins = new ArrayCollection();
         $this->addressbook = new ArrayCollection();
         $this->addressbookInverse = new ArrayCollection();
         $this->roomsAttributes = new ArrayCollection();
@@ -267,27 +267,27 @@ class User extends BaseUser
     }
 
     /**
-     * @return Collection|Server[]
+     * @return Collection|Standort[]
      */
-    public function getServers(): Collection
+    public function getStandort(): Collection
     {
-        return $this->servers;
+        return $this->standort;
     }
 
-    public function addServer(Server $server): self
+    public function addStandort(Standort $standort): self
     {
-        if (!$this->servers->contains($server)) {
-            $this->servers[] = $server;
-            $server->addUser($this);
+        if (!$this->standort->contains($standort)) {
+            $this->standort[] = $standort;
+            $standort->addUser($this);
         }
 
         return $this;
     }
 
-    public function removeServer(Server $server): self
+    public function removeStandort(Standort $standort): self
     {
-        if ($this->servers->removeElement($server)) {
-            $server->removeUser($this);
+        if ($this->standort->removeElement($standort)) {
+            $standort->removeUser($this);
         }
 
         return $this;
@@ -324,29 +324,29 @@ class User extends BaseUser
     }
 
     /**
-     * @return Collection|Server[]
+     * @return Collection|Standort[]
      */
-    public function getServerAdmins(): Collection
+    public function getStandortAdmins(): Collection
     {
-        return $this->serverAdmins;
+        return $this->standortAdmins;
     }
 
-    public function addServerAdmin(Server $serverAdmin): self
+    public function addStandortAdmin(Standort $serverAdmin): self
     {
-        if (!$this->serverAdmins->contains($serverAdmin)) {
-            $this->serverAdmins[] = $serverAdmin;
+        if (!$this->standortAdmins->contains($serverAdmin)) {
+            $this->standortAdmins[] = $serverAdmin;
             $serverAdmin->setAdministrator($this);
         }
 
         return $this;
     }
 
-    public function removeServerAdmin(Server $serverAdmin): self
+    public function removeStandortAdmin(Standort $standortAdmin): self
     {
-        if ($this->serverAdmins->removeElement($serverAdmin)) {
+        if ($this->standortAdmins->removeElement($standortAdmin)) {
             // set the owning side to null (unless already changed)
-            if ($serverAdmin->getAdministrator() === $this) {
-                $serverAdmin->setAdministrator(null);
+            if ($standortAdmin->getAdministrator() === $this) {
+                $standortAdmin->setAdministrator(null);
             }
         }
 

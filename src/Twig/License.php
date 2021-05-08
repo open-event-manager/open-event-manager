@@ -4,7 +4,7 @@ namespace App\Twig;
 
 use App\Entity\Checklist;
 use App\Entity\MyUser;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Service\LicenseService;
 use App\Service\MessageService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,12 +35,12 @@ class License extends AbstractExtension
         ];
     }
 
-    public function validateLicense(Server $server):bool
+    public function validateLicense(Standort $server):bool
     {
          return $this->licenseService->verify($server);
 
     }
-    public function validateUntilLicense(Server $server):\DateTime
+    public function validateUntilLicense(Standort $server):\DateTime
     {
         return $this->licenseService->validUntil($server);
     }

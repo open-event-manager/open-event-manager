@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\KeycloakGroupsToServersRepository;
+use App\Repository\KeycloakGroupsToStandortsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=KeycloakGroupsToServersRepository::class)
+ * @ORM\Entity(repositoryClass=KeycloakGroupsToStandortsRepository::class)
  */
-class KeycloakGroupsToServers
+class KeycloakGroupsToStandorts
 {
     /**
      * @ORM\Id
@@ -18,10 +18,10 @@ class KeycloakGroupsToServers
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Server::class, inversedBy="keycloakGroups")
+     * @ORM\ManyToOne(targetEntity=Standort::class, inversedBy="keycloakGroups")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $server;
+    private $standort;
 
     /**
      * @ORM\Column(type="text")
@@ -33,14 +33,14 @@ class KeycloakGroupsToServers
         return $this->id;
     }
 
-    public function getServer(): ?Server
+    public function getStandort(): ?Standort
     {
-        return $this->server;
+        return $this->standort;
     }
 
-    public function setServer(?Server $server): self
+    public function setStandort(?Standort $standort): self
     {
-        $this->server = $server;
+        $this->standort = $standort;
 
         return $this;
     }

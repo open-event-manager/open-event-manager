@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Service\RoomService;
 use App\Service\ServerUserManagment;
@@ -22,13 +22,13 @@ class AdHocMeetingController extends AbstractController
      * @ParamConverter("user", class="App\Entity\User",options={"mapping": {"userId": "id"}})
      * @ParamConverter("server", class="App\Entity\Server",options={"mapping": {"serverId": "id"}})
      */
-    public function index(User $user, Server $server, UserService $userService,TranslatorInterface $translator, ServerUserManagment $serverUserManagment): Response
+    public function index(User $user, Standort $server, UserService $userService, TranslatorInterface $translator, ServerUserManagment $serverUserManagment): Response
     {
 
         if(!in_array($user,$this->getUser()->getAddressbook()->toArray())){
             return $this->redirectToRoute('dashboard',array('snack'=>$translator->trans('Fehler, Der User wurde nicht gefunden')));
         }
-        $servers = $serverUserManagment->getServersFromUser($this->getUser());
+        $servers = $serverUserManagment->getStandortsFromUser($this->getUser());
 
         if(!in_array($server,$servers)){
             return $this->redirectToRoute('dashboard',array('color'=>'danger','snack'=>$translator->trans('Fehler, Der Server wurde nicht gefunden')));
@@ -41,7 +41,7 @@ class AdHocMeetingController extends AbstractController
         $room->setSequence(0);
         $room->setUidReal(md5(uniqid()));
         $room->setUid(rand(01, 99) . time());
-        $room->setServer($server);
+        $room->setStandort($server);
         $room->setName($translator->trans('Konferenz mit {n}',array('{n}'=>$user->getEmail())));
         $room->setOnlyRegisteredUsers(false);
         $em = $this->getDoctrine()->getManager();

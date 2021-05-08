@@ -2,8 +2,8 @@
 
 namespace App\Command;
 
-use App\Entity\KeycloakGroupsToServers;
-use App\Entity\Server;
+use App\Entity\KeycloakGroupsToStandorts;
+use App\Entity\Standort;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -37,27 +37,27 @@ class ConnectServerAndGroupsCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $serverId = $input->getArgument('serverId');
         $keycloakGroup = $input->getArgument('keycloakGroup');
-        $server = null;
-        $server = $this->em->getRepository(Server::class)->find($serverId);
-        if (!$server) {
+        $standort = null;
+        $standort = $this->em->getRepository(Standort::class)->find($serverId);
+        if (!$standort) {
             $io->error('This server is not available.');
             return Command::FAILURE;
         }
-        $groupServer = $this->em->getRepository(KeycloakGroupsToServers::class)->findOneBy(array('server'=>$server,'keycloakGroup'=>$keycloakGroup));
+        $groupServer = $this->em->getRepository(KeycloakGroupsToStandorts::class)->findOneBy(array('standort'=>$standort,'keycloakGroup'=>$keycloakGroup));
 
         if ($groupServer){
             $io->error('This Server is already connected to this group');
             return Command::FAILURE;
         }
-        $groupServer = new KeycloakGroupsToServers();
-        $groupServer->setServer($server);
+        $groupServer = new KeycloakGroupsToStandorts();
+        $groupServer->setStandort($standort);
         $groupServer->setKeycloakGroup($keycloakGroup);
         $this->em->persist($groupServer);
         $this->em->flush();
 
 
 
-        $io->success('We added the group '.$keycloakGroup.' to the server '.$server->getUrl());
+        $io->success('We added the group '.$keycloakGroup.' to the server '.$standort->getName());
 
         return Command::SUCCESS;
     }

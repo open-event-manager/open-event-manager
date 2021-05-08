@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Rooms;
-use App\Entity\Server;
+use App\Entity\Standort;
 use App\Entity\User;
 use App\Form\Type\JoinViewType;
 use App\Service\PexelService;
@@ -34,7 +34,7 @@ class JoinController extends AbstractController
     public function index($slug = null, PexelService $pexelService, Request $request, TranslatorInterface $translator, RoomService $roomService, HttpClientInterface $httpClient)
     {
         $data = array();
-        $server = $this->getDoctrine()->getRepository(Server::class)->findOneBy(['slug' => $slug]);
+        $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['slug' => $slug]);
         // dataStr wird mit den Daten uid und email encoded übertragen. Diese werden daraufhin als Vorgaben in das Formular eingebaut
         $dataStr = $request->get('data');
         $snack = $request->get('snack');
