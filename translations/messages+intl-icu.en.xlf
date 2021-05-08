@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="de" target-language="en-GB" datatype="plaintext" original="file.ext">
+  <file source-language="de" target-language="en" datatype="plaintext" original="file.ext">
     <header>
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
@@ -271,11 +271,11 @@
       </trans-unit>
       <trans-unit id="3NHVIj9" resname="Name">
         <source>Name</source>
-        <target state="translated">Name</target>
+        <target state="needs-translation">Name</target>
       </trans-unit>
       <trans-unit id="lpzL089" resname="Email">
         <source>Email</source>
-        <target state="translated">Email</target>
+        <target state="needs-translation">Email</target>
       </trans-unit>
       <trans-unit id="TyMI.d2" resname="Profil bearbeiten">
         <source>Profil bearbeiten</source>
@@ -287,7 +287,7 @@
       </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
-        <target state="translated">Logout</target>
+        <target state="needs-translation">Logout</target>
       </trans-unit>
       <trans-unit id="lUcvZQo" resname="Hilfe">
         <source>Hilfe</source>
@@ -343,7 +343,7 @@
       </trans-unit>
       <trans-unit id="Z0jsi3Z" resname="Moderator">
         <source>Moderator</source>
-        <target state="translated">Moderator</target>
+        <target state="needs-translation">Moderator</target>
       </trans-unit>
       <trans-unit id="MyAVhjs" resname="Intern">
         <source>Intern</source>
@@ -355,7 +355,7 @@
       </trans-unit>
       <trans-unit id="D99IX1v" resname="Agenda">
         <source>Agenda</source>
-        <target state="translated">Agenda</target>
+        <target state="needs-translation">Agenda</target>
       </trans-unit>
       <trans-unit id="Zl7ocK9" resname="Keine Angabe">
         <source>Keine Angabe</source>
@@ -363,7 +363,7 @@
       </trans-unit>
       <trans-unit id="rvfeKNU" resname="Server">
         <source>Server</source>
-        <target state="translated">Server</target>
+        <target state="needs-translation">Server</target>
       </trans-unit>
       <trans-unit id="8dquNSH" resname="Optionen">
         <source>Optionen</source>
@@ -480,7 +480,7 @@
       </trans-unit>
       <trans-unit id="nWMiwfT" resname="Login">
         <source>Login</source>
-        <target state="translated">Login</target>
+        <target state="needs-translation">Login</target>
       </trans-unit>
       <trans-unit id="OmOD76j" resname="Server Administrator">
         <source>Server Administrator</source>
@@ -524,7 +524,7 @@
       </trans-unit>
       <trans-unit id="Z7aWRoY" resname="Dashboard">
         <source>Dashboard</source>
-        <target state="translated">Dashboard</target>
+        <target state="needs-translation">Dashboard</target>
       </trans-unit>
       <trans-unit id="O63JhDQ" resname="Registrieren">
         <source>Registrieren</source>
@@ -608,7 +608,7 @@
       </trans-unit>
       <trans-unit id="1wfcLxk" resname="Logo">
         <source>Logo</source>
-        <target state="translated">Logo</target>
+        <target state="needs-translation">Logo</target>
       </trans-unit>
       <trans-unit id="ph1COS8" resname="Hier können Sie eine URL zu Ihrem Logo einfügen, damit den Teilnehmern auf der Join Seite Ihr Logo angezeigt wird.">
         <source>Hier können Sie eine URL zu Ihrem Logo einfügen, damit den Teilnehmern auf der Join Seite Ihr Logo angezeigt wird.</source>
