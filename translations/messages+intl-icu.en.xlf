@@ -870,6 +870,50 @@
         <source>Unbegrenzte Teilnehmerzahl</source>
         <target state="needs-translation">Unbegrenzte Teilnehmerzahl</target>
       </trans-unit>
+      <trans-unit id="16h34go" resname="Standort bearbeiten">
+        <source>Standort bearbeiten</source>
+        <target state="needs-translation">Standort bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="Aiq.6av" resname="Neuen Standort erstellen">
+        <source>Neuen Standort erstellen</source>
+        <target state="needs-translation">Neuen Standort erstellen</target>
+      </trans-unit>
+      <trans-unit id="luL6zc6" resname="Meine Standorte">
+        <source>Meine Standorte</source>
+        <target state="needs-translation">Meine Standorte</target>
+      </trans-unit>
+      <trans-unit id="W9OXbLo" resname="Standort hinzufügen">
+        <source>Standort hinzufügen</source>
+        <target state="needs-translation">Standort hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="3wmCfe5" resname="Zukünftige Events">
+        <source>Zukünftige Events</source>
+        <target state="needs-translation">Zukünftige Events</target>
+      </trans-unit>
+      <trans-unit id="3HE5vYm" resname="Vergangene Events">
+        <source>Vergangene Events</source>
+        <target state="needs-translation">Vergangene Events</target>
+      </trans-unit>
+      <trans-unit id="Hm2OrSO" resname="Ein Event planen">
+        <source>Ein Event planen</source>
+        <target state="needs-translation">Ein Event planen</target>
+      </trans-unit>
+      <trans-unit id="AxYxB5L" resname="Aktuell sind keine Events vorhanden. Erstellen Sie&#10;                            &lt;u&gt;&lt;a href=&quot;{url}&quot; class=&quot;loadContent&quot;&gt;hier&lt;/a&gt;&lt;/u&gt;&#10;                            eine neues Event.">
+        <source>Aktuell sind keine Events vorhanden. Erstellen Sie
+                            &lt;u&gt;&lt;a href="{url}" class="loadContent"&gt;hier&lt;/a&gt;&lt;/u&gt;
+                            eine neues Event.</source>
+        <target state="needs-translation">Aktuell sind keine Events vorhanden. Erstellen Sie
+                            &lt;u&gt;&lt;a href="{url}" class="loadContent"&gt;hier&lt;/a&gt;&lt;/u&gt;
+                            eine neues Event.</target>
+      </trans-unit>
+      <trans-unit id="ZlaHAfN" resname="Heute steht keine Events an.">
+        <source>Heute steht keine Events an.</source>
+        <target state="needs-translation">Heute steht keine Events an.</target>
+      </trans-unit>
+      <trans-unit id="WGh6kGc" resname="Aktuell sind keine vergangenen Events vorhanden.">
+        <source>Aktuell sind keine vergangenen Events vorhanden.</source>
+        <target state="needs-translation">Aktuell sind keine vergangenen Events vorhanden.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
