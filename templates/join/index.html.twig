@@ -1,13 +1,13 @@
 {% extends 'join/base.html.twig' %}
 {% block header %}
-    <h1 class="h1-responsive text-center">{{ 'Konferenz beitreten'|trans }}</h1>
+    <h1 class="h1-responsive text-center">{{ 'Event beitreten'|trans }}</h1>
 {% endblock %}
 {% block content %}
 
 
     <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
         <p class="text-center text-md-left">
-            {{ 'Füllen Sie das Formular aus um der Konferenz beizutreten'|trans }}
+            {{ 'Füllen Sie das Formular aus um dem Event beizutreten'|trans }}
         </p>
         {{ form_start(form) }}
         {{ form_row(form.uid) }}

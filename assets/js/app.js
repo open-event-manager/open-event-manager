@@ -52,6 +52,7 @@ $(document).ready(function () {
     if (importBBB) {
         h2Button.init();
     }
+    initCopytoClipboard();
     if (notificationUrl !== "") {
        $.getJSON(notificationUrl, function (data) {
             var notification = data
@@ -198,14 +199,9 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
             }
         })
     }
-    $(".copyLink").click(function () {
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val($(element).text()).select();
-        document.execCommand("copy");
-        $temp.remove();
-    });
-    var clipboard = new ClipboardJS('.copyLink');
+
+    initCopytoClipboard();
+
     initSearchUser();
     initServerFeatures();
     var ctx = document.getElementById("lineChart").getContext('2d');
@@ -289,4 +285,9 @@ function initDropDown() {
     })
 
 
+}
+
+function initCopytoClipboard(){
+
+    var clipboard = new ClipboardJS('.copyLink');
 }

@@ -80,6 +80,10 @@ class RoomController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $room = $form->getData();
+            if(!$room->getStart()){
+                $snack = $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.');
+                return $this->redirectToRoute('dashboard', array('snack' => $snack, 'color' => 'danger'));
+            }
             $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);

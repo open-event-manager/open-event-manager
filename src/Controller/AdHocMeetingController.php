@@ -20,17 +20,17 @@ class AdHocMeetingController extends AbstractController
     /**
      * @Route("/room/adhoc/meeting/{userId}/{serverId}", name="add_hoc_meeting")
      * @ParamConverter("user", class="App\Entity\User",options={"mapping": {"userId": "id"}})
-     * @ParamConverter("server", class="App\Entity\Server",options={"mapping": {"serverId": "id"}})
+     * @ParamConverter("standort", class="App\Entity\Standort",options={"mapping": {"serverId": "id"}})
      */
-    public function index(User $user, Standort $server, UserService $userService, TranslatorInterface $translator, ServerUserManagment $serverUserManagment): Response
+    public function index(User $user, Standort $standort, UserService $userService, TranslatorInterface $translator, ServerUserManagment $serverUserManagment): Response
     {
 
         if(!in_array($user,$this->getUser()->getAddressbook()->toArray())){
             return $this->redirectToRoute('dashboard',array('snack'=>$translator->trans('Fehler, Der User wurde nicht gefunden')));
         }
-        $servers = $serverUserManagment->getStandortsFromUser($this->getUser());
+        $standorts = $serverUserManagment->getStandortsFromUser($this->getUser());
 
-        if(!in_array($server,$servers)){
+        if(!in_array($standort,$standorts)){
             return $this->redirectToRoute('dashboard',array('color'=>'danger','snack'=>$translator->trans('Fehler, Der Server wurde nicht gefunden')));
         }
         $room = new Rooms();
@@ -41,8 +41,8 @@ class AdHocMeetingController extends AbstractController
         $room->setSequence(0);
         $room->setUidReal(md5(uniqid()));
         $room->setUid(rand(01, 99) . time());
-        $room->setStandort($server);
-        $room->setName($translator->trans('Konferenz mit {n}',array('{n}'=>$user->getEmail())));
+        $room->setStandort($standort);
+        $room->setName($translator->trans('Event mit {n}',array('{n}'=>$user->getEmail())));
         $room->setOnlyRegisteredUsers(false);
         $em = $this->getDoctrine()->getManager();
         $em->persist($room);
@@ -54,6 +54,6 @@ class AdHocMeetingController extends AbstractController
         $em->flush();
         $userService->addUser($user,$room);
         $userService->addUser($this->getUser(),$room);
-        return $this->redirectToRoute('dashboard',array('snack'=>$translator->trans('Konferenz erfolgreich erstellt')));
+        return $this->redirectToRoute('dashboard',array('snack'=>$translator->trans('Event erfolgreich erstellt')));
     }
 }

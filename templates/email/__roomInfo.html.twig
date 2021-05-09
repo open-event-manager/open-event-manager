@@ -8,10 +8,21 @@
     <p>{{ room.agenda|markdown_to_html }}</p>
 
 {% endif %}
+
+
 <p>{{ 'Moderator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
     {{ 'Datum'|trans }}: {{ room.start|date('d.m.Y') }}<br>
     {{ 'Startzeit'|trans }}: {{ room.start|date('H:i') }}<br>
     {{ 'Geplante Dauer'|trans }}: {{ room.duration }} {{ 'Minuten'|trans }}</p>
+<b>Standort:</b>
+<p>{{ room.standort.name }}<br>
+    {{ room.standort.roomnumber?room.standort.roomnumber }}<br>
+    {{ room.standort.street }}<br>
+    {{ room.standort.plz }}<br>
+    {{ room.standort.city }}<br>
+</p>
+<b>{{ 'Anfahrtsbeschreibung'|trans }}</b>
+{{ room.standort.directions?room.standort.directions|markdown_to_html }}
 <spacer size="16"></spacer>
 <p>
 
