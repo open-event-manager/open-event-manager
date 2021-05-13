@@ -31,6 +31,7 @@ class IcalService
         $isEnterprise = false;
         $this->user = $user;
         $server = $user->getStandort();
+        //todo wieder in den cache
         foreach ($server as $data) {
 //            if ($this->licenseService->verify($data)) {
 //                $isEnterprise = true;

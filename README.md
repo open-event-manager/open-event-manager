@@ -81,7 +81,8 @@ As some Composer dependencies need to be installed, it is advised to only instal
 
 # License
 
-Currently Jitsi Admin is released under the [AGPL-3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html). Additional information can be found in the [LICENSE file](LICENSE).
+Currently Jitsi Admin is released under the [Apache 2 License](https://www.apache.org/licenses/LICENSE-2.0). 
+Additional information can be found in the [LICENSE file](LICENSE).
 
 # Installation
 Download the version you want to install or clone the whole repository.
