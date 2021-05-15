@@ -31,6 +31,8 @@ class StandortType extends AbstractType
 
         $builder
             ->add('name', TextType::class, ['required' => true, 'label' => 'label.standort.name', 'translation_domain' => 'form', ])
+            ->add('roomnumber', TextType::class, ['required' => false, 'label' => 'label.standort.roomnumber', 'translation_domain' => 'form', ])
+
             ->add('street', TextType::class, ['required' => false, 'label' => 'label.standort.street', 'translation_domain' => 'form', ])
             ->add('number', TextType::class, ['required' => false, 'label' => 'label.standort.number', 'translation_domain' => 'form', ])
             ->add('plz', TextType::class, ['required' => true, 'label' => 'label.standort.plz', 'translation_domain' => 'form', ])

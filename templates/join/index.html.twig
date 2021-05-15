@@ -1,32 +1,62 @@
 {% extends 'join/base.html.twig' %}
 {% block header %}
-    <h1 class="h1-responsive text-center">{{ 'Konferenz beitreten'|trans }}</h1>
+    <h1 class="h1-responsive text-center">{{ standort.name }}</h1>
 {% endblock %}
 {% block content %}
 
 
-    <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
-        <p class="text-center text-md-left">
-            {{ 'Füllen Sie das Formular aus um der Konferenz beizutreten'|trans }}
-        </p>
-        {{ form_start(form) }}
-        {{ form_row(form.uid) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.name) }}
-        <div class="row form-group">
-            <div class="col-12">
-                {{ include('join/__datenschutz.html.twig',{'server':server,'dataPrivacy':dataPrivacy}) }}
+    <div class="col-12">
+        <div class="row  mb-4">
+            <div class="col-md-4 d-flex justify-content-start flex-column">
+             <p><b>{{ standort.name }}</b><br>
+                {{ standort.roomnumber }}<br>
+                {{ standort.street }} {{ standort.number }}<br>
+                {{ standort.plz }} {{ standort.city }}<br>
+                </p>
+                <h5>{{ 'Anfahrtsbeschreibung'|trans }}:</h5>
+
+                {{ standort.directions|markdown_to_html }}
+            </div>
+            <div class="col-md-8">
+
+
+
+                {% if standort and standort|roomsinFuture|length > 0 %}
+
+                                <h3 class="h3-responsive text-center">{{ 'Öffentliche Events'|trans }}</h3>
+                                <div class="max-vh60">
+                                    <ul class="list-group">
+
+                                        {% for r in standort|roomsinFuture %}
+                                            <li class="list-group-item d-flex align-items-center justify-content-between">
+                                                <b>{{ r.start|date('d.m.Y | H:i') }}</b>
+                                                <h5>{{ r.name }} <a tabindex="0" data-toggle="popover"
+                                                                    data-trigger="focus"
+                                                                    title="{{ 'Agenda'|trans }}"
+                                                                    data-content="{% if r.agenda is not null %}{{ r.agenda|markdown_to_html|escape }}{% else %}{{ 'Keine Angabe'|trans }}{% endif %}"><i
+                                                                class="fa fa-info-circle"></i></a></h5>
+
+                                                {% if r.public %}
+                                                    <a href="{{ path('public_subscribe_participant',{'uid':r.uidParticipant}) }}"
+                                                       class="btn btn-sm btn-outline-primary">{{ 'Anmelden'|trans }}</a>
+                                                {% endif %}
+                                            </li>
+
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+
+                {% endif %}
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                {{ form_row(form.joinBrowser) }}
-            </div>
-            <div class="col-md-6 d-none d-md-block">
-                {{ form_row(form.joinApp) }}
+        <div class="row form-group">
+            <div class="col-12">
+                {{ include('join/__datenschutz.html.twig',{'standort':standort,'dataPrivacy':dataPrivacy}) }}
             </div>
         </div>
 
-        {{ form_end(form) }}
+
+
     </div>
 {% endblock %}

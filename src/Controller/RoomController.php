@@ -39,8 +39,8 @@ class RoomController extends AbstractController
             if ($room->getModerator() !== $this->getUser()) {
                 return $this->redirectToRoute('dashboard', ['snack' => $translator->trans('Keine Berechtigung')]);
             }
-            $snack = $translator->trans('Konferenz erfolgreich bearbeitet');
-            $title = $translator->trans('Konferenz bearbeiten');
+            $snack = $translator->trans('Event erfolgreich bearbeitet');
+            $title = $translator->trans('Event bearbeiten');
             $sequence = $room->getSequence() + 1;
             $room->setSequence($sequence);
            if (!$room->getUidModerator()){
@@ -61,8 +61,8 @@ class RoomController extends AbstractController
             $room->setUidModerator(md5(uniqid('h2-invent', true)));
             $room->setUidParticipant(md5(uniqid('h2-invent', true)));
 
-            $snack = $translator->trans('Konferenz erfolgreich erstellt');
-            $title = $translator->trans('Neue Konferenz erstellen');
+            $snack = $translator->trans('Event erfolgreich erstellt');
+            $title = $translator->trans('Neues Event planen');
         }
         $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
 
@@ -80,6 +80,10 @@ class RoomController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $room = $form->getData();
+            if(!$room->getStart()){
+                $snack = $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.');
+                return $this->redirectToRoute('dashboard', array('snack' => $snack, 'color' => 'danger'));
+            }
             $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);

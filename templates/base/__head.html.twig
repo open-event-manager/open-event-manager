@@ -6,7 +6,7 @@
     <link rel="manifest" href="{{asset('site.webmanifest')}}">
 
     {% block title %}
-        <title>Jitsi Konferenz Manager</title>
+        <title>Open Event Manager</title>
     {% endblock %}
 
 {% if  app.environment == 'prod' %}
@@ -38,7 +38,15 @@
     {{ include('base/__matomo.html.twig') }}
 
     <!-- Our Custom CSS -->
-    {{ encore_entry_link_tags('app') }}
+    {% if css is defined and css is not null %}
+        {{ encore_entry_link_tags(css) }}
+    {% else %}
+        {% if app.request.cookies.get('DARK_MODE') is defined and app.request.cookies.get('DARK_MODE') == 1 %}
+            {{ encore_entry_link_tags('black') }}
+        {% else %}
+            {{ encore_entry_link_tags('app') }}
+        {% endif%}
+    {% endif %}
 
     {% block stylesheets %}{% endblock %}
 </head>

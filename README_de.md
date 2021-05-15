@@ -91,7 +91,7 @@ Updates und Wartung muss durch die Zuständige und Verantwortliche Person durchg
 
 # Lizenz
 
-Die aktuelle Version von Jitsi Admin wird unter der AGPL-3.0 License bereitgestellt. Weitere Informationen finden Sie in
+Die aktuelle Version des Open Event Managers wird unter der [Apache 2 License](https://www.apache.org/licenses/LICENSE-2.0) bereitgestellt. Weitere Informationen finden Sie in
 der LICENSE Datei in diesem Repo.
 
 # Installieren

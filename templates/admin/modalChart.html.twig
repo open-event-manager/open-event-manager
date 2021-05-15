@@ -12,7 +12,7 @@
                 <div class="col-md-6 col-sm-6 col-lg-3 mb-2">
                     <div class="card border-info text-center">
                         <div class="card-body">
-                            {{ 'Konferenzen'|trans }}
+                            {{ 'Event'|trans }}
                             <hr>
                             {{ server.rooms | length }}
                         </div>
@@ -49,7 +49,7 @@
             </div>
             <hr>
             <h3 class="h3-responsive">
-                {{ 'Konferenzen'|trans }}
+                {{ 'Events'|trans }}
             </h3>
             <canvas id="lineChart"></canvas>
         </div>
@@ -59,7 +59,7 @@
     data = {
         labels: [{% for date in chart %}"{{ date['date']|date('d.m.Y') }}",{% endfor %}],
         datasets: [{
-            label: "{{ 'Anzahl Konferenzen'|trans }}",
+            label: "{{ 'Anzahl Events'|trans }}",
             yAxisID: 'A',
             data: [{% for date in chart %}"{{ date['rooms'] }}",{% endfor %}],
             backgroundColor: [

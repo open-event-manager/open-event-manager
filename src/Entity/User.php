@@ -131,6 +131,11 @@ class User extends BaseUser
      */
     private $waitinglists;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $phone;
+
 
 
     public function __construct()
@@ -544,6 +549,18 @@ class User extends BaseUser
                 $waitinglist->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

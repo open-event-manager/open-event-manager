@@ -42,16 +42,21 @@ class NotificationService
             $organizer = $rooms->getModerator()->getFirstName().'@'.$rooms->getModerator()->getLastName().'.de';
             $this->ics->setIsModerator(true);
         }
+        $location= $rooms->getStandort()->getName().', '
+            .$rooms->getStandort()->getRoomnumber().($rooms->getStandort()->getRoomnumber()?', ':'')
+            .$rooms->getStandort()->getStreet().' '.$rooms->getStandort()->getNumber().', '
+            .$rooms->getStandort()->getPlz().', '
+            .$rooms->getStandort()->getCity();
         $this->ics->add(
             array(
                 'uid' => md5($rooms->getUid()),
-                'location' => $this->translator->trans('Jitsi Konferenz'),
+                'location' => $location,
                 'description' => $this->translator->trans('Sie wurden zu einem Event in: {name} hinzugefügt.', array('{name}' => $rooms->getStandort()->getName())) .
                     '\n\n' .
-                    $this->translator->trans('Über den beigefügten Link können Sie ganz einfach zur Videokonferenz beitreten.\nName: {name} \nModerator: {moderator} ', array('{name}' => $rooms->getName(), '{moderator}' => $rooms->getModerator()->getFirstName() . ' ' . $rooms->getModerator()->getLastName()))
+                    $this->translator->trans('Einladung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}', array('{location}'=>$location,'{name}' => $rooms->getName(), '{moderator}' => $rooms->getModerator()->getFirstName() . ' ' . $rooms->getModerator()->getLastName()))
                     . '\n\n' .
                     '\n\n'.
-                    $this->translator->trans('Sie erhalten diese E-Mail, weil Sie zu einem Event eingeladen wurden.'),
+                    $this->translator->trans('Sie erhalten diese E-Mail, weil Sie zu diesem Event eingeladen wurden.'),
                 'dtstart' => $rooms->getStart()->format('Ymd') . "T" . $rooms->getStart()->format("His"),
                 'dtend' => $rooms->getEnddate()->format('Ymd') . "T" . $rooms->getEnddate()->format("His"),
                 'summary' => $rooms->getName(),

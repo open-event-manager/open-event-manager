@@ -50,8 +50,17 @@ $(document).ready(function () {
         }, 3000);
     }, 500);
     if (importBBB) {
-        h2Button.init();
+        h2Button.init(bbbUrl);
     }
+    $('.switchDarkmode').change(function (e) {
+        var val = 0;
+        if ($(this).prop('checked')) {
+            val = 1
+        }
+        setCookie('DARK_MODE', val, 365);
+        window.location.reload();
+    })
+    initCopytoClipboard();
     if (notificationUrl !== "") {
        $.getJSON(notificationUrl, function (data) {
             var notification = data
@@ -198,14 +207,9 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
             }
         })
     }
-    $(".copyLink").click(function () {
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val($(element).text()).select();
-        document.execCommand("copy");
-        $temp.remove();
-    });
-    var clipboard = new ClipboardJS('.copyLink');
+
+    initCopytoClipboard();
+
     initSearchUser();
     initServerFeatures();
     var ctx = document.getElementById("lineChart").getContext('2d');
@@ -223,7 +227,10 @@ $(document).on('click', '.directSend', function (e) {
 
     e.preventDefault();
     $.get($url, function () {
-        $(target).closest('div').load($targetUrl + ' ' + target);
+        $(target).closest('div').load($targetUrl + ' ' + target,function () {
+            $('[data-toggle="popover"]').popover({html: true});
+        });
+
     })
 });
 $(".clickable-row").click(function () {
@@ -289,4 +296,15 @@ function initDropDown() {
     })
 
 
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function initCopytoClipboard(){
+
+    var clipboard = new ClipboardJS('.copyLink');
 }
