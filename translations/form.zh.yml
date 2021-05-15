@@ -51,16 +51,18 @@ label:
   staticBackgroundColor: 设计登录页面的背景色
   schowStaticBackgroundColor: 纯色显示，不显示登录页面上的图片
   puplicRoom: 公开会议
-  showRoomOnJoinpage: 在登录页面上查看会议
+  showRoomOnJoinpage: Event auf Standortseite anzeigen
   subscribe: 订阅
   vorname: 名
   nachname: 姓
   maxParticipants: 最大参会人数
   waitinglist: Warteliste aktivieren
   phone: Telefonnummer
+  maxWaitingList: Maximale Teilnehmer auf der Warteliste
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
   none: 无
 placeholder:
   maxParticipants: 无限制
+
