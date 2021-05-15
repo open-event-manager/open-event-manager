@@ -64,6 +64,7 @@ class SubcriptionService
             $user->setEmail($userData['email']);
             $user->setFirstName($userData['firstName']);
             $user->setLastName($userData['lastName']);
+            $user->setPhone($userData['phone']);
             $this->em->persist($user);
             $this->em->flush();
         }

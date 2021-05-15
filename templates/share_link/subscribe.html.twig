@@ -12,7 +12,7 @@
     {% elseif room.maxParticipants - room.user|length == 1 %}
         <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Noch ein Platz frei{% endtrans %}</h4>
     {% elseif room.maxParticipants - room.user|length <= 0 and room.waitinglist == true %}
-        <h4 class="text-center">{% trans %}Warteliste{% endtrans %}</h4>
+        <h4 class="text-center text-danger">{% trans %}Warteliste{% endtrans %}</h4>
     {% endif %}
 {% endblock %}
 
@@ -23,13 +23,15 @@
     {% if room.maxParticipants - room.user|length >0 or room.waitinglist == true or room.maxParticipants is null %}
         <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
             <p class="text-center text-md-left">
-                {{ 'Melden Sie sich an und schreiben Sie sich auf der Teilnehmerliste ein'|trans }}
+                {% if room.maxParticipants - room.user|length >0 %}
+                    {{ 'Melden Sie sich an und schreiben Sie sich auf der Teilnehmerliste ein'|trans }}
+                {% endif %}
             </p>
             {{ form_start(form) }}
             {{ form_row(form.firstName) }}
             {{ form_row(form.lastName) }}
             {{ form_row(form.email) }}
-
+            {{ form_row(form.phone) }}
             <div class="row form-group">
 
                 <div class="col-12">

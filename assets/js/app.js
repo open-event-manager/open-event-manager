@@ -227,7 +227,10 @@ $(document).on('click', '.directSend', function (e) {
 
     e.preventDefault();
     $.get($url, function () {
-        $(target).closest('div').load($targetUrl + ' ' + target);
+        $(target).closest('div').load($targetUrl + ' ' + target,function () {
+            $('[data-toggle="popover"]').popover({html: true});
+        });
+
     })
 });
 $(".clickable-row").click(function () {
