@@ -31,6 +31,7 @@ label:
     plz: PLZ
     city: Stadt
     directions: Anfahrsbeschreibung
+    roomnumber: Raumnummer
   beitretenApp: Tham gia với App
   beitretenBrowser: Tham gia với trình duyệt
   serverSmtpHostName: Máy chủ SMTP
@@ -56,6 +57,7 @@ label:
   nachname: Họ
   maxParticipants: Số lượng người tham gia tối đa cho phép
   waitinglist: Warteliste aktivieren
+  phone: Telefonnummer
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
