@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <p>{{ 'Teilnehmerliste'|trans }}</p>
+            <p>{{ 'Teilnehmerliste'|trans }} <a href="{{ path('atendeelist_download_excel',{'uid':room.uid}) }}"><i class="fa fa-print"></i> </a> </p>
             <p class="small">
                 <i class="fa fa-crown"></i> {{ 'Zum Moderator ernennen'|trans }}
                 {% if room.dissallowScreenshareGlobal %}
