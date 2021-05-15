@@ -51,16 +51,18 @@ label:
   staticBackgroundColor: Đặt màu nền trên trang tham dự
   schowStaticBackgroundColor: Hiển thị màu cố định thay vì hình ảnh trên trang tham dự
   puplicRoom: Hội nghị công khai
-  showRoomOnJoinpage: Hiển thị hội nghị trên trang tham gia
+  showRoomOnJoinpage: Event auf Standortseite anzeigen
   subscribe: Đăng nhập
   vorname: Tên
   nachname: Họ
   maxParticipants: Số lượng người tham gia tối đa cho phép
   waitinglist: Warteliste aktivieren
   phone: Telefonnummer
+  maxWaitingList: Maximale Teilnehmer auf der Warteliste
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
   none: Không
 placeholder:
   maxParticipants: Keine Limitierung
+
