@@ -31,6 +31,7 @@ label:
     plz: PLZ
     city: Stadt
     directions: Anfahrsbeschreibung
+    roomnumber: Raumnummer
   beitretenApp: 通过electron应用程序加入
   beitretenBrowser: 通过浏览器加入
   serverSmtpHostName: SMTP主机
@@ -56,6 +57,7 @@ label:
   nachname: 姓
   maxParticipants: 最大参会人数
   waitinglist: Warteliste aktivieren
+  phone: Telefonnummer
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
