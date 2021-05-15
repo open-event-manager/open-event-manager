@@ -51,16 +51,18 @@ label:
   staticBackgroundColor: Set background color for joinpage
   schowStaticBackgroundColor: Show static color instead of pictures on joinpage
   puplicRoom: Public conference
-  showRoomOnJoinpage: Show conference on joinpage
+  showRoomOnJoinpage: Event auf Standortseite anzeigen
   subscribe: Subscribe
   vorname: Firstname
   nachname: Lastname
   maxParticipants: Allow maximum number of participants
   waitinglist: Warteliste aktivieren
   phone: Telefonnummer
+  maxWaitingList: Maximale Teilnehmer auf der Warteliste
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
   none: None
 placeholder:
   maxParticipants: No Limitation
+
