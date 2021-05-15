@@ -31,6 +31,7 @@ label:
     plz: PLZ
     city: Stadt
     directions: Anfahrsbeschreibung
+    roomnumber: Raumnummer
   beitretenApp: Mit der Elektron-App beitreten
   beitretenBrowser: Im Browser beitreten
   serverSmtpHostName: SMTP-Hostname
@@ -56,6 +57,7 @@ label:
   nachname: Nachname
   maxParticipants: Maximale Anzahl an Teilnehmer zulassen
   waitinglist: Warteliste aktivieren
+  phone: Telefonnummer
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
