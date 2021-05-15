@@ -136,6 +136,11 @@ class User extends BaseUser
      */
     private $phone;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Rooms::class, mappedBy="storno")
+     */
+    private $roomsStorno;
+
 
 
     public function __construct()
@@ -150,6 +155,7 @@ class User extends BaseUser
         $this->subscribers = new ArrayCollection();
         $this->schedulingTimeUsers = new ArrayCollection();
         $this->waitinglists = new ArrayCollection();
+        $this->roomsStorno = new ArrayCollection();
 
     }
 
@@ -561,6 +567,33 @@ class User extends BaseUser
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rooms[]
+     */
+    public function getRoomsStorno(): Collection
+    {
+        return $this->roomsStorno;
+    }
+
+    public function addRoomsStorno(Rooms $roomsStorno): self
+    {
+        if (!$this->roomsStorno->contains($roomsStorno)) {
+            $this->roomsStorno[] = $roomsStorno;
+            $roomsStorno->addStorno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoomsStorno(Rooms $roomsStorno): self
+    {
+        if ($this->roomsStorno->removeElement($roomsStorno)) {
+            $roomsStorno->removeStorno($this);
+        }
 
         return $this;
     }

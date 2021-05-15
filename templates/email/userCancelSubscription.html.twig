@@ -1,0 +1,29 @@
+{% extends 'email/base.html.twig' %}
+{% block header %}
+    -- {{ 'Es wurde eine Teilnahme storniert'|trans }} --
+{% endblock %}
+
+{% block content %}
+    <h4 class="text-center">
+        {{ room.name }}
+    </h4>
+    <b>
+        {{'Hallo!'|trans}}
+    </b>
+    <p>
+        {% trans with {'{name}': room.name|escape} %}
+           Ein Teilnehmer hat seine Anmeldung storniert. Es gibt noch weitere Teilnehmer auf der Warteliste.
+        Sie können nun einen Teilnehmer von der Warteliste in die Teilnehmerliste verschieben.
+        {% endtrans %}<br><br>
+        <a href="{{ absolute_url(path('dashboard',{'modalUrl': path('room_add_user',{'room':room.id})|base_encode})) }}">
+
+            {{'Hier zur Teilnehmerliste'|trans }}
+        </a>
+    </p>
+    <p>
+        <br>
+        <br>
+    <br>
+        <br>
+    </p>
+{% endblock %}

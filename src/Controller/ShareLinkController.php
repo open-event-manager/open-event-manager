@@ -89,10 +89,16 @@ class ShareLinkController extends AbstractController
             $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
             $color = 'danger';
         }
+
         if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() == true) {
             $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.');
             $color = 'warning';
+            if($rooms->getMaxWaitingList() != null && sizeof($rooms->getWaitinglists()) >= $rooms->getMaxWaitingList()){
+                $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+                $color = 'danger';
+            }
         }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $res = $subcriptionService->subscripe($data, $rooms, $moderator);

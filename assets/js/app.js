@@ -199,11 +199,23 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
         } else {
             $('#maxParticipants').collapse('hide')
         }
+        if ($('#room_waitinglist').prop('checked')) {
+            $('#maxWaitinglist').collapse('show')
+        } else {
+            $('#maxWaitinglist').collapse('hide')
+        }
         $('#room_public').change(function () {
             if ($('#room_public').prop('checked')) {
                 $('#maxParticipants').collapse('show')
             } else {
                 $('#maxParticipants').collapse('hide')
+            }
+        })
+        $('#room_waitinglist').change(function () {
+            if ($('#room_waitinglist').prop('checked')) {
+                $('#maxWaitinglist').collapse('show')
+            } else {
+                $('#maxWaitinglist').collapse('hide')
             }
         })
     }

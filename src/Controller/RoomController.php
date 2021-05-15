@@ -191,6 +191,7 @@ class RoomController extends AbstractController
         $snack = 'Keine Berechtigung';
         if ($room->getModerator() === $this->getUser() || $user === $this->getUser()) {
             $room->removeUser($user);
+            $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
             $em->flush();

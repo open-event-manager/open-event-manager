@@ -13,5 +13,12 @@
     <p>
         {% trans with {'{name}': room.standort.name} %}Sie wurden gerade zu einem Event in: {name} eingeladen.{% endtrans %}
     </p>
+
+
    {% include 'email/__roomInfo.html.twig' %}
+    <br>
+    <br>
+    <a href="{{ absolute_url(path('storno_index',{'uidUser':user.uid,'uidRoom':room.uid})) }}">
+        {{ 'Hier können Sie sich von dem Event abmelden'|trans }}
+    </a>
 {% endblock %}

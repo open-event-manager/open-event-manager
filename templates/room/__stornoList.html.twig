@@ -1,0 +1,11 @@
+{% for s in room.storno %}
+    <li>{{ s.email }}
+        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                             title="{{ s.firstName }} {{ s.lastName }}"
+                             data-content="
+{{ 'Email'|trans }}: <a href='mailto:{{ s.email }}'>{{ s.email }}</a><br>
+                                {{ 'Telefon'|trans }}: <a href='tel:{{ s.phone }}'>{{ s.phone }}</a>"><i
+                    class="fa fa-info-circle"></i></a>
+
+    </li>
+{% endfor %}

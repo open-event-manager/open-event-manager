@@ -146,6 +146,17 @@ class Rooms
      */
     private $waitinglists;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $maxWaitingList;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="roomsStorno")
+     * @ORM\JoinTable(name="rooms_storno")
+     */
+    private $storno;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -153,6 +164,7 @@ class Rooms
         $this->subscribers = new ArrayCollection();
         $this->schedulings = new ArrayCollection();
         $this->waitinglists = new ArrayCollection();
+        $this->storno = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -540,6 +552,42 @@ class Rooms
                 $waitinglist->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMaxWaitingList(): ?int
+    {
+        return $this->maxWaitingList;
+    }
+
+    public function setMaxWaitingList(?int $maxWaitingList): self
+    {
+        $this->maxWaitingList = $maxWaitingList;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getStorno(): Collection
+    {
+        return $this->storno;
+    }
+
+    public function addStorno(User $storno): self
+    {
+        if (!$this->storno->contains($storno)) {
+            $this->storno[] = $storno;
+        }
+
+        return $this;
+    }
+
+    public function removeStorno(User $storno): self
+    {
+        $this->storno->removeElement($storno);
 
         return $this;
     }
