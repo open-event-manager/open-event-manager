@@ -15,6 +15,7 @@ class Nl2liExtension extends AbstractExtension
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
             new TwigFilter('nl2li', [$this, 'nl2li'], ['is_safe' => array('html')]),
+            new TwigFilter('base_encode', [$this, 'base_encode']),
         ];
     }
 
@@ -29,5 +30,10 @@ class Nl2liExtension extends AbstractExtension
     {
         // Check for http at beginning of string
         return '<li>'.str_replace( "\n", "</li><li>", $value ).'</li>';
+    }
+    public function base_encode($value)
+    {
+
+        return base64_encode($value);
     }
 }

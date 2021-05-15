@@ -1,0 +1,28 @@
+{% extends 'email/base.html.twig' %}
+{% block header %}
+    -- {{ 'Neuer Teilnehmer auf der Warteliste'|trans }} --
+{% endblock %}
+
+{% block content %}
+    <h4 class="text-center">
+        {{ room.name }}
+    </h4>
+    <b>
+        {{'Hallo!'|trans}}
+    </b>
+    <p>
+        {% trans with {'{name}': room.name|escape} %}
+            Es hat sich ein neuer Teilnehmer auf der Warteliste für das Event: {name} eingetragen.
+        {% endtrans %}<br><br>
+        <a href="{{ absolute_url(path('dashboard',{'modalUrl': path('room_add_user',{'room':room.id})|base_encode})) }}">
+
+            {{'Hier zur Teilnehmerliste'|trans }}
+        </a>
+    </p>
+    <p>
+        <br>
+        <br>
+    <br>
+        <br>
+    </p>
+{% endblock %}

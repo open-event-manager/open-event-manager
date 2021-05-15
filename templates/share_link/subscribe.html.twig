@@ -12,15 +12,38 @@
     {% elseif room.maxParticipants - room.user|length == 1 %}
         <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Noch ein Platz frei{% endtrans %}</h4>
     {% elseif room.maxParticipants - room.user|length <= 0 and room.waitinglist == true %}
-        <h4 class="text-center text-danger">{% trans %}Warteliste{% endtrans %}</h4>
+        {% if room.maxWaitingList is not null and room.waitinglists|length >= room.maxWaitingList %}
+        {% else %}
+            <h4 class="text-center text-danger">{% trans %}Warteliste{% endtrans %}</h4>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
 
 {% block content %}
 
+    {% set isForm = false %}
 
-    {% if room.maxParticipants - room.user|length >0 or room.waitinglist == true or room.maxParticipants is null %}
+    {% if room.maxParticipants - room.user|length >0 %}
+        {% set isForm = true %}
+
+    {% elseif room.waitinglist == true %}
+        {% if room.maxWaitingList is not null %}
+            {% if room.waitinglists|length < room.maxWaitingList %}
+                {% set isForm = true %}
+
+            {% endif %}
+        {% else %}
+            {% set isForm = true %}
+
+        {% endif %}
+
+    {% elseif room.maxParticipants is null %}
+        {% set isForm = true %}
+
+    {% endif %}
+
+    {% if isForm == true %}
         <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
             <p class="text-center text-md-left">
                 {% if room.maxParticipants - room.user|length >0 %}

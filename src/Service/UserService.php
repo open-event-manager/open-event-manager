@@ -81,7 +81,9 @@ class UserService
         $content = $this->twig->render('email/waitingList.html.twig', ['user' => $user, 'room' => $room]);
         $subject = $this->translator->trans('Hinzugefügt zur Warteliste');
         $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort());
-
+        $contentModerator = $this->twig->render('email/newUserOnWaitingList.html.twig',array('room'=>$room));
+        $subjectModerator= $this->translator->trans('Neuer Teilnehmer auf der Warteliste für {name}',array('{name}'=>$room->getName()));
+        $this->notificationService->sendNotification($contentModerator,$subjectModerator,$room->getModerator(),$room->getStandort());
         return true;
     }
 
@@ -91,7 +93,7 @@ class UserService
             $url = $this->generateUrl($room, $user);
             $content = $this->twig->render('email/editRoom.html.twig', ['user' => $user, 'room' => $room, 'url' => $url]);
             $subject = $this->translator->trans('Event wurde bearbeitet');
-            $ics = $this->notificationService->createIcs($room, $user, $url, 'REQUEST');
+            $ics = $this->notificationService->createIcs($room, $user, 'REQUEST');
             $attachement[] = array('type' => 'text/calendar', 'filename' => $room->getName() . '.ics', 'body' => $ics);
             $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort(), $attachement);
         } else {
@@ -109,7 +111,7 @@ class UserService
             $url = $this->generateUrl($room, $user);
             $content = $this->twig->render('email/removeRoom.html.twig', ['user' => $user, 'room' => $room,]);
             $subject = $this->translator->trans('Event wurde abgesagt');
-            $ics = $this->notificationService->createIcs($room, $user, $url, 'CANCEL');
+            $ics = $this->notificationService->createIcs($room, $user,  'CANCEL');
             $attachement[] = array('type' => 'text/calendar', 'filename' => $room->getName() . '.ics', 'body' => $ics);
             $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort(), $attachement);
         } else {

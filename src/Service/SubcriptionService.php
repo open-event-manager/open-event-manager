@@ -116,13 +116,26 @@ class SubcriptionService
             return $res;
         }
 
-
-        if ($subscriber->getRoom()->getMaxParticipants() != null && sizeof($subscriber->getRoom()->getUser()) >= $subscriber->getRoom()->getMaxParticipants() && $subscriber->getRoom()->getWaitinglist() != true) {
+        $room = $subscriber->getRoom();
+        if (
+            $room->getMaxParticipants() != null
+            && sizeof($room->getUser()) >= $room->getMaxParticipants()
+            && $room->getWaitinglist() != true // the Waiting list is not set, and the participants is full
+        ) {
             $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
             $res['title'] = $this->translator->trans('Fehler');
             return $res;
         }
 
+        if (
+            $room->getMaxWaitingList() != null &&
+            sizeof($room->getWaitinglists()) >= $room->getMaxWaitingList()// the waitinglist is enabled and the limit is set, and the maxwaiting list is higher then the allowed
+        ) {
+            $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+            $res['title'] = $this->translator->trans('Fehler');
+            return $res;
+        }
+        // add a new waiting list or a new participant
         try {
             if ($subscriber->getRoom()->getMaxParticipants() != null && sizeof($subscriber->getRoom()->getUser()) >= $subscriber->getRoom()->getMaxParticipants()) {
                 $this->createNewWaitinglist($subscriber->getUser(), $subscriber->getRoom());
@@ -177,7 +190,7 @@ class SubcriptionService
         $res['text'] = $this->translator->trans('Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.');
         $res['color'] = 'success';
         $res['error'] = false;
-        $this->userService->addWaitinglist($user,$rooms);
+        $this->userService->addWaitinglist($user, $rooms);
         return $res;
     }
 
@@ -186,7 +199,8 @@ class SubcriptionService
      * @param Rooms $rooms
      * creates a new roomUser element and sends the email with the room infos  to the subscriber
      */
-    function createUserRoom(User $user, Rooms $rooms){
+    function createUserRoom(User $user, Rooms $rooms)
+    {
         $user->addRoom($rooms);
         $this->em->persist($user);
         $this->em->flush();
