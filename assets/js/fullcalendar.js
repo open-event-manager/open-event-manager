@@ -3,18 +3,20 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import deLocale from '@fullcalendar/core/locales/de';
+import bootstrapPlugin from '@fullcalendar/bootstrap';
 function initCalendar() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new Calendar(calendarEl, {
-        plugins: [  dayGridPlugin, timeGridPlugin, listPlugin ],
+        plugins: [ bootstrapPlugin , dayGridPlugin, timeGridPlugin, listPlugin ],
         locale: deLocale,
+        themeSystem: 'bootstrap',
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            right: 'dayGridMonth,listWeek'
         },
         navLinks: true, // can click day/week names to navigate views
-        editable: true,
+        editable: false,
         dayMaxEvents: true, // allow "more" link when too many events
         events: events
     });
