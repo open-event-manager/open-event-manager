@@ -5,6 +5,7 @@
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 [![Crowdin](https://badges.crowdin.net/open-event-manager/localized.svg)](https://crowdin.com/project/open-event-manager)
+
 Open Event Manager is a tool to manage conferences
 
 
@@ -37,22 +38,25 @@ Please help us to improve our localiczation
 
 The following features are already part of Open Event Manager:
 
-* Managing of conferences
-* Managing of Jitsi servers with JWT enabled
-* Adding participants to a conference
+* Managing of events
+* Managing of location
+* Creating polls to find the best timeslot
 * Sending out emails to the participants
 * Sending out email prior to the conference based on a Cron job
+* Create public events so everyone can subscripe
+* create waitinglists and mave participants to the participants board
 
 ### The Dashboard
 
-The Dashboard is the central view where all information to all conferences is displayed
-![Dashboard](docs/images/dashboard-heading.jpg)
+The Dashboard is the central view where all information to all events is displayed
+![Dashboard](docs/images/dashboard-heading.png)
 
-### The Servers
+### The locations
 
-All servers can be managed centrally and different permissions can be configured.
-Multiple Jitsi Servers can be combined to one Setup and managed acordingly
-![Server](docs/images/server.jpg)
+All locations can be managed centrally and different permissions can be configured.
+Multiple locationscan be combined to one Setup and managed acordingly.
+
+![Server](docs/images/server.png)
 
 ### Login
 

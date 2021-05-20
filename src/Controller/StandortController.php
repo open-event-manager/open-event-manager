@@ -202,7 +202,7 @@ class StandortController extends AbstractController
             try {
                 $r = $mailerService->sendEmail(
                     $this->getUser()->getEmail(),
-                    $translator->trans('Testmail vom Jitsi-Admin') . ' | ' . $server->getUrl(),
+                    $translator->trans('Testmail vom Jitsi-Admin') . ' | ' . $server->getName(),
                     '<h1>' . $translator->trans('Sie haben einen SMTP-Server für Ihren Jitsi-Server erfolgreich eingerichtet') . '</h1>'
                     . $server->getSmtpHost() . '<br>'
                     . $server->getSmtpEmail() . '<br>'
