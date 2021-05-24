@@ -62,6 +62,8 @@ class RoomType extends AbstractType
             ->add('maxParticipants',NumberType::class,array('required'=>false,'label' => 'label.maxParticipants', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
             ->add('waitinglist',CheckboxType::class,array('required'=>false,'label' => 'label.waitinglist', 'translation_domain' => 'form'))
             ->add('maxWaitingList',NumberType::class,array('required'=>false,'label' => 'label.maxWaitingList', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
+            ->add('allowGroups',CheckboxType::class,array('required'=>false,'label' => 'label.allowGroups', 'translation_domain' => 'form'))
+            ->add('maxGroupSize',NumberType::class,array('required'=>false,'label' => 'label.maxGroupSize', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
             ->add('submit', SubmitType::class, ['attr' => array('class' => 'btn btn-outline-primary'), 'label' => 'label.speichern', 'translation_domain' => 'form']);
     }
 

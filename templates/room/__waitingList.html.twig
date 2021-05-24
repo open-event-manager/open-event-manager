@@ -14,5 +14,12 @@
            data-url="{{ path('room_add_user',{'room':room.id}) }}"
         > <i class="fa fa-check"></i>
         </a>
+        {% if w|groupFromWaitinglist is not null %}
+        <ul>
+            {% for m in w|groupFromWaitinglist.members  %}
+            <li>{{ m.email }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </li>
 {% endfor %}

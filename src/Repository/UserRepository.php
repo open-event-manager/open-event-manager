@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Group;
+use App\Entity\Rooms;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -70,4 +72,19 @@ class UserRepository extends ServiceEntityRepository
             ->getResult();
 
     }
+    public function userFromLeaderAndRoom(User $user, Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.rooms', 'rooms')
+            ->andWhere('rooms = :room')
+            ->innerJoin('u.eventGroupsMemebers', 'g')
+            ->innerJoin('g.leader','leader')
+            ->andWhere('leader = :leader')
+            ->setParameter('leader',$user)
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+
+    }
+
 }

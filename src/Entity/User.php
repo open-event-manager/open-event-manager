@@ -141,6 +141,16 @@ class User extends BaseUser
      */
     private $roomsStorno;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="leader")
+     */
+    private $eventGroups;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="members")
+     */
+    private $eventGroupsMemebers;
+
 
 
     public function __construct()
@@ -156,6 +166,8 @@ class User extends BaseUser
         $this->schedulingTimeUsers = new ArrayCollection();
         $this->waitinglists = new ArrayCollection();
         $this->roomsStorno = new ArrayCollection();
+        $this->eventGroups = new ArrayCollection();
+        $this->eventGroupsMemebers = new ArrayCollection();
 
     }
 
@@ -593,6 +605,63 @@ class User extends BaseUser
     {
         if ($this->roomsStorno->removeElement($roomsStorno)) {
             $roomsStorno->removeStorno($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getEventGroups(): Collection
+    {
+        return $this->eventGroups;
+    }
+
+    public function addEventGroup(Group $eventGroup): self
+    {
+        if (!$this->eventGroups->contains($eventGroup)) {
+            $this->eventGroups[] = $eventGroup;
+            $eventGroup->setLeader($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventGroup(Group $eventGroup): self
+    {
+        if ($this->eventGroups->removeElement($eventGroup)) {
+            // set the owning side to null (unless already changed)
+            if ($eventGroup->getLeader() === $this) {
+                $eventGroup->setLeader(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getEventGroupsMemebers(): Collection
+    {
+        return $this->eventGroupsMemebers;
+    }
+
+    public function addEventGroupsMemeber(Group $eventGroupsMemeber): self
+    {
+        if (!$this->eventGroupsMemebers->contains($eventGroupsMemeber)) {
+            $this->eventGroupsMemebers[] = $eventGroupsMemeber;
+            $eventGroupsMemeber->addMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventGroupsMemeber(Group $eventGroupsMemeber): self
+    {
+        if ($this->eventGroupsMemebers->removeElement($eventGroupsMemeber)) {
+            $eventGroupsMemeber->removeMember($this);
         }
 
         return $this;

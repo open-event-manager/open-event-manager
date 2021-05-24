@@ -62,14 +62,61 @@
 
                 </div>
             </div>
+            {% if room.allowGroups %}
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h3 class="h3-responsive">{{ 'Gruppenanmeldung'|trans }}</h3>
+                        {% if room.maxGroupSize is not null %}
+                            <small>{% trans with {'{max}':room.maxGroupSize} %}Maximale Gruppengröße: {max}{% endtrans %}</small>
 
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="mt-2 mb-3">
+                    <div id="groups">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <a href="#" class="moreGroup btn-outline-primary btn" style="width: 100%"><i
+                                        class="fa fa-plus"></i> </a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endif %}
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-12">
                     {{ form_row(form.subscribe) }}
                 </div>
             </div>
         </div>
         {{ form_end(form) }}
+        <div id="formSample" class="d-none">
+            <div class="addedForm row">
+
+                <div class="col-md-3 d-flex align-items-baseline">
+                    <a href="#" class="mr-1 removeForm "><i class="fa fa-trash  float-left">
+                        </i></a>
+                    <div class="form-group">
+                        <input type="text" required class="form-control" name="group[x][firstName]"
+                               placeholder="{{ 'Vorname'|trans }}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" required class="form-control" name="group[x][lastName]"
+                               placeholder="{{ 'Nachname'|trans }}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="email"   required class="form-control" name="group[x][email]"
+                               placeholder="{{ 'Email'|trans }}">
+                    </div>
+                </div>
+            </div>
+        </div>
     {% else %}
         <div class="col-lg-12">
             <h3 class="text-center ">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Keine Plätze mehr frei{% endtrans %}</h3>
@@ -79,5 +126,8 @@
 
     {% endif %}
 
+    <script>
+        var maxGroupSize = {{ room.maxGroupSize?room.maxGroupSize:1000 }}
+    </script>
 
 {% endblock %}
