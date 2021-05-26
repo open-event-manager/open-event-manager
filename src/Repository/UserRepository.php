@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Group;
+use App\Entity\Rooms;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -68,6 +70,69 @@ class UserRepository extends ServiceEntityRepository
 
             ->getQuery()
             ->getResult();
+
+    }
+    public function userFromLeaderAndRoom(User $user, Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.rooms', 'rooms')
+            ->andWhere('rooms = :room')
+            ->innerJoin('u.eventGroupsMemebers', 'g')
+            ->innerJoin('g.leader','leader')
+            ->andWhere('leader = :leader')
+            ->setParameter('leader',$user)
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+
+    }
+    public function findSubsriberLeaders(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.subscribers', 'subscribers')
+            ->innerJoin('subscribers.room', 'room')
+            ->andWhere('room = :room')
+            ->innerJoin('u.eventGroups','g')
+            ->innerJoin('g.rooms','r')
+            ->andWhere('r = :room')
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+    }
+    public function findWaitingListLeaders(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.waitinglists', 'waitinglists')
+            ->innerJoin('waitinglists.room', 'room')
+            ->andWhere('room = :room')
+            ->innerJoin('u.eventGroups','g')
+            ->innerJoin('g.rooms','r')
+            ->andWhere('r = :room')
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+    }
+    public function findActiveGroupLeaders(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.rooms', 'r')
+            ->andWhere('r = :room')
+            ->innerJoin('u.eventGroups','g')
+            ->innerJoin('g.rooms','room')
+            ->andWhere('room = :room')
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+    }
+    public function getUserWhichAreNotMemeber(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        return $qb->innerJoin('u.rooms', 'r')
+            ->andWhere('r = :room')
+            ->andWhere($qb->expr()->not())
+            ->setParameter('room',$rooms)
+            ->getQuery()->getResult();
 
     }
 }

@@ -60,6 +60,8 @@ label:
   waitinglist: Warteliste aktivieren
   phone: Telefonnummer
   maxWaitingList: Maximale Teilnehmer auf der Warteliste
+  allowGroups: Erlaube Gruppenameldung
+  maxGroupSize: Maximale Gruppengröße
 choice:
   tls: STARTTLS/TLS
   ssl: SSL

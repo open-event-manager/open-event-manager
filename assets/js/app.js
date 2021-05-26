@@ -52,6 +52,7 @@ $(document).ready(function () {
     if (importBBB) {
         h2Button.init(bbbUrl);
     }
+
     $('.switchDarkmode').change(function (e) {
         var val = 0;
         if ($(this).prop('checked')) {
@@ -204,6 +205,11 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
         } else {
             $('#maxWaitinglist').collapse('hide')
         }
+        if ($('#room_allowGroups').prop('checked')) {
+            $('#maxGroupSize').collapse('show')
+        } else {
+            $('#maxGroupSize').collapse('hide')
+        }
         $('#room_public').change(function () {
             if ($('#room_public').prop('checked')) {
                 $('#maxParticipants').collapse('show')
@@ -216,6 +222,13 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
                 $('#maxWaitinglist').collapse('show')
             } else {
                 $('#maxWaitinglist').collapse('hide')
+            }
+        })
+        $('#room_allowGroups').change(function () {
+            if ($('#room_allowGroups').prop('checked')) {
+                $('#maxGroupSize').collapse('show')
+            } else {
+                $('#maxGroupSize').collapse('hide')
             }
         })
     }

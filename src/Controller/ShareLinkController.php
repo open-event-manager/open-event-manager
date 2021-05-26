@@ -78,7 +78,7 @@ class ShareLinkController extends AbstractController
             return $this->redirectToRoute('join_index_no_slug', ['snack' => $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.'), 'color' => 'danger']);
         }
 
-        $data = array('email' => '');
+        $data = array('email' => '','group'=>array());
         $form = $this->createForm(PublicRegisterType::class, $data);
         $form->handleRequest($request);
         $errors = array();
@@ -100,8 +100,10 @@ class ShareLinkController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $data = $form->getData();
-            $res = $subcriptionService->subscripe($data, $rooms, $moderator);
+            $group = $request->get('group',array());
+            $res = $subcriptionService->subscripe($data, $rooms,$group, $moderator);
             $snack = $res['text'];
             $color = $res['color'];
             if (!$res['error']) {

@@ -157,6 +157,21 @@ class Rooms
      */
     private $storno;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="rooms")
+     */
+    private $groups;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $allowGroups;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $maxGroupSize;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -165,6 +180,7 @@ class Rooms
         $this->schedulings = new ArrayCollection();
         $this->waitinglists = new ArrayCollection();
         $this->storno = new ArrayCollection();
+        $this->groups = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -588,6 +604,60 @@ class Rooms
     public function removeStorno(User $storno): self
     {
         $this->storno->removeElement($storno);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getGroups(): Collection
+    {
+        return $this->groups;
+    }
+
+    public function addGroup(Group $group): self
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups[] = $group;
+            $group->setRooms($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroup(Group $group): self
+    {
+        if ($this->groups->removeElement($group)) {
+            // set the owning side to null (unless already changed)
+            if ($group->getRooms() === $this) {
+                $group->setRooms(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAllowGroups(): ?bool
+    {
+        return $this->allowGroups;
+    }
+
+    public function setAllowGroups(?bool $allowGroups): self
+    {
+        $this->allowGroups = $allowGroups;
+
+        return $this;
+    }
+
+    public function getMaxGroupSize(): ?int
+    {
+        return $this->maxGroupSize;
+    }
+
+    public function setMaxGroupSize(?int $maxGroupSize): self
+    {
+        $this->maxGroupSize = $maxGroupSize;
 
         return $this;
     }

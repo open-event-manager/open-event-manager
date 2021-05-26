@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Group;
 use App\Entity\Rooms;
 use App\Entity\Scheduling;
 use App\Entity\Standort;
@@ -189,11 +190,20 @@ class RoomController extends AbstractController
         $room = $this->getDoctrine()->getRepository(Rooms::class)->findOneBy(['id' => $request->get('room')]);
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $request->get('user')]);
         $snack = 'Keine Berechtigung';
+        $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms'=>$room,'leader'=>$user));
         if ($room->getModerator() === $this->getUser() || $user === $this->getUser()) {
             $room->removeUser($user);
             $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
+            if($group){
+                foreach ($group->getMembers() as $data){
+                    $room->removeUser($data);
+                    $room->addStorno($data);
+                    $userService->removeRoom($data,$room);
+                    $em->persist($room);
+                }
+            }
             $em->flush();
             $snack = $this->translator->trans('Teilnehmer gelöscht');
             $userService->removeRoom($user, $room);

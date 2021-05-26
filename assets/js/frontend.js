@@ -10,7 +10,9 @@ import('bootstrap');
 import('popper.js');
 global.$ = global.jQuery = $;
 import('mdbootstrap');
-import {initSchedulePublic} from './scheduling'
+import {initCalendar} from './fullcalendar'
+
+
 $(document).ready(function () {
     setTimeout(function () {
         $('#snackbar').addClass('show');
@@ -18,8 +20,31 @@ $(document).ready(function () {
             $('#snackbar').removeClass('show');
         }, 3000);
     }, 500);
-    initSchedulePublic()
+    initGroups();
+    initCalendar();
 });
 $(window).on('load', function () {
     $('[data-toggle="popover"]').popover({html: true});
 });
+var counter = 0;
+function initGroups(){
+
+    $('.moreGroup').click(function (e) {
+        e.preventDefault();
+        var $form = $('#formSample').html();
+        $('#groups').append($form.replaceAll("[x]","["+counter++ +"]"));
+        $('.removeForm').click(function (e) {
+            e.preventDefault();
+            $(this).closest('.addedForm').remove();
+            initAddBtn();
+        })
+        initAddBtn();
+    })
+}
+function initAddBtn() {
+    if($('.addedForm').length >= maxGroupSize){
+        $('.moreGroup').addClass('d-none');
+    }else {
+        $('.moreGroup').removeClass('d-none');
+    }
+}

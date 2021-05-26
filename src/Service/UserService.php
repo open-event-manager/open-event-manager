@@ -8,6 +8,7 @@
 
 namespace App\Service;
 
+use App\Entity\Group;
 use App\Entity\Rooms;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -108,7 +109,7 @@ class UserService
     function removeRoom(User $user, Rooms $room)
     {
         if (!$room->getScheduleMeeting()) {
-            $url = $this->generateUrl($room, $user);
+
             $content = $this->twig->render('email/removeRoom.html.twig', ['user' => $user, 'room' => $room,]);
             $subject = $this->translator->trans('Event wurde abgesagt');
             $ics = $this->notificationService->createIcs($room, $user,  'CANCEL');
@@ -128,9 +129,20 @@ class UserService
         $content = $this->twig->render('email/rememberUser.html.twig', ['user' => $user, 'room' => $room, 'url' => $url]);
         $subject = $this->translator->trans('Event {room} startet gleich', array('{room}' => $room->getName()));
         $this->notificationService->sendCron($content, $subject, $user, $room->getStandort());
-
         return true;
     }
-
+    function removeGroupFromRoom(Group $group){
+        $room = $group->getRooms();
+        foreach ($group->getMembers() as $data){
+            $room->removeUser($data);
+            $this->em->persist($data);
+            $content = $this->twig->render('email/removeRoom.html.twig', ['user' => $data, 'room' => $room,]);
+            $subject = $this->translator->trans('Event wurde abgesagt');
+            $ics = $this->notificationService->createIcs($room, $data,  'CANCEL');
+            $attachement[] = array('type' => 'text/calendar', 'filename' => $room->getName() . '.ics', 'body' => $ics);
+            $this->notificationService->sendNotification($content, $subject, $data, $room->getStandort(), $attachement);
+        }
+        $this->em->flush();
+    }
 
 }

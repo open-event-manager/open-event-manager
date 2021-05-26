@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use App\Entity\Group;
 use App\Entity\Rooms;
 use App\Entity\RoomsUser;
 use App\Entity\Subscriber;
@@ -43,7 +44,7 @@ class SubcriptionService
      * This functions sends a mail to the subscriper with the double opt in link.
      * This function checks if the room is full and if so then it will reject or if the waiting list is active then the user can register
      */
-    public function subscripe($userData, Rooms $rooms, $moderator = false)
+    public function subscripe($userData, Rooms $rooms, $group = array(), $moderator = false)
     {
         $res = array('error' => true);
         if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() != true) {
@@ -62,21 +63,24 @@ class SubcriptionService
         if (!$user) {
             $user = new User();
             $user->setEmail($userData['email']);
-            $user->setFirstName($userData['firstName']);
-            $user->setLastName($userData['lastName']);
-            $user->setPhone($userData['phone']);
-            $this->em->persist($user);
-            $this->em->flush();
         }
+
+        $user->setFirstName($userData['firstName']);
+        $user->setLastName($userData['lastName']);
+        $user->setPhone($userData['phone']);
+        $this->em->persist($user);
+        $this->em->flush();
 
         $subscriber = $this->em->getRepository(Subscriber::class)->findOneBy(array('room' => $rooms, 'user' => $user));
 
         if ($subscriber) {
             $res['text'] = $this->translator->trans('Sie haben sich bereits angemeldet. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.');
             $res['color'] = 'danger';
+            $res['error'] = false;
         } elseif (in_array($rooms, $user->getRooms()->toArray())) {
             $res['text'] = $this->translator->trans('Sie haben sich bereits angemeldet.');
             $res['color'] = 'danger';
+            $res['error'] = false;
         } else {
             $res = $this->createNewSubscriber($user, $rooms);
             $subscriber = $res['sub'];
@@ -96,10 +100,13 @@ class SubcriptionService
                 $user,
                 $rooms->getStandort()
             );
+            $this->createGroup($user, $group, $rooms);
         }
+
 
         return $res;
     }
+
 
     /**
      * @param Subscriber|null $subscriber
@@ -115,11 +122,23 @@ class SubcriptionService
             $res['title'] = $this->translator->trans('Fehler');
             return $res;
         }
-
+        $group = $this->em->getRepository(Group::class)->findOneBy(array('leader' => $subscriber->getUser(), 'rooms' => $subscriber->getRoom()));
         $room = $subscriber->getRoom();
+        $oldParticipants = sizeof($room->getUser());
+        $newParticipants = $oldParticipants + 1;
+        if ($group) {
+            $newParticipants = $newParticipants + sizeof($group->getMembers());
+        }
+        $oldWaitingLisParticipants = $this->returnWaitinglistmemeber($room);
+        $newWaitingLisParticipants = $oldWaitingLisParticipants;
+        $newWaitingLisParticipants++;
+        if ($group) {
+            $newWaitingLisParticipants = $newWaitingLisParticipants + sizeof($group->getMembers());
+        }
+
         if (
             $room->getMaxParticipants() != null
-            && sizeof($room->getUser()) >= $room->getMaxParticipants()
+            && $newParticipants > $room->getMaxParticipants()
             && $room->getWaitinglist() != true // the Waiting list is not set, and the participants is full
         ) {
             $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
@@ -129,7 +148,7 @@ class SubcriptionService
 
         if (
             $room->getMaxWaitingList() != null &&
-            sizeof($room->getWaitinglists()) >= $room->getMaxWaitingList()// the waitinglist is enabled and the limit is set, and the maxwaiting list is higher then the allowed
+            $newWaitingLisParticipants > $room->getMaxWaitingList()// the waitinglist is enabled and the limit is set, and the maxwaiting list is higher then the allowed
         ) {
             $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
             $res['title'] = $this->translator->trans('Fehler');
@@ -137,15 +156,20 @@ class SubcriptionService
         }
         // add a new waiting list or a new participant
         try {
-            if ($subscriber->getRoom()->getMaxParticipants() != null && sizeof($subscriber->getRoom()->getUser()) >= $subscriber->getRoom()->getMaxParticipants()) {
-                $this->createNewWaitinglist($subscriber->getUser(), $subscriber->getRoom());
+            $waitinglist = false;
+            if ($subscriber->getRoom()->getMaxParticipants() != null && $newParticipants >= $subscriber->getRoom()->getMaxParticipants()) {
+                $waitinglist = true;
+            }
+            if ($waitinglist === true) {
+                $res = array_merge($res, $this->createNewWaitinglist($subscriber->getUser(), $subscriber->getRoom()));
                 $this->em->remove($subscriber);
                 $this->em->flush();
             } else {
-                $this->createUserRoom($subscriber->getUser(),$subscriber->getRoom());
+                $this->createUserRoom($subscriber->getUser(), $subscriber->getRoom());
                 $this->em->remove($subscriber);
                 $this->em->flush();
             }
+
 
         } catch (\Exception $exception) {
             $res['message'] = $this->translator->trans('Fehler, Bitte klicken Sie den link erneut an.');
@@ -164,8 +188,12 @@ class SubcriptionService
      */
     function createNewSubscriber(User $user, Rooms $rooms)
     {
+
         $subscriber = new Subscriber();
-        $subscriber->setUser($user)->setRoom($rooms)->setUid(md5(uniqid()));
+        $subscriber
+            ->setUser($user)
+            ->setRoom($rooms)
+            ->setUid(md5(uniqid()));
         $this->em->persist($subscriber);
         $this->em->flush();
         $res['text'] = $this->translator->trans('Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.');
@@ -183,11 +211,12 @@ class SubcriptionService
      */
     function createNewWaitinglist(User $user, Rooms $rooms)
     {
+
         $waitingList = new Waitinglist();
         $waitingList->setUser($user)->setRoom($rooms)->setCreatedAt(new \DateTime());
         $this->em->persist($waitingList);
         $this->em->flush();
-        $res['text'] = $this->translator->trans('Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.');
+        $res['text'] = $this->translator->trans('Sie sind auf der Warteliste');
         $res['color'] = 'success';
         $res['error'] = false;
         $this->userService->addWaitinglist($user, $rooms);
@@ -197,13 +226,89 @@ class SubcriptionService
     /**
      * @param User $user
      * @param Rooms $rooms
-     * creates a new roomUser element and sends the email with the room infos  to the subscriber
+     * creates a new roomUser element and sends the email with the room infos  to the new participant
      */
     function createUserRoom(User $user, Rooms $rooms)
     {
+        $group = $this->em->getRepository(Group::class)->findOneBy(array('leader' => $user, 'rooms' => $rooms));
         $user->addRoom($rooms);
         $this->em->persist($user);
-        $this->em->flush();
+
         $this->userService->addUser($user, $rooms);
+        if ($group) {
+            foreach ($group->getMembers() as $data) {
+                if (!in_array($data, $rooms->getUser()->toArray())) {
+                    $data->addRoom($rooms);
+                    $this->em->persist($data);
+                    $this->userService->addUser($data, $rooms);
+                } else {
+                    $group->removeMember($data);
+                    $this->em->persist($group);
+                }
+            }
+        }
+        $this->em->flush();
+    }
+
+
+    /**
+     * @param User $user
+     * @param $groups
+     * @param Rooms $rooms
+     * This create the group The group is coupled to the leader.
+     * The group memebers a coupled to the group entity
+     * the group leader is connected to the supscriper
+     */
+    function createGroup(User $user, $groups, Rooms $rooms)
+    {
+        $group = new Group();
+        $group->setLeader($user);
+        $group->setRooms($rooms);
+        $counter = 0;
+        if (sizeof($groups) > 0) {
+            foreach ($groups as $data) {
+                $email = $data['email'];
+                $firstName = $data['firstName'];
+                $lastName = $data['lastName'];
+
+                if ($firstName !== '' && $lastName !== '' && $email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+                    // this entry is correct
+                    $member = $this->em->getRepository(User::class)->findOneBy(array('email' => $email));
+                    if (!$member) {
+                        $member = new User();
+                        $member->setEmail($email);
+                    }
+                    $member->setFirstName($firstName);
+                    $member->setLastName($lastName);
+                    $this->em->persist($member);
+                    if (!in_array($member, $rooms->getUser()->toArray())
+                        && !in_array($user, $this->em->getRepository(User::class)->findSubsriberLeaders($rooms))
+                        && !in_array($user, $this->em->getRepository(User::class)->findWaitingListLeaders($rooms))
+                    ) {
+                        $group->addMember($member);
+                        $this->em->persist($group);
+
+                    }
+                    $counter++;
+                }
+            }
+            if ($counter > 0) {
+                $this->em->flush();
+            }
+        }
+    }
+
+    function returnWaitinglistmemeber(Rooms $rooms)
+    {
+        $newParticipantsWaitinglist = 0;
+        foreach ($rooms->getWaitinglists() as $data) {
+            $newParticipantsWaitinglist++;
+            $group = $this->em->getRepository(Group::class)->findOneBy(array('leader' => $data->getUser(), 'rooms' => $rooms));
+            if ($group) {
+                $newParticipantsWaitinglist = $newParticipantsWaitinglist + sizeof($group->getMembers());
+            }
+        }
+        return $newParticipantsWaitinglist;
     }
 }

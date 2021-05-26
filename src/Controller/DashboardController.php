@@ -33,24 +33,9 @@ class DashboardController extends AbstractController
      */
     public function index(Request $request)
     {
-        if ($this->getUser() || $this->getParameter('laF_startpage') === 'false'){
-            return $this->redirectToRoute('dashboard');
-        };
+        $events = $this->getDoctrine()->getRepository(Rooms::class)->findBy(array('showRoomOnJoinpage'=>true));
 
-        $data = array();
-        // dataStr wird mit den Daten uid und email encoded übertragen. Diese werden daraufhin als Vorgaben in das Formular eingebaut
-        $dataStr = $request->get('data');
-        $dataAll = base64_decode($dataStr);
-        parse_str($dataAll, $data);
-
-        $form = $this->createForm(JoinViewType::class, $data,['action'=>$this->generateUrl('join_index')]);
-        $form->handleRequest($request);
-
-        $user = $this->getDoctrine()->getRepository(User::class)->findAll();
-        $standort = $this->getDoctrine()->getRepository(Standort::class)->findAll();
-        $rooms = $this->getDoctrine()->getRepository(Rooms::class)->findAll();
-
-        return $this->render('dashboard/start.html.twig', ['form' => $form->createView(),'user'=>$user, 'standort'=>$standort, 'rooms'=>$rooms]);
+        return $this->render('dashboard/start.html.twig', ['events'=>$events]);
     }
 
 

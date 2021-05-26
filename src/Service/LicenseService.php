@@ -34,6 +34,7 @@ class LicenseService
 
     function verify(Standort $server): bool
     {
+        return false;
         $license = $this->em->getRepository(License::class)->findOneBy(array('licenseKey' => $server->getLicenseKey()));
 
         if (!$license) {
