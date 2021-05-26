@@ -59,7 +59,13 @@
             {% if userFromUsergroup(user,room)|length > 0 %}
                 <ul>
                     {% for u in userFromUsergroup(user,room) %}
-                        <li>{{ u.email }} <a class="small confirmHref"
+                        <li>{{ u.email }} <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                             title="{{ u.firstName }} {{ u.lastName }}"
+                                             data-content="
+{{ 'Email'|trans }}: <a href='mailto:{{ u.email }}'>{{ u.email }}</a><br>
+                              </a>"> <i
+                                        class="fa fa-info-circle"></i></a>
+                            <a class="small confirmHref"
                                             href="{{ path('room_user_remove',{'room':room.id,'user':u.id}) }}"><i
                                         class="fa fa-trash"></i> </a></li>
                     {% endfor %}

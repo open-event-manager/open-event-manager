@@ -63,8 +63,8 @@ class GroupUtils extends AbstractExtension
     {
       return $this->em->getRepository(Group::class)->atendeeIsInGroup($user, $rooms);
     }
-    public function getUserWhichAreNotMemeber(User $user, Rooms $rooms)
+    public function getUserWhichAreNotMemeber( Rooms $rooms)
     {
-        return $this->em->getRepository(Group::class)->atendeeIsInGroup($user, $rooms);
+        return $this->em->getRepository(User::class)->getUserWhichAreNotMemeber( $rooms);
     }
 }

@@ -124,4 +124,15 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+    public function getUserWhichAreNotMemeber(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        return $qb->innerJoin('u.rooms', 'r')
+            ->andWhere('r = :room')
+            ->andWhere($qb->expr()->not())
+            ->setParameter('room',$rooms)
+            ->getQuery()->getResult();
+
+    }
 }
