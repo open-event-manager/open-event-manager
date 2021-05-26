@@ -128,9 +128,7 @@ class UserService
         $content = $this->twig->render('email/rememberUser.html.twig', ['user' => $user, 'room' => $room, 'url' => $url]);
         $subject = $this->translator->trans('Event {room} startet gleich', array('{room}' => $room->getName()));
         $this->notificationService->sendCron($content, $subject, $user, $room->getStandort());
-
         return true;
     }
-
 
 }

@@ -226,7 +226,7 @@ class SubcriptionService
     /**
      * @param User $user
      * @param Rooms $rooms
-     * creates a new roomUser element and sends the email with the room infos  to the subscriber
+     * creates a new roomUser element and sends the email with the room infos  to the new participant
      */
     function createUserRoom(User $user, Rooms $rooms)
     {
@@ -237,9 +237,14 @@ class SubcriptionService
         $this->userService->addUser($user, $rooms);
         if ($group) {
             foreach ($group->getMembers() as $data) {
-                $data->addRoom($rooms);
-                $this->em->persist($data);
-                $this->userService->addUser($user, $rooms);
+                if (!in_array($data, $rooms->getUser()->toArray())) {
+                    $data->addRoom($rooms);
+                    $this->em->persist($data);
+                    $this->userService->addUser($data, $rooms);
+                } else {
+                    $group->removeMember($data);
+                    $this->em->persist($group);
+                }
             }
         }
         $this->em->flush();
@@ -277,8 +282,14 @@ class SubcriptionService
                     $member->setFirstName($firstName);
                     $member->setLastName($lastName);
                     $this->em->persist($member);
-                    $group->addMember($member);
-                    $this->em->persist($group);
+                    if (!in_array($member, $rooms->getUser()->toArray())
+                        && !in_array($user, $this->em->getRepository(User::class)->findSubsriberLeaders($rooms))
+                        && !in_array($user, $this->em->getRepository(User::class)->findWaitingListLeaders($rooms))
+                    ) {
+                        $group->addMember($member);
+                        $this->em->persist($group);
+
+                    }
                     $counter++;
                 }
             }

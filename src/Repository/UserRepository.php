@@ -86,5 +86,42 @@ class UserRepository extends ServiceEntityRepository
         return $qb->getResult();
 
     }
-
+    public function findSubsriberLeaders(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.subscribers', 'subscribers')
+            ->innerJoin('subscribers.room', 'room')
+            ->andWhere('room = :room')
+            ->innerJoin('u.eventGroups','g')
+            ->innerJoin('g.rooms','r')
+            ->andWhere('r = :room')
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+    }
+    public function findWaitingListLeaders(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.waitinglists', 'waitinglists')
+            ->innerJoin('waitinglists.room', 'room')
+            ->andWhere('room = :room')
+            ->innerJoin('u.eventGroups','g')
+            ->innerJoin('g.rooms','r')
+            ->andWhere('r = :room')
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+    }
+    public function findActiveGroupLeaders(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.rooms', 'r')
+            ->andWhere('r = :room')
+            ->innerJoin('u.eventGroups','g')
+            ->innerJoin('g.rooms','room')
+            ->andWhere('room = :room')
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

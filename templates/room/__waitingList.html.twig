@@ -17,7 +17,12 @@
         {% if w|groupFromWaitinglist is not null %}
         <ul>
             {% for m in w|groupFromWaitinglist.members  %}
-            <li>{{ m.email }}</li>
+            <li>{{ m.email }} <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                title="{{ m.firstName }} {{ m.lastName }}"
+                                data-content="
+{{ 'Email'|trans }}: <a href='mailto:{{ m.email }}'>{{ m.email }}</a><br>
+                                </a>"><i
+                            class="fa fa-info-circle"></i></a></li>
             {% endfor %}
         </ul>
         {% endif %}

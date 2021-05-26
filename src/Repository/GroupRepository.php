@@ -49,7 +49,7 @@ class GroupRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function atendeeIsInGroup(User $user, Rooms $rooms): ?Group
+    public function atendeeIsInGroup(User $user, Rooms $rooms)
     {
         return $this->createQueryBuilder('g')
             ->innerJoin('g.members', 'members')
@@ -59,6 +59,5 @@ class GroupRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ->getOneOrNullResult();
-
     }
 }
