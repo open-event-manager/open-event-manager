@@ -23,7 +23,5 @@ class AtendeelistController extends AbstractController
         }
         $teilnehmerExcelService->generateTeilnehmerliste($rooms);
         return $this->file($teilnehmerExcelService->generateTeilnehmerliste($rooms), $rooms->getName() . '.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
-
-
     }
 }

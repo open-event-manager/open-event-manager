@@ -51,7 +51,6 @@ class GroupRepository extends ServiceEntityRepository
     */
     public function atendeeIsInGroup(User $user, Rooms $rooms)
     {
-        dump($user);
         $res =  $this->createQueryBuilder('g')
             ->innerJoin('g.leader','leader')
             ->innerJoin('leader.rooms','rooms')
