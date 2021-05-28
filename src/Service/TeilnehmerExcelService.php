@@ -31,41 +31,65 @@ class TeilnehmerExcelService
         $count = 0;
         $participants = $this->spreadsheet->createSheet();
         $participants->setTitle($this->translator->trans('Teilnehmer'));
+        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('ID'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Vorname'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Nachname'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Email'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Telefon'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Status'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Moderator'));
+        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Gruppenleiter ID'));
         $count = 0;
         $count2 = 2;
         foreach ($rooms->getUser() as $data) {
+            $participants->setCellValue($alphas[$count++] . $count2, $data->getId());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getPhone());
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Teilnehmer'));
             $participants->setCellValue($alphas[$count++] . $count2, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
+            $participants->setCellValue($alphas[$count++] . $count2, $data->isMemeberInGroup($rooms)?$data->isMemeberInGroup($rooms)->getLeader()->getId():'');
             $count2++;
             $count = 0;
         }
         foreach ($rooms->getWaitinglists() as $data) {
+            $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getId());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getEmail());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getPhone());
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Warteliste'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
+            if($data->getUser()->isLeaderofGroup($rooms)){
+                foreach ($data->getUser()->isLeaderofGroup($rooms)->getMembers() as $data2) {
+                    $count2++;
+                    $count = 0;
+                    $participants->setCellValue($alphas[$count++] . $count2, $data2->getId());
+                    $participants->setCellValue($alphas[$count++] . $count2, $data2->getFirstName());
+                    $participants->setCellValue($alphas[$count++] . $count2, $data2->getLastName());
+                    $participants->setCellValue($alphas[$count++] . $count2, $data2->getEmail());
+                    $participants->setCellValue($alphas[$count++] . $count2, $data2->getPhone());
+                    $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Warteliste'));
+                    $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
+
+                    $participants->setCellValue($alphas[$count++] . $count2, $data2->isMemeberInGroup($rooms)->getLeader()->getId());
+                }
+            }
+
             $count2++;
             $count = 0;
         }
         foreach ($rooms->getStorno() as $data) {
+            $participants->setCellValue($alphas[$count++] . $count2, $data->getId());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getPhone());
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Storniert'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
+            $participants->setCellValue($alphas[$count++] . $count2, $data->isMemeberInGroup($rooms)?$data->isMemeberInGroup($rooms)->getLeader()->getId():'');
+
             $count2++;
             $count = 0;
         }
