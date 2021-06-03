@@ -167,17 +167,17 @@ class StandortController extends AbstractController
     function serverDelete(Request $request, TranslatorInterface $translator, StandortService $serverService)
     {
 
-        $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['id' => $request->get('id')]);
+        $standort = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(['id' => $request->get('id')]);
         $snack = $translator->trans('Keine Berechtigung');
-        if ($server->getAdministrator() === $this->getUser()) {
+        if ($standort->getAdministrator() === $this->getUser()) {
             $em = $this->getDoctrine()->getManager();
-            $groupServer = $this->getDoctrine()->getRepository(KeycloakGroupsToStandorts::class)->findBy(array('server' => $server));
+            $groupServer = $this->getDoctrine()->getRepository(KeycloakGroupsToStandorts::class)->findBy(array('standort' => $standort));
             foreach ($groupServer as $data) {
                 $em->remove($data);
             }
-            foreach ($server->getUser() as $user) {
-                $server->removeUser($user);
-                $em->persist($server);
+            foreach ($standort->getUser() as $user) {
+                $standort->removeUser($user);
+                $em->persist($standort);
             }
             $em->flush();
 

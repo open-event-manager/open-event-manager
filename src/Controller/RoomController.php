@@ -228,6 +228,7 @@ class RoomController extends AbstractController
                 $room->removeUser($user);
                 $em->persist($room);
             }
+
             $room->setModerator(null);
             $em->persist($room);
             $em->flush();
@@ -261,6 +262,10 @@ class RoomController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 $room = $form->getData();
                 $room->setUidReal(md5(uniqid('h2-invent', true)));
+                $room->setUidModerator(md5(uniqid()));
+                $room->setUidParticipant(md5(uniqid()));
+                $room->setSequence(0);
+                $room->setUid(rand(0,99).time());
                 $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($room);

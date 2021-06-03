@@ -15,11 +15,11 @@ import {initCalendar} from './fullcalendar'
 
 $(document).ready(function () {
     setTimeout(function () {
-        $('#snackbar').addClass('show');
-        setTimeout(function () {
+        $('#snackbar').addClass('show').click(function (e) {
             $('#snackbar').removeClass('show');
-        }, 3000);
+        })
     }, 500);
+
     initGroups();
     initCalendar();
 });

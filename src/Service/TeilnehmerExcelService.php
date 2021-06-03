@@ -4,7 +4,9 @@
 namespace App\Service;
 
 
+use App\Entity\Group;
 use App\Entity\Rooms;
+use Doctrine\ORM\EntityManagerInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -16,13 +18,14 @@ class TeilnehmerExcelService
     private $writer;
     private $translator;
     private $tokenStorage;
-
-    public function __construct(TranslatorInterface $translator, TokenStorageInterface $tokenStorage)
+    private $em;
+    public function __construct(TranslatorInterface $translator, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager)
     {
         $this->spreadsheet = new Spreadsheet();
         $this->writer = new Xlsx($this->spreadsheet);
         $this->translator = $translator;
         $this->tokenStorage = $tokenStorage;
+        $this->em = $entityManager;
     }
 
     function generateTeilnehmerliste(Rooms $rooms)
@@ -36,36 +39,74 @@ class TeilnehmerExcelService
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Email'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Telefon'));
         $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Status'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Moderator'));
+        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Organisator'));
+        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Gruppenleiter ID'));
+        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('GruppenmitgliederID'));
         $count = 0;
         $count2 = 2;
         foreach ($rooms->getUser() as $data) {
+            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data,$rooms);
+            $groupArr = array();
+            foreach ($group as $data2){
+                $groupArr[]=$data2->getId();
+            }
+            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader'=>$data,'rooms'=>$rooms));
+            $groupLeaderArr = array();
+            foreach ($groupleader as $data2){
+                $groupLeaderArr[]=$data2->getId();
+            }
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getPhone());
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Teilnehmer'));
             $participants->setCellValue($alphas[$count++] . $count2, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
+            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
+            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
             $count2++;
             $count = 0;
         }
         foreach ($rooms->getWaitinglists() as $data) {
+            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data,$rooms);
+            $groupArr = array();
+            foreach ($group as $data2){
+                $groupArr[]=$data2->getId();
+            }
+            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader'=>$data,'rooms'=>$rooms));
+            $groupLeaderArr = array();
+            foreach ($groupleader as $data2){
+                $groupLeaderArr[]=$data2->getId();
+            }
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getEmail());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getPhone());
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Warteliste'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
+            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
+            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
             $count2++;
             $count = 0;
         }
         foreach ($rooms->getStorno() as $data) {
+            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data,$rooms);
+            $groupArr = array();
+            foreach ($group as $data2){
+                $groupArr[]=$data2->getId();
+            }
+            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader'=>$data,'rooms'=>$rooms));
+            $groupLeaderArr = array();
+            foreach ($groupleader as $data2){
+                $groupLeaderArr[]=$data2->getId();
+            }
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getPhone());
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Storniert'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
+            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
+            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
             $count2++;
             $count = 0;
         }

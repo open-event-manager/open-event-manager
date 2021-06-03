@@ -5,7 +5,7 @@
     {% if room in runningRooms %}<small class="badge badge-success">{{ 'Läuft gerade'|trans }}</small><br>{% endif %}
     {% if app.user == room.moderator %}
 
-        <span class="badge badge-info">{{ 'Moderator'|trans }}</span><br>
+        <span class="badge badge-info">{{ 'Organisator'|trans }}</span><br>
     {% endif %}
     {% if app.user == room.scheduleMeeting %}
         <a
@@ -24,7 +24,7 @@
         <span class="badge badge-warning">{{ 'Intern'|trans }}</span><br>
     {% endif %}
     {% if app.user == room.public %}
-        <span class="badge badge-danger">{{ 'Öffentlich'|trans }}</span><br>
+        <span class="badge badge-danger">{{ 'Selstregistrierung'|trans }}</span><br>
     {% endif %}
 
 </div>

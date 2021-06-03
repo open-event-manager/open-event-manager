@@ -10,6 +10,7 @@ namespace App\Form\Type;
 
 
 use App\Entity\AuditTomAbteilung;
+use App\Entity\Rooms;
 use App\Entity\Standort;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -59,6 +60,7 @@ class RoomType extends AbstractType
             ->add('scheduleMeeting',CheckboxType::class,array('required'=>false,'label' => 'label.scheduleMeeting', 'translation_domain' => 'form'))
              ->add('public',CheckboxType::class,array('required'=>false,'label' => 'label.puplicRoom', 'translation_domain' => 'form'))
             ->add('showRoomOnJoinpage',CheckboxType::class,array('required'=>false,'label' => 'label.showRoomOnJoinpage', 'translation_domain' => 'form'))
+            ->add('showRoomOnCalendar',CheckboxType::class,array('required'=>false,'label' => 'label.showRoomOnCalendar', 'translation_domain' => 'form'))
             ->add('maxParticipants',NumberType::class,array('required'=>false,'label' => 'label.maxParticipants', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
             ->add('waitinglist',CheckboxType::class,array('required'=>false,'label' => 'label.waitinglist', 'translation_domain' => 'form'))
             ->add('maxWaitingList',NumberType::class,array('required'=>false,'label' => 'label.maxWaitingList', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
@@ -71,6 +73,7 @@ class RoomType extends AbstractType
     {
         $resolver->setDefaults([
             'standort'=>array(),
+            'data_class'=>Rooms::class
         ]);
 
     }
