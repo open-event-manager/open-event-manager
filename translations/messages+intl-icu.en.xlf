@@ -622,9 +622,9 @@
         <source>SMTP-Einstellungen</source>
         <target state="translated">SMTP Settings</target>
       </trans-unit>
-      <trans-unit id="K81G__p" resname="Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.">
+      <trans-unit id="K81Gp" resname="Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.">
         <source>Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.</source>
-        <target state="translated">Enter you own SMTP Server for sending emails here. If you do not enter a SMTP server the standard server of Jitsi-Admin will be used.</target>
+        <target state="needs-translation">Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.</target>
       </trans-unit>
       <trans-unit id="pDSuNQy" resname="Hintergrundbild">
         <source>Hintergrundbild</source>
@@ -913,6 +913,328 @@
       <trans-unit id="WGh6kGc" resname="Aktuell sind keine vergangenen Events vorhanden.">
         <source>Aktuell sind keine vergangenen Events vorhanden.</source>
         <target state="translated">No past events available.</target>
+      </trans-unit>
+      <trans-unit id="8HrTSCi" resname="Event erfolgreich bearbeitet">
+        <source>Event erfolgreich bearbeitet</source>
+        <target state="needs-translation">Event erfolgreich bearbeitet</target>
+      </trans-unit>
+      <trans-unit id="xMELWUn" resname="Event bearbeiten">
+        <source>Event bearbeiten</source>
+        <target state="needs-translation">Event bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="bF4dGGW" resname="Event erfolgreich erstellt">
+        <source>Event erfolgreich erstellt</source>
+        <target state="needs-translation">Event erfolgreich erstellt</target>
+      </trans-unit>
+      <trans-unit id="MHbAzqi" resname="Neues Event planen">
+        <source>Neues Event planen</source>
+        <target state="needs-translation">Neues Event planen</target>
+      </trans-unit>
+      <trans-unit id="Axh2pm9" resname="Sie wurden zu einem Event in: {name} hinzugefügt.">
+        <source>Sie wurden zu einem Event in: {name} hinzugefügt.</source>
+        <target state="needs-translation">Sie wurden zu einem Event in: {name} hinzugefügt.</target>
+      </trans-unit>
+      <trans-unit id="3nSO488" resname="Einladung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}">
+        <source>Einladung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</source>
+        <target state="needs-translation">Einladung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</target>
+      </trans-unit>
+      <trans-unit id="CB5j0iT" resname="Sie erhalten diese E-Mail, weil Sie zu diesem Event eingeladen wurden.">
+        <source>Sie erhalten diese E-Mail, weil Sie zu diesem Event eingeladen wurden.</source>
+        <target state="needs-translation">Sie erhalten diese E-Mail, weil Sie zu diesem Event eingeladen wurden.</target>
+      </trans-unit>
+      <trans-unit id="RG.Bwc2" resname="Sie wurden zu einem Open-Event-Manager Standort hinzugefügt">
+        <source>Sie wurden zu einem Open-Event-Manager Standort hinzugefügt</source>
+        <target state="needs-translation">Sie wurden zu einem Open-Event-Manager Standort hinzugefügt</target>
+      </trans-unit>
+      <trans-unit id="dc6SERh" resname="Sie haben sich bereits angemeldet. Wir haben Ihnen den Link erneut zugesandt. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.">
+        <source>Sie haben sich bereits angemeldet. Wir haben Ihnen den Link erneut zugesandt. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.</source>
+        <target state="needs-translation">Sie haben sich bereits angemeldet. Wir haben Ihnen den Link erneut zugesandt. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.</target>
+      </trans-unit>
+      <trans-unit id="0td7b.p" resname="Vorname">
+        <source>Vorname</source>
+        <target state="needs-translation">Vorname</target>
+      </trans-unit>
+      <trans-unit id="slNY7dS" resname="Nachname">
+        <source>Nachname</source>
+        <target state="needs-translation">Nachname</target>
+      </trans-unit>
+      <trans-unit id="_mkG127" resname="Telefon">
+        <source>Telefon</source>
+        <target state="needs-translation">Telefon</target>
+      </trans-unit>
+      <trans-unit id="kg5BPH1" resname="Status">
+        <source>Status</source>
+        <target state="needs-translation">Status</target>
+      </trans-unit>
+      <trans-unit id="sAlcHUw" resname="Gruppenleiter ID">
+        <source>Gruppenleiter ID</source>
+        <target state="needs-translation">Gruppenleiter ID</target>
+      </trans-unit>
+      <trans-unit id="dCwz_XZ" resname="GruppenmitgliederID">
+        <source>GruppenmitgliederID</source>
+        <target state="needs-translation">GruppenmitgliederID</target>
+      </trans-unit>
+      <trans-unit id="Cqah_jM" resname="Storniert">
+        <source>Storniert</source>
+        <target state="needs-translation">Storniert</target>
+      </trans-unit>
+      <trans-unit id="Y4faUHV" resname="Neue Einladung zu einem Event">
+        <source>Neue Einladung zu einem Event</source>
+        <target state="needs-translation">Neue Einladung zu einem Event</target>
+      </trans-unit>
+      <trans-unit id="k_HffmQ" resname="Neuer Teilnehmer auf der Warteliste für {name}">
+        <source>Neuer Teilnehmer auf der Warteliste für {name}</source>
+        <target state="needs-translation">Neuer Teilnehmer auf der Warteliste für {name}</target>
+      </trans-unit>
+      <trans-unit id="YgkmcS8" resname="Event wurde bearbeitet">
+        <source>Event wurde bearbeitet</source>
+        <target state="needs-translation">Event wurde bearbeitet</target>
+      </trans-unit>
+      <trans-unit id="qY.826G" resname="Event wurde abgesagt">
+        <source>Event wurde abgesagt</source>
+        <target state="needs-translation">Event wurde abgesagt</target>
+      </trans-unit>
+      <trans-unit id="TcLqE6u" resname="Event {room} startet gleich">
+        <source>Event {room} startet gleich</source>
+        <target state="needs-translation">Event {room} startet gleich</target>
+      </trans-unit>
+      <trans-unit id="4xhIPW2" resname="Event mit {n}">
+        <source>Event mit {n}</source>
+        <target state="needs-translation">Event mit {n}</target>
+      </trans-unit>
+      <trans-unit id="NOfwIdK" resname="Sie haben den Teilnehmer erfolgreich angemeldet">
+        <source>Sie haben den Teilnehmer erfolgreich angemeldet</source>
+        <target state="needs-translation">Sie haben den Teilnehmer erfolgreich angemeldet</target>
+      </trans-unit>
+      <trans-unit id="MFp3n7b" resname="Stornierung einer Teilnahme in dem Event {name}">
+        <source>Stornierung einer Teilnahme in dem Event {name}</source>
+        <target state="needs-translation">Stornierung einer Teilnahme in dem Event {name}</target>
+      </trans-unit>
+      <trans-unit id="Th9Jqci" resname="Event">
+        <source>Event</source>
+        <target state="needs-translation">Event</target>
+      </trans-unit>
+      <trans-unit id="jRT25y3" resname="Events">
+        <source>Events</source>
+        <target state="needs-translation">Events</target>
+      </trans-unit>
+      <trans-unit id="8GWVTiL" resname="Anzahl Events">
+        <source>Anzahl Events</source>
+        <target state="needs-translation">Anzahl Events</target>
+      </trans-unit>
+      <trans-unit id="zvWAiLH" resname="Wollen Sie mit diesem Teilnehmer ein Event starten">
+        <source>Wollen Sie mit diesem Teilnehmer ein Event starten</source>
+        <target state="needs-translation">Wollen Sie mit diesem Teilnehmer ein Event starten</target>
+      </trans-unit>
+      <trans-unit id="jChD8ic" resname="iCal Link">
+        <source>iCal Link</source>
+        <target state="needs-translation">iCal Link</target>
+      </trans-unit>
+      <trans-unit id="NXBTflC" resname="Heute steht keine Event an.">
+        <source>Heute steht keine Event an.</source>
+        <target state="needs-translation">Heute steht keine Event an.</target>
+      </trans-unit>
+      <trans-unit id="NvFQT1E" resname="Kalender">
+        <source>Kalender</source>
+        <target state="needs-translation">Kalender</target>
+      </trans-unit>
+      <trans-unit id="I.AEB32" resname="Selbstregistrierung">
+        <source>Selbstregistrierung</source>
+        <target state="needs-translation">Selbstregistrierung</target>
+      </trans-unit>
+      <trans-unit id="7PNMyJI" resname="Standort">
+        <source>Standort</source>
+        <target state="needs-translation">Standort</target>
+      </trans-unit>
+      <trans-unit id="Cm_3Vi2" resname="Einladung zu einem Event">
+        <source>Einladung zu einem Event</source>
+        <target state="needs-translation">Einladung zu einem Event</target>
+      </trans-unit>
+      <trans-unit id="E4cB_St" resname="Sie wurden gerade zu einem Event in: {name} eingeladen.">
+        <source>Sie wurden gerade zu einem Event in: {name} eingeladen.</source>
+        <target state="needs-translation">Sie wurden gerade zu einem Event in: {name} eingeladen.</target>
+      </trans-unit>
+      <trans-unit id=".UnoFod" resname="Hier können Sie sich von dem Event abmelden">
+        <source>Hier können Sie sich von dem Event abmelden</source>
+        <target state="needs-translation">Hier können Sie sich von dem Event abmelden</target>
+      </trans-unit>
+      <trans-unit id="SS1.kZT" resname="Sie wollen dieses Event komfortabel in einer Übersicht verwalten?&#10;                                    &lt;br&gt;&#10;                                    Dann melden Sie sich &lt;a href=&quot;{url}&quot;&gt;hier&lt;/a&gt;&amp;nbsp;an.">
+        <source>Sie wollen dieses Event komfortabel in einer Übersicht verwalten?
+                                    &lt;br&gt;
+                                    Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;an.</source>
+        <target state="needs-translation">Sie wollen dieses Event komfortabel in einer Übersicht verwalten?
+                                    &lt;br&gt;
+                                    Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;an.</target>
+      </trans-unit>
+      <trans-unit id="SBXAIxU" resname="Sie wollen selber ein Event&#10;                                    &lt;b&gt;kostenlos&lt;/b&gt; planen oder dieses Event komfortabel&#10;                                                     in einer Übersicht verwalten?&lt;br&gt;&#10;                                    Dann melden Sie sich &lt;a href=&quot;{url}&quot;&gt;hier&lt;/a&gt;&amp;nbsp;&lt;b&gt;kostenlos&lt;/b&gt;&#10;                                    an.">
+        <source>Sie wollen selber ein Event
+                                    &lt;b&gt;kostenlos&lt;/b&gt; planen oder dieses Event komfortabel
+                                                     in einer Übersicht verwalten?&lt;br&gt;
+                                    Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;&lt;b&gt;kostenlos&lt;/b&gt;
+                                    an.</source>
+        <target state="needs-translation">Sie wollen selber ein Event
+                                    &lt;b&gt;kostenlos&lt;/b&gt; planen oder dieses Event komfortabel
+                                                     in einer Übersicht verwalten?&lt;br&gt;
+                                    Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;&lt;b&gt;kostenlos&lt;/b&gt;
+                                    an.</target>
+      </trans-unit>
+      <trans-unit id="Kj5A1Ra" resname="Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste dieses Events  stehen.">
+        <source>Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste dieses Events  stehen.</source>
+        <target state="needs-translation">Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste dieses Events  stehen.</target>
+      </trans-unit>
+      <trans-unit id="wNNvd_2" resname="Sie erhalten diese E-Mail, da Sie als Organisator zu einem Standort hinzugefügt wurden.">
+        <source>Sie erhalten diese E-Mail, da Sie als Organisator zu einem Standort hinzugefügt wurden.</source>
+        <target state="needs-translation">Sie erhalten diese E-Mail, da Sie als Organisator zu einem Standort hinzugefügt wurden.</target>
+      </trans-unit>
+      <trans-unit id="HTfqBjA" resname="Powered by Open Event Manager, die Open Source Event Managment Software">
+        <source>Powered by Open Event Manager, die Open Source Event Managment Software</source>
+        <target state="needs-translation">Powered by Open Event Manager, die Open Source Event Managment Software</target>
+      </trans-unit>
+      <trans-unit id="s8M1KjJ" resname="Event bearbeitet">
+        <source>Event bearbeitet</source>
+        <target state="needs-translation">Event bearbeitet</target>
+      </trans-unit>
+      <trans-unit id="_d1jsfa" resname="Das Event {name} wurde gerade geändert.">
+        <source>Das Event {name} wurde gerade geändert.</source>
+        <target state="needs-translation">Das Event {name} wurde gerade geändert.</target>
+      </trans-unit>
+      <trans-unit id="5JNu681" resname="Ihre Lizenz für den Standort: {name} läuft am {date} aus">
+        <source>Ihre Lizenz für den Standort: {name} läuft am {date} aus</source>
+        <target state="needs-translation">Ihre Lizenz für den Standort: {name} läuft am {date} aus</target>
+      </trans-unit>
+      <trans-unit id="rt24aT4" resname="Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. &lt;br&gt;&#10;            Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.">
+        <source>Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. &lt;br&gt;
+            Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.</source>
+        <target state="needs-translation">Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. &lt;br&gt;
+            Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.</target>
+      </trans-unit>
+      <trans-unit id="Or7jygk" resname="Neuer Teilnehmer auf der Warteliste">
+        <source>Neuer Teilnehmer auf der Warteliste</source>
+        <target state="needs-translation">Neuer Teilnehmer auf der Warteliste</target>
+      </trans-unit>
+      <trans-unit id="NPhlMv6" resname="Es hat sich ein neuer Teilnehmer auf der Warteliste für das Event: {name} eingetragen.">
+        <source>Es hat sich ein neuer Teilnehmer auf der Warteliste für das Event: {name} eingetragen.</source>
+        <target state="needs-translation">Es hat sich ein neuer Teilnehmer auf der Warteliste für das Event: {name} eingetragen.</target>
+      </trans-unit>
+      <trans-unit id="XTXSh3z" resname="Hier zur Teilnehmerliste">
+        <source>Hier zur Teilnehmerliste</source>
+        <target state="needs-translation">Hier zur Teilnehmerliste</target>
+      </trans-unit>
+      <trans-unit id="VQv1OeZ" resname="Erinnerung zu einem Event">
+        <source>Erinnerung zu einem Event</source>
+        <target state="needs-translation">Erinnerung zu einem Event</target>
+      </trans-unit>
+      <trans-unit id="pkVS1KA" resname="Das Event: {name} startet gleich.">
+        <source>Das Event: {name} startet gleich.</source>
+        <target state="needs-translation">Das Event: {name} startet gleich.</target>
+      </trans-unit>
+      <trans-unit id="50nehbM" resname="Event abgesagt">
+        <source>Event abgesagt</source>
+        <target state="needs-translation">Event abgesagt</target>
+      </trans-unit>
+      <trans-unit id="ls1ZIz2" resname="Sie wurden gerade zu der Terminplanung: {name} eingeladen. Über den beigefügten Link können Sie ganz einfach Ihren Wunschtermin aussuchen.">
+        <source>Sie wurden gerade zu der Terminplanung: {name} eingeladen. Über den beigefügten Link können Sie ganz einfach Ihren Wunschtermin aussuchen.</source>
+        <target state="needs-translation">Sie wurden gerade zu der Terminplanung: {name} eingeladen. Über den beigefügten Link können Sie ganz einfach Ihren Wunschtermin aussuchen.</target>
+      </trans-unit>
+      <trans-unit id="wnEjhW8" resname="Sie können jetzt Events an dem Standort: {name} erstellen">
+        <source>Sie können jetzt Events an dem Standort: {name} erstellen</source>
+        <target state="needs-translation">Sie können jetzt Events an dem Standort: {name} erstellen</target>
+      </trans-unit>
+      <trans-unit id="QWV1nVQ" resname="Sie können nun Events über den Open-Event-Manager verwalten. Loggen Sie sich ein oder erstellen Sie&#10;        sich einen Benutzer.">
+        <source>Sie können nun Events über den Open-Event-Manager verwalten. Loggen Sie sich ein oder erstellen Sie
+        sich einen Benutzer.</source>
+        <target state="needs-translation">Sie können nun Events über den Open-Event-Manager verwalten. Loggen Sie sich ein oder erstellen Sie
+        sich einen Benutzer.</target>
+      </trans-unit>
+      <trans-unit id="uN2aARa" resname="Sie haben sich zum Event {name} angemeldet.">
+        <source>Sie haben sich zum Event {name} angemeldet.</source>
+        <target state="needs-translation">Sie haben sich zum Event {name} angemeldet.</target>
+      </trans-unit>
+      <trans-unit id="gH52zRv" resname="Es wurde eine Teilnahme storniert">
+        <source>Es wurde eine Teilnahme storniert</source>
+        <target state="needs-translation">Es wurde eine Teilnahme storniert</target>
+      </trans-unit>
+      <trans-unit id="UZ2oZas" resname="Ein Teilnehmer hat seine Anmeldung storniert. Es gibt noch weitere Teilnehmer auf der Warteliste.&#10;        Sie können nun einen Teilnehmer von der Warteliste in die Teilnehmerliste verschieben.">
+        <source>Ein Teilnehmer hat seine Anmeldung storniert. Es gibt noch weitere Teilnehmer auf der Warteliste.
+        Sie können nun einen Teilnehmer von der Warteliste in die Teilnehmerliste verschieben.</source>
+        <target state="needs-translation">Ein Teilnehmer hat seine Anmeldung storniert. Es gibt noch weitere Teilnehmer auf der Warteliste.
+        Sie können nun einen Teilnehmer von der Warteliste in die Teilnehmerliste verschieben.</target>
+      </trans-unit>
+      <trans-unit id="01QRbuT" resname="Sie sind auf der Warteliste für das Event {name} eingetragen.">
+        <source>Sie sind auf der Warteliste für das Event {name} eingetragen.</source>
+        <target state="needs-translation">Sie sind auf der Warteliste für das Event {name} eingetragen.</target>
+      </trans-unit>
+      <trans-unit id="1MLg1D2" resname="Anfahrtsbeschreibung">
+        <source>Anfahrtsbeschreibung</source>
+        <target state="needs-translation">Anfahrtsbeschreibung</target>
+      </trans-unit>
+      <trans-unit id="EctIAHN" resname="Wer eine datenschutzfreundliche Event-Manager Software benötigt, kommt um den Open Event-Manager nicht herum">
+        <source>Wer eine datenschutzfreundliche Event-Manager Software benötigt, kommt um den Open Event-Manager nicht herum</source>
+        <target state="needs-translation">Wer eine datenschutzfreundliche Event-Manager Software benötigt, kommt um den Open Event-Manager nicht herum</target>
+      </trans-unit>
+      <trans-unit id="N1dOgT2" resname="Öffentliche Events">
+        <source>Öffentliche Events</source>
+        <target state="needs-translation">Öffentliche Events</target>
+      </trans-unit>
+      <trans-unit id="AN1Z5Ys" resname="Ich habe die &lt;a href=&quot;{dataPrivay}&quot; target=&quot;_blank&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&#10;            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt;&#10;            und die &lt;a href=&quot;{privacyUrl}&quot; target=&quot;_blank&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&#10;            &lt;u&gt;Datenschutzhinweise von {name}&lt;/u&gt;&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt;&#10;            gelesen und nehme diese zur Kenntnis.">
+        <source>Ich habe die &lt;a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer"&gt;
+            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
+            und die &lt;a href="{privacyUrl}" target="_blank" referrerpolicy="no-referrer"&gt;
+            &lt;u&gt;Datenschutzhinweise von {name}&lt;/u&gt;&lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
+            gelesen und nehme diese zur Kenntnis.</source>
+        <target state="needs-translation">Ich habe die &lt;a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer"&gt;
+            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
+            und die &lt;a href="{privacyUrl}" target="_blank" referrerpolicy="no-referrer"&gt;
+            &lt;u&gt;Datenschutzhinweise von {name}&lt;/u&gt;&lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
+            gelesen und nehme diese zur Kenntnis.</target>
+      </trans-unit>
+      <trans-unit id="x2pRIyb" resname="Ich habe die &lt;a href=&quot;{dataPrivay}&quot; target=&quot;_blank&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&#10;            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt;&#10;            gelesen und nehme diese zur Kenntnis.">
+        <source>Ich habe die &lt;a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer"&gt;
+            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
+            gelesen und nehme diese zur Kenntnis.</source>
+        <target state="needs-translation">Ich habe die &lt;a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer"&gt;
+            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
+            gelesen und nehme diese zur Kenntnis.</target>
+      </trans-unit>
+      <trans-unit id="aIVKP4x" resname="Wollen Sie den Teilnehmer wirklich zu dem Event hinzufügen">
+        <source>Wollen Sie den Teilnehmer wirklich zu dem Event hinzufügen</source>
+        <target state="needs-translation">Wollen Sie den Teilnehmer wirklich zu dem Event hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="uVKyyF7" resname="Wollen Sie diese Terminplanung in ein Event umwandeln?">
+        <source>Wollen Sie diese Terminplanung in ein Event umwandeln?</source>
+        <target state="needs-translation">Wollen Sie diese Terminplanung in ein Event umwandeln?</target>
+      </trans-unit>
+      <trans-unit id="UC3Xl7A" resname="Meine Standort-Seite">
+        <source>Meine Standort-Seite</source>
+        <target state="needs-translation">Meine Standort-Seite</target>
+      </trans-unit>
+      <trans-unit id="QuB3cGU" resname="Standort löschen">
+        <source>Standort löschen</source>
+        <target state="needs-translation">Standort löschen</target>
+      </trans-unit>
+      <trans-unit id="vzfRcus" resname="Gruppenanmeldung">
+        <source>Gruppenanmeldung</source>
+        <target state="needs-translation">Gruppenanmeldung</target>
+      </trans-unit>
+      <trans-unit id="H97.3p_" resname="Maximale Gruppengröße: {max}">
+        <source>Maximale Gruppengröße: {max}</source>
+        <target state="needs-translation">Maximale Gruppengröße: {max}</target>
+      </trans-unit>
+      <trans-unit id="yGW.rFt" resname="Hallo {name}">
+        <source>Hallo {name}</source>
+        <target state="needs-translation">Hallo {name}</target>
+      </trans-unit>
+      <trans-unit id="aKf8kVk" resname="Sie haben sich gerade erfolgreich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;br&gt;abgemeldet.">
+        <source>Sie haben sich gerade erfolgreich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;br&gt;abgemeldet.</source>
+        <target state="needs-translation">Sie haben sich gerade erfolgreich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;br&gt;abgemeldet.</target>
+      </trans-unit>
+      <trans-unit id="ksvjO7n" resname="Wollen Sie sich wirklich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;/br&gt;abmelden.">
+        <source>Wollen Sie sich wirklich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;/br&gt;abmelden.</source>
+        <target state="needs-translation">Wollen Sie sich wirklich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;/br&gt;abmelden.</target>
+      </trans-unit>
+      <trans-unit id="ZBW_6eN" resname="Ich möchte mich wirklich abmelden">
+        <source>Ich möchte mich wirklich abmelden</source>
+        <target state="needs-translation">Ich möchte mich wirklich abmelden</target>
       </trans-unit>
     </body>
   </file>
