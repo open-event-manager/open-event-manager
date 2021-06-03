@@ -256,6 +256,7 @@ class SubcriptionService
             foreach ($group->getMembers() as $data) {
                 if (!in_array($data, $rooms->getUser()->toArray())) {
                     $data->addRoom($rooms);
+                    $data->removeRoomsStorno($rooms);
                     $this->em->persist($data);
                     $this->userService->addUser($data, $rooms);
                 } else {
