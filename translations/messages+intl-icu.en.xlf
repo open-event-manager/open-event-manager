@@ -271,11 +271,11 @@
       </trans-unit>
       <trans-unit id="3NHVIj9" resname="Name">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Name</target>
       </trans-unit>
       <trans-unit id="lpzL089" resname="Email">
         <source>Email</source>
-        <target state="needs-translation">Email</target>
+        <target state="translated">Email</target>
       </trans-unit>
       <trans-unit id="TyMI.d2" resname="Profil bearbeiten">
         <source>Profil bearbeiten</source>
@@ -287,7 +287,7 @@
       </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
-        <target state="needs-translation">Logout</target>
+        <target state="translated">Logout</target>
       </trans-unit>
       <trans-unit id="lUcvZQo" resname="Hilfe">
         <source>Hilfe</source>
@@ -343,7 +343,7 @@
       </trans-unit>
       <trans-unit id="Z0jsi3Z" resname="Moderator">
         <source>Moderator</source>
-        <target state="needs-translation">Moderator</target>
+        <target state="translated">Moderator</target>
       </trans-unit>
       <trans-unit id="MyAVhjs" resname="Intern">
         <source>Intern</source>
@@ -355,7 +355,7 @@
       </trans-unit>
       <trans-unit id="D99IX1v" resname="Agenda">
         <source>Agenda</source>
-        <target state="needs-translation">Agenda</target>
+        <target state="translated">Agenda</target>
       </trans-unit>
       <trans-unit id="Zl7ocK9" resname="Keine Angabe">
         <source>Keine Angabe</source>
@@ -363,7 +363,7 @@
       </trans-unit>
       <trans-unit id="rvfeKNU" resname="Server">
         <source>Server</source>
-        <target state="needs-translation">Server</target>
+        <target state="translated">Server</target>
       </trans-unit>
       <trans-unit id="8dquNSH" resname="Optionen">
         <source>Optionen</source>
@@ -480,7 +480,7 @@
       </trans-unit>
       <trans-unit id="nWMiwfT" resname="Login">
         <source>Login</source>
-        <target state="needs-translation">Login</target>
+        <target state="translated">Login</target>
       </trans-unit>
       <trans-unit id="OmOD76j" resname="Server Administrator">
         <source>Server Administrator</source>
@@ -524,7 +524,7 @@
       </trans-unit>
       <trans-unit id="Z7aWRoY" resname="Dashboard">
         <source>Dashboard</source>
-        <target state="needs-translation">Dashboard</target>
+        <target state="translated">Dashboard</target>
       </trans-unit>
       <trans-unit id="O63JhDQ" resname="Registrieren">
         <source>Registrieren</source>
@@ -608,7 +608,7 @@
       </trans-unit>
       <trans-unit id="1wfcLxk" resname="Logo">
         <source>Logo</source>
-        <target state="needs-translation">Logo</target>
+        <target state="translated">Logo</target>
       </trans-unit>
       <trans-unit id="ph1COS8" resname="Hier können Sie eine URL zu Ihrem Logo einfügen, damit den Teilnehmern auf der Join Seite Ihr Logo angezeigt wird.">
         <source>Hier können Sie eine URL zu Ihrem Logo einfügen, damit den Teilnehmern auf der Join Seite Ihr Logo angezeigt wird.</source>
@@ -832,7 +832,7 @@
       </trans-unit>
       <trans-unit id="Jk72Pn4" resname="Hinzugefügt zur Warteliste">
         <source>Hinzugefügt zur Warteliste</source>
-        <target state="needs-translation">Hinzugefügt zur Warteliste</target>
+        <target state="translated">Added to waiting list</target>
       </trans-unit>
       <trans-unit id="dFgRTL4" resname="Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.">
         <source>Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.</source>
@@ -840,7 +840,7 @@
       </trans-unit>
       <trans-unit id="HqYBTct" resname="Sie sind auf der Warteliste">
         <source>Sie sind auf der Warteliste</source>
-        <target state="needs-translation">Sie sind auf der Warteliste</target>
+        <target state="translated">Your are on the waiting list</target>
       </trans-unit>
       <trans-unit id="z1kridY" resname="Sie sind auf der Warteliste für die Konferenz {name} eingetragen.">
         <source>Sie sind auf der Warteliste für die Konferenz {name} eingetragen.</source>
@@ -848,7 +848,7 @@
       </trans-unit>
       <trans-unit id="7a4K8pX" resname="Warteliste">
         <source>Warteliste</source>
-        <target state="needs-translation">Warteliste</target>
+        <target state="translated">Waiting List</target>
       </trans-unit>
       <trans-unit id="uOs4egz" resname="Wollen Sie den Teilnehmer wirklich zur Konferenz hinzufügen">
         <source>Wollen Sie den Teilnehmer wirklich zur Konferenz hinzufügen</source>
@@ -860,15 +860,59 @@
       </trans-unit>
       <trans-unit id="3CYPbpJ" resname="Noch ein Platz frei">
         <source>Noch ein Platz frei</source>
-        <target state="needs-translation">Noch ein Platz frei</target>
+        <target state="translated">One more free place left</target>
       </trans-unit>
       <trans-unit id="zUuUQi_" resname="Keine Plätze mehr frei">
         <source>Keine Plätze mehr frei</source>
-        <target state="needs-translation">Keine Plätze mehr frei</target>
+        <target state="translated">No more free places</target>
       </trans-unit>
       <trans-unit id="DW95e1g" resname="Unbegrenzte Teilnehmerzahl">
         <source>Unbegrenzte Teilnehmerzahl</source>
-        <target state="needs-translation">Unbegrenzte Teilnehmerzahl</target>
+        <target state="translated">Unlimited number of participants</target>
+      </trans-unit>
+      <trans-unit id="16h34go" resname="Standort bearbeiten">
+        <source>Standort bearbeiten</source>
+        <target state="translated">Edit Location</target>
+      </trans-unit>
+      <trans-unit id="Aiq.6av" resname="Neuen Standort erstellen">
+        <source>Neuen Standort erstellen</source>
+        <target state="translated">Create New Location</target>
+      </trans-unit>
+      <trans-unit id="luL6zc6" resname="Meine Standorte">
+        <source>Meine Standorte</source>
+        <target state="translated">My Locations</target>
+      </trans-unit>
+      <trans-unit id="W9OXbLo" resname="Standort hinzufügen">
+        <source>Standort hinzufügen</source>
+        <target state="translated">Add Location</target>
+      </trans-unit>
+      <trans-unit id="3wmCfe5" resname="Zukünftige Events">
+        <source>Zukünftige Events</source>
+        <target state="translated">Future events</target>
+      </trans-unit>
+      <trans-unit id="3HE5vYm" resname="Vergangene Events">
+        <source>Vergangene Events</source>
+        <target state="translated">Past events</target>
+      </trans-unit>
+      <trans-unit id="Hm2OrSO" resname="Ein Event planen">
+        <source>Ein Event planen</source>
+        <target state="translated">Plan event</target>
+      </trans-unit>
+      <trans-unit id="AxYxB5L" resname="Aktuell sind keine Events vorhanden. Erstellen Sie&#10;                            &lt;u&gt;&lt;a href=&quot;{url}&quot; class=&quot;loadContent&quot;&gt;hier&lt;/a&gt;&lt;/u&gt;&#10;                            eine neues Event.">
+        <source>Aktuell sind keine Events vorhanden. Erstellen Sie
+                            &lt;u&gt;&lt;a href="{url}" class="loadContent"&gt;hier&lt;/a&gt;&lt;/u&gt;
+                            eine neues Event.</source>
+        <target state="needs-translation">Aktuell sind keine Events vorhanden. Erstellen Sie
+                            &lt;u&gt;&lt;a href="{url}" class="loadContent"&gt;hier&lt;/a&gt;&lt;/u&gt;
+                            eine neues Event.</target>
+      </trans-unit>
+      <trans-unit id="ZlaHAfN" resname="Heute steht keine Events an.">
+        <source>Heute steht keine Events an.</source>
+        <target state="translated">No events planned today.</target>
+      </trans-unit>
+      <trans-unit id="WGh6kGc" resname="Aktuell sind keine vergangenen Events vorhanden.">
+        <source>Aktuell sind keine vergangenen Events vorhanden.</source>
+        <target state="translated">No past events available.</target>
       </trans-unit>
     </body>
   </file>
