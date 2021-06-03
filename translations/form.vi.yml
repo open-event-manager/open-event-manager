@@ -50,8 +50,9 @@ label:
   agenda: Kurze Agenda für dieses Event (Markdown)
   staticBackgroundColor: Đặt màu nền trên trang tham dự
   schowStaticBackgroundColor: Hiển thị màu cố định thay vì hình ảnh trên trang tham dự
-  puplicRoom: Hội nghị công khai
+  puplicRoom: Einladungslinks freischalten
   showRoomOnJoinpage: Event auf Standortseite anzeigen
+  showRoomOnCalendar: Event im globalen Kalender anzeigen
   subscribe: Đăng nhập
   vorname: Tên
   nachname: Họ
