@@ -191,17 +191,23 @@ class RoomController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $request->get('user')]);
         $snack = 'Keine Berechtigung';
         $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms'=>$room,'leader'=>$user));
+
         if ($room->getModerator() === $this->getUser() || $user === $this->getUser()) {
             $room->removeUser($user);
             $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
+            if($user->isMemeberInGroup($room)){
+                $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
+                $em->persist($user);
+            }
             if($group){
                 foreach ($group->getMembers() as $data){
                     $room->removeUser($data);
                     $room->addStorno($data);
                     $userService->removeRoom($data,$room);
                     $em->persist($room);
+                    $em->remove($group);
                 }
             }
             $em->flush();
