@@ -44,7 +44,7 @@ sed -i "s/<smtpEncryption>/$smtpEncryption/" .env.local
 echo -------------------------------------------------------------
 echo -----------------Keycloak--------------------------------------
 echo -------------------------------------------------------------
-read -p "Enter the base url of the Jits-admin:" baseUrl
+read -p "Enter the base url of the Event-Manager:" baseUrl
 sed -i "s/<baseUrl>/$baseUrl/" .env.local
 read -p "Enter the server of the keycloak with /auth at the and" keycloakServer
 sed -i "s/<keycloakServer>/$keycloakServer/" .env.local
