@@ -85,27 +85,48 @@ class ShareLinkController extends AbstractController
         $snack = $translator->trans('Bitte geben Sie ihre Daten ein');
         $color = 'success';
         $standort = null;
-        if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants())) {
-            $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
-            $color = 'danger';
-        }
+      if($this->getUser() != $rooms->getModerator()){
+          if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants())) {
+              $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+              $color = 'danger';
+          }
 
-        if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() == true) {
-            $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.');
-            $color = 'warning';
-            if($rooms->getMaxWaitingList() != null && sizeof($rooms->getWaitinglists()) >= $rooms->getMaxWaitingList()){
-                $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
-                $color = 'danger';
-            }
-        }
+          if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() == true) {
+              $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.');
+              $color = 'warning';
+              if($rooms->getMaxWaitingList() != null && sizeof($rooms->getWaitinglists()) >= $rooms->getMaxWaitingList()){
+                  $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+                  $color = 'danger';
+              }
+          }
+      }
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
             $group = $request->get('group',array());
-            $res = $subcriptionService->subscripe($data, $rooms,$group, $moderator);
+            $isOrganizer = false;
+            if ($rooms->getModerator() == $this->getUser()){
+                $isOrganizer = true;
+            }
+
+            $res = $subcriptionService->subscripe($data, $rooms,$isOrganizer, $group, $moderator);
+            if ($isOrganizer && isset($res['sub'])){
+                $subcriptionService->acceptSub($res['sub'],true);
+                $snack= $translator->trans('Sie haben den Teilnehmer erfolgreich angemeldet');
+                $color= 'success';
+                $modalUrl = base64_encode($this->generateUrl('room_add_user', array('room' => $rooms->getId())));
+                    return $this->redirectToRoute('dashboard', array(
+                        'modalUrl'=>$modalUrl,
+                        'color' => $color,
+                        'snack' => $snack,
+                        )
+                    );
+            }
             $snack = $res['text'];
             $color = $res['color'];
+
             if (!$res['error']) {
                 return $this->redirectToRoute('public_subscribe_participant', array('color' => $color, 'snack' => $snack, 'uid' => $uid));
             }
@@ -128,7 +149,7 @@ class ShareLinkController extends AbstractController
     public function doupleoptin($uid, SubcriptionService $subcriptionService, TranslatorInterface $translator, UserService $userService, PexelService $pexelService): Response
     {
         $subscriber = $this->em->getRepository(Subscriber::class)->findOneBy(array('uid' => $uid));
-        $res = $subcriptionService->acceptSub($subscriber);
+        $res = $subcriptionService->acceptSub($subscriber,false);
         $standort = null;
         if ($subscriber) {
             $standort = $subscriber->getRoom()->getStandort();

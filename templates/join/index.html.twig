@@ -8,44 +8,45 @@
     <div class="col-12">
         <div class="row  mb-4">
             <div class="col-md-4 d-flex justify-content-start flex-column">
-             <p><b>{{ standort.name }}</b><br>
-                {{ standort.roomnumber }}<br>
-                {{ standort.street }} {{ standort.number }}<br>
-                {{ standort.plz }} {{ standort.city }}<br>
+                <p><b>{{ standort.name }}</b><br>
+                    {{ standort.roomnumber }}<br>
+                    {{ standort.street }} {{ standort.number }}<br>
+                    {{ standort.plz }} {{ standort.city }}<br>
                 </p>
-                <h5>{{ 'Anfahrtsbeschreibung'|trans }}:</h5>
+                {% if standort.directions is not null %}
+                    <h5>{{ 'Anfahrtsbeschreibung'|trans }}:</h5>
 
-                {{ standort.directions|markdown_to_html }}
+                    {{ standort.directions|markdown_to_html }}
+                {% endif %}
             </div>
             <div class="col-md-8">
 
 
-
                 {% if standort and standort|roomsinFuture|length > 0 %}
 
-                                <h3 class="h3-responsive text-center">{{ 'Öffentliche Events'|trans }}</h3>
-                                <div class="max-vh60">
-                                    <ul class="list-group">
+                    <h3 class="h3-responsive text-center">{{ 'Öffentliche Events'|trans }}</h3>
+                    <div class="max-vh60">
+                        <ul class="list-group">
 
-                                        {% for r in standort|roomsinFuture %}
-                                            <li class="list-group-item d-flex align-items-center justify-content-between">
-                                                <b>{{ r.start|date('d.m.Y | H:i') }}</b>
-                                                <h5>{{ r.name }} <a tabindex="0" data-toggle="popover"
-                                                                    data-trigger="focus"
-                                                                    title="{{ 'Agenda'|trans }}"
-                                                                    data-content="{% if r.agenda is not null %}{{ r.agenda|markdown_to_html|escape }}{% else %}{{ 'Keine Angabe'|trans }}{% endif %}"><i
-                                                                class="fa fa-info-circle"></i></a></h5>
+                            {% for r in standort|roomsinFuture %}
+                                <li class="list-group-item d-flex align-items-center justify-content-between">
+                                    <b>{{ r.start|date('d.m.Y | H:i') }}</b>
+                                    <h5>{{ r.name }} <a tabindex="0" data-toggle="popover"
+                                                        data-trigger="focus"
+                                                        title="{{ 'Agenda'|trans }}"
+                                                        data-content="{% if r.agenda is not null %}{{ r.agenda|markdown_to_html|escape }}{% else %}{{ 'Keine Angabe'|trans }}{% endif %}"><i
+                                                    class="fa fa-info-circle"></i></a></h5>
 
-                                                {% if r.public %}
-                                                    <a href="{{ path('public_subscribe_participant',{'uid':r.uidParticipant}) }}"
-                                                       class="btn btn-sm btn-outline-primary">{{ 'Anmelden'|trans }}</a>
-                                                {% endif %}
-                                            </li>
+                                    {% if r.public %}
+                                        <a href="{{ path('public_subscribe_participant',{'uid':r.uidParticipant}) }}"
+                                           class="btn btn-sm btn-outline-primary">{{ 'Anmelden'|trans }}</a>
+                                    {% endif %}
+                                </li>
 
-                                        {% endfor %}
+                            {% endfor %}
 
-                                    </ul>
-                                </div>
+                        </ul>
+                    </div>
 
                 {% endif %}
             </div>
@@ -55,7 +56,6 @@
                 {{ include('join/__datenschutz.html.twig',{'standort':standort,'dataPrivacy':dataPrivacy}) }}
             </div>
         </div>
-
 
 
     </div>

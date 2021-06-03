@@ -99,7 +99,7 @@ class Rooms
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $public;
+    private $public = true;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -171,6 +171,11 @@ class Rooms
      * @ORM\Column(type="integer", nullable=true)
      */
     private $maxGroupSize;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showRoomOnCalendar;
 
     public function __construct()
     {
@@ -658,6 +663,18 @@ class Rooms
     public function setMaxGroupSize(?int $maxGroupSize): self
     {
         $this->maxGroupSize = $maxGroupSize;
+
+        return $this;
+    }
+
+    public function getShowRoomOnCalendar(): ?bool
+    {
+        return $this->showRoomOnCalendar;
+    }
+
+    public function setShowRoomOnCalendar(?bool $showRoomOnCalendar): self
+    {
+        $this->showRoomOnCalendar = $showRoomOnCalendar;
 
         return $this;
     }

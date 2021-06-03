@@ -51,8 +51,9 @@ label:
   agenda: Kurze Agenda für dieses Event (Markdown)
   staticBackgroundColor: Hintergrundfarbe auf der Joinseite festlegen
   schowStaticBackgroundColor: Zeige eine feste Farbe, anstatt Bildern auf der Joinseite
-  puplicRoom: Öffentliche Konferenz
+  puplicRoom: Einladungslinks freischalten
   showRoomOnJoinpage: Event auf Standortseite anzeigen
+  showRoomOnCalendar: Event im globalen Kalender anzeigen
   subscribe: Anmelden
   vorname: Vorname
   nachname: Nachname
