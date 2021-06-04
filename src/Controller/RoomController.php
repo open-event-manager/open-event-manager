@@ -205,10 +205,15 @@ class RoomController extends AbstractController
                 foreach ($group->getMembers() as $data){
                     $room->removeUser($data);
                     $room->addStorno($data);
+                    $group->removeMember($data);
                     $userService->removeRoom($data,$room);
                     $em->persist($room);
-                    $em->remove($group);
+                    $em->persist($group);
+
                 }
+                $em->flush();
+                $em->remove($group);
+                $em->flush();
             }
             $em->flush();
             $snack = $this->translator->trans('Teilnehmer gelöscht');

@@ -135,4 +135,18 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()->getResult();
 
     }
+    public function findUserInWaitinglists(Rooms $rooms)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->innerJoin('u.eventGroupsMemebers','groups')
+            ->innerJoin('groups.rooms', 'rooms')
+            ->andWhere('rooms =:room')
+            ->innerJoin('groups.leader','leader')
+            ->innerJoin('leader.waitinglists','waitinglists')
+            ->innerJoin('waitinglists.room','room')
+            ->andWhere('room =:room')
+            ->setParameter('room',$rooms)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
