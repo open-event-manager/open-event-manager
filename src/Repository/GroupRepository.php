@@ -63,5 +63,18 @@ class GroupRepository extends ServiceEntityRepository
             ->getResult();
         return $res;
     }
-
+    public function getWaitinglistGroups(Rooms $rooms)
+    {
+        $res =  $this->createQueryBuilder('g')
+            ->innerJoin('g.rooms','rooms')
+            ->andWhere('rooms = :room')
+            ->innerJoin('g.leader', 'leader')
+            ->innerJoin('leader.waitinglists','waitinglists')
+            ->innerJoin('waitinglists.room', 'room')
+            ->andWhere('room = :room')
+            ->setParameter('room', $rooms)
+            ->getQuery()
+            ->getResult();
+        return $res;
+    }
 }

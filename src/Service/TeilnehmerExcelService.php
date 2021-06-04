@@ -58,7 +58,7 @@ class TeilnehmerExcelService
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getPhone());
+            $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Teilnehmer'));
             $participants->setCellValue($alphas[$count++] . $count2, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
             $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
@@ -80,7 +80,7 @@ class TeilnehmerExcelService
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getEmail());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getPhone());
+            $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Warteliste'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
             $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
@@ -102,7 +102,7 @@ class TeilnehmerExcelService
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getPhone());
+            $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Storniert'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
             $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));

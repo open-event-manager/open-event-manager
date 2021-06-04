@@ -12,6 +12,7 @@ use App\Entity\Rooms;
 use App\Entity\Standort;
 use App\Entity\User;
 use App\Form\Type\JoinViewType;
+use App\Service\RoomSpaceService;
 use App\Service\ServerUserManagment;
 use Firebase\JWT\JWT;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,12 +33,18 @@ class DashboardController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, RoomSpaceService $roomSpaceService)
     {
         $qb = $this->getDoctrine()->getRepository(Rooms::class)->createQueryBuilder('rooms');
         $qb->andWhere('rooms.showRoomOnCalendar = true')
             ->andWhere($qb->expr()->isNotNull('rooms.moderator'));
-        $events = $qb->getQuery()->getResult();
+        $tmp = $qb->getQuery()->getResult();
+        $events = array();
+        foreach ($tmp as $data){
+            if($roomSpaceService->isRoomSpace($data)){
+                $events[] = $data;
+            }
+        }
         return $this->render('dashboard/start.html.twig', ['events'=>$events]);
     }
 
