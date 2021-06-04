@@ -667,6 +667,20 @@ class User extends BaseUser
         return $this;
     }
 
-
-
+    public function isMemeberInGroup(Rooms $rooms): ?Group{
+        foreach ($this->eventGroupsMemebers as $data){
+            if($data->getRooms() == $rooms){
+                return $data;
+            }
+        }
+        return null;
+    }
+    public function isLeaderofGroup(Rooms $rooms): ?Group{
+        foreach ($this->eventGroups as $data){
+            if($data->getRooms() == $rooms){
+                return $data;
+            }
+        }
+        return null;
+    }
 }

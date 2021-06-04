@@ -191,17 +191,23 @@ class RoomController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $request->get('user')]);
         $snack = 'Keine Berechtigung';
         $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms'=>$room,'leader'=>$user));
+
         if ($room->getModerator() === $this->getUser() || $user === $this->getUser()) {
             $room->removeUser($user);
             $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
+            if($user->isMemeberInGroup($room)){
+                $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
+                $em->persist($user);
+            }
             if($group){
                 foreach ($group->getMembers() as $data){
                     $room->removeUser($data);
                     $room->addStorno($data);
                     $userService->removeRoom($data,$room);
                     $em->persist($room);
+                    $em->remove($group);
                 }
             }
             $em->flush();
@@ -228,6 +234,7 @@ class RoomController extends AbstractController
                 $room->removeUser($user);
                 $em->persist($room);
             }
+
             $room->setModerator(null);
             $em->persist($room);
             $em->flush();
@@ -261,6 +268,10 @@ class RoomController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 $room = $form->getData();
                 $room->setUidReal(md5(uniqid('h2-invent', true)));
+                $room->setUidModerator(md5(uniqid()));
+                $room->setUidParticipant(md5(uniqid()));
+                $room->setSequence(0);
+                $room->setUid(rand(0,99).time());
                 $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($room);

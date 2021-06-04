@@ -17,11 +17,11 @@ class AtendeelistController extends AbstractController
      */
     public function index($uid, TeilnehmerExcelService $teilnehmerExcelService): Response
     {
+
         $rooms = $this->getDoctrine()->getRepository(Rooms::class)->findOneBy(array('uid'=>$uid));
         if(!$rooms){
             throw new NotFoundHttpException('Not found');
         }
-        $teilnehmerExcelService->generateTeilnehmerliste($rooms);
         return $this->file($teilnehmerExcelService->generateTeilnehmerliste($rooms), $rooms->getName() . '.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
     }
 }

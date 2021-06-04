@@ -60,7 +60,7 @@ class GroupRepository extends ServiceEntityRepository
             ->setParameter('room', $rooms)
             ->setParameter('user', $user)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
         return $res;
     }
 

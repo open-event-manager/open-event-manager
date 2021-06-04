@@ -44,13 +44,15 @@ class SubcriptionService
      * This functions sends a mail to the subscriper with the double opt in link.
      * This function checks if the room is full and if so then it will reject or if the waiting list is active then the user can register
      */
-    public function subscripe($userData, Rooms $rooms, $group = array(), $moderator = false)
+    public function subscripe($userData, Rooms $rooms, $isOrganizer, $group = array(), $moderator = false)
     {
         $res = array('error' => true);
-        if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() != true) {
-            $res['text'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
-            $res['color'] = 'danger';
-            return $res;
+        if ($isOrganizer) {
+            if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() != true) {
+                $res['text'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+                $res['color'] = 'danger';
+                return $res;
+            }
         }
         if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
             $res['text'] = $this->translator->trans('Ungültige Email. Bitte überprüfen Sie ihre Emailadresse.');
@@ -74,9 +76,19 @@ class SubcriptionService
         $subscriber = $this->em->getRepository(Subscriber::class)->findOneBy(array('room' => $rooms, 'user' => $user));
 
         if ($subscriber) {
-            $res['text'] = $this->translator->trans('Sie haben sich bereits angemeldet. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.');
-            $res['color'] = 'danger';
-            $res['error'] = false;
+            if (!$isOrganizer) {
+                $this->notifier->sendNotification(
+                    $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
+                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Konferenz: {name}', array('{name}' => $rooms->getName())),
+                    $user,
+                    $rooms->getStandort()
+                );
+
+                $res['text'] = $this->translator->trans('Sie haben sich bereits angemeldet. Wir haben Ihnen den Link erneut zugesandt. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.');
+                $res['color'] = 'danger';
+                $res['error'] = false;
+            }
+
         } elseif (in_array($rooms, $user->getRooms()->toArray())) {
             $res['text'] = $this->translator->trans('Sie haben sich bereits angemeldet.');
             $res['color'] = 'danger';
@@ -94,12 +106,14 @@ class SubcriptionService
                 $this->em->persist($usersRoom);
                 $this->em->flush();
             }
-            $this->notifier->sendNotification(
-                $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
-                $this->translator->trans('Bestätigung ihrer Anmeldung zur Konferenz: {name}', array('{name}' => $rooms->getName())),
-                $user,
-                $rooms->getStandort()
-            );
+            if (!$isOrganizer) {
+                $this->notifier->sendNotification(
+                    $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
+                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Konferenz: {name}', array('{name}' => $rooms->getName())),
+                    $user,
+                    $rooms->getStandort()
+                );
+            }
             $this->createGroup($user, $group, $rooms);
         }
 
@@ -113,7 +127,7 @@ class SubcriptionService
      * @return array
      * checks the subsriber an creates a roomUser connection or a waitinglist Element
      */
-    public function acceptSub(?Subscriber $subscriber)
+    public function acceptSub(?Subscriber $subscriber, $isOrganizer)
     {
         $res['message'] = $this->translator->trans('Danke für die Anmeldung. ');
         $res['title'] = $this->translator->trans('Erfolgreich bestätigt');
@@ -122,6 +136,7 @@ class SubcriptionService
             $res['title'] = $this->translator->trans('Fehler');
             return $res;
         }
+
         $group = $this->em->getRepository(Group::class)->findOneBy(array('leader' => $subscriber->getUser(), 'rooms' => $subscriber->getRoom()));
         $room = $subscriber->getRoom();
         $oldParticipants = sizeof($room->getUser());
@@ -135,32 +150,34 @@ class SubcriptionService
         if ($group) {
             $newWaitingLisParticipants = $newWaitingLisParticipants + sizeof($group->getMembers());
         }
+        if (!$isOrganizer) {
+            if (
+                $room->getMaxParticipants() != null
+                && $newParticipants > $room->getMaxParticipants()
+                && $room->getWaitinglist() != true // the Waiting list is not set, and the participants is full
+            ) {
+                $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+                $res['title'] = $this->translator->trans('Fehler');
+                return $res;
+            }
 
-        if (
-            $room->getMaxParticipants() != null
-            && $newParticipants > $room->getMaxParticipants()
-            && $room->getWaitinglist() != true // the Waiting list is not set, and the participants is full
-        ) {
-            $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
-            $res['title'] = $this->translator->trans('Fehler');
-            return $res;
+            if (
+                $room->getMaxWaitingList() != null &&
+                $newWaitingLisParticipants > $room->getMaxWaitingList()// the waitinglist is enabled and the limit is set, and the maxwaiting list is higher then the allowed
+            ) {
+                $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+                $res['title'] = $this->translator->trans('Fehler');
+                return $res;
+            }
         }
 
-        if (
-            $room->getMaxWaitingList() != null &&
-            $newWaitingLisParticipants > $room->getMaxWaitingList()// the waitinglist is enabled and the limit is set, and the maxwaiting list is higher then the allowed
-        ) {
-            $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
-            $res['title'] = $this->translator->trans('Fehler');
-            return $res;
-        }
         // add a new waiting list or a new participant
         try {
             $waitinglist = false;
             if ($subscriber->getRoom()->getMaxParticipants() != null && $newParticipants >= $subscriber->getRoom()->getMaxParticipants()) {
                 $waitinglist = true;
             }
-            if ($waitinglist === true) {
+            if ($waitinglist === true && !$isOrganizer) {
                 $res = array_merge($res, $this->createNewWaitinglist($subscriber->getUser(), $subscriber->getRoom()));
                 $this->em->remove($subscriber);
                 $this->em->flush();
@@ -239,6 +256,7 @@ class SubcriptionService
             foreach ($group->getMembers() as $data) {
                 if (!in_array($data, $rooms->getUser()->toArray())) {
                     $data->addRoom($rooms);
+                    $data->removeRoomsStorno($rooms);
                     $this->em->persist($data);
                     $this->userService->addUser($data, $rooms);
                 } else {

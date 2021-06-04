@@ -44,10 +44,9 @@ addEventListener('load', function () {
 $(document).ready(function () {
 
     setTimeout(function () {
-        $('#snackbar').addClass('show');
-        setTimeout(function () {
+        $('#snackbar').addClass('show').click(function (e) {
             $('#snackbar').removeClass('show');
-        }, 3000);
+        })
     }, 500);
     if (importBBB) {
         h2Button.init(bbbUrl);

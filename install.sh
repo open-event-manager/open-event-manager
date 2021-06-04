@@ -59,6 +59,7 @@ read -p "Keycloak Client Secret: " keycloakClientSecret
 
 sed -i "s%<baseUrl>%$baseUrl%" .env.local
 sed -i "s%<keycloakServer>%$keycloakServer%" .env.local
+
 sed -i "s/<keycloakRealm>/$keycloakRealm/" .env.local
 sed -i "s/<keycloakClientId>/$keycloakClientId/" .env.local
 sed -i "s/<keycloakClientSecret>/$keycloakClientSecret/" .env.local

@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use function Doctrine\ORM\QueryBuilder;
 
 /**
  * Class DashboardController
@@ -33,8 +34,10 @@ class DashboardController extends AbstractController
      */
     public function index(Request $request)
     {
-        $events = $this->getDoctrine()->getRepository(Rooms::class)->findBy(array('showRoomOnJoinpage'=>true));
-
+        $qb = $this->getDoctrine()->getRepository(Rooms::class)->createQueryBuilder('rooms');
+        $qb->andWhere('rooms.showRoomOnCalendar = true')
+            ->andWhere($qb->expr()->isNotNull('rooms.moderator'));
+        $events = $qb->getQuery()->getResult();
         return $this->render('dashboard/start.html.twig', ['events'=>$events]);
     }
 

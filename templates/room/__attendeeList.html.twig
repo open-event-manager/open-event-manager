@@ -1,6 +1,6 @@
 {% for user in room.user %}
 
-    {% if user != room.moderator and atendeeIsInGroup(user,room) is null %}
+    {% if user != room.moderator and atendeeIsInGroup(user,room)|length == 0 %}
         <li>{{ user.email }}
 
             <a tabindex="0" data-toggle="popover" data-trigger="focus"

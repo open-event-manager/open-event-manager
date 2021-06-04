@@ -5,16 +5,18 @@
         {{ room.start|format_date(pattern="EEEE",locale=locale) }}
         | {{ room.start|format_datetime('long', 'none', locale=locale) }}
         | {{ room.start|date('H:i') }}-{{ room.endDate|date('H:i') }}</p>
-    {% if room.maxParticipants is null %}
-        <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Unbegrenzte Teilnehmerzahl{% endtrans %}</h4>
-    {% elseif room.maxParticipants - room.user|length >1 %}
-        <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Noch {spaces} Plätze frei{% endtrans %}</h4>
-    {% elseif room.maxParticipants - room.user|length == 1 %}
-        <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Noch ein Platz frei{% endtrans %}</h4>
-    {% elseif room.maxParticipants - room.user|length <= 0 and room.waitinglist == true %}
-        {% if room.maxWaitingList is not null and room.waitinglists|length >= room.maxWaitingList %}
-        {% else %}
-            <h4 class="text-center text-danger">{% trans %}Warteliste{% endtrans %}</h4>
+    {% if room.moderator != app.user %}
+        {% if room.maxParticipants is null %}
+            <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Unbegrenzte Teilnehmerzahl{% endtrans %}</h4>
+        {% elseif room.maxParticipants - room.user|length >1 %}
+            <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Noch {spaces} Plätze frei{% endtrans %}</h4>
+        {% elseif room.maxParticipants - room.user|length == 1 %}
+            <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Noch ein Platz frei{% endtrans %}</h4>
+        {% elseif room.maxParticipants - room.user|length <= 0 and room.waitinglist == true %}
+            {% if room.maxWaitingList is not null and room.waitinglists|length >= room.maxWaitingList %}
+            {% else %}
+                <h4 class="text-center text-danger">{% trans %}Warteliste{% endtrans %}</h4>
+            {% endif %}
         {% endif %}
     {% endif %}
 {% endblock %}
@@ -42,6 +44,10 @@
         {% set isForm = true %}
 
     {% endif %}
+    {% if room.moderator == app.user %}
+        {% set isForm = true %}
+    {% endif %}
+
 
     {% if isForm == true %}
         <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
@@ -66,7 +72,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h3 class="h3-responsive">{{ 'Gruppenanmeldung'|trans }}</h3>
-                        {% if room.maxGroupSize is not null %}
+                        {% if room.maxGroupSize is not null and room.moderator != app.user %}
                             <small>{% trans with {'{max}':room.maxGroupSize} %}Maximale Gruppengröße: {max}{% endtrans %}</small>
 
                         {% endif %}
@@ -111,7 +117,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="email"   required class="form-control" name="group[x][email]"
+                        <input type="email" required class="form-control" name="group[x][email]"
                                placeholder="{{ 'Email'|trans }}">
                     </div>
                 </div>
@@ -127,7 +133,11 @@
     {% endif %}
 
     <script>
-        var maxGroupSize = {{ room.maxGroupSize?room.maxGroupSize:1000 }}
+        {% if room.moderator != app.user %}
+        var maxGroupSize = {{ room.maxGroupSize?room.maxGroupSize:1000 }};
+        {% else %}
+        var maxGroupSize = 1000;
+        {% endif %}
     </script>
 
 {% endblock %}
