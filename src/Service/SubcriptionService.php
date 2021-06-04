@@ -248,23 +248,25 @@ class SubcriptionService
     function createUserRoom(User $user, Rooms $rooms)
     {
         $group = $this->em->getRepository(Group::class)->findOneBy(array('leader' => $user, 'rooms' => $rooms));
-        $user->addRoom($rooms);
-        $this->em->persist($user);
+        $rooms->addUser($user);
+        $rooms->removeStorno($user);
 
         $this->userService->addUser($user, $rooms);
         if ($group) {
             foreach ($group->getMembers() as $data) {
                 if (!in_array($data, $rooms->getUser()->toArray())) {
-                    $data->addRoom($rooms);
-                    $data->removeRoomsStorno($rooms);
+                    $rooms->addUser($data);
+                    $rooms->removeStorno($data);
                     $this->em->persist($data);
                     $this->userService->addUser($data, $rooms);
                 } else {
                     $group->removeMember($data);
-                    $this->em->persist($group);
+
                 }
             }
+            $this->em->persist($group);
         }
+        $this->em->persist($rooms);
         $this->em->flush();
     }
 
