@@ -113,6 +113,7 @@ class RoomService
 
     public function addUserToRoom(?Rooms $room, $email): array
     {
+        $email = strtolower($email);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return array('error' => true, 'text' => 'Email incorrect');
         };

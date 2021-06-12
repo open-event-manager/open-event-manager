@@ -1,7 +1,8 @@
 {% extends 'join/base.html.twig' %}
 {% block header %}
     <h1 class="h1-responsive text-center">{{ room.name }}</h1>
-    <p class=" text-center">  {% set locale =  app.request.locale %}
+    <p class="text-center"><a href="{{ path('join_index',{'slug':room.standort.slug}) }}"><i class="fa fa-link"></i> {{ room.standort.name }}</a></p>
+    <p class=" text-center">{% set locale =  app.request.locale %}
         {{ room.start|format_date(pattern="EEEE",locale=locale) }}
         | {{ room.start|format_datetime('long', 'none', locale=locale) }}
         | {{ room.start|date('H:i') }}-{{ room.endDate|date('H:i') }}</p>
@@ -50,7 +51,7 @@
 
 
     {% if isForm == true %}
-        <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
+        <div class=" col-lg-8">
             <p class="text-center text-md-left">
                 {% if room.maxParticipants - room.user|length >0 %}
                     {{ 'Melden Sie sich an und schreiben Sie sich auf der Teilnehmerliste ein'|trans }}
@@ -60,6 +61,7 @@
             {{ form_row(form.firstName) }}
             {{ form_row(form.lastName) }}
             {{ form_row(form.email) }}
+            {{ form_row(form.address) }}
             {{ form_row(form.phone) }}
             <div class="row form-group">
 
@@ -97,6 +99,39 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-4">
+
+            {% if room.entryDateTime is not null %}
+               <b>{{ 'Einlass'|trans }}:</b> <br> {{ room.entryDateTime|date('d.m.Y H:i') }}<br>
+            {% endif %}
+            {% if room.promoter is not null %}
+                <b>{{ 'Veranstalter'|trans }}:</b>
+                {{ room.promoter }}<br>
+            {% endif %}
+            {% set standort = room.standort %}
+            <b>{{ 'Standort'|trans }}:</b><br>
+            {{ standort.name }}<br>
+            {%  if standort.roomNumber is not null %}
+                <b>{{ 'Raumnummer'|trans }}:</b><br>{{ standort.roomNumber }}<br>
+            {% endif %}
+            {%  if standort.street is not null %}
+               {{ standort.street }} {{ standort.number }}<br>
+            {% endif %}
+            {{ standort.plz }} {{ standort.city }}<br>
+            <a class=" btn btn-sm btn-outline-primary" href="{{ path('join_index',{'slug':room.standort.slug}) }}">{{ 'Zum Standort'|trans }}</a><br><br>
+
+
+            {% if room.agenda is not null %}
+                <b>{{ 'Agenda'|trans }}:</b>
+                {{ room.agenda|markdown_to_html }}<br>
+            {% endif %}
+            {% if room.additionalInfo is not null %}
+                <b>{{ 'Zusätzliche Info'|trans }}:</b>
+                {{ room.additionalInfo|markdown_to_html }}<br>
+            {% endif %}
+
+
+        </div>
         {{ form_end(form) }}
         <div id="formSample" class="d-none">
             <div class="addedForm row">
@@ -119,6 +154,12 @@
                     <div class="form-group">
                         <input type="email" required class="form-control" name="group[x][email]"
                                placeholder="{{ 'Email'|trans }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" required class="form-control" name="group[x][address]"
+                               placeholder="{{ 'Adresse'|trans }}">
                     </div>
                 </div>
             </div>

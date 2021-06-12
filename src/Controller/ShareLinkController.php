@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Group;
 use App\Entity\Rooms;
 use App\Entity\Subscriber;
 use App\Entity\User;
@@ -59,7 +60,49 @@ class ShareLinkController extends AbstractController
         }
         return new JsonResponse(array('error' => true));
     }
+    /**
+     * @Route("/room/share/link/deniewaitinglist/{id}", name="denie_waitingList")
+     * @ParamConverter("waitinglist")
+     */
+    public function waitinglistDenie(Waitinglist $waitinglist, SubcriptionService $subcriptionService,UserService $userService, TranslatorInterface $translator): Response
+    {
 
+        if ($waitinglist->getRoom()->getModerator() == $this->getUser()) {
+
+            $room = $waitinglist->getRoom();
+            $user = $waitinglist->getUser();
+            $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms' => $room, 'leader' => $user));
+            $room->removeUser($user);
+                $room->addStorno($user);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($room);
+                if ($user->isMemeberInGroup($room)) {
+                    $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
+                    $em->persist($user);
+                }
+                if ($group) {
+                    foreach ($group->getMembers() as $data) {
+                        $room->removeUser($data);
+                        $room->addStorno($data);
+                        $group->removeMember($data);
+                        $userService->removeRoom($data, $room);
+                        $em->persist($room);
+                        $em->persist($group);
+
+                    }
+                    $em->flush();
+                    $em->remove($group);
+                    $em->flush();
+                }
+                $em->flush();
+                $em->remove($waitinglist);
+                $em->flush();
+                $snack = $translator->trans('Teilnehmer gelöscht');
+                $userService->removeRoom($user, $room);
+            }
+            return new JsonResponse(array('error' => true));
+
+    }
     /**
      * @Route("/subscribe/self/{uid}", name="public_subscribe_participant")
      */

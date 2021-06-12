@@ -177,6 +177,21 @@ class Rooms
      */
     private $showRoomOnCalendar;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $entryDateTime;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $promoter;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $additionalInfo;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -675,6 +690,42 @@ class Rooms
     public function setShowRoomOnCalendar(?bool $showRoomOnCalendar): self
     {
         $this->showRoomOnCalendar = $showRoomOnCalendar;
+
+        return $this;
+    }
+
+    public function getEntryDateTime(): ?\DateTimeInterface
+    {
+        return $this->entryDateTime;
+    }
+
+    public function setEntryDateTime(?\DateTimeInterface $entryDateTime): self
+    {
+        $this->entryDateTime = $entryDateTime;
+
+        return $this;
+    }
+
+    public function getPromoter(): ?string
+    {
+        return $this->promoter;
+    }
+
+    public function setPromoter(?string $promoter): self
+    {
+        $this->promoter = $promoter;
+
+        return $this;
+    }
+
+    public function getAdditionalInfo(): ?string
+    {
+        return $this->additionalInfo;
+    }
+
+    public function setAdditionalInfo(?string $additionalInfo): self
+    {
+        $this->additionalInfo = $additionalInfo;
 
         return $this;
     }

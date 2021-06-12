@@ -60,16 +60,17 @@ class SubcriptionService
             return $res;
         }
 
-        $user = $this->em->getRepository(User::class)->findOneBy(array('email' => $userData['email']));
+        $user = $this->em->getRepository(User::class)->findOneBy(array('email' => strtolower($userData['email'])));
         //create a new User from the email entered
         if (!$user) {
             $user = new User();
-            $user->setEmail($userData['email']);
+            $user->setEmail(strtolower($userData['email']));
         }
 
         $user->setFirstName($userData['firstName']);
         $user->setLastName($userData['lastName']);
         $user->setPhone($userData['phone']);
+        $user->setAddress($userData['address']);
         $this->em->persist($user);
         $this->em->flush();
 
@@ -174,7 +175,7 @@ class SubcriptionService
         // add a new waiting list or a new participant
         try {
             $waitinglist = false;
-            if ($subscriber->getRoom()->getMaxParticipants() != null && $newParticipants >= $subscriber->getRoom()->getMaxParticipants()) {
+            if ($subscriber->getRoom()->getMaxParticipants() != null && $newParticipants > $subscriber->getRoom()->getMaxParticipants()) {
                 $waitinglist = true;
             }
             if ($waitinglist === true && !$isOrganizer) {
@@ -287,11 +288,11 @@ class SubcriptionService
         $counter = 0;
         if (sizeof($groups) > 0) {
             foreach ($groups as $data) {
-                $email = $data['email'];
+                $email = strtolower($data['email']);
                 $firstName = $data['firstName'];
                 $lastName = $data['lastName'];
-
-                if ($firstName !== '' && $lastName !== '' && $email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $address = $data['address'];
+                if ($firstName !== '' && $lastName !== '' && $email !== '' && $address != '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
                     // this entry is correct
                     $member = $this->em->getRepository(User::class)->findOneBy(array('email' => $email));
@@ -301,6 +302,7 @@ class SubcriptionService
                     }
                     $member->setFirstName($firstName);
                     $member->setLastName($lastName);
+                    $member->setAddress($address);
                     $this->em->persist($member);
                     if (!in_array($member, $rooms->getUser()->toArray())
                         && !in_array($user, $this->em->getRepository(User::class)->findSubsriberLeaders($rooms))
@@ -331,4 +333,6 @@ class SubcriptionService
         }
         return $newParticipantsWaitinglist;
     }
+
+
 }

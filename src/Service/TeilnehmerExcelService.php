@@ -32,18 +32,37 @@ class TeilnehmerExcelService
     {
         $alphas = $this->createColumnsArray('ZZ');
         $count = 0;
+        $count2 = 1;
         $participants = $this->spreadsheet->createSheet();
         $participants->setTitle($this->translator->trans('Teilnehmer'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Vorname'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Nachname'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Email'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Telefon'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Status'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Organisator'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('Gruppenleiter ID'));
-        $participants->setCellValue($alphas[$count++] . '1', $this->translator->trans('GruppenmitgliederID'));
+
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Standort'));
+        $participants->setCellValue($alphas[$count++] . $count2, $rooms->getStandort()->getName());
         $count = 0;
-        $count2 = 2;
+        $count2++;
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Adresse'));
+        $participants->setCellValue($alphas[$count++] . $count2,
+            $rooms->getStandort()->getStreet(). ' '.$rooms->getStandort()->getNumber(). ', '. $rooms->getStandort()->getPlz(). ' '.$rooms->getStandort()->getCity());
+        $count = 0;
+        $count2++;
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Raumnummer'));
+        $participants->setCellValue($alphas[$count++] . $count2,
+            $rooms->getStandort()->getRoomnumber());
+        $count = 0;
+        $count2++;
+        $count2++;
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Anwesend'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Vorname'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Nachname'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Email'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Adresse'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Telefon'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Status'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Organisator'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Gruppenleiter ID'));
+        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('GruppenmitgliederID'));
+        $count = 0;
+        $count2++;
         foreach ($rooms->getUser() as $data) {
             $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data,$rooms);
             $groupArr = array();
@@ -55,9 +74,11 @@ class TeilnehmerExcelService
             foreach ($groupleader as $data2){
                 $groupLeaderArr[]=$data2->getId();
             }
+            $participants->setCellValue($alphas[$count++] . $count2, '');
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
+            $participants->setCellValue($alphas[$count++] . $count2, $data->getAddress());
             $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Teilnehmer'));
             $participants->setCellValue($alphas[$count++] . $count2, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
@@ -77,9 +98,11 @@ class TeilnehmerExcelService
             foreach ($groupleader as $data2){
                 $groupLeaderArr[]=$data2->getId();
             }
+            $participants->setCellValue($alphas[$count++] . $count2, '');
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getEmail());
+            $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getAddress());
             $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Warteliste'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
@@ -99,9 +122,11 @@ class TeilnehmerExcelService
             foreach ($groupleader as $data2){
                 $groupLeaderArr[]=$data2->getId();
             }
+            $participants->setCellValue($alphas[$count++] . $count2, '');
             $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
             $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
+            $participants->setCellValue($alphas[$count++] . $count2, $data->getAddress());
             $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Storniert'));
             $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));

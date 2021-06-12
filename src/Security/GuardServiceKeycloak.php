@@ -55,7 +55,7 @@ class GuardServiceKeycloak extends SocialAuthenticator
 
         /** @var KeycloakUser $keycloakUser */
         $keycloakUser = $this->getauth0Client()->fetchUserFromToken($credentials);
-        $email = $keycloakUser->getEmail();
+        $email = strtolower($keycloakUser->getEmail());
         $id = $keycloakUser->getId();
         $firstName = $keycloakUser->toArray()['given_name'];
         $lastName = $keycloakUser->toArray()['family_name'];

@@ -1,6 +1,6 @@
 {% extends 'email/base.html.twig' %}
 {% block header %}
-    -- {{ 'Event abgesagt'|trans }} --
+    -- {{ 'Sie wurden von der Teilnehmerliste entfernt'|trans }} --
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
     </b>
     <p>
         {% trans with {'{name}': room.name|escape} %}
-            Die Veranstaltung {name} wurde abgesagt und kann aus dem Kalender entfernt werden.
+          Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.
         {% endtrans %}
     </p>
     <b>

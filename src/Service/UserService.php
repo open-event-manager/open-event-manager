@@ -111,7 +111,7 @@ class UserService
         if (!$room->getScheduleMeeting()) {
 
             $content = $this->twig->render('email/removeRoom.html.twig', ['user' => $user, 'room' => $room,]);
-            $subject = $this->translator->trans('Event wurde abgesagt');
+            $subject = $this->translator->trans('Sie wurden von der Teilnehmerliste entfernt');
             $ics = $this->notificationService->createIcs($room, $user,  'CANCEL');
             $attachement[] = array('type' => 'text/calendar', 'filename' => $room->getName() . '.ics', 'body' => $ics);
             $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort(), $attachement);
@@ -137,7 +137,7 @@ class UserService
             $room->removeUser($data);
             $this->em->persist($data);
             $content = $this->twig->render('email/removeRoom.html.twig', ['user' => $data, 'room' => $room,]);
-            $subject = $this->translator->trans('Event wurde abgesagt');
+            $subject = $this->translator->trans('Sie wurden von der Teilnehmerliste entfernt');
             $ics = $this->notificationService->createIcs($room, $data,  'CANCEL');
             $attachement[] = array('type' => 'text/calendar', 'filename' => $room->getName() . '.ics', 'body' => $ics);
             $this->notificationService->sendNotification($content, $subject, $data, $room->getStandort(), $attachement);

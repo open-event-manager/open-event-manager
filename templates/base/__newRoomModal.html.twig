@@ -16,16 +16,25 @@
                 <div class="col-lg-12">
                     {{ form_row(form.name) }}
                 </div>
-                <div class="col-lg-12">
-                    {{ form_row(form.agenda) }}
-                </div>
                 {% if form.start is defined %}
                     <div class="col-lg-12">
                         {{ form_row(form.start) }}
                     </div>
+                    <div class="col-lg-12">
+                        {{ form_row(form.entryDateTime) }}
+                    </div>
                 {% endif %}
                 <div class="col-lg-12">
                     {{ form_row(form.duration) }}
+                </div>
+                <div class="col-lg-12">
+                    {{ form_row(form.promoter) }}
+                </div>
+                <div class="col-lg-12">
+                    {{ form_row(form.agenda) }}
+                </div>
+                <div class="col-lg-12">
+                    {{ form_row(form.additionalInfo) }}
                 </div>
             </div>
             <div class="mb-2">

@@ -38,11 +38,11 @@ class RoomType extends AbstractType
                 'translation_domain' => 'form',
                 'multiple' => false,
                 'required' => true,
-                'attr'=>array('class'=>'moreFeatures')
+                'attr' => array('class' => 'moreFeatures')
             ])
             ->add('name', TextType::class, ['required' => true, 'label' => 'label.konferenzName', 'translation_domain' => 'form'])
             ->add('agenda', TextareaType::class, ['required' => false, 'label' => 'label.agenda', 'translation_domain' => 'form'])
-            ->add('start', DateTimeType::class, ['attr'=>['class'=>'flatpickr'],'label' => 'label.start', 'translation_domain' => 'form', 'widget' => 'single_text'])
+            ->add('start', DateTimeType::class, ['attr' => ['class' => 'flatpickr'], 'label' => 'label.start', 'translation_domain' => 'form', 'widget' => 'single_text'])
             ->add('duration', ChoiceType::class, [
                 'label' => 'label.dauerKonferenz',
                 'translation_domain' => 'form',
@@ -57,23 +57,26 @@ class RoomType extends AbstractType
                     'option.480min' => 480,
                 ]
             ])
-            ->add('scheduleMeeting',CheckboxType::class,array('required'=>false,'label' => 'label.scheduleMeeting', 'translation_domain' => 'form'))
-             ->add('public',CheckboxType::class,array('required'=>false,'label' => 'label.puplicRoom', 'translation_domain' => 'form'))
-            ->add('showRoomOnJoinpage',CheckboxType::class,array('required'=>false,'label' => 'label.showRoomOnJoinpage', 'translation_domain' => 'form'))
-            ->add('showRoomOnCalendar',CheckboxType::class,array('required'=>false,'label' => 'label.showRoomOnCalendar', 'translation_domain' => 'form'))
-            ->add('maxParticipants',NumberType::class,array('required'=>false,'label' => 'label.maxParticipants', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
-            ->add('waitinglist',CheckboxType::class,array('required'=>false,'label' => 'label.waitinglist', 'translation_domain' => 'form'))
-            ->add('maxWaitingList',NumberType::class,array('required'=>false,'label' => 'label.maxWaitingList', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
-            ->add('allowGroups',CheckboxType::class,array('required'=>false,'label' => 'label.allowGroups', 'translation_domain' => 'form'))
-            ->add('maxGroupSize',NumberType::class,array('required'=>false,'label' => 'label.maxGroupSize', 'translation_domain' => 'form','attr'=>array('placeholder'=>'placeholder.maxParticipants')))
+            ->add('entryDateTime', DateTimeType::class, ['required'=>false, 'attr' => ['class' => 'flatpickr'], 'label' => 'label.entryDateTime', 'translation_domain' => 'form', 'widget' => 'single_text'])
+            ->add('promoter', TextType::class, ['required' => false, 'label' => 'label.promoter', 'translation_domain' => 'form'])
+            ->add('additionalInfo', TextareaType::class, ['required' => false, 'label' => 'label.additionalInfo', 'translation_domain' => 'form'])
+            ->add('scheduleMeeting', CheckboxType::class, array('required' => false, 'label' => 'label.scheduleMeeting', 'translation_domain' => 'form'))
+            ->add('public', CheckboxType::class, array('required' => false, 'label' => 'label.puplicRoom', 'translation_domain' => 'form'))
+            ->add('showRoomOnJoinpage', CheckboxType::class, array('required' => false, 'label' => 'label.showRoomOnJoinpage', 'translation_domain' => 'form'))
+            ->add('showRoomOnCalendar', CheckboxType::class, array('required' => false, 'label' => 'label.showRoomOnCalendar', 'translation_domain' => 'form'))
+            ->add('maxParticipants', NumberType::class, array('required' => false, 'label' => 'label.maxParticipants', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
+            ->add('waitinglist', CheckboxType::class, array('required' => false, 'label' => 'label.waitinglist', 'translation_domain' => 'form'))
+            ->add('maxWaitingList', NumberType::class, array('required' => false, 'label' => 'label.maxWaitingList', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
+            ->add('allowGroups', CheckboxType::class, array('required' => false, 'label' => 'label.allowGroups', 'translation_domain' => 'form'))
+            ->add('maxGroupSize', NumberType::class, array('required' => false, 'label' => 'label.maxGroupSize', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('submit', SubmitType::class, ['attr' => array('class' => 'btn btn-outline-primary'), 'label' => 'label.speichern', 'translation_domain' => 'form']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'standort'=>array(),
-            'data_class'=>Rooms::class
+            'standort' => array(),
+            'data_class' => Rooms::class
         ]);
 
     }
