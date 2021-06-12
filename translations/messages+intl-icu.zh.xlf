@@ -622,7 +622,7 @@
         <source>SMTP-Einstellungen</source>
         <target state="needs-translation">SMTP-Einstellungen</target>
       </trans-unit>
-      <trans-unit id="K81Gp" resname="Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.">
+      <trans-unit id="K81G__p" resname="Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.">
         <source>Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.</source>
         <target state="needs-translation">Hier können Sie einen eigenen SMTP Server zum Versenden von Emails angeben. Wenn kein SMTP Server angegeben ist wird der Standard Server von jitsi-admin verwendet.</target>
       </trans-unit>
@@ -1241,6 +1241,62 @@
       <trans-unit id="ZBW_6eN" resname="Ich möchte mich wirklich abmelden">
         <source>Ich möchte mich wirklich abmelden</source>
         <target state="needs-translation">Ich möchte mich wirklich abmelden</target>
+      </trans-unit>
+      <trans-unit id="zug4Smk" resname="Event gelöscht">
+        <source>Event gelöscht</source>
+        <target state="needs-translation">Event gelöscht</target>
+      </trans-unit>
+      <trans-unit id="eeXPIN4" resname="Adresse">
+        <source>Adresse</source>
+        <target state="needs-translation">Adresse</target>
+      </trans-unit>
+      <trans-unit id="5JDNyJD" resname="Raumnummer">
+        <source>Raumnummer</source>
+        <target state="needs-translation">Raumnummer</target>
+      </trans-unit>
+      <trans-unit id="h4KxQS9" resname="Anwesend">
+        <source>Anwesend</source>
+        <target state="needs-translation">Anwesend</target>
+      </trans-unit>
+      <trans-unit id="oyQoteV" resname="Sie wurden von der Teilnehmerliste entfernt">
+        <source>Sie wurden von der Teilnehmerliste entfernt</source>
+        <target state="needs-translation">Sie wurden von der Teilnehmerliste entfernt</target>
+      </trans-unit>
+      <trans-unit id="YBLc9al" resname="Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.">
+        <source>Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.</source>
+        <target state="needs-translation">Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.</target>
+      </trans-unit>
+      <trans-unit id="LdzWBsh" resname="Ende">
+        <source>Ende</source>
+        <target state="needs-translation">Ende</target>
+      </trans-unit>
+      <trans-unit id="vFwThw0" resname="Einlass">
+        <source>Einlass</source>
+        <target state="needs-translation">Einlass</target>
+      </trans-unit>
+      <trans-unit id="zlMIXQd" resname="Agenda:">
+        <source>Agenda:</source>
+        <target state="needs-translation">Agenda:</target>
+      </trans-unit>
+      <trans-unit id="w0Xvp3Y" resname="Zusätzliche Infos:">
+        <source>Zusätzliche Infos:</source>
+        <target state="needs-translation">Zusätzliche Infos:</target>
+      </trans-unit>
+      <trans-unit id="dGkfpsd" resname="Wollen Sie den Teilnehmer wirklich von dem Event löschen">
+        <source>Wollen Sie den Teilnehmer wirklich von dem Event löschen</source>
+        <target state="needs-translation">Wollen Sie den Teilnehmer wirklich von dem Event löschen</target>
+      </trans-unit>
+      <trans-unit id="B18VKk9" resname="Veranstalter">
+        <source>Veranstalter</source>
+        <target state="needs-translation">Veranstalter</target>
+      </trans-unit>
+      <trans-unit id="38e6XTu" resname="Zum Standort">
+        <source>Zum Standort</source>
+        <target state="needs-translation">Zum Standort</target>
+      </trans-unit>
+      <trans-unit id="TsZBGW6" resname="Zusätzliche Info">
+        <source>Zusätzliche Info</source>
+        <target state="needs-translation">Zusätzliche Info</target>
       </trans-unit>
     </body>
   </file>
