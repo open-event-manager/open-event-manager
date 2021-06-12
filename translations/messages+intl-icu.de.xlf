@@ -1245,63 +1245,60 @@
       </trans-unit>
       <trans-unit id="zug4Smk" resname="Event gelöscht">
         <source>Event gelöscht</source>
-        <target>__Event gelöscht</target>
+        <target>Event gelöscht</target>
       </trans-unit>
       <trans-unit id="eeXPIN4" resname="Adresse">
         <source>Adresse</source>
-        <target>__Adresse</target>
+        <target>Adresse</target>
       </trans-unit>
       <trans-unit id="5JDNyJD" resname="Raumnummer">
         <source>Raumnummer</source>
-        <target>__Raumnummer</target>
+        <target>Raumnummer</target>
       </trans-unit>
       <trans-unit id="h4KxQS9" resname="Anwesend">
         <source>Anwesend</source>
-        <target>__Anwesend</target>
+        <target>Anwesend</target>
       </trans-unit>
-      <trans-unit id="mc0rkJX" resname="Sie wurden von der Teilnehmerlliste entfernt">
-        <source>Sie wurden von der Teilnehmerlliste entfernt</source>
-        <target>__Sie wurden von der Teilnehmerlliste entfernt</target>
-      </trans-unit>
+
       <trans-unit id="oyQoteV" resname="Sie wurden von der Teilnehmerliste entfernt">
         <source>Sie wurden von der Teilnehmerliste entfernt</source>
-        <target>__Sie wurden von der Teilnehmerliste entfernt</target>
+        <target>Sie wurden von der Teilnehmerliste entfernt</target>
       </trans-unit>
       <trans-unit id="YBLc9al" resname="Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.">
         <source>Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.</source>
-        <target>__Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.</target>
+        <target>Sie wurden von der Teilnehmerliste des Events: {name} entfernt. Dieses Event  kann aus dem Kalender entfernt werden.</target>
       </trans-unit>
       <trans-unit id="LdzWBsh" resname="Ende">
         <source>Ende</source>
-        <target>__Ende</target>
+        <target>Ende</target>
       </trans-unit>
       <trans-unit id="vFwThw0" resname="Einlass">
         <source>Einlass</source>
-        <target>__Einlass</target>
+        <target>Einlass</target>
       </trans-unit>
       <trans-unit id="zlMIXQd" resname="Agenda:">
         <source>Agenda:</source>
-        <target>__Agenda:</target>
+        <target>Agenda:</target>
       </trans-unit>
       <trans-unit id="w0Xvp3Y" resname="Zusätzliche Infos:">
         <source>Zusätzliche Infos:</source>
-        <target>__Zusätzliche Infos:</target>
+        <target>Zusätzliche Infos:</target>
       </trans-unit>
       <trans-unit id="dGkfpsd" resname="Wollen Sie den Teilnehmer wirklich von dem Event löschen">
         <source>Wollen Sie den Teilnehmer wirklich von dem Event löschen</source>
-        <target>__Wollen Sie den Teilnehmer wirklich von dem Event löschen</target>
+        <target>Wollen Sie den Teilnehmer wirklich von dem Event löschen</target>
       </trans-unit>
       <trans-unit id="B18VKk9" resname="Veranstalter">
         <source>Veranstalter</source>
-        <target>__Veranstalter</target>
+        <target>Veranstalter</target>
       </trans-unit>
       <trans-unit id="38e6XTu" resname="Zum Standort">
         <source>Zum Standort</source>
-        <target>__Zum Standort</target>
+        <target>Zum Standort</target>
       </trans-unit>
       <trans-unit id="TsZBGW6" resname="Zusätzliche Info">
         <source>Zusätzliche Info</source>
-        <target>__Zusätzliche Info</target>
+        <target>Zusätzliche Info</target>
       </trans-unit>
     </body>
   </file>
