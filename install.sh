@@ -41,7 +41,7 @@ read -p "Enter smtp host: " smtpHost
 read -p "Enter smtp port: " smtpPort
 read -p "Enter smtp username: " smtpUsername
 read -p "Enter smtp password: " smtpPassword
-read -p "Enter SMTP encrytion tls/ssln/none: " smtpEncryption
+read -p "Enter SMTP encrytion tls/ssl/none: " smtpEncryption
 
 sed -i "s/<smtpHost>/$smtpHost/" .env.local
 sed -i "s/<smtpPort>/$smtpPort/" .env.local
