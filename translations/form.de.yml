@@ -31,8 +31,6 @@ label:
     city: Stadt
     directions: Anfahrsbeschreibung
     roomnumber: Raumnummer
-
-
   beitretenApp: Mit der Elektron-App beitreten
   beitretenBrowser: Im Browser beitreten
   serverSmtpHostName: SMTP-Hostname
@@ -63,6 +61,11 @@ label:
   maxWaitingList: Maximale Teilnehmer auf der Warteliste
   allowGroups: Erlaube Gruppenameldung
   maxGroupSize: Maximale Gruppengröße
+  address: Adresse
+  entryDateTime: Einlass
+  promoter: Veranstalter
+  additionalInfo: Zusätzliche Info (Markdown)
+
 choice:
   tls: STARTTLS/TLS
   ssl: SSL

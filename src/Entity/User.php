@@ -151,6 +151,11 @@ class User extends BaseUser
      */
     private $eventGroupsMemebers;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $address;
+
 
 
     public function __construct()
@@ -178,7 +183,7 @@ class User extends BaseUser
 
     public function setEmail(string $email): self
     {
-        $this->email = $email;
+        $this->email = strtolower($email);
 
         return $this;
     }
@@ -683,4 +688,18 @@ class User extends BaseUser
         }
         return null;
     }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+
 }

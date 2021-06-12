@@ -20,7 +20,9 @@ class RoomSpaceService
 
     public function isRoomSpace(Rooms $rooms)
     {
-
+        if($rooms->getMaxParticipants() == null){
+            return true;
+        }
         if(sizeof($rooms->getUser()->toArray()) < $rooms->getMaxParticipants()){
             return true;
         }

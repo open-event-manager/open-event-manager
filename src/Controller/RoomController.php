@@ -141,7 +141,7 @@ class RoomController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $falseEmail = array();
                 foreach ($lines as $line) {
-                    $newMember = trim($line);
+                    $newMember = strtolower(trim($line));
                     if (filter_var($newMember, FILTER_VALIDATE_EMAIL)) {
                         $user = $inviteService->newUser($newMember);
                         $user->addRoom($room);
@@ -235,7 +235,9 @@ class RoomController extends AbstractController
         if ($this->getUser() === $room->getModerator()) {
             $em = $this->getDoctrine()->getManager();
             foreach ($room->getUser() as $user) {
-                $userService->removeRoom($user, $room);
+                if($room->getEnddate() > new \DateTime()){
+                    $userService->removeRoom($user, $room);
+                }
                 $room->removeUser($user);
                 $em->persist($room);
             }
@@ -243,7 +245,7 @@ class RoomController extends AbstractController
             $room->setModerator(null);
             $em->persist($room);
             $em->flush();
-            $snack = $this->translator->trans('Konferenz gelöscht');
+            $snack = $this->translator->trans('Event gelöscht');
         }
         return $this->redirectToRoute('dashboard', ['snack' => $snack]);
     }

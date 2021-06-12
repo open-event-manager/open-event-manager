@@ -13,7 +13,18 @@
 <p>{{ 'Moderator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
     {{ 'Datum'|trans }}: {{ room.start|date('d.m.Y') }}<br>
     {{ 'Startzeit'|trans }}: {{ room.start|date('H:i') }}<br>
-    {{ 'Geplante Dauer'|trans }}: {{ room.duration }} {{ 'Minuten'|trans }}</p>
+    {{ 'Geplante Dauer'|trans }}: {{ room.duration }} {{ 'Minuten'|trans }}<br>
+    {{ 'Ende'|trans }}: {{ room.enddate|date('d.m.Y H:i') }}<br>
+    {% if room.entryDateTime is not null %}
+        {{ 'Einlass'|trans }}: {{ room.entryDateTime|date('d.m.Y H:i') }}<br>
+    {% endif %}
+    {% if room.agenda is not null %}
+        {{ 'Agenda:'|trans }}:<br> {{ room.agenda|markdown_to_html }}<br>
+    {% endif %}
+    {% if room.agenda is not null %}
+        {{ 'Zusätzliche Infos:'|trans }}:<br> {{ room.additionalInfo|markdown_to_html }}<br>
+    {% endif %}
+</p>
 <b>Standort:</b>
 <p>{{ room.standort.name }}<br>
     {{ room.standort.roomnumber?room.standort.roomnumber }}<br>
@@ -21,8 +32,10 @@
     {{ room.standort.plz }}<br>
     {{ room.standort.city }}<br>
 </p>
-<b>{{ 'Anfahrtsbeschreibung'|trans }}</b>
-{{ room.standort.directions?room.standort.directions|markdown_to_html }}
+{% if room.standort.directions is not null %}
+    <b>{{ 'Anfahrtsbeschreibung'|trans }}</b>
+    {{ room.standort.directions?room.standort.directions|markdown_to_html }}
+{% endif %}
 <spacer size="16"></spacer>
 <p>
 
@@ -32,7 +45,7 @@
 
 <p>
     {% if standort is defined and  standort is not null and standort|validateLicense and standort.serverEmailBody is not null %}
-    {{ standort.serverEmailBody|nl2br }}
+        {{ standort.serverEmailBody|nl2br }}
     {% endif %}
 </p>
 

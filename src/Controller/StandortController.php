@@ -123,7 +123,7 @@ class StandortController extends AbstractController
             if (!empty($lines)) {
                 $em = $this->getDoctrine()->getManager();
                 foreach ($lines as $line) {
-                    $newMember = trim($line);
+                    $newMember = strtolower(trim($line));
                     $user = $inviteService->newUser($newMember);
                     $user->addStandort($server);
                     $em->persist($user);
