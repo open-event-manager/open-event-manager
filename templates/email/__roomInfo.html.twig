@@ -21,7 +21,7 @@
     {% if room.agenda is not null %}
         {{ 'Agenda:'|trans }}:<br> {{ room.agenda|markdown_to_html }}<br>
     {% endif %}
-    {% if room.agenda is not null %}
+    {% if room.additionalInfo is not null %}
         {{ 'Zusätzliche Infos:'|trans }}:<br> {{ room.additionalInfo|markdown_to_html }}<br>
     {% endif %}
 </p>
