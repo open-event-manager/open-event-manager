@@ -80,7 +80,7 @@ class SubcriptionService
             if (!$isOrganizer) {
                 $this->notifier->sendNotification(
                     $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
-                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Konferenz: {name}', array('{name}' => $rooms->getName())),
+                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Veranstaltung: {name}', array('{name}' => $rooms->getName())),
                     $user,
                     $rooms->getStandort()
                 );
@@ -110,7 +110,7 @@ class SubcriptionService
             if (!$isOrganizer) {
                 $this->notifier->sendNotification(
                     $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
-                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Konferenz: {name}', array('{name}' => $rooms->getName())),
+                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Veranstaltung: {name}', array('{name}' => $rooms->getName())),
                     $user,
                     $rooms->getStandort()
                 );
