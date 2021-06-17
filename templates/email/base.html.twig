@@ -47,8 +47,8 @@
 
                 {% endblock %}
                 <spacer size="16"></spacer>
+                {% if laF_emailTextLogin == 1 %}
                 <center>
-                    {% if laF_emailTextLogin == 1 %}
                         <p style="text-align: center">
                             {% if standort is defined and  standort is not null and standort|validateLicense %}
                                 {% trans with {'{url}':laF_baseUrl~path('dashboard')} %}Sie wollen dieses Event komfortabel in einer Übersicht verwalten?
@@ -64,10 +64,9 @@
                                 {% endtrans %}
                             {% endif %}
                         </p>
-                    {% endif %}
-
                 </center>
                 <spacer size="16"></spacer>
+                {% endif %}
                 <p>
                     {% if room is defined %}
                         {{ 'Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste dieses Events  stehen.'|trans }}
