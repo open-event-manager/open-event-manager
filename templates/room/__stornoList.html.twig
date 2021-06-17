@@ -1,5 +1,5 @@
 {% for s in room.storno %}
-    <li>{{ s.email }}
+    <li>{% if s.email is not null %}{{ s.email }}{% else%}{{ s.firstName }} {{ s.lastName }}{% endif%}
         <a tabindex="0" data-toggle="popover" data-trigger="focus"
                              title="{{ s.firstName }} {{ s.lastName }}"
                              data-content="

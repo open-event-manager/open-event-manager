@@ -59,7 +59,7 @@
             {% if userFromUsergroup(user,room)|length > 0 %}
                 <ul>
                     {% for u in userFromUsergroup(user,room) %}
-                        <li>{{ u.email }} <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                        <li>{% if u.email is not null %}{{ u.email }}{% else%}{{ u.firstName }} {{ u.lastName }}{% endif%} <a tabindex="0" data-toggle="popover" data-trigger="focus"
                                              title="{{ u.firstName }} {{ u.lastName }}"
                                              data-content="
 {{ 'Email'|trans }}: <a href='mailto:{{ u.email }}'>{{ u.email }}</a><br>
