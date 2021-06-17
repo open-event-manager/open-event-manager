@@ -93,9 +93,9 @@
         <source>Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.</source>
         <target state="translated">Cám ơn bạn đã ghi danh. Vui lòng xác nhận địa chỉ email của bạn trong email chúng tôi đã gửi cho bạn.</target>
       </trans-unit>
-      <trans-unit id="T.mgfUM" resname="Bestätigung ihrer Anmeldung zur Konferenz: {name}">
-        <source>Bestätigung ihrer Anmeldung zur Konferenz: {name}</source>
-        <target state="translated">Xác nhận đăng ký của bạn cho hội nghị: {name}</target>
+      <trans-unit id="T.mgfUM" resname="Bestätigung ihrer Anmeldung zur Veranstaltung: {name}">
+        <source>Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</source>
+        <target state="needs-translation">Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</target>
       </trans-unit>
       <trans-unit id="vnxSnbr" resname="Ungültige Email. Bitte überprüfen Sie ihre Emailadresse.">
         <source>Ungültige Email. Bitte überprüfen Sie ihre Emailadresse.</source>
