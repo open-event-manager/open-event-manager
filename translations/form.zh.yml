@@ -50,8 +50,9 @@ label:
   agenda: Kurze Agenda für dieses Event (Markdown)
   staticBackgroundColor: 设计登录页面的背景色
   schowStaticBackgroundColor: 纯色显示，不显示登录页面上的图片
-  puplicRoom: 公开会议
+  puplicRoom: Einladungslinks freischalten
   showRoomOnJoinpage: Event auf Standortseite anzeigen
+  showRoomOnCalendar: Event im globalen Kalender anzeigen
   subscribe: 订阅
   vorname: 名
   nachname: 姓
@@ -61,6 +62,10 @@ label:
   maxWaitingList: Maximale Teilnehmer auf der Warteliste
   allowGroups: Erlaube Gruppenameldung
   maxGroupSize: Maximale Gruppengröße
+  address: Adresse
+  entryDateTime: Einlass
+  promoter: Veranstalter
+  additionalInfo: Zusätzliche Info (Markdown)
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
