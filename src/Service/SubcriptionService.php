@@ -292,14 +292,21 @@ class SubcriptionService
                 $firstName = $data['firstName'];
                 $lastName = $data['lastName'];
                 $address = $data['address'];
-                if ($firstName !== '' && $lastName !== '' && $email !== '' && $address != '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                if ($firstName !== '' && $lastName !== '' && $address != '') {
 
                     // this entry is correct
-                    $member = $this->em->getRepository(User::class)->findOneBy(array('email' => $email));
-                    if (!$member) {
+                    $member = null;
+                    if ($email != '' && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $member = $this->em->getRepository(User::class)->findOneBy(array('email' => $email));
+                        if (!$member) {
+                            $member = new User();
+                            $member->setEmail($email);
+
+                        }
+                    }else{
                         $member = new User();
-                        $member->setEmail($email);
                     }
+
                     $member->setFirstName($firstName);
                     $member->setLastName($lastName);
                     $member->setAddress($address);

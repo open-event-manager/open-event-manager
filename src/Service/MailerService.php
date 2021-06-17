@@ -73,6 +73,9 @@ class MailerService
 
     private function sendViaSwiftMailer($to, $betreff, $content, Standort $server, $attachment = array()):bool
     {
+        if(!$to){
+            return true;
+        }
         $this->buildTransport($server);
         if ($server->getSmtpHost() && $this->licenseService->verify($server)) {
             $this->logger->info($server->getSmtpEmail());

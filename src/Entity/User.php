@@ -32,7 +32,7 @@ class User extends BaseUser
     protected $plainPassword;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     private $email;
 
@@ -181,9 +181,12 @@ class User extends BaseUser
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
-        $this->email = strtolower($email);
+        if ($email){
+            $this->email = strtolower($email);
+        }
+
 
         return $this;
     }
