@@ -53,6 +53,7 @@ class RoomType extends AbstractType
                     'option.60min' => 60,
                     'option.90min' => 90,
                     'option.120min' => 120,
+                    'option.150min' => 150,
                     'option.240min' => 240,
                     'option.480min' => 480,
                 ]

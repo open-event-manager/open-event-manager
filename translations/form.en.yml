@@ -18,6 +18,7 @@ option.45min: 45 minutes
 option.60min: 1 hour
 option.90min: 1,5 hours
 option.120min: 2 hours
+option.150min: 2,5 hours
 option.240min: 4 hours
 option.480min: 8 hours
 label.scheduleMeeting: Create an appointment poll

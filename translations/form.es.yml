@@ -19,6 +19,7 @@ option.45min: 45 minutos
 option.60min: 1 hora
 option.90min: 1,5 horas
 option.120min: 2 horas
+option.150min: 2,5 horas
 option.240min: 4 horas
 option.480min: 8 horas
 lable.serverUrl: Url del servidor Jitsi Meet
