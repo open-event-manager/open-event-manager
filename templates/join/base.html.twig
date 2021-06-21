@@ -177,7 +177,9 @@
 
     {{ include('base/__matomoOptOut.html.twig') }}
 </div>
-
+<script>
+    var textDublicateEmail = '{{ 'Sie haben doppelte E-Mail Adressen eingetragen'|trans }}';
+</script>
 {% block webpack %}
     {{ encore_entry_script_tags('frontend') }}
 {% endblock %}

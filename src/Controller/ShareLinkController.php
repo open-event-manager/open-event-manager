@@ -149,6 +149,7 @@ class ShareLinkController extends AbstractController
 
             $data = $form->getData();
             $group = $request->get('group',array());
+
             $isOrganizer = false;
             if ($rooms->getModerator() == $this->getUser()){
                 $isOrganizer = true;

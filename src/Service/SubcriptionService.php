@@ -47,6 +47,7 @@ class SubcriptionService
     public function subscripe($userData, Rooms $rooms, $isOrganizer, $group = array(), $moderator = false)
     {
         $res = array('error' => true);
+
         if ($isOrganizer) {
             if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() != true) {
                 $res['text'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
@@ -59,7 +60,18 @@ class SubcriptionService
             $res['color'] = 'danger';
             return $res;
         }
+        $groupEmail = array(strtolower($userData['email']));
+        foreach ($group as $data){
+            if ($data['email'] !== ''){
+                $groupEmail[] = strtolower($data['email']);
+            }
 
+        }
+        if(sizeof($groupEmail) !== sizeof(array_unique($groupEmail))){
+            $res['text'] = $this->translator->trans('Sie haben doppelte E-Mail Adressen eingetragen');
+            $res['color'] = 'danger';
+            return $res;
+        }
         $user = $this->em->getRepository(User::class)->findOneBy(array('email' => strtolower($userData['email'])));
         //create a new User from the email entered
         if (!$user) {
