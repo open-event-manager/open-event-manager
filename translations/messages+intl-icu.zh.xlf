@@ -93,7 +93,7 @@
         <source>Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.</source>
         <target state="translated">感谢您注册。请在我们发送给您的邮件中确认您的电子邮件地址。</target>
       </trans-unit>
-      <trans-unit id="T.mgfUM" resname="Bestätigung ihrer Anmeldung zur Veranstaltung: {name}">
+      <trans-unit id="o43JPX0" resname="Bestätigung ihrer Anmeldung zur Veranstaltung: {name}">
         <source>Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</source>
         <target state="needs-translation">Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</target>
       </trans-unit>
@@ -1297,6 +1297,10 @@
       <trans-unit id="TsZBGW6" resname="Zusätzliche Info">
         <source>Zusätzliche Info</source>
         <target state="needs-translation">Zusätzliche Info</target>
+      </trans-unit>
+      <trans-unit id="QSACCbS" resname="Sie haben doppelte E-Mail Adressen eingetragen">
+        <source>Sie haben doppelte E-Mail Adressen eingetragen</source>
+        <target state="needs-translation">Sie haben doppelte E-Mail Adressen eingetragen</target>
       </trans-unit>
     </body>
   </file>
