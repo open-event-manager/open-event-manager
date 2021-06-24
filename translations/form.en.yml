@@ -50,9 +50,9 @@ label:
   agenda: Short agenda for this event (markdown)
   staticBackgroundColor: Set background color for joinpage
   schowStaticBackgroundColor: Show static color instead of pictures on joinpage
-  puplicRoom: Einladungslinks freischalten
+  puplicRoom: Enable invitation links
   showRoomOnJoinpage: Show event on location page
-  showRoomOnCalendar: Event im globalen Kalender anzeigen
+  showRoomOnCalendar: Show in global calendar
   subscribe: Subscribe
   vorname: Firstname
   nachname: Lastname
@@ -62,10 +62,10 @@ label:
   maxWaitingList: Maximum number of people on waiting list
   allowGroups: Allow group registration
   maxGroupSize: Maximum group size
-  address: Adresse
-  entryDateTime: Einlass
-  promoter: Veranstalter
-  additionalInfo: Zusätzliche Info (Markdown)
+  address: Address
+  entryDateTime: Entry
+  promoter: Organizer
+  additionalInfo: Aditional Info (Markdown)
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
