@@ -1,39 +1,39 @@
 ---
-label.konferenzId: Event ID
-label.email: E-Mail-Adresse
-label.name: Name
-label.teilnehmerEmailhinzufuegen: E-Mail-Adresse von neuen Teilnehmern eingeben
-label.teilnehmerSpeichern: Einladungsemail versenden
-label.emailModerator: E-Mail-Adresse des Organisators eingeben
-help.emailTextfeld: Es können mehrere E-Mail-Adressen auf einmal hinzugefügt werden. Jede E-Mail-Adresse muss in eine neue Zeile geschrieben werden.
-label.organisatorhinzufuegen: Organisator hinzufügen
-label.serverKonferenz: Standort auswählen
-label.konferenzName: Name des Events
-label.start: Start
-label.dauerKonferenz: Dauer des Events
-label.speichern: Speichern
-option.15min: 15 Minuten
-option.30min: 30 Minuten
-option.45min: 45 Minuten
-option.60min: 1 Stunde
-option.90min: 1,5 Stunden
-option.120min: 2 Stunden
-option.240min: 4 Stunden
-option.480min: 8 Stunden
-label.scheduleMeeting: Einen Termin finden
+label.konferenzId: Etkinlik Kimliği
+label.email: E-posta Adresi
+label.name: Ad
+label.teilnehmerEmailhinzufuegen: Yeni kullanıcıların e-posta adreslerini girin
+label.teilnehmerSpeichern: Davet gönder
+label.emailModerator: Organizatörün e-posta adresini girin
+help.emailTextfeld: Aynı anda birden fazla e-posta adresi eklenebilir. Her e-posta adresi yeni bir satıra yazılmalıdır.
+label.organisatorhinzufuegen: Organizatörü ekle
+label.serverKonferenz: Konum seç
+label.konferenzName: Etkinliğin adı
+label.start: Başlat
+label.dauerKonferenz: Etkinliğin süresi
+label.speichern: Kaydet
+option.15min: 15 dakika
+option.30min: 30 dakika
+option.45min: 45 dakika
+option.60min: 1 saat
+option.90min: 1,5 saat
+option.120min: 2 saat
+option.240min: 4 saat
+option.480min: 8 saat
+label.scheduleMeeting: Randevu al
 help:
-  serverUrl: Ohne "https://" angeben (z.B meet.jit.si)
+  serverUrl: '"https://" olmadan giriş yapın (örneğin meet.jit.si)'
 label:
   standort:
-    name: Name
-    street: Straße
-    number: Hausnummer
-    plz: PLZ
-    city: Stadt
-    directions: Anfahrsbeschreibung
-    roomnumber: Raumnummer
-  beitretenApp: Mit der Elektron-App beitreten
-  beitretenBrowser: Im Browser beitreten
+    name: Ad
+    street: Cadde
+    number: Ev Numarası
+    plz: Posta Kodu
+    city: Şehir
+    directions: Yol Tarifi
+    roomnumber: Oda numarası
+  beitretenApp: Elektron-App ile giriş yapın
+  beitretenBrowser: Tarayıcı ile giriş yapın
   serverSmtpHostName: SMTP-Hostname
   serverSmtpHostPort: SMTP-Port
   serverSmtpEncryption: Verschlüsselung
