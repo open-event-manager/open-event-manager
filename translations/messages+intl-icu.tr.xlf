@@ -7,203 +7,203 @@
     <body>
       <trans-unit id="34R6VMk" resname="Keine Berechtigung">
         <source>Keine Berechtigung</source>
-        <target state="needs-translation">Keine Berechtigung</target>
+        <target state="translated">Yetki Yok</target>
       </trans-unit>
       <trans-unit id="XCUHFQy" resname="Konferenz erfolgreich bearbeitet">
         <source>Konferenz erfolgreich bearbeitet</source>
-        <target state="needs-translation">Konferenz erfolgreich bearbeitet</target>
+        <target state="translated">Konferans başarılı olarak düzenlendi</target>
       </trans-unit>
       <trans-unit id="I3TJoB4" resname="Konferenz bearbeiten">
         <source>Konferenz bearbeiten</source>
-        <target state="needs-translation">Konferenz bearbeiten</target>
+        <target state="translated">Konferansı Düzenle</target>
       </trans-unit>
       <trans-unit id="bJSm8Ow" resname="Konferenz erfolgreich erstellt">
         <source>Konferenz erfolgreich erstellt</source>
-        <target state="needs-translation">Konferenz erfolgreich erstellt</target>
+        <target state="translated">Konferans başarılı olarak düzenlendi</target>
       </trans-unit>
       <trans-unit id="bwGkw_c" resname="Neue Konferenz erstellen">
         <source>Neue Konferenz erstellen</source>
-        <target state="needs-translation">Neue Konferenz erstellen</target>
+        <target state="translated">Yeni konferans oluştur</target>
       </trans-unit>
       <trans-unit id=".Is4T0E" resname="Fehler, Bitte kontrollieren Sie ihre Daten.">
         <source>Fehler, Bitte kontrollieren Sie ihre Daten.</source>
-        <target state="needs-translation">Fehler, Bitte kontrollieren Sie ihre Daten.</target>
+        <target state="translated">Hata, lütfen verilerinizi kontrol edin.</target>
       </trans-unit>
       <trans-unit id="Pxb7Aj_" resname="Teilnehmer wurden eingeladen">
         <source>Teilnehmer wurden eingeladen</source>
-        <target state="needs-translation">Teilnehmer wurden eingeladen</target>
+        <target state="translated">Kullanıcı davet edildi</target>
       </trans-unit>
       <trans-unit id="K6XEZfk" resname="Einige Teilnehmer eingeladen. {emails} ist/sind nicht korrekt und können nicht eingeladen werden">
         <source>Einige Teilnehmer eingeladen. {emails} ist/sind nicht korrekt und können nicht eingeladen werden</source>
-        <target state="needs-translation">Einige Teilnehmer eingeladen. {emails} ist/sind nicht korrekt und können nicht eingeladen werden</target>
+        <target state="translated">Bazı katılımcılar davet edildi. {e-posta/lar} doğru değil ve davetiyeler gönderilemedi</target>
       </trans-unit>
       <trans-unit id="B5Z0l0H" resname="Teilnehmer verwalten">
         <source>Teilnehmer verwalten</source>
-        <target state="needs-translation">Teilnehmer verwalten</target>
+        <target state="translated">Katılımcıları yönet</target>
       </trans-unit>
       <trans-unit id="BidGKR8" resname="Teilnehmer gelöscht">
         <source>Teilnehmer gelöscht</source>
-        <target state="needs-translation">Teilnehmer gelöscht</target>
+        <target state="translated">Katılımcılar silindi</target>
       </trans-unit>
       <trans-unit id="x.c6LLU" resname="Konferenz gelöscht">
         <source>Konferenz gelöscht</source>
-        <target state="needs-translation">Konferenz gelöscht</target>
+        <target state="translated">Konferans silindi</target>
       </trans-unit>
       <trans-unit id="xBVJtSD" resname="Konferenz duplizieren">
         <source>Konferenz duplizieren</source>
-        <target state="needs-translation">Konferenz duplizieren</target>
+        <target state="translated">Konferansı yinele</target>
       </trans-unit>
       <trans-unit id="XC5HNTG" resname="Teilnehmer bearbeitet">
         <source>Teilnehmer bearbeitet</source>
-        <target state="needs-translation">Teilnehmer bearbeitet</target>
+        <target state="translated">Katılımcılar düzenlendi</target>
       </trans-unit>
       <trans-unit id="EfHbtoc" resname="Jitsi Konferenz">
         <source>Jitsi Konferenz</source>
-        <target state="needs-translation">Jitsi Konferenz</target>
+        <target state="translated">Jitsi Konferansı</target>
       </trans-unit>
       <trans-unit id="RjeZ5m9" resname="Sie wurden zu einer Videokonferenz auf dem Jitsi Server {server} hinzugefügt.">
         <source>Sie wurden zu einer Videokonferenz auf dem Jitsi Server {server} hinzugefügt.</source>
-        <target state="needs-translation">Sie wurden zu einer Videokonferenz auf dem Jitsi Server {server} hinzugefügt.</target>
+        <target state="translated">Jitsi Sunucusu üzerinde bir video konferansa eklendiniz.</target>
       </trans-unit>
       <trans-unit id="OemRd5F" resname="Über den beigefügten Link können Sie ganz einfach zur Videokonferenz beitreten.\nName: {name} \nModerator: {moderator} ">
         <source>Über den beigefügten Link können Sie ganz einfach zur Videokonferenz beitreten.\nName: {name} \nModerator: {moderator} </source>
-        <target state="needs-translation">Über den beigefügten Link können Sie ganz einfach zur Videokonferenz beitreten.\nName: {name} \nModerator: {moderator} </target>
+        <target state="translated">Ekteki bağlantıyı kullanarak video konferansa kolayca katılabilirsiniz. \ NAd: {ad} \ nModeratör: {moderatör} </target>
       </trans-unit>
       <trans-unit id="RFRvUYc" resname="Folgende Daten benötigen Sie um der Konferenz beizutreten:\nKonferenz ID: {id} \nIhre E-Mail-Adresse: {email}">
         <source>Folgende Daten benötigen Sie um der Konferenz beizutreten:\nKonferenz ID: {id} \nIhre E-Mail-Adresse: {email}</source>
-        <target state="needs-translation">Folgende Daten benötigen Sie um der Konferenz beizutreten:\nKonferenz ID: {id} \nIhre E-Mail-Adresse: {email}</target>
+        <target state="translated">Konferansa katılmak için aşağıdaki verilere ihtiyacınız var: \ nKonferans Kimliği: {kimlik} \ nE-posta adresiniz: {e-posta}</target>
       </trans-unit>
       <trans-unit id="8OKAPr6" resname="Sie erhalten diese E-Mail, weil Sie zu einer Videokonferenz eingeladen wurden.">
         <source>Sie erhalten diese E-Mail, weil Sie zu einer Videokonferenz eingeladen wurden.</source>
-        <target state="needs-translation">Sie erhalten diese E-Mail, weil Sie zu einer Videokonferenz eingeladen wurden.</target>
+        <target state="translated">Bu e-postayı bir video konferansa davet edildiğiniz için aldınız.</target>
       </trans-unit>
       <trans-unit id="13JKXFh" resname="Sie wurden zu einem Jitsi-Meet-Server hinzugefügt">
         <source>Sie wurden zu einem Jitsi-Meet-Server hinzugefügt</source>
-        <target state="needs-translation">Sie wurden zu einem Jitsi-Meet-Server hinzugefügt</target>
+        <target state="translated">Bir Jitsi Meet sunucusuna eklendiniz</target>
       </trans-unit>
       <trans-unit id="h0jrwnB" resname="Sie haben sich bereits angemeldet. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.">
         <source>Sie haben sich bereits angemeldet. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.</source>
-        <target state="needs-translation">Sie haben sich bereits angemeldet. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.</target>
+        <target state="translated">Kayıt işleminiz başarı ile sonuçlandı. Lütfen e-postadaki bağlantıya tıklayarak kaydınızı onaylayın.</target>
       </trans-unit>
       <trans-unit id="CITuA1U" resname="Sie haben sich bereits angemeldet.">
         <source>Sie haben sich bereits angemeldet.</source>
-        <target state="needs-translation">Sie haben sich bereits angemeldet.</target>
+        <target state="translated">Kaydınız mevcuttur.</target>
       </trans-unit>
       <trans-unit id="5w8fLA7" resname="Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.">
         <source>Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.</source>
-        <target state="needs-translation">Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.</target>
+        <target state="translated">Kaydınız için teşekkür ederiz. Lütfen size gönderdiğimiz e-postadaki e-posta adresinizi onaylayın.</target>
       </trans-unit>
       <trans-unit id="o43JPX0" resname="Bestätigung ihrer Anmeldung zur Veranstaltung: {name}">
         <source>Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</source>
-        <target state="needs-translation">Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</target>
+        <target state="translated">Etkinliğe kaydınızın onayı: {ad}</target>
       </trans-unit>
       <trans-unit id="vnxSnbr" resname="Ungültige Email. Bitte überprüfen Sie ihre Emailadresse.">
         <source>Ungültige Email. Bitte überprüfen Sie ihre Emailadresse.</source>
-        <target state="needs-translation">Ungültige Email. Bitte überprüfen Sie ihre Emailadresse.</target>
+        <target state="translated">Geçersiz e-posta. Lütfen e-posta adresinizi kontrol ediniz.</target>
       </trans-unit>
       <trans-unit id="fSvJmaS" resname="Danke für die Anmeldung. ">
         <source>Danke für die Anmeldung. </source>
-        <target state="needs-translation">Danke für die Anmeldung. </target>
+        <target state="translated">Kaydınız için teşekkür ederiz.</target>
       </trans-unit>
       <trans-unit id="Vf9TBUu" resname="Erfolgreich bestätigt">
         <source>Erfolgreich bestätigt</source>
-        <target state="needs-translation">Erfolgreich bestätigt</target>
+        <target state="translated">Başarıyla onaylandı</target>
       </trans-unit>
       <trans-unit id="vpf7rgl" resname="Die maximale Teilnehmeranzahl ist bereits erreicht.">
         <source>Die maximale Teilnehmeranzahl ist bereits erreicht.</source>
-        <target state="needs-translation">Die maximale Teilnehmeranzahl ist bereits erreicht.</target>
+        <target state="translated">Maksimum katılımcı sayısına zaten ulaşıldı.</target>
       </trans-unit>
       <trans-unit id="9swBy37" resname="Fehler">
         <source>Fehler</source>
-        <target state="needs-translation">Fehler</target>
+        <target state="translated">Hata</target>
       </trans-unit>
       <trans-unit id="UbWO4Tu" resname="Fehler, Bitte klicken Sie den link erneut an.">
         <source>Fehler, Bitte klicken Sie den link erneut an.</source>
-        <target state="needs-translation">Fehler, Bitte klicken Sie den link erneut an.</target>
+        <target state="translated">Hata, lütfen bağlantıyı tekrar tıklayın.</target>
       </trans-unit>
       <trans-unit id="IrOsoSS" resname="Dieser Link ist ungültig. Wahrscheinlich wurde er bereits bestätigt.">
         <source>Dieser Link ist ungültig. Wahrscheinlich wurde er bereits bestätigt.</source>
-        <target state="needs-translation">Dieser Link ist ungültig. Wahrscheinlich wurde er bereits bestätigt.</target>
+        <target state="translated">Bu bağlantı geçersiz. Muhtemelen zaten onaylanmıştır.</target>
       </trans-unit>
       <trans-unit id="H.AIftf" resname="Neue Einladung zu einer Videokonferenz">
         <source>Neue Einladung zu einer Videokonferenz</source>
-        <target state="needs-translation">Neue Einladung zu einer Videokonferenz</target>
+        <target state="translated">Video konferans için yeni davetiye</target>
       </trans-unit>
       <trans-unit id="V1ii19H" resname="Videokonferenz wurde bearbeitet">
         <source>Videokonferenz wurde bearbeitet</source>
-        <target state="needs-translation">Videokonferenz wurde bearbeitet</target>
+        <target state="translated">Video konferans düzenlendi</target>
       </trans-unit>
       <trans-unit id="oc5PDog" resname="Videokonferenz abgesagt">
         <source>Videokonferenz abgesagt</source>
-        <target state="needs-translation">Videokonferenz abgesagt</target>
+        <target state="translated">Video konferans iptal edildi</target>
       </trans-unit>
       <trans-unit id="8HIY3sH" resname="Videokonferenz {room} startet gleich">
         <source>Videokonferenz {room} startet gleich</source>
-        <target state="needs-translation">Videokonferenz {room} startet gleich</target>
+        <target state="translated">Video konferansı {oda} başlamak üzere</target>
       </trans-unit>
       <trans-unit id="cfdSBrO" resname="Fehler, Der User wurde nicht gefunden">
         <source>Fehler, Der User wurde nicht gefunden</source>
-        <target state="needs-translation">Fehler, Der User wurde nicht gefunden</target>
+        <target state="translated">Hata, kullanıcı bulunamadı</target>
       </trans-unit>
       <trans-unit id="_jBye0V" resname="Fehler, Der Server wurde nicht gefunden">
         <source>Fehler, Der Server wurde nicht gefunden</source>
-        <target state="needs-translation">Fehler, Der Server wurde nicht gefunden</target>
+        <target state="translated">Hata, sunucu bulunamadı</target>
       </trans-unit>
       <trans-unit id="f3YYUGJ" resname="Konferenz mit {n}">
         <source>Konferenz mit {n}</source>
-        <target state="needs-translation">Konferenz mit {n}</target>
+        <target state="translated">{n} ile konferans</target>
       </trans-unit>
       <trans-unit id="9GGCLP1" resname="Der Moderator wurde erfolgreich hinzugefügt">
         <source>Der Moderator wurde erfolgreich hinzugefügt</source>
-        <target state="needs-translation">Der Moderator wurde erfolgreich hinzugefügt</target>
+        <target state="translated">Moderatör başarıyla eklendi</target>
       </trans-unit>
       <trans-unit id="dIC9IrN" resname="Zugangsdaten in das Formular eingeben">
         <source>Zugangsdaten in das Formular eingeben</source>
-        <target state="needs-translation">Zugangsdaten in das Formular eingeben</target>
+        <target state="translated">Erişim verilerini forma girin</target>
       </trans-unit>
       <trans-unit id="G2uTOjB" resname="Konferenz nicht gefunden. Zugangsdaten erneut eingeben">
         <source>Konferenz nicht gefunden. Zugangsdaten erneut eingeben</source>
-        <target state="needs-translation">Konferenz nicht gefunden. Zugangsdaten erneut eingeben</target>
+        <target state="translated">Konferans bulunamadı. Oturum açma verilerini tekrar girin</target>
       </trans-unit>
       <trans-unit id="FD0bqtt" resname="Jitsi-Meet-Server bearbeiten">
         <source>Jitsi-Meet-Server bearbeiten</source>
-        <target state="needs-translation">Jitsi-Meet-Server bearbeiten</target>
+        <target state="translated">Jitsi Meet sunucusunu düzenleyin</target>
       </trans-unit>
       <trans-unit id="zeZVk._" resname="Jitsi-Meet-Server erstellen">
         <source>Jitsi-Meet-Server erstellen</source>
-        <target state="needs-translation">Jitsi-Meet-Server erstellen</target>
+        <target state="translated">Jitsi Meet sunucusu oluşturun</target>
       </trans-unit>
       <trans-unit id="c69DPqK" resname="Jitsi-Admin Enterprise Einstellungen">
         <source>Jitsi-Admin Enterprise Einstellungen</source>
-        <target state="needs-translation">Jitsi-Admin Enterprise Einstellungen</target>
+        <target state="translated">Jitsi-Admin Enterprise ayarları</target>
       </trans-unit>
       <trans-unit id="hpwhjtz" resname="Organisator zu Server hinzufügen">
         <source>Organisator zu Server hinzufügen</source>
-        <target state="needs-translation">Organisator zu Server hinzufügen</target>
+        <target state="translated">Organizatörü sunucuya ekle</target>
       </trans-unit>
       <trans-unit id="kaqu5DF" resname="Berechtigung gelöscht">
         <source>Berechtigung gelöscht</source>
-        <target state="needs-translation">Berechtigung gelöscht</target>
+        <target state="translated">Yetki silindi</target>
       </trans-unit>
       <trans-unit id="85TO077" resname="Server gelöscht">
         <source>Server gelöscht</source>
-        <target state="needs-translation">Server gelöscht</target>
+        <target state="translated">Sunucu silindi</target>
       </trans-unit>
       <trans-unit id="AxonmHj" resname="SMTP Einstellungen korrekt. Sie sollten in Kürze eine Email erhalten">
         <source>SMTP Einstellungen korrekt. Sie sollten in Kürze eine Email erhalten</source>
-        <target state="needs-translation">SMTP Einstellungen korrekt. Sie sollten in Kürze eine Email erhalten</target>
+        <target state="translated">SMTP ayarları doğru. Kısa süre içinde bir e-posta alacaksınız</target>
       </trans-unit>
       <trans-unit id="Nv4YxL3" resname="Fehler, der Server ist nicht registriert">
         <source>Fehler, der Server ist nicht registriert</source>
-        <target state="needs-translation">Fehler, der Server ist nicht registriert</target>
+        <target state="translated">Hata, sunucu kayıtlı değil</target>
       </trans-unit>
       <trans-unit id="4.zj4c0" resname="Testmail vom Jitsi-Admin">
         <source>Testmail vom Jitsi-Admin</source>
-        <target state="needs-translation">Testmail vom Jitsi-Admin</target>
+        <target state="translated">Jitsi yöneticisinden test e-postası</target>
       </trans-unit>
       <trans-unit id="ccYxFsK" resname="Sie haben einen SMTP-Server für Ihren Jitsi-Server erfolgreich eingerichtet">
         <source>Sie haben einen SMTP-Server für Ihren Jitsi-Server erfolgreich eingerichtet</source>
-        <target state="needs-translation">Sie haben einen SMTP-Server für Ihren Jitsi-Server erfolgreich eingerichtet</target>
+        <target state="translated">Jitsi sunucunuz için başarıyla bir SMTP sunucusu kurdunuz</target>
       </trans-unit>
       <trans-unit id="F2PfdIA" resname="Fehler, Ihre SMTP-Parameter sind fehlerhaft">
         <source>Fehler, Ihre SMTP-Parameter sind fehlerhaft</source>
@@ -1277,31 +1277,31 @@
       </trans-unit>
       <trans-unit id="zlMIXQd" resname="Agenda:">
         <source>Agenda:</source>
-        <target state="needs-translation">Agenda:</target>
+        <target state="translated">Gündem:</target>
       </trans-unit>
       <trans-unit id="w0Xvp3Y" resname="Zusätzliche Infos:">
         <source>Zusätzliche Infos:</source>
-        <target state="needs-translation">Zusätzliche Infos:</target>
+        <target state="translated">Ek bilgiler:</target>
       </trans-unit>
       <trans-unit id="dGkfpsd" resname="Wollen Sie den Teilnehmer wirklich von dem Event löschen">
         <source>Wollen Sie den Teilnehmer wirklich von dem Event löschen</source>
-        <target state="needs-translation">Wollen Sie den Teilnehmer wirklich von dem Event löschen</target>
+        <target state="translated">Katılımcıyı etkinlikten gerçekten silmek istiyor musunuz</target>
       </trans-unit>
       <trans-unit id="B18VKk9" resname="Veranstalter">
         <source>Veranstalter</source>
-        <target state="needs-translation">Veranstalter</target>
+        <target state="translated">Etkinlik sorumlusu</target>
       </trans-unit>
       <trans-unit id="38e6XTu" resname="Zum Standort">
         <source>Zum Standort</source>
-        <target state="needs-translation">Zum Standort</target>
+        <target state="translated">Yer</target>
       </trans-unit>
       <trans-unit id="TsZBGW6" resname="Zusätzliche Info">
         <source>Zusätzliche Info</source>
-        <target state="needs-translation">Zusätzliche Info</target>
+        <target state="translated">Ek Bilgiler</target>
       </trans-unit>
       <trans-unit id="QSACCbS" resname="Sie haben doppelte E-Mail Adressen eingetragen">
         <source>Sie haben doppelte E-Mail Adressen eingetragen</source>
-        <target state="needs-translation">Sie haben doppelte E-Mail Adressen eingetragen</target>
+        <target state="translated">Yinelenen e-posta adresleri girdiniz</target>
       </trans-unit>
     </body>
   </file>
