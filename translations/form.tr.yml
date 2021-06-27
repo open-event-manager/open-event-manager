@@ -34,42 +34,42 @@ label:
     roomnumber: Oda numarası
   beitretenApp: Elektron-App ile giriş yapın
   beitretenBrowser: Tarayıcı ile giriş yapın
-  serverSmtpHostName: SMTP-Hostname
-  serverSmtpHostPort: SMTP-Port
-  serverSmtpEncryption: Verschlüsselung
-  serverSmtpUsername: SMTP-Benutzername
-  serverSmtpPassword: SMTP Passwort
-  serverSmtpSenderEmail: Absender-E-Mail
-  serverSmtpSenderName: Absender-Name
-  serverLintLogo: Link zu Logo
-  serverPrivacyPolicy: Datenschutzhinweise für diesen Server
-  serverEmailHeader: Individuelle Überschrift für Email
-  serverEmailBody: Individuellen Content für Email
-  serverLicenseKey: Event-Manager Lizenzkey eingeben
-  apiKey: Api-Key für diesen Server
-  agenda: Kurze Agenda für dieses Event (Markdown)
-  staticBackgroundColor: Hintergrundfarbe auf der Joinseite festlegen
-  schowStaticBackgroundColor: Zeige eine feste Farbe, anstatt Bildern auf der Joinseite
-  puplicRoom: Einladungslinks freischalten
-  showRoomOnJoinpage: Event auf Standortseite anzeigen
-  showRoomOnCalendar: Event im globalen Kalender anzeigen
-  subscribe: Anmelden
-  vorname: Vorname
-  nachname: Nachname
-  maxParticipants: Maximale Anzahl an Teilnehmer zulassen
-  waitinglist: Warteliste aktivieren
-  phone: Telefonnummer
-  maxWaitingList: Maximale Teilnehmer auf der Warteliste
-  allowGroups: Erlaube Gruppenameldung
-  maxGroupSize: Maximale Gruppengröße
-  address: Adresse
-  entryDateTime: Einlass
-  promoter: Veranstalter
-  additionalInfo: Zusätzliche Info (Markdown)
+  serverSmtpHostName: SMTP Sunucusu
+  serverSmtpHostPort: SMTP Bağlantı Noktası
+  serverSmtpEncryption: Şifreleme
+  serverSmtpUsername: SMTP Kullanıcı Adı
+  serverSmtpPassword: SMTP Şifresi
+  serverSmtpSenderEmail: Gönderici E-postası
+  serverSmtpSenderName: Gönderen İsmi
+  serverLintLogo: Logoya Bağlan
+  serverPrivacyPolicy: Bu sunucu için veri koruma bilgileri
+  serverEmailHeader: E-posta için ayrı başlık
+  serverEmailBody: E-posta için bireysel içerik
+  serverLicenseKey: Olay yöneticisi lisans anahtarını girin
+  apiKey: Bu sunucu için API anahtarı
+  agenda: Bu etkinlik için kısa gündem
+  staticBackgroundColor: Katılma sayfasındaki arka plan rengini ayarlayın
+  schowStaticBackgroundColor: Katılma sayfasında resimler yerine sabit bir renk göster
+  puplicRoom: Davet bağlantılarını etkinleştir
+  showRoomOnJoinpage: Olayı konum sayfasında göster
+  showRoomOnCalendar: Etkinliği küresel takvimde göster
+  subscribe: Giriş Yap
+  vorname: Ad
+  nachname: Soyad
+  maxParticipants: Maksimum katılımcı sayısına izin ver
+  waitinglist: Bekleme listesini etkinleştirin
+  phone: Telefon Numarası
+  maxWaitingList: Bekleme listesindeki maksimum katılımcı sayısı
+  allowGroups: Grup kaydına izin ver
+  maxGroupSize: Maksimum grup sayısı
+  address: Adres
+  entryDateTime: Giriş
+  promoter: Etkinlik sorumlusu
+  additionalInfo: Ek bilgi (markdown)
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
-  none: Keine
+  none: Yok
 placeholder:
-  maxParticipants: Keine Limitierung
+  maxParticipants: Limitsiz
 
