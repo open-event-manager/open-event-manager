@@ -1303,6 +1303,10 @@
         <source>Sie haben doppelte E-Mail Adressen eingetragen</source>
         <target>Sie haben doppelte E-Mail Adressen eingetragen</target>
       </trans-unit>
+      <trans-unit id="jlQkaH8" resname="Angemeldete Gruppenmitglieder">
+        <source>Angemeldete Gruppenmitglieder</source>
+        <target>Angemeldete Gruppenmitglieder</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
