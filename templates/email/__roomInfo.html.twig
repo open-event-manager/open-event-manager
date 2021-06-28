@@ -17,6 +17,17 @@
         {{ 'Zusätzliche Infos:'|trans }}:<br> {{ room.additionalInfo|markdown_to_html }}<br>
     {% endif %}
 </p>
+{% if room is defined and user is defined %}
+    {% set members =  userFromUsergroup(user, room) %}
+    {% if members|length > 0 %}
+        <b>{{ 'Angemeldete Gruppenmitglieder '|trans }}:</b>
+        <ul>
+            {% for m in members %}
+                <li>{{ m.firstName }} {{ m.lastName }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
 <b>Standort:</b>
 <p>{{ room.standort.name }}<br>
     {{ room.standort.roomnumber?room.standort.roomnumber }}<br>
