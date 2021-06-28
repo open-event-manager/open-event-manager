@@ -45,7 +45,6 @@ class GroupUtils extends AbstractExtension
             new TwigFunction('atendeeIsInGroup', [$this, 'atendeeIsInGroup']),
             new TwigFunction('getUserWhichAreNotMemeber', [$this, 'getUserWhichAreNotMemeber']),
             new TwigFunction('userFromUsergroup', [$this, 'userFromUsergroup']),
-            new TwigFunction('groupFromUSerAndRoom', [$this, 'groupFromUSerAndRoom']),
         ];
     }
 
@@ -68,10 +67,6 @@ class GroupUtils extends AbstractExtension
     {
         return $this->em->getRepository(User::class)->getUserWhichAreNotMemeber( $rooms);
     }
-    public function groupFromUSerAndRoom( Rooms $rooms, User $user)
-    {
-        return $this->em->getRepository(Group::class)->findOneBy(array('leader'=>$user,'rooms'=>$rooms));
 
-    }
 
 }
