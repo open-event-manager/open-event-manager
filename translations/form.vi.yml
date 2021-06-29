@@ -12,13 +12,19 @@ label.konferenzName: Name des Events
 label.start: Bắt đầu
 label.dauerKonferenz: Dauer des Events
 label.speichern: Lưu
+option.10min: 10 Minuten
 option.15min: 15 Phút
 option.30min: 30 Phút
 option.45min: 45 Phút
 option.60min: 60 Phút
 option.90min: 1,5 Giờ
 option.120min: 2 Giờ
+option.150min: 2,5 Stunden
+option.180min: 3 Stunden
+option.210min: 3,5 Stunden
 option.240min: 4 Giờ
+option.270min: 4,5 Stunden
+option.300min: 5 Stunden
 option.480min: 8 Giờ
 label.scheduleMeeting: Sắp xếp cuộc họp
 help:
