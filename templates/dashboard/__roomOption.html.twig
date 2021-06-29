@@ -17,6 +17,9 @@
         <li><a class="dropdown-item confirmHref"
                href="{{ path('room_remove',{'room':room.id}) }}">
                 {{ 'Löschen'|trans }}</a></li>
+        <li><a class="dropdown-item confirmHref"
+               href="{{ path('room_repeat_send',{'id':room.id}) }}">
+                {{ 'Einladungsemail erneut senden'|trans }}</a></li>
         {% if not room.scheduleMeeting %}
             <li><a href="{{ path('room_new',{'id':room.id}) }}"
                    class="loadContent dropdown-item">
