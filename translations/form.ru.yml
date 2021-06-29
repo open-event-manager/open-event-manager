@@ -12,13 +12,19 @@ label.konferenzName: Название мероприятия
 label.start: пуск
 label.dauerKonferenz: Продолжительность мероприятия
 label.speichern: Сохранить
+option.10min: 10 Minuten
 option.15min: 15 минут
 option.30min: 30 минут
 option.45min: 45 минут
 option.60min: 1 Час
 option.90min: 1,5 часа
 option.120min: 2 часа
+option.150min: 2,5 Stunden
+option.180min: 3 Stunden
+option.210min: 3,5 Stunden
 option.240min: 4 часа
+option.270min: 4,5 Stunden
+option.300min: 5 Stunden
 option.480min: 8 часов
 label.scheduleMeeting: Организовать встречу
 help:
