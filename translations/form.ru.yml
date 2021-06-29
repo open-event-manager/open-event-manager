@@ -1,16 +1,16 @@
 ---
-label.konferenzId: Event ID
-label.email: E-Mail-Adresse
-label.name: Name
-label.teilnehmerEmailhinzufuegen: E-Mail-Adresse von neuen Teilnehmern eingeben
-label.teilnehmerSpeichern: Einladungsemail versenden
-label.emailModerator: E-Mail-Adresse des Organisators eingeben
+label.konferenzId: ID события
+label.email: Адрес электронной почты
+label.name: Имя получателя
+label.teilnehmerEmailhinzufuegen: Введите адрес электронной почты новых участников
+label.teilnehmerSpeichern: Отправить приглашения
+label.emailModerator: Введите адрес электронной почты организатора
 help.emailTextfeld: Es können mehrere E-Mail-Adressen auf einmal hinzugefügt werden. Jede E-Mail-Adresse muss in eine neue Zeile geschrieben werden.
-label.organisatorhinzufuegen: Organisator hinzufügen
-label.serverKonferenz: Standort auswählen
-label.konferenzName: Name des Events
-label.start: Start
-label.dauerKonferenz: Dauer des Events
+label.organisatorhinzufuegen: Добавить организатора
+label.serverKonferenz: Выберите регион
+label.konferenzName: Название мероприятия
+label.start: пуск
+label.dauerKonferenz: Продолжительность мероприятия
 label.speichern: Speichern
 option.15min: 15 Minuten
 option.30min: 30 Minuten
