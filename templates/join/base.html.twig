@@ -91,21 +91,33 @@
                             <div class="row">
                                 <div class="col-12 text-center">
                                     {% if not standort %}
-                                        <p>
-                                            {% trans %}Wer eine datenschutzfreundliche Event-Manager Software benötigt, kommt um den Open Event-Manager nicht herum{% endtrans %}
-                                        </p>
+                                        {% if laf_customTextOnCalenderView is defined and laf_customTextOnCalenderView is not null and laf_customTextOnCalenderView != "hide"  and laf_customTextOnCalenderView != "" %}
+                                            <p>
+                                                {{ laf_customTextOnCalenderView | raw }}
+                                            </p>
+                                        {% elseif laf_customTextOnCalenderView is defined and laf_customTextOnCalenderView is not null and laf_customTextOnCalenderView == "hide" %}
+                                        {% else %}
+                                            <p>
+                                                {% trans %}Wer eine datenschutzfreundliche Event-Manager Software benötigt, kommt um den Open Event-Manager nicht herum{% endtrans %}
+                                            </p>
+                                        {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
 
                         </div>
+                        {% if laf_hideButtonsOnCalenderView is defined and laf_hideButtonsOnCalenderView is not null and laf_hideButtonsOnCalenderView != true %}
                         <div class="card-footer text-center">
                             <a href="{{ path('index') }}"
                                class="btn btn-outline-danger btn-sm">{{ 'Startseite'|trans }}</a>
+                            {% if laf_hideDashboardOnCalenderView is defined and laf_hideDashboardOnCalenderView is not null and laf_hideDashboardOnCalenderView != true %}
                             <a href="{{ path('dashboard') }}"
                                class="btn btn-outline-elegant btn-sm">{{ 'Dashboard'|trans }}</a>
+                            {% endif %}
+                            {% if laf_hideRegistrationOnCalenderView is defined and laf_hideRegistrationOnCalenderView is not null and laf_hideRegistrationOnCalenderView != true %}
                             <a href="{{ path('register_keycloak') }}"
                                class="btn btn-outline-cyan btn-sm">{{ 'Registrieren'|trans }}</a>
+                            {% endif %}
                             <a href="{{ helpUrlParticipants }}" target="_blank"
                                class="btn btn-outline-amber btn-sm">{{ 'Hilfe'|trans }}</a>
                             {% if server is defined and  server is not null and server|validateLicense and server.showStaticBackgroundColor and server.staticBackgroundColor is not null %}
@@ -122,6 +134,7 @@
 
                             {% endif %}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
 
