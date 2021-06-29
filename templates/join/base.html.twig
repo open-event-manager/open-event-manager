@@ -141,15 +141,14 @@
                             {% if standort is defined and  standort is not null and standort|validateLicense %}
 
                             {% else %}
-                                <a href="https://jitsi-admin.de" target="_blank" class="small"><img
+                                <a href="https://app.open-event-manager.de/" target="_blank" class="small"><img
                                             src="{{ asset('logo.png') }}" style="height: 50px"></a>
                             {% endif %}
                         </div>
                         <div class="col-md-6">
                             <a href="{{ dataPrivacy }}" target="_blank"
                                class="small">{{ 'Datenschutzhinweis'|trans }}</a><br>
-                            <a href="https://jitsi-admin.de" target="_blank" class="small">Powered by Jitsi
-                                Admin</a><br>
+                            <a href="https://app.open-event-manager.de" target="_blank" class="small">Powered by Open-Event-Manager</a><br>
                             {% if matomo_enable == 'true' %}
                                 <a class="small" href="#" data-toggle="modal" data-target="#exampleModal">
                                     Matomo Opt-out
@@ -160,7 +159,7 @@
                                 • v{{ laf_version }}</a>
                         </div>
                         <div class="col-md-2 text-md-center d-none d-sm-block">
-                            <a href="https://github.com/H2-invent/jitsi-admin/blob/master/LICENSE" target="_blank"
+                            <a href="https://github.com/open-event-manager/open-event-manager/blob/master/LICENSE" target="_blank"
                                referrerpolicy="no-referrer" rel="noopener"> <img src="{{ asset('images/agpl.png') }}"
                                                                                  style="width: 100%"></a>
                         </div>
