@@ -264,7 +264,7 @@ class SubcriptionService
         $rooms->addUser($user);
         $rooms->removeStorno($user);
 
-        $this->userService->addUser($user, $rooms);
+
         if ($group) {
             foreach ($group->getMembers() as $data) {
                 if (!in_array($data, $rooms->getUser()->toArray())) {
@@ -279,6 +279,7 @@ class SubcriptionService
             }
             $this->em->persist($group);
         }
+        $this->userService->addUser($user, $rooms);
         $this->em->persist($rooms);
         $this->em->flush();
     }

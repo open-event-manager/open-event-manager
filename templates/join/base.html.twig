@@ -52,9 +52,31 @@
 
             </style>
             <div class="row justify-content-center">
-                <div class="col-lg-10 d-flex justify-content-end">
+                <div class="col-lg-10 d-flex justify-content-end align-items-center">
                     <a href="{{ path('dashboard') }}" class="btn btn-primary">{{ 'Login'|trans }}</a>
+
+                        <a class=" dropdown-toggle" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ asset('/images/locale/'~app.request.locale~'.png') }}" class="iconSytle">
+                        </a>
+                        <div class="dropdown-menu" style="min-width: unset; background-color: unset; border: none">
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale':'de'})) }}"><img
+                                        src="{{ asset('/images/locale/de.png') }}" class="iconSytle" alt="Deutsch"></a>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale':'en'})) }}"><img
+                                        src="{{ asset('/images/locale/en.png') }}" class="iconSytle" alt="English"></a>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale':'fr'})) }}"><img
+                                        src="{{ asset('/images/locale/fr.png') }}" class="iconSytle" alt="French"></a>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale':'es'})) }}"><img
+                                        src="{{ asset('/images/locale/es.png') }}" class="iconSytle" alt="Español"></a>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale':'vi'})) }}"><img
+                                        src="{{ asset('/images/locale/vi.png') }}" class="iconSytle" alt="Tiếng Việt"></a>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params') | merge({'_locale':'zh'})) }}"><img
+                                        src="{{ asset('/images/locale/zh.png') }}" class="iconSytle" alt="中国人"></a>
+
+                        </div>
+
                 </div>
+
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-10 ">

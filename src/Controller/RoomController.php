@@ -197,6 +197,7 @@ class RoomController extends AbstractController
             $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
+
             if($user->isMemeberInGroup($room)){
                 $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
                 $em->persist($user);

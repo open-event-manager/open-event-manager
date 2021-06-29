@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Group;
 use App\Entity\Rooms;
 use App\Entity\User;
 use App\Service\NotificationService;
@@ -41,6 +42,7 @@ class StornoController extends AbstractController
     {
         $rooms = $this->getDoctrine()->getRepository(Rooms::class)->findOneBy(array('uid'=>$uidRoom));
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(array('uid'=>$uidUser));
+        $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms'=>$rooms,'leader'=>$user));
         if(!$user || !$rooms){
             throw new NotFoundHttpException('Not found');
         }
@@ -53,6 +55,22 @@ class StornoController extends AbstractController
         $em->persist($rooms);
         $em->flush();
         $userService->removeRoom($user,$rooms);
+        if($group){
+            foreach ($group->getMembers() as $data){
+                $rooms->removeUser($data);
+                $rooms->addStorno($data);
+                $group->removeMember($data);
+                $userService->removeRoom($data,$rooms);
+                $em->persist($rooms);
+                $em->persist($group);
+
+            }
+            $em->flush();
+            $em->remove($group);
+            $em->flush();
+        }
+        $em->flush();
+
         if(sizeof($rooms->getWaitinglists())>0){
             $contentModerator = $this->renderView('email/userCancelSubscription.html.twig',array('room'=>$rooms));
             $subjectModerator= $translator->trans('Stornierung einer Teilnahme in dem Event {name}',array('{name}'=>$rooms->getName()));
