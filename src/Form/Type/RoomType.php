@@ -47,13 +47,19 @@ class RoomType extends AbstractType
                 'label' => 'label.dauerKonferenz',
                 'translation_domain' => 'form',
                 'choices' => [
+                    'option.10min' => 10,
                     'option.15min' => 15,
                     'option.30min' => 30,
                     'option.45min' => 45,
                     'option.60min' => 60,
                     'option.90min' => 90,
                     'option.120min' => 120,
+                    'option.150min' => 150,
+                    'option.180min' => 180,
+                    'option.210min' => 210,
                     'option.240min' => 240,
+                    'option.270min' => 270,
+                    'option.300min' => 300,
                     'option.480min' => 480,
                 ]
             ])

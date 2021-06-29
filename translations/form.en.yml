@@ -12,13 +12,19 @@ label.konferenzName: Event name
 label.start: Start
 label.dauerKonferenz: Event duration
 label.speichern: Save
+option.10min: 10 minutes
 option.15min: 15 minutes
 option.30min: 30 minutes
 option.45min: 45 minutes
 option.60min: 1 hour
 option.90min: 1,5 hours
 option.120min: 2 hours
+option.150min: 2,5 hours
+option.180min: 3 hours
+option.210min: 3,5 hours
 option.240min: 4 hours
+option.270min: 4,5 hours
+option.300min: 5 hours
 option.480min: 8 hours
 label.scheduleMeeting: Create an appointment poll
 help:

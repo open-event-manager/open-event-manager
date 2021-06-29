@@ -13,13 +13,19 @@ label.start: Start
 label.dauerKonferenz: Dauer der Konferenz
 label.nurRegistriertenutzer: Nur registrierte Benutzer dürfen der Konferenz beitreten
 label.speichern: Speichern
+option.10min: 10 Minuten
 option.15min: 15 Minuten
 option.30min: 30 Minuten
 option.45min: 45 Minuten
 option.60min: 1 Stunde
 option.90min: 1,5 Stunden
 option.120min: 2 Stunden
+option.150min: 2,5 Stunden
+option.180min: 3 Stunden
+option.210min: 3,5 Stunden
 option.240min: 4 Stunden
+option.270min: 4,5 Stunden
+option.300min: 5 Stunden
 option.480min: 8 Stunden
 lable.serverUrl: Jitsi-Meet-Server URL
 label.appId: App-ID
