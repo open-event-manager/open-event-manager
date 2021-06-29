@@ -1307,6 +1307,10 @@
         <source>Angemeldete Gruppenmitglieder</source>
         <target state="needs-translation">Angemeldete Gruppenmitglieder</target>
       </trans-unit>
+      <trans-unit id="XTEucW9" resname="Einladungsemail erneut senden">
+        <source>Einladungsemail erneut senden</source>
+        <target state="needs-translation">Einladungsemail erneut senden</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
