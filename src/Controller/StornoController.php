@@ -6,6 +6,7 @@ use App\Entity\Group;
 use App\Entity\Rooms;
 use App\Entity\User;
 use App\Service\NotificationService;
+use App\Service\ParticipantsStornoService;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +39,7 @@ class StornoController extends AbstractController
     /**
      * @Route("/public/storno/accept/{uidRoom}/{uidUser}", name="storno_accept")
      */
-    public function accept($uidRoom, $uidUser, UserService $userService,TranslatorInterface $translator, NotificationService $notificationService): Response
+    public function accept(ParticipantsStornoService $participantsStornoService,$uidRoom, $uidUser, UserService $userService,TranslatorInterface $translator, NotificationService $notificationService): Response
     {
         $rooms = $this->getDoctrine()->getRepository(Rooms::class)->findOneBy(array('uid'=>$uidRoom));
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(array('uid'=>$uidUser));
@@ -49,28 +50,7 @@ class StornoController extends AbstractController
         if(!in_array($user,$rooms->getUser()->toArray())){
             throw new NotFoundHttpException('User not registered in Event');
         }
-        $em = $this->getDoctrine()->getManager();
-        $rooms->removeUser($user);
-        $rooms->addStorno($user);
-        $em->persist($rooms);
-        $em->flush();
-        $userService->removeRoom($user,$rooms);
-        if($group){
-            foreach ($group->getMembers() as $data){
-                $rooms->removeUser($data);
-                $rooms->addStorno($data);
-                $group->removeMember($data);
-                $userService->removeRoom($data,$rooms);
-                $em->persist($rooms);
-                $em->persist($group);
-
-            }
-            $em->flush();
-            $em->remove($group);
-            $em->flush();
-        }
-        $em->flush();
-
+        $participantsStornoService->removeParticipants($rooms,$user,$group);
         if(sizeof($rooms->getWaitinglists())>0){
             $contentModerator = $this->renderView('email/userCancelSubscription.html.twig',array('room'=>$rooms));
             $subjectModerator= $translator->trans('Stornierung einer Teilnahme in dem Event {name}',array('{name}'=>$rooms->getName()));
