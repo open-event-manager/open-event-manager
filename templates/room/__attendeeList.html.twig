@@ -9,6 +9,8 @@
 {{ 'Email'|trans }}: <a href='mailto:{{ user.email }}'>{{ user.email }}</a><br>
                                 {{ 'Telefon'|trans }}: <a href='tel:{{ user.phone }}'>{{ user.phone }}</a>"><i
                         class="fa fa-info-circle"></i></a>
+            <a href="{{ path('room_repeat_user',{'id':room.id,'user_id':user.id}) }}" title="{{ 'Einladungsemail erneut senden'|trans }}"><i class="far fa-share-square"></i></a>
+
             <a class="small directSend {% if roomPermissions(user,room).moderator == true %}text-success{% endif %}"
                href="{{ path('room_add_moderator',{'room':room.id,'user':user.id}) }}"
                data-text="
@@ -65,6 +67,7 @@
 {{ 'Email'|trans }}: <a href='mailto:{{ u.email }}'>{{ u.email }}</a><br>
                               </a>"> <i
                                         class="fa fa-info-circle"></i></a>
+                            <a href="{{ path('room_repeat_user',{'id':room.id,'user_id':u.id}) }}" title="{{ 'Einladungsemail erneut senden'|trans }}"><i class="far fa-share-square"></i></a>
                             <a class="small confirmHref"
                                             href="{{ path('room_user_remove',{'room':room.id,'user':u.id}) }}"><i
                                         class="fa fa-trash"></i> </a></li>

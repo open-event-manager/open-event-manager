@@ -16,18 +16,36 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RepeatSendController extends AbstractController
 {
     /**
-     * @Route("/rooms/repeat/send", name="room_repeat_send")
+     * @Route("/rooms/repeat/sendAll", name="room_repeat_send")
      */
-    public function index(Request $request,UserService $userService,TranslatorInterface $translator): Response
+    public function index(Request $request, UserService $userService, TranslatorInterface $translator): Response
     {
         $room = $this->getDoctrine()->getRepository(Rooms::class)->find($request->get('id'));
-        if($room->getModerator() !== $this->getUser()){
+        if ($room->getModerator() !== $this->getUser()) {
             throw new NotFoundHttpException('Event not Found');
         }
-        foreach ($room->getUser() as $data){
-            $userService->addUser($data,$room);
+        foreach ($room->getUser() as $data) {
+            $userService->addUser($data, $room);
         }
-        return $this->redirectToRoute('dashboard',array('snack'=>$translator->trans('Teilnehmer wurden eingeladen')));
+        return $this->redirectToRoute('dashboard', array('snack' => $translator->trans('Teilnehmer wurden eingeladen')));
 
+    }
+
+    /**
+     * @Route("/rooms/repeat/sendUser", name="room_repeat_user")
+     */
+    public function toOneUser(Request $request, UserService $userService, TranslatorInterface $translator): Response
+    {
+        $room = $this->getDoctrine()->getRepository(Rooms::class)->find($request->get('id'));
+        $user = $this->getDoctrine()->getRepository(User::class)->find($request->get('user_id'));
+
+        if ($room->getModerator() !== $this->getUser()) {
+            throw new NotFoundHttpException('Event not Found');
+        }
+        if (!in_array($user, $room->getUser()->toArray())) {
+            throw new NotFoundHttpException('User not found');
+        }
+        $userService->addUser($user, $room);
+        return $this->redirectToRoute('dashboard', array('snack' => $translator->trans('Teilnehmer wurden eingeladen')));
     }
 }
