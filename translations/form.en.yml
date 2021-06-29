@@ -12,13 +12,19 @@ label.konferenzName: Event name
 label.start: Start
 label.dauerKonferenz: Event duration
 label.speichern: Save
+option.10min: 10 Minuten
 option.15min: 15 minutes
 option.30min: 30 minutes
 option.45min: 45 minutes
 option.60min: 1 hour
 option.90min: 1,5 hours
 option.120min: 2 hours
+option.150min: 2,5 Stunden
+option.180min: 3 Stunden
+option.210min: 3,5 Stunden
 option.240min: 4 hours
+option.270min: 4,5 Stunden
+option.300min: 5 Stunden
 option.480min: 8 hours
 label.scheduleMeeting: Create an appointment poll
 help:
@@ -50,9 +56,9 @@ label:
   agenda: Short agenda for this event (markdown)
   staticBackgroundColor: Set background color for joinpage
   schowStaticBackgroundColor: Show static color instead of pictures on joinpage
-  puplicRoom: Einladungslinks freischalten
+  puplicRoom: Enable invitation links
   showRoomOnJoinpage: Show event on location page
-  showRoomOnCalendar: Event im globalen Kalender anzeigen
+  showRoomOnCalendar: Show in global calendar
   subscribe: Subscribe
   vorname: Firstname
   nachname: Lastname
@@ -62,10 +68,10 @@ label:
   maxWaitingList: Maximum number of people on waiting list
   allowGroups: Allow group registration
   maxGroupSize: Maximum group size
-  address: Adresse
-  entryDateTime: Einlass
-  promoter: Veranstalter
-  additionalInfo: Zusätzliche Info (Markdown)
+  address: Address
+  entryDateTime: Entry
+  promoter: Organizer
+  additionalInfo: Aditional Info (Markdown)
 choice:
   tls: STARTTLS/TLS
   ssl: SSL

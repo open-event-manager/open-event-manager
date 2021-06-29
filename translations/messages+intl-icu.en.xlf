@@ -93,7 +93,7 @@
         <source>Vielen Dank für die Anmeldung. Bitte bestätigen Sie Ihre Emailadresse in der Email, die wir ihnen zugeschickt haben.</source>
         <target state="translated">Thank you vor signing up. Please confirm your email address with the mail, we sent you.</target>
       </trans-unit>
-      <trans-unit id="T.mgfUM" resname="Bestätigung ihrer Anmeldung zur Veranstaltung: {name}">
+      <trans-unit id="o43JPX0" resname="Bestätigung ihrer Anmeldung zur Veranstaltung: {name}">
         <source>Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</source>
         <target state="needs-translation">Bestätigung ihrer Anmeldung zur Veranstaltung: {name}</target>
       </trans-unit>
@@ -1291,6 +1291,18 @@
       <trans-unit id="TsZBGW6" resname="Zusätzliche Info">
         <source>Zusätzliche Info</source>
         <target state="needs-translation">Zusätzliche Info</target>
+      </trans-unit>
+      <trans-unit id="QSACCbS" resname="Sie haben doppelte E-Mail Adressen eingetragen">
+        <source>Sie haben doppelte E-Mail Adressen eingetragen</source>
+        <target state="needs-translation">Sie haben doppelte E-Mail Adressen eingetragen</target>
+      </trans-unit>
+      <trans-unit id="jlQkaH8" resname="Angemeldete Gruppenmitglieder">
+        <source>Angemeldete Gruppenmitglieder</source>
+        <target state="needs-translation">Angemeldete Gruppenmitglieder</target>
+      </trans-unit>
+      <trans-unit id="XTEucW9" resname="Einladungsemail erneut senden">
+        <source>Einladungsemail erneut senden</source>
+        <target state="needs-translation">Einladungsemail erneut senden</target>
       </trans-unit>
     </body>
   </file>

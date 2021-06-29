@@ -1,0 +1,81 @@
+---
+label.konferenzId: Etkinlik Kimliği
+label.email: E-posta Adresi
+label.name: Ad
+label.teilnehmerEmailhinzufuegen: Yeni kullanıcıların e-posta adreslerini girin
+label.teilnehmerSpeichern: Davet gönder
+label.emailModerator: Organizatörün e-posta adresini girin
+help.emailTextfeld: Aynı anda birden fazla e-posta adresi eklenebilir. Her e-posta adresi yeni bir satıra yazılmalıdır.
+label.organisatorhinzufuegen: Organizatörü ekle
+label.serverKonferenz: Konum seç
+label.konferenzName: Etkinliğin adı
+label.start: Başlat
+label.dauerKonferenz: Etkinliğin süresi
+label.speichern: Kaydet
+option.10min: 10 Minuten
+option.15min: 15 dakika
+option.30min: 30 dakika
+option.45min: 45 dakika
+option.60min: 1 saat
+option.90min: 1,5 saat
+option.120min: 2 saat
+option.150min: 2,5 Stunden
+option.180min: 3 Stunden
+option.210min: 3,5 Stunden
+option.240min: 4 saat
+option.270min: 4,5 Stunden
+option.300min: 5 Stunden
+option.480min: 8 saat
+label.scheduleMeeting: Randevu al
+help:
+  serverUrl: '"https://" olmadan giriş yapın (örneğin meet.jit.si)'
+label:
+  standort:
+    name: Ad
+    street: Cadde
+    number: Ev Numarası
+    plz: Posta Kodu
+    city: Şehir
+    directions: Yol Tarifi
+    roomnumber: Oda numarası
+  beitretenApp: Elektron-App ile giriş yapın
+  beitretenBrowser: Tarayıcı ile giriş yapın
+  serverSmtpHostName: SMTP Sunucusu
+  serverSmtpHostPort: SMTP Bağlantı Noktası
+  serverSmtpEncryption: Şifreleme
+  serverSmtpUsername: SMTP Kullanıcı Adı
+  serverSmtpPassword: SMTP Şifresi
+  serverSmtpSenderEmail: Gönderici E-postası
+  serverSmtpSenderName: Gönderen İsmi
+  serverLintLogo: Logoya Bağlan
+  serverPrivacyPolicy: Bu sunucu için veri koruma bilgileri
+  serverEmailHeader: E-posta için ayrı başlık
+  serverEmailBody: E-posta için bireysel içerik
+  serverLicenseKey: Olay yöneticisi lisans anahtarını girin
+  apiKey: Bu sunucu için API anahtarı
+  agenda: Bu etkinlik için kısa gündem
+  staticBackgroundColor: Katılma sayfasındaki arka plan rengini ayarlayın
+  schowStaticBackgroundColor: Katılma sayfasında resimler yerine sabit bir renk göster
+  puplicRoom: Davet bağlantılarını etkinleştir
+  showRoomOnJoinpage: Olayı konum sayfasında göster
+  showRoomOnCalendar: Etkinliği küresel takvimde göster
+  subscribe: Giriş Yap
+  vorname: Ad
+  nachname: Soyad
+  maxParticipants: Maksimum katılımcı sayısına izin ver
+  waitinglist: Bekleme listesini etkinleştirin
+  phone: Telefon Numarası
+  maxWaitingList: Bekleme listesindeki maksimum katılımcı sayısı
+  allowGroups: Grup kaydına izin ver
+  maxGroupSize: Maksimum grup sayısı
+  address: Adres
+  entryDateTime: Giriş
+  promoter: Etkinlik sorumlusu
+  additionalInfo: Ek bilgi (markdown)
+choice:
+  tls: STARTTLS/TLS
+  ssl: SSL
+  none: Yok
+placeholder:
+  maxParticipants: Limitsiz
+

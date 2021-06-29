@@ -1,0 +1,81 @@
+---
+label.konferenzId: ID события
+label.email: Адрес электронной почты
+label.name: Имя получателя
+label.teilnehmerEmailhinzufuegen: Введите адрес электронной почты новых участников
+label.teilnehmerSpeichern: Отправить приглашения
+label.emailModerator: Введите адрес электронной почты организатора
+help.emailTextfeld: Одновременно можно добавить несколько адресов электронной почты. Каждый адрес нужно писать с новой строки. 
+label.organisatorhinzufuegen: Добавить организатора
+label.serverKonferenz: Выберите регион
+label.konferenzName: Название мероприятия
+label.start: пуск
+label.dauerKonferenz: Продолжительность мероприятия
+label.speichern: Сохранить
+option.10min: 10 Minuten
+option.15min: 15 минут
+option.30min: 30 минут
+option.45min: 45 минут
+option.60min: 1 Час
+option.90min: 1,5 часа
+option.120min: 2 часа
+option.150min: 2,5 Stunden
+option.180min: 3 Stunden
+option.210min: 3,5 Stunden
+option.240min: 4 часа
+option.270min: 4,5 Stunden
+option.300min: 5 Stunden
+option.480min: 8 часов
+label.scheduleMeeting: Организовать встречу
+help:
+  serverUrl: 'Введите без "https: //" (например, meet.jit.si)'
+label:
+  standort:
+    name: Имя получателя
+    street: Улица
+    number: Номер дома
+    plz: Почтовый индекс
+    city: Город/поселок
+    directions: Описание подхода
+    roomnumber: Номер офиса
+  beitretenApp: Присоединяйтесь с приложением Elektron
+  beitretenBrowser: Открыть в браузере
+  serverSmtpHostName: SMTP хост
+  serverSmtpHostPort: SMTP порт
+  serverSmtpEncryption: Кодировка
+  serverSmtpUsername: Имя пользователя SMTP
+  serverSmtpPassword: SMTP пароль
+  serverSmtpSenderEmail: Email отправителя
+  serverSmtpSenderName: Имя отправителя
+  serverLintLogo: Ссылка на логотип
+  serverPrivacyPolicy: Информация о защите данных для этого сервера
+  serverEmailHeader: Индивидуальный заголовок для электронной почты
+  serverEmailBody: Индивидуальный контент для электронной почты
+  serverLicenseKey: Введите лицензионный ключ менеджера событий
+  apiKey: Команды для этого сервера
+  agenda: Краткая программа мероприятия (уценка)
+  staticBackgroundColor: Установите цвет фона на странице присоединения
+  schowStaticBackgroundColor: Показывать фиксированный цвет вместо изображений на странице присоединения
+  puplicRoom: Поделиться пригласительной ссылкой
+  showRoomOnJoinpage: Показать мероприятие на странице местоположения
+  showRoomOnCalendar: Показать событие в глобальном календаре
+  subscribe: зарегистрироваться
+  vorname: Имя
+  nachname: Фамилия
+  maxParticipants: Разрешить максимальное количество участников
+  waitinglist: Активировать список ожидания
+  phone: Телефон
+  maxWaitingList: Максимальное количество участников в листе ожидания
+  allowGroups: Разрешить групповую pегистрация
+  maxGroupSize: Макс. размер группы
+  address: адрес
+  entryDateTime: Вход
+  promoter: Организатор
+  additionalInfo: Дополнительная информация (уценка)
+choice:
+  tls: STARTTLS / TLS 
+  ssl: SSL
+  none: Ни одного
+placeholder:
+  maxParticipants: Без ограничений
+
