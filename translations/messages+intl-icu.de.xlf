@@ -1309,7 +1309,7 @@
       </trans-unit>
       <trans-unit id="XTEucW9" resname="Einladungsemail erneut senden">
         <source>Einladungsemail erneut senden</source>
-        <target>__Einladungsemail erneut senden</target>
+        <target>Einladungsemail erneut senden</target>
       </trans-unit>
     </body>
   </file>
