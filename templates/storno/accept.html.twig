@@ -13,7 +13,7 @@
             <h4 class="text-center ">
                 {% trans with {'{name}':user.firstName ~ ' ' ~ user.lastName} %}Hallo {name}{% endtrans %}
             </h4>
-            <p class="text-center">{% trans with {'{event}':room.name} %}Sie haben sich gerade erfolgreich von dem Event:<br><b>{event}</b><br>abgemeldet.{% endtrans %}</p>
+            <p class="text-center">{% trans with {'{firstName}':user.firstName, '{lastName}': user.lastName } %}Hallo {firstName} {lastName}{% endtrans %}</p>
         </div>
 
 
