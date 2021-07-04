@@ -11,7 +11,7 @@
 
         <div class="offset-sm-1 col-sm-10 offset-lg-2 col-lg-8 d-flex align-items-center flex-column">
             <h4 class="text-center text-md-left">
-                {% trans with {'{name}':user.firstName ~ user.lastName} %}Hallo {name}{% endtrans %}
+                {% trans with {'{name}':user.firstName ~ ' ' ~ user.lastName} %}Hallo {name}{% endtrans %}
             </h4>
             <p class="text-center">{% trans with {'{event}':room.name} %}Wollen Sie sich wirklich von dem Event:<br><b>{event}</b></br>abmelden.{% endtrans %}</p>
 
