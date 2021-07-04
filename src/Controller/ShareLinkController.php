@@ -13,6 +13,7 @@ use App\Service\RoomService;
 use App\Service\SubcriptionService;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,10 +28,11 @@ use function Symfony\Component\String\s;
 class ShareLinkController extends AbstractController
 {
     private $em;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    private $logger;
+    public function __construct(EntityManagerInterface $entityManager,LoggerInterface $logger)
     {
         $this->em = $entityManager;
+        $this->logger = $logger;
     }
 
     /**
@@ -73,7 +75,9 @@ class ShareLinkController extends AbstractController
             $user = $waitinglist->getUser();
             $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms' => $room, 'leader' => $user));
             $room->removeUser($user);
-                $room->addStorno($user);
+            $this->logger->info('Remove User from Event',array('email'=>$user->getEmail(),'id'=>$user->getId(),'event'=>$room->getId()));
+
+            $room->addStorno($user);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($room);
                 if ($user->isMemeberInGroup($room)) {
@@ -82,6 +86,8 @@ class ShareLinkController extends AbstractController
                 }
                 if ($group) {
                     foreach ($group->getMembers() as $data) {
+                        $this->logger->info('Remove Groupmemeber from Event',array('email'=>$data->getEmail(),'id'=>$data->getId(),'event'=>$room->getId()));
+
                         $room->removeUser($data);
                         $room->addStorno($data);
                         $group->removeMember($data);

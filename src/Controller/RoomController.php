@@ -15,6 +15,7 @@ use App\Service\InviteService;
 
 use App\Service\RoomService;
 use phpDocumentor\Reflection\Types\This;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,10 +25,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RoomController extends AbstractController
 {
     private $translator;
-
-    public function __construct(TranslatorInterface $translator)
+    private $logger;
+    public function __construct(TranslatorInterface $translator,LoggerInterface $logger)
     {
         $this->translator = $translator;
+        $this->logger = $logger;
     }
 
     /**
@@ -197,12 +199,15 @@ class RoomController extends AbstractController
             $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
+            $this->logger->info('User was removed from Event',array('email'=>$user->getEmail(),'id'=>$user->getId(),'event'=>$room->getId()));
 
             if($user->isMemeberInGroup($room)){
+                $this->logger->info('User was removed from Group',array('email'=>$user->getEmail(),'id'=>$user->getId(),'event'=>$room->getId()));
                 $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
                 $em->persist($user);
             }
             if($group){
+                $this->logger->info('The User was a leader of a group so the whole group is deleted',array('email'=>$user->getEmail(),'id'=>$user->getId(),'event'=>$room->getId(),'group'=>$group->getId()));
                 foreach ($group->getMembers() as $data){
                     $room->removeUser($data);
                     $room->addStorno($data);
@@ -210,7 +215,7 @@ class RoomController extends AbstractController
                     $userService->removeRoom($data,$room);
                     $em->persist($room);
                     $em->persist($group);
-
+                    $this->logger->info('Remove User from Event',array('email'=>$data->getEmail(),'id'=>$data->getId(),'event'=>$room->getId(),'group'=>$group->getId()));
                 }
                 $em->flush();
                 $em->remove($group);

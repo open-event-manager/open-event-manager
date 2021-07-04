@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Entity\Waitinglist;
 use App\Repository\RoomsUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -22,14 +23,15 @@ class SubcriptionService
     private $translator;
     private $notifier;
     private $userService;
-
-    public function __construct(UserService $userService, NotificationService $notificationService, EntityManagerInterface $entityManager, Environment $environment, TranslatorInterface $translator)
+    private $logger;
+    public function __construct(LoggerInterface $logger, UserService $userService, NotificationService $notificationService, EntityManagerInterface $entityManager, Environment $environment, TranslatorInterface $translator)
     {
         $this->em = $entityManager;
         $this->twig = $environment;
         $this->translator = $translator;
         $this->notifier = $notificationService;
         $this->userService = $userService;
+        $this->logger = $logger;
     }
 
     /**
@@ -85,7 +87,7 @@ class SubcriptionService
         $user->setAddress($userData['address']);
         $this->em->persist($user);
         $this->em->flush();
-
+        $this->logger->info('Added a new User to the database',array('email'=>$user->getEmail(),'id'=>$user->getId()));
         $subscriber = $this->em->getRepository(Subscriber::class)->findOneBy(array('room' => $rooms, 'user' => $user));
 
         if ($subscriber) {
@@ -96,7 +98,7 @@ class SubcriptionService
                     $user,
                     $rooms->getStandort()
                 );
-
+                $this->logger->info('User tries to readd himself',array('email'=>$user->getEmail(),'id'=>$user->getId()));
                 $res['text'] = $this->translator->trans('Sie haben sich bereits angemeldet. Wir haben Ihnen den Link erneut zugesandt. Bite bestätigen sie noch ihre Anmeldung durch klick auf den Link in der Email.');
                 $res['color'] = 'danger';
                 $res['error'] = false;
@@ -109,6 +111,7 @@ class SubcriptionService
         } else {
             $res = $this->createNewSubscriber($user, $rooms);
             $subscriber = $res['sub'];
+            $this->logger->info('New Subscriber created',array('subscriberId'=>$subscriber->getUid(),'email'=>$user->getEmail(),'id'=>$user->getId()));
             if ($moderator == true) {
                 $usersRoom = new RoomsUser();
                 $usersRoom->setRoom($rooms);
@@ -120,6 +123,7 @@ class SubcriptionService
                 $this->em->flush();
             }
             if (!$isOrganizer) {
+                $this->logger->info('Send Email with Double opt in',array('email'=>$user->getEmail(),'id'=>$user->getId()));
                 $this->notifier->sendNotification(
                     $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
                     $this->translator->trans('Bestätigung ihrer Anmeldung zur Veranstaltung: {name}', array('{name}' => $rooms->getName())),
@@ -149,6 +153,7 @@ class SubcriptionService
             $res['title'] = $this->translator->trans('Fehler');
             return $res;
         }
+        $this->logger->info('The Subsrciber tries to add himself as a event Particpant',array('subscriberId'=>$subscriber->getUid(),'email'=>$subscriber->getUser()->getEmail(),'id'=>$subscriber->getUser()->getId(),'event'=>$subscriber->getRoom()->getId()));
 
         $group = $this->em->getRepository(Group::class)->findOneBy(array('leader' => $subscriber->getUser(), 'rooms' => $subscriber->getRoom()));
         $room = $subscriber->getRoom();
@@ -169,6 +174,8 @@ class SubcriptionService
                 && $newParticipants > $room->getMaxParticipants()
                 && $room->getWaitinglist() != true // the Waiting list is not set, and the participants is full
             ) {
+                $this->logger->info('The User could not be added. the Event is full',array('email'=>$subscriber->getUser()->getEmail(),'id'=>$subscriber->getUser()->getId(),'event'=>$room->getId()));
+
                 $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
                 $res['title'] = $this->translator->trans('Fehler');
                 return $res;
@@ -180,6 +187,8 @@ class SubcriptionService
             ) {
                 $res['message'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
                 $res['title'] = $this->translator->trans('Fehler');
+                $this->logger->info('The User could not be added. the Event is full',array('email'=>$subscriber->getUser()->getEmail(),'id'=>$subscriber->getUser()->getId(),'event'=>$room->getId()));
+
                 return $res;
             }
         }
@@ -192,16 +201,22 @@ class SubcriptionService
             }
             if ($waitinglist === true && !$isOrganizer) {
                 $res = array_merge($res, $this->createNewWaitinglist($subscriber->getUser(), $subscriber->getRoom()));
+                $this->logger->info('The User is added to the waitinglist',array('email'=>$subscriber->getUser()->getEmail(),'id'=>$subscriber->getUser()->getId(),'event'=>$room->getId()));
+
                 $this->em->remove($subscriber);
                 $this->em->flush();
             } else {
                 $this->createUserRoom($subscriber->getUser(), $subscriber->getRoom());
+                $this->logger->info('The User is added to the event',array('email'=>$subscriber->getUser()->getEmail(),'id'=>$subscriber->getUser()->getId(),'event'=>$room->getId()));
+
                 $this->em->remove($subscriber);
                 $this->em->flush();
             }
 
 
         } catch (\Exception $exception) {
+            $this->logger->info('An Error ocured ans the USer is asked to click the link again',array('email'=>$subscriber->getUser()->getEmail(),'id'=>$subscriber->getUser()->getId(),'event'=>$room->getId()));
+
             $res['message'] = $this->translator->trans('Fehler, Bitte klicken Sie den link erneut an.');
             $res['title'] = $this->translator->trans('Fehler');
 
@@ -263,12 +278,13 @@ class SubcriptionService
         $group = $this->em->getRepository(Group::class)->findOneBy(array('leader' => $user, 'rooms' => $rooms));
         $rooms->addUser($user);
         $rooms->removeStorno($user);
-
+        $this->logger->info('User is added to the Event',array('email'=>$user->getEmail(),'id'=>$user->getId(),'event'=>$rooms->getId()));
 
         if ($group) {
             foreach ($group->getMembers() as $data) {
                 if (!in_array($data, $rooms->getUser()->toArray())) {
                     $rooms->addUser($data);
+                    $this->logger->info('Groupmember is added to the Event',array('email'=>$data->getEmail(),'id'=>$data->getId(),'event'=>$rooms->getId(),'leader'=>$user->getId()));
                     $rooms->removeStorno($data);
                     $this->em->persist($data);
                     $this->userService->addUser($data, $rooms);
@@ -300,6 +316,8 @@ class SubcriptionService
         $group->setRooms($rooms);
         $counter = 0;
         if (sizeof($groups) > 0) {
+            $this->logger->info('Group is created with leader',array('email'=>$user->getEmail(),'id'=>$user->getId()));
+
             foreach ($groups as $data) {
                 $email = strtolower($data['email']);
                 $firstName = $data['firstName'];
@@ -328,6 +346,7 @@ class SubcriptionService
                         && !in_array($user, $this->em->getRepository(User::class)->findSubsriberLeaders($rooms))
                         && !in_array($user, $this->em->getRepository(User::class)->findWaitingListLeaders($rooms))
                     ) {
+                        $this->logger->info('Member is added to gorup',array('group'=>$group->getId(),'email'=>$member->getEmail(),'id'=>$user->getId()));
                         $group->addMember($member);
                         $this->em->persist($group);
 
