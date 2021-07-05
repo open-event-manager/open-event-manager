@@ -22,6 +22,7 @@ class PexelService
     public function getImageFromPexels()
     {
         $image = null;
+        if (trim($this->parameterBag->get('laF_pexel_api_key')) =="" || trim($this->parameterBag->get('laF_pexel_api_key')) =="#EnterAPIKeyHere") return null;
         try {
             $cache = new FilesystemAdapter();
             $value = $cache->get('pexels_image', function (ItemInterface $item)  {
