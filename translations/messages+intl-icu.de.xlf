@@ -1313,7 +1313,7 @@
       </trans-unit>
       <trans-unit id="hHvw6Fd" resname="Hallo {firstName} {lastName}">
         <source>Hallo {firstName} {lastName}</source>
-        <target>__Hallo {firstName} {lastName}</target>
+        <target>Hallo {firstName} {lastName}</target>
       </trans-unit>
     </body>
   </file>
