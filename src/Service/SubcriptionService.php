@@ -54,7 +54,7 @@ class SubcriptionService
     {
         $res = array('error' => true);
 
-        if ($isOrganizer) {
+        if (!$isOrganizer) {
             if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() != true) {
                 $res['text'] = $this->translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
                 $res['color'] = 'danger';
