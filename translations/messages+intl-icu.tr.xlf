@@ -1311,6 +1311,10 @@
         <source>Einladungsemail erneut senden</source>
         <target state="needs-translation">Einladungsemail erneut senden</target>
       </trans-unit>
+      <trans-unit id="hHvw6Fd" resname="Hallo {firstName} {lastName}">
+        <source>Hallo {firstName} {lastName}</source>
+        <target state="needs-translation">Hallo {firstName} {lastName}</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
