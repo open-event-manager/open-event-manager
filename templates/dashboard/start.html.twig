@@ -23,12 +23,19 @@
 
 <script>
     events = [
-        {% for e in events %}
+        {% for eTmp in events %}
+        {% set e = eTmp.data %}
         {
             title: '{{ e.name }}',
             start: '{{ e.start|date('Y-m-d') }}T{{ e.start|date('H:i:s') }}',
             end: '{{ e.enddate|date('Y-m-d') }}T{{ e.enddate|date('H:i:s') }}',
-            url: '{{ path('public_subscribe_participant',{'uid':e.uidParticipant}) }}'
+            url: '{{ path('public_subscribe_participant',{'uid':e.uidParticipant}) }}',
+        {% if eTmp.space == true %}
+            backgroundColor: '#25a20b',
+        {% else %}
+            backgroundColor: '#ff0000',
+        {% endif %}
+
         },
         {% endfor %}
     ]
