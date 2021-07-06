@@ -26,7 +26,7 @@
         {% for eTmp in events %}
         {% set e = eTmp.data %}
         {
-            title: '{{ e.name }}',
+            title: '{{ e.name }} {% if eTmp.space == false %}({{ 'Ausgebucht'|trans}}){% endif %}',
             start: '{{ e.start|date('Y-m-d') }}T{{ e.start|date('H:i:s') }}',
             end: '{{ e.enddate|date('Y-m-d') }}T{{ e.enddate|date('H:i:s') }}',
             url: '{{ path('public_subscribe_participant',{'uid':e.uidParticipant}) }}',
