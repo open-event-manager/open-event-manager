@@ -8,13 +8,16 @@ use App\Entity\Subscriber;
 use App\Entity\User;
 use App\Entity\Waitinglist;
 use App\Form\Type\PublicRegisterType;
+use App\Service\LoggerService;
 use App\Service\PexelService;
 use App\Service\RoomService;
 use App\Service\SubcriptionService;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,10 +30,13 @@ use function Symfony\Component\String\s;
 class ShareLinkController extends AbstractController
 {
     private $em;
+    private $logger;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,LoggerService $logger)
     {
         $this->em = $entityManager;
+        $this->logger = $logger;
+
     }
 
     /**
@@ -73,7 +79,9 @@ class ShareLinkController extends AbstractController
             $user = $waitinglist->getUser();
             $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms' => $room, 'leader' => $user));
             $room->removeUser($user);
-                $room->addStorno($user);
+                $this->logger->log('Remove User from Event', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId()));
+
+            $room->addStorno($user);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($room);
                 if ($user->isMemeberInGroup($room)) {
@@ -82,6 +90,8 @@ class ShareLinkController extends AbstractController
                 }
                 if ($group) {
                     foreach ($group->getMembers() as $data) {
+                            $this->logger->log('Remove Groupmemeber from Event', array('email' => $data->getEmail(), 'id' => $data->getId(), 'event' => $room->getId()));
+
                         $room->removeUser($data);
                         $room->addStorno($data);
                         $group->removeMember($data);

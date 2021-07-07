@@ -9,14 +9,17 @@ use App\Entity\Standort;
 use App\Entity\User;
 use App\Form\Type\NewMemberType;
 use App\Form\Type\RoomType;
+use App\Service\LoggerService;
 use App\Service\ServerUserManagment;
 use App\Service\UserService;
 use App\Service\InviteService;
 
 use App\Service\RoomService;
 use phpDocumentor\Reflection\Types\This;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -24,10 +27,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RoomController extends AbstractController
 {
     private $translator;
+    private $logger;
 
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator,LoggerService $logger)
     {
         $this->translator = $translator;
+        $this->logger = $logger;
     }
 
     /**
@@ -197,12 +202,17 @@ class RoomController extends AbstractController
             $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
+                $this->logger->log('User was removed from Event',array('email'=>$user->getEmail(),'id'=>$user->getId(),'event'=>$room->getId()));
 
             if($user->isMemeberInGroup($room)){
-                $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
+                    $this->logger->log('User was removed from Group', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId()));
+
+                    $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
                 $em->persist($user);
             }
             if($group){
+                    $this->logger->log('The User was a leader of a group so the whole group is deleted', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId(), 'group' => $group->getId()));
+
                 foreach ($group->getMembers() as $data){
                     $room->removeUser($data);
                     $room->addStorno($data);
@@ -210,6 +220,7 @@ class RoomController extends AbstractController
                     $userService->removeRoom($data,$room);
                     $em->persist($room);
                     $em->persist($group);
+                        $this->logger->log('Remove User from Event', array('email' => $data->getEmail(), 'id' => $data->getId(), 'event' => $room->getId(), 'group' => $group->getId()));
 
                 }
                 $em->flush();

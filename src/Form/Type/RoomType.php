@@ -47,7 +47,7 @@ class RoomType extends AbstractType
                 'label' => 'label.dauerKonferenz',
                 'translation_domain' => 'form',
                 'choices' => [
-                    'option.15min' => 10,
+                    'option.10min' => 10,
                     'option.15min' => 15,
                     'option.30min' => 30,
                     'option.45min' => 45,
@@ -80,6 +80,8 @@ class RoomType extends AbstractType
             ->add('maxWaitingList', NumberType::class, array('required' => false, 'label' => 'label.maxWaitingList', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('allowGroups', CheckboxType::class, array('required' => false, 'label' => 'label.allowGroups', 'translation_domain' => 'form'))
             ->add('maxGroupSize', NumberType::class, array('required' => false, 'label' => 'label.maxGroupSize', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
+            ->add('showInCalendarWhenNoSpace', CheckboxType::class, array('required' => false, 'label' => 'label.showInCalendarWhenNoSpace', 'translation_domain' => 'form'))
+
             ->add('submit', SubmitType::class, ['attr' => array('class' => 'btn btn-outline-primary'), 'label' => 'label.speichern', 'translation_domain' => 'form']);
     }
 

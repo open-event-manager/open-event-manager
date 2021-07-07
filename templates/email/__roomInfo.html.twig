@@ -20,8 +20,9 @@
 {% if room is defined and user is defined %}
     {% set members =  userFromUsergroup(user, room) %}
     {% if members|length > 0 %}
-        <b>{{ 'Angemeldete Gruppenmitglieder '|trans }}:</b>
+        <b>{{ 'Angemeldete Gruppenmitglieder'|trans }}:</b>
         <ul>
+            <li>{{ user.firstName }} {{ user.lastName }}</li>
             {% for m in members %}
                 <li>{{ m.firstName }} {{ m.lastName }}</li>
             {% endfor %}

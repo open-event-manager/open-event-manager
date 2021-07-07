@@ -41,8 +41,8 @@ class DashboardController extends AbstractController
         $tmp = $qb->getQuery()->getResult();
         $events = array();
         foreach ($tmp as $data){
-            if($roomSpaceService->isRoomSpace($data)){
-                $events[] = $data;
+            if($roomSpaceService->isRoomSpace($data) || $data->getShowInCalendarWhenNoSpace() == null){
+                $events[] = array('data'=>$data, 'space'=>$roomSpaceService->isRoomSpace($data));
             }
         }
         return $this->render('dashboard/start.html.twig', ['events'=>$events]);
