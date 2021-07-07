@@ -1315,6 +1315,10 @@
         <source>Hallo {firstName} {lastName}</source>
         <target state="needs-translation">Hallo {firstName} {lastName}</target>
       </trans-unit>
+      <trans-unit id="r4wWrtL" resname="Ausgebucht">
+        <source>Ausgebucht</source>
+        <target state="needs-translation">Ausgebucht</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
