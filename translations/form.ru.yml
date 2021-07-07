@@ -77,6 +77,7 @@ label:
   entryDateTime: Вход
   promoter: Организатор
   additionalInfo: Дополнительная информация (уценка)
+  showInCalendarWhenNoSpace: Termin im Kalender ausblenden wenn keine Plätze mehr vorhanden
 choice:
   tls: STARTTLS / TLS 
   ssl: SSL
