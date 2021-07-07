@@ -209,6 +209,12 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
         } else {
             $('#maxGroupSize').collapse('hide')
         }
+        if ($('#room_showRoomOnCalendar').prop('checked')) {
+            $('#showInCalendarWhenNoSpace').collapse('show')
+        } else {
+            console.log('test');
+            $('#showInCalendarWhenNoSpace').collapse('hide')
+        }
         $('#room_public').change(function () {
             if ($('#room_public').prop('checked')) {
                 $('#maxParticipants').collapse('show')
@@ -228,6 +234,13 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
                 $('#maxGroupSize').collapse('show')
             } else {
                 $('#maxGroupSize').collapse('hide')
+            }
+        })
+        $('#room_showRoomOnCalendar').change(function () {
+            if ($('#room_showRoomOnCalendar').prop('checked')) {
+                $('#showInCalendarWhenNoSpace').collapse('show')
+            } else {
+                $('#showInCalendarWhenNoSpace').collapse('hide')
             }
         })
     }
