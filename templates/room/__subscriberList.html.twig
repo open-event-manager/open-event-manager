@@ -1,0 +1,19 @@
+{% for s in room.subscribers |sort((a, b) => a.createdAt <=> b.createdAt) %}
+    <li>{{ s.user.email }}
+        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                             title="{{ s.user.firstName }} {{ s.user.lastName }}"
+                             data-content="
+{{ 'Email'|trans }}: <a href='mailto:{{ s.user.email }}'>{{ s.user.email }}</a><br>
+                                {{ 'Telefon'|trans }}: <a href='tel:{{ s.user.phone }}'>{{ s.user.phone }}</a>"><i
+                    class="fa fa-info-circle"></i></a>
+
+        <a class="small confirmHref"
+           href="{{ path('confirm_manuell',{'id':s.id}) }}"
+           data-text="{{ 'Wenn Sie diese Person zur Teilnehmerliste hinzufügen wird die E-Mailadresse nicht überprüft. Bitte überprüfen Sie die Person persönlich'|trans }}"
+           data-target="#atendeeList"
+           data-url="{{ path('room_add_user',{'room':room.id}) }}"
+           title="{{ 'Bestätigen Sie die E-Mailadresse nur wenn Sie die Person persönlich überprüft haben.'|trans }}"
+        > <i class="fas fa-forward"></i>
+        </a>
+    </li>
+{% endfor %}
