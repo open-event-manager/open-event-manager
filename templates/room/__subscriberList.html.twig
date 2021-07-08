@@ -9,10 +9,10 @@
 
         <a class="small confirmHref"
            href="{{ path('confirm_manuell',{'id':s.id}) }}"
-           data-text="{{ 'Wenn Sie diese Person zur Teilnehmerliste hinzufügen wird die E-Mailadresse nicht überprüft. Bitte überprüfen Sie die Person persönlich'|trans }}"
+           data-text="{{ 'Wenn Sie diese Person zur Teilnehmerliste hinzufügen, wird die E-Mailadresse nicht überprüft. Bitte überprüfen Sie die Person persönlich'|trans }}"
            data-target="#atendeeList"
            data-url="{{ path('room_add_user',{'room':room.id}) }}"
-           title="{{ 'Bestätigen Sie die E-Mailadresse nur wenn Sie die Person persönlich überprüft haben.'|trans }}"
+           title="{{ 'Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.'|trans }}"
         > <i class="fas fa-forward"></i>
         </a>
     </li>
