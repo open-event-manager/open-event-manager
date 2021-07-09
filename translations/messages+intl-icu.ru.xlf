@@ -1003,6 +1003,18 @@
         <source>Ausgebucht</source>
         <target state="needs-translation">Ausgebucht</target>
       </trans-unit>
+      <trans-unit id="C16F3SU" resname="Ausstehend">
+        <source>Ausstehend</source>
+        <target state="needs-translation">Ausstehend</target>
+      </trans-unit>
+      <trans-unit id="VyfyhV_" resname="Wenn Sie diese Person zur Teilnehmerliste hinzufügen, wird die E-Mailadresse nicht überprüft. Bitte überprüfen Sie die Person persönlich">
+        <source>Wenn Sie diese Person zur Teilnehmerliste hinzufügen, wird die E-Mailadresse nicht überprüft. Bitte überprüfen Sie die Person persönlich</source>
+        <target state="needs-translation">Wenn Sie diese Person zur Teilnehmerliste hinzufügen, wird die E-Mailadresse nicht überprüft. Bitte überprüfen Sie die Person persönlich</target>
+      </trans-unit>
+      <trans-unit id="jIBBbk." resname="Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.">
+        <source>Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.</source>
+        <target state="needs-translation">Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
