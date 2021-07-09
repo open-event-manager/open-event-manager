@@ -36,6 +36,12 @@
                         {% include 'room/__stornoList.html.twig' with {'room':room} %}
                     </ul>
                 {% endif %}
+                {% if room.subscribers|length > 0 %}
+                    <b>{{ 'Ausstehend'|trans }}</b>
+                    <ul>
+                        {% include 'room/__subscriberList.html.twig' with {'room':room} %}
+                    </ul>
+                {% endif %}
             </div>
             <hr>
             <label for="searchUser">{{ 'Teilnehmer Suchen'|trans }}</label>
