@@ -132,15 +132,15 @@
                             </div>
 
                         </div>
-                        {% if laf_hideButtonsOnCalenderView is defined and laf_hideButtonsOnCalenderView is not null and laf_hideButtonsOnCalenderView != true %}
+                        {% if laf_hideButtonsOnCalenderView is not defined or laf_hideButtonsOnCalenderView is defined and laf_hideButtonsOnCalenderView is not null and laf_hideButtonsOnCalenderView != 'true' %}
                         <div class="card-footer text-center">
                             <a href="{{ path('index') }}"
                                class="btn btn-outline-danger btn-sm">{{ 'Startseite'|trans }}</a>
-                            {% if laf_hideDashboardOnCalenderView is defined and laf_hideDashboardOnCalenderView is not null and laf_hideDashboardOnCalenderView != true %}
+                            {% if laf_hideDashboardOnCalenderView is not defined or laf_hideDashboardOnCalenderView is defined and laf_hideDashboardOnCalenderView is not null and laf_hideDashboardOnCalenderView != 'true' %}
                             <a href="{{ path('dashboard') }}"
                                class="btn btn-outline-elegant btn-sm">{{ 'Dashboard'|trans }}</a>
                             {% endif %}
-                            {% if laf_hideRegistrationOnCalenderView is defined and laf_hideRegistrationOnCalenderView is not null and laf_hideRegistrationOnCalenderView != true %}
+                            {% if laf_hideRegistrationOnCalenderView is not defined or laf_hideRegistrationOnCalenderView is defined and laf_hideRegistrationOnCalenderView is not null and laf_hideRegistrationOnCalenderView != 'true' %}
                             <a href="{{ path('register_keycloak') }}"
                                class="btn btn-outline-cyan btn-sm">{{ 'Registrieren'|trans }}</a>
                             {% endif %}
