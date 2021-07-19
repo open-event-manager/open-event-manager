@@ -77,10 +77,12 @@ label:
   promoter: Veranstalter
   additionalInfo: Zusätzliche Info (Markdown)
   showInCalendarWhenNoSpace: Termin im Kalender ausblenden wenn keine Plätze mehr vorhanden
+  textWhenNoSpace: Text wenn keine Plätze mehr vorhanden
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
   none: Keine
 placeholder:
   maxParticipants: Keine Limitierung
+  textWhenNoSpace: Keine Text
 
