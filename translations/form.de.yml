@@ -78,6 +78,7 @@ label:
   additionalInfo: Zusätzliche Info (Markdown)
   showInCalendarWhenNoSpace: Termin im Kalender ausblenden wenn keine Plätze mehr vorhanden
   textWhenNoSpace: Text wenn keine Plätze mehr vorhanden
+  silentMode: Keine E-Mail Benachrichtigung
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
