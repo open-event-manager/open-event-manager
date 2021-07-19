@@ -25,6 +25,11 @@ option.210min: 3,5 Stunden
 option.240min: 4 Giờ
 option.270min: 4,5 Stunden
 option.300min: 5 Stunden
+option.330min: 5,5 Stunden
+option.360min: 6 Stunden
+option.390min: 6,5 Stunden
+option.420min: 7 Stunden
+option.450min: 7,5 Stunden
 option.480min: 8 Giờ
 label.scheduleMeeting: Sắp xếp cuộc họp
 help:
@@ -72,6 +77,7 @@ label:
   entryDateTime: Einlass
   promoter: Veranstalter
   additionalInfo: Zusätzliche Info (Markdown)
+  showInCalendarWhenNoSpace: Termin im Kalender ausblenden wenn keine Plätze mehr vorhanden
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
