@@ -78,10 +78,14 @@ label:
   promoter: Etkinlik sorumlusu
   additionalInfo: Ek bilgi (markdown)
   showInCalendarWhenNoSpace: Termin im Kalender ausblenden wenn keine Plätze mehr vorhanden
+  textWhenNoSpace: Text wenn keine Plätze mehr vorhanden
+  silentMode: Keine E-Mail Benachrichtigung
+  textWhenRoomWarteliste: Wartelistentext
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
   none: Yok
 placeholder:
   maxParticipants: Limitsiz
+  textWhenNoSpace: Keine Text
 
