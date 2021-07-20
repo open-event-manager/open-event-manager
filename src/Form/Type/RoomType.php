@@ -77,6 +77,7 @@ class RoomType extends AbstractType
             ->add('showRoomOnCalendar', CheckboxType::class, array('required' => false, 'label' => 'label.showRoomOnCalendar', 'translation_domain' => 'form'))
             ->add('maxParticipants', NumberType::class, array('required' => false, 'label' => 'label.maxParticipants', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('textWhenNoSpace', TextType::class, array('required' => false, 'label' => 'label.textWhenNoSpace', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.textWhenNoSpace')))
+            ->add('textWhenRoomWarteliste', TextType::class, array('required' => false, 'label' => 'label.textWhenRoomWarteliste', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.textWhenNoSpace')))
 
             ->add('waitinglist', CheckboxType::class, array('required' => false, 'label' => 'label.waitinglist', 'translation_domain' => 'form'))
             ->add('maxWaitingList', NumberType::class, array('required' => false, 'label' => 'label.maxWaitingList', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))

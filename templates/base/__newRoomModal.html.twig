@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="col-sm-1">
                                             <a tabindex="0" data-toggle="popover" data-trigger="focus"
-                                               data-content="{{ 'Wenn keine Plätze mehr vorhanden, dann soll dieser Text in dem Banner angezeigt werden.'|trans }}"><i
+                                               data-content="{{ 'Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.'|trans }}"><i
                                                         class="fa fa-question-circle"></i></a>
                                         </div>
 
@@ -107,6 +107,14 @@
                                                     <div class="col-sm-1">
                                                         <a tabindex="0" data-toggle="popover" data-trigger="focus"
                                                            data-content="{{ 'Die Maximale Anzahl an Teilnehmern auf der Warteliste'|trans }}"><i
+                                                                    class="fa fa-question-circle"></i></a>
+                                                    </div>
+                                                    <div class="col-sm-11">
+                                                        {{ form_row(form.textWhenRoomWarteliste) }}
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                                           data-content="{{ 'Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.'|trans }}"><i
                                                                     class="fa fa-question-circle"></i></a>
                                                     </div>
                                                 </div>

@@ -151,13 +151,13 @@ class ShareLinkController extends AbstractController
             }
 
             if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() == true) {
-                if ($rooms->getTextWhenNoSpace()) {
-                    $snack = $rooms->getTextWhenNoSpace();
+                if ($rooms->getTextWhenRoomWarteliste()) {
+                    $snack = $rooms->getTextWhenRoomWarteliste();
                 } else {
                     $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.');
                 }
                 $color = 'warning';
-                if ($rooms->getMaxWaitingList() != null && sizeof($rooms->getWaitinglists()) >= $rooms->getMaxWaitingList()) {
+                if ($rooms->getMaxWaitingList() !== null && sizeof($rooms->getWaitinglists()) >= $rooms->getMaxWaitingList()) {
                     if ($rooms->getTextWhenNoSpace()) {
                         $snack = $rooms->getTextWhenNoSpace();
                     } else {
