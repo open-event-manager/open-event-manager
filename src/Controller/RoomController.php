@@ -107,7 +107,7 @@ class RoomController extends AbstractController
                 $em->persist($room);
                 $em->flush();
             }
-            dump($form['silentMode']->getData());
+
             if ($request->get('id')) {
                 if (!$form['silentMode']->getData() ||
                     $roomOld->getStart() !== $room->getStart() ||
