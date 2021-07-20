@@ -76,11 +76,15 @@ class RoomType extends AbstractType
             ->add('showRoomOnJoinpage', CheckboxType::class, array('required' => false, 'label' => 'label.showRoomOnJoinpage', 'translation_domain' => 'form'))
             ->add('showRoomOnCalendar', CheckboxType::class, array('required' => false, 'label' => 'label.showRoomOnCalendar', 'translation_domain' => 'form'))
             ->add('maxParticipants', NumberType::class, array('required' => false, 'label' => 'label.maxParticipants', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
+            ->add('textWhenNoSpace', TextType::class, array('required' => false, 'label' => 'label.textWhenNoSpace', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.textWhenNoSpace')))
+            ->add('textWhenRoomWarteliste', TextType::class, array('required' => false, 'label' => 'label.textWhenRoomWarteliste', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.textWhenNoSpace')))
+
             ->add('waitinglist', CheckboxType::class, array('required' => false, 'label' => 'label.waitinglist', 'translation_domain' => 'form'))
             ->add('maxWaitingList', NumberType::class, array('required' => false, 'label' => 'label.maxWaitingList', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('allowGroups', CheckboxType::class, array('required' => false, 'label' => 'label.allowGroups', 'translation_domain' => 'form'))
             ->add('maxGroupSize', NumberType::class, array('required' => false, 'label' => 'label.maxGroupSize', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('showInCalendarWhenNoSpace', CheckboxType::class, array('required' => false, 'label' => 'label.showInCalendarWhenNoSpace', 'translation_domain' => 'form'))
+            ->add('silentMode', CheckboxType::class, array(  "mapped" => false, 'required' => false, 'label' => 'label.silentMode', 'translation_domain' => 'form'))
 
             ->add('submit', SubmitType::class, ['attr' => array('class' => 'btn btn-outline-primary'), 'label' => 'label.speichern', 'translation_domain' => 'form']);
     }

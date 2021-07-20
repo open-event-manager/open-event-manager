@@ -10,6 +10,16 @@
         <div class="modal-body">
             {{ form_start(form) }}
             <div class="row">
+                {% if form.silentMode is defined %}
+                    <div class="col-sm-11">
+                        {{ form_row(form.silentMode) }}
+                    </div>
+                    <div class="col-sm-1">
+                        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                           data-content="{{ 'Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.'|trans }}"><i
+                                    class="fa fa-question-circle"></i></a>
+                    </div>
+                {% endif %}
                 <div class="col-lg-12">
                     {{ form_row(form.standort) }}
                 </div>
@@ -51,40 +61,119 @@
                                 </div>
                             {% endif %}
 
-                            <div class="col-lg-12">
+                            <div class="col-sm-11">
                                 {{ form_row(form.public) }}
                             </div>
-                            <div id="maxParticipants" class=" collapse">
-                                <div class="col-lg-12">
-                                    {{ form_row(form.maxParticipants) }}
-                                </div>
-                                <div class="col-lg-12">
-                                    {{ form_row(form.waitinglist) }}
-                                </div>
-                                <div id="maxWaitinglist" class=" collapse">
-                                    <div class="col-lg-12">
-                                        {{ form_row(form.maxWaitingList) }}
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    {{ form_row(form.allowGroups) }}
-                                </div>
-                                <div id="maxGroupSize" class=" collapse">
-                                    <div class="col-lg-12">
-                                        {{ form_row(form.maxGroupSize) }}
+                            <div class="col-sm-1">
+                                <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                   data-content="{{ 'Teilnehmer können sich selbst du dem Event einschreiben.'|trans }}"><i
+                                            class="fa fa-question-circle"></i></a>
+                            </div>
+                            <div class="col-lg-12">
+
+                                <div id="maxParticipants" class=" collapse">
+                                    <div class="row">
+                                        <div class="col-sm-11">
+                                            {{ form_row(form.maxParticipants) }}
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                               data-content="{{ 'Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.'|trans }}"><i
+                                                        class="fa fa-question-circle"></i></a>
+                                        </div>
+                                        <div class="col-sm-11">
+                                            {{ form_row(form.textWhenNoSpace) }}
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                               data-content="{{ 'Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.'|trans }}"><i
+                                                        class="fa fa-question-circle"></i></a>
+                                        </div>
+
+                                        <div class="col-sm-11">
+                                            {{ form_row(form.waitinglist) }}
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                               data-content="{{ 'Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.'|trans }}"><i
+                                                        class="fa fa-question-circle"></i></a>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div id="maxWaitinglist" class=" collapse">
+                                                <div class="row">
+                                                    <div class="col-sm-11">
+                                                        {{ form_row(form.maxWaitingList) }}
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                                           data-content="{{ 'Die Maximale Anzahl an Teilnehmern auf der Warteliste'|trans }}"><i
+                                                                    class="fa fa-question-circle"></i></a>
+                                                    </div>
+                                                    <div class="col-sm-11">
+                                                        {{ form_row(form.textWhenRoomWarteliste) }}
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                                           data-content="{{ 'Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.'|trans }}"><i
+                                                                    class="fa fa-question-circle"></i></a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-11">
+                                            {{ form_row(form.allowGroups) }}
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                               data-content="{{ 'Es wird erlaubt, das sich Gruppen bei einem Event anmelden können'|trans }}"><i
+                                                        class="fa fa-question-circle"></i></a>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div id="maxGroupSize" class=" collapse">
+                                                <div class="row">
+                                                    <div class="col-sm-11">
+                                                        {{ form_row(form.maxGroupSize) }}
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                                           data-content="{{ 'Hier kann die maximale Gruppengröße angegeben werden.'|trans }}"><i
+                                                                    class="fa fa-question-circle"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-lg-12">
+                            <div class="col-sm-11">
                                 {{ form_row(form.showRoomOnJoinpage) }}
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-sm-1">
+                                <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                   data-content="{{ 'Dieses Event wird auf der Standortseite angezeigt.'|trans }}"><i
+                                            class="fa fa-question-circle"></i></a>
+                            </div>
+                            <div class="col-sm-11">
                                 {{ form_row(form.showRoomOnCalendar) }}
                             </div>
-                            <div class="col-lg-12 collapse" id="showInCalendarWhenNoSpace">
+                            <div class="col-sm-1">
+                                <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                   data-content="{{ 'Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.'|trans }}"><i
+                                            class="fa fa-question-circle"></i></a>
+                            </div>
+                            <div class="col-sm-11">
                                 {{ form_row(form.showInCalendarWhenNoSpace) }}
                             </div>
+                            <div class="col-sm-1">
+                                <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                   data-content="{{ 'Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut "Ausgebucht" angehängt.'|trans }}"><i
+                                            class="fa fa-question-circle"></i></a>
+                            </div>
+
 
                         </div>
                     </div>

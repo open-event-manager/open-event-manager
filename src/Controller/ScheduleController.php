@@ -66,6 +66,7 @@ class ScheduleController extends AbstractController
         $form->remove('scheduleMeeting');
         $form->remove('start');
         $form->remove('scheduleMeeting');
+        $form->remove('entryDateTime');
         try {
             $form->handleRequest($request);
         } catch (\Exception $e) {

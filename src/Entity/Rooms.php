@@ -197,6 +197,16 @@ class Rooms
      */
     private $showInCalendarWhenNoSpace;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $textWhenNoSpace;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $textWhenRoomWarteliste;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -743,6 +753,30 @@ class Rooms
     public function setShowInCalendarWhenNoSpace(?bool $showInCalendarWhenNoSpace): self
     {
         $this->showInCalendarWhenNoSpace = $showInCalendarWhenNoSpace;
+
+        return $this;
+    }
+
+    public function getTextWhenNoSpace(): ?string
+    {
+        return $this->textWhenNoSpace;
+    }
+
+    public function setTextWhenNoSpace(?string $textWhenNoSpace): self
+    {
+        $this->textWhenNoSpace = $textWhenNoSpace;
+
+        return $this;
+    }
+
+    public function getTextWhenRoomWarteliste(): ?string
+    {
+        return $this->textWhenRoomWarteliste;
+    }
+
+    public function setTextWhenRoomWarteliste(?string $textWhenRoomWarteliste): self
+    {
+        $this->textWhenRoomWarteliste = $textWhenRoomWarteliste;
 
         return $this;
     }

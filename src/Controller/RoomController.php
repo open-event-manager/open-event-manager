@@ -29,7 +29,7 @@ class RoomController extends AbstractController
     private $translator;
     private $logger;
 
-    public function __construct(TranslatorInterface $translator,LoggerService $logger)
+    public function __construct(TranslatorInterface $translator, LoggerService $logger)
     {
         $this->translator = $translator;
         $this->logger = $logger;
@@ -40,6 +40,7 @@ class RoomController extends AbstractController
      */
     public function newRoom(Request $request, UserService $userService, TranslatorInterface $translator, ServerUserManagment $serverUserManagment)
     {
+        $roomOld = null;
         if ($request->get('id')) {
             $room = $this->getDoctrine()->getRepository(Rooms::class)->findOneBy(array('id' => $request->get('id')));
             if ($room->getModerator() !== $this->getUser()) {
@@ -49,13 +50,13 @@ class RoomController extends AbstractController
             $title = $translator->trans('Event bearbeiten');
             $sequence = $room->getSequence() + 1;
             $room->setSequence($sequence);
-           if (!$room->getUidModerator()){
-               $room->setUidModerator(md5(uniqid('h2-invent', true)));
-           }
-           if (!$room->getUidParticipant()){
-               $room->setUidParticipant(md5(uniqid('h2-invent', true)));
-           }
-
+            if (!$room->getUidModerator()) {
+                $room->setUidModerator(md5(uniqid('h2-invent', true)));
+            }
+            if (!$room->getUidParticipant()) {
+                $room->setUidParticipant(md5(uniqid('h2-invent', true)));
+            }
+            $roomOld = clone $room;
         } else {
             $room = new Rooms();
             $room->addUser($this->getUser());
@@ -74,8 +75,10 @@ class RoomController extends AbstractController
 
 
         $form = $this->createForm(RoomType::class, $room, ['standort' => $standort, 'action' => $this->generateUrl('room_new', ['id' => $room->getId()])]);
-        if ($request->get('id')){
-            $form->remove('scheduleMeeting');
+
+        $form->remove('scheduleMeeting');
+        if (!$request->get('id')) {
+            $form->remove('silentMode');
         }
         try {
             $form->handleRequest($request);
@@ -86,7 +89,7 @@ class RoomController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $room = $form->getData();
-            if(!$room->getStart()){
+            if (!$room->getStart()) {
                 $snack = $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.');
                 return $this->redirectToRoute('dashboard', array('snack' => $snack, 'color' => 'danger'));
             }
@@ -94,7 +97,7 @@ class RoomController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
             $em->flush();
-            if(sizeof($room->getSchedulings()->toArray())< 1){
+            if (sizeof($room->getSchedulings()->toArray()) < 1) {
                 $schedule = new Scheduling();
                 $schedule->setUid(md5(uniqid()));
                 $schedule->setRoom($room);
@@ -106,14 +109,21 @@ class RoomController extends AbstractController
             }
 
             if ($request->get('id')) {
-                foreach ($room->getUser() as $user) {
-                    $userService->editRoom($user, $room);
+                if (!$form['silentMode']->getData() ||
+                    $roomOld->getStart() !== $room->getStart() ||
+                    $roomOld->getDuration() !== $room->getDuration() ||
+                    $roomOld->getEntryDateTime() !== $room->getEntryDateTime()
+                ) {
+                    foreach ($room->getUser() as $user) {
+                        $userService->editRoom($user, $room);
+                    }
                 }
+
             } else {
                 $userService->addUser($room->getModerator(), $room);
             }
             $modalUrl = base64_encode($this->generateUrl('room_add_user', array('room' => $room->getId())));
-            if($room->getScheduleMeeting()){
+            if ($room->getScheduleMeeting()) {
                 $modalUrl = base64_encode($this->generateUrl('schedule_admin', array('id' => $room->getId())));
             }
             return $this->redirectToRoute('dashboard', ['snack' => $snack, 'modalUrl' => $modalUrl]);
@@ -195,32 +205,32 @@ class RoomController extends AbstractController
         $room = $this->getDoctrine()->getRepository(Rooms::class)->findOneBy(['id' => $request->get('room')]);
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $request->get('user')]);
         $snack = 'Keine Berechtigung';
-        $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms'=>$room,'leader'=>$user));
+        $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms' => $room, 'leader' => $user));
 
         if ($room->getModerator() === $this->getUser() || $user === $this->getUser()) {
             $room->removeUser($user);
             $room->addStorno($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($room);
-                $this->logger->log('User was removed from Event',array('email'=>$user->getEmail(),'id'=>$user->getId(),'event'=>$room->getId()));
+            $this->logger->log('User was removed from Event', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId()));
 
-            if($user->isMemeberInGroup($room)){
-                    $this->logger->log('User was removed from Group', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId()));
+            if ($user->isMemeberInGroup($room)) {
+                $this->logger->log('User was removed from Group', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId()));
 
-                    $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
+                $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
                 $em->persist($user);
             }
-            if($group){
-                    $this->logger->log('The User was a leader of a group so the whole group is deleted', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId(), 'group' => $group->getId()));
+            if ($group) {
+                $this->logger->log('The User was a leader of a group so the whole group is deleted', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId(), 'group' => $group->getId()));
 
-                foreach ($group->getMembers() as $data){
+                foreach ($group->getMembers() as $data) {
                     $room->removeUser($data);
                     $room->addStorno($data);
                     $group->removeMember($data);
-                    $userService->removeRoom($data,$room);
+                    $userService->removeRoom($data, $room);
                     $em->persist($room);
                     $em->persist($group);
-                        $this->logger->log('Remove User from Event', array('email' => $data->getEmail(), 'id' => $data->getId(), 'event' => $room->getId(), 'group' => $group->getId()));
+                    $this->logger->log('Remove User from Event', array('email' => $data->getEmail(), 'id' => $data->getId(), 'event' => $room->getId(), 'group' => $group->getId()));
 
                 }
                 $em->flush();
@@ -247,7 +257,7 @@ class RoomController extends AbstractController
         if ($this->getUser() === $room->getModerator()) {
             $em = $this->getDoctrine()->getManager();
             foreach ($room->getUser() as $user) {
-                if($room->getEnddate() > new \DateTime()){
+                if ($room->getEnddate() > new \DateTime()) {
                     $userService->removeRoom($user, $room);
                 }
                 $room->removeUser($user);
@@ -266,7 +276,7 @@ class RoomController extends AbstractController
      * @Route("/room/clone", name="room_clone")
      */
     public
-    function roomClone(Request $request, UserService $userService, TranslatorInterface $translator,ServerUserManagment $serverUserManagment)
+    function roomClone(Request $request, UserService $userService, TranslatorInterface $translator, ServerUserManagment $serverUserManagment)
     {
 
         $roomOld = $this->getDoctrine()->getRepository(Rooms::class)->find($request->get('room'));
@@ -290,7 +300,7 @@ class RoomController extends AbstractController
                 $room->setUidModerator(md5(uniqid()));
                 $room->setUidParticipant(md5(uniqid()));
                 $room->setSequence(0);
-                $room->setUid(rand(0,99).time());
+                $room->setUid(rand(0, 99) . time());
                 $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($room);

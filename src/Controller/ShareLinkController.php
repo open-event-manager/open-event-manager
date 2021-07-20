@@ -32,7 +32,7 @@ class ShareLinkController extends AbstractController
     private $em;
     private $logger;
 
-    public function __construct(EntityManagerInterface $entityManager,LoggerService $logger)
+    public function __construct(EntityManagerInterface $entityManager, LoggerService $logger)
     {
         $this->em = $entityManager;
         $this->logger = $logger;
@@ -66,11 +66,12 @@ class ShareLinkController extends AbstractController
         }
         return new JsonResponse(array('error' => true));
     }
+
     /**
      * @Route("/room/share/link/deniewaitinglist/{id}", name="denie_waitingList")
      * @ParamConverter("waitinglist")
      */
-    public function waitinglistDenie(Waitinglist $waitinglist, SubcriptionService $subcriptionService,UserService $userService, TranslatorInterface $translator): Response
+    public function waitinglistDenie(Waitinglist $waitinglist, SubcriptionService $subcriptionService, UserService $userService, TranslatorInterface $translator): Response
     {
 
         if ($waitinglist->getRoom()->getModerator() == $this->getUser()) {
@@ -79,40 +80,41 @@ class ShareLinkController extends AbstractController
             $user = $waitinglist->getUser();
             $group = $this->getDoctrine()->getRepository(Group::class)->findOneBy(array('rooms' => $room, 'leader' => $user));
             $room->removeUser($user);
-                $this->logger->log('Remove User from Event', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId()));
+            $this->logger->log('Remove User from Event', array('email' => $user->getEmail(), 'id' => $user->getId(), 'event' => $room->getId()));
 
             $room->addStorno($user);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($room);
-                if ($user->isMemeberInGroup($room)) {
-                    $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
-                    $em->persist($user);
-                }
-                if ($group) {
-                    foreach ($group->getMembers() as $data) {
-                            $this->logger->log('Remove Groupmemeber from Event', array('email' => $data->getEmail(), 'id' => $data->getId(), 'event' => $room->getId()));
-
-                        $room->removeUser($data);
-                        $room->addStorno($data);
-                        $group->removeMember($data);
-                        $userService->removeRoom($data, $room);
-                        $em->persist($room);
-                        $em->persist($group);
-
-                    }
-                    $em->flush();
-                    $em->remove($group);
-                    $em->flush();
-                }
-                $em->flush();
-                $em->remove($waitinglist);
-                $em->flush();
-                $snack = $translator->trans('Teilnehmer gelöscht');
-                $userService->removeRoom($user, $room);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($room);
+            if ($user->isMemeberInGroup($room)) {
+                $user->removeEventGroupsMemeber($user->isMemeberInGroup($room));
+                $em->persist($user);
             }
-            return new JsonResponse(array('error' => true));
+            if ($group) {
+                foreach ($group->getMembers() as $data) {
+                    $this->logger->log('Remove Groupmemeber from Event', array('email' => $data->getEmail(), 'id' => $data->getId(), 'event' => $room->getId()));
+
+                    $room->removeUser($data);
+                    $room->addStorno($data);
+                    $group->removeMember($data);
+                    $userService->removeRoom($data, $room);
+                    $em->persist($room);
+                    $em->persist($group);
+
+                }
+                $em->flush();
+                $em->remove($group);
+                $em->flush();
+            }
+            $em->flush();
+            $em->remove($waitinglist);
+            $em->flush();
+            $snack = $translator->trans('Teilnehmer gelöscht');
+            $userService->removeRoom($user, $room);
+        }
+        return new JsonResponse(array('error' => true));
 
     }
+
     /**
      * @Route("/subscribe/self/{uid}", name="public_subscribe_participant")
      */
@@ -131,52 +133,64 @@ class ShareLinkController extends AbstractController
             return $this->redirectToRoute('join_index_no_slug', ['snack' => $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.'), 'color' => 'danger']);
         }
 
-        $data = array('email' => '','group'=>array());
+        $data = array('email' => '', 'group' => array());
         $form = $this->createForm(PublicRegisterType::class, $data);
         $form->handleRequest($request);
         $errors = array();
         $snack = $translator->trans('Bitte geben Sie ihre Daten ein');
         $color = 'success';
         $standort = null;
-      if($this->getUser() != $rooms->getModerator()){
-          if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants())) {
-              $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
-              $color = 'danger';
-          }
+        if ($this->getUser() != $rooms->getModerator()) {
+            if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants())) {
+                if ($rooms->getTextWhenNoSpace()) {
+                    $snack = $rooms->getTextWhenNoSpace();
+                } else {
+                    $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+                }
+                $color = 'danger';
+            }
 
-          if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() == true) {
-              $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.');
-              $color = 'warning';
-              if($rooms->getMaxWaitingList() != null && sizeof($rooms->getWaitinglists()) >= $rooms->getMaxWaitingList()){
-                  $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
-                  $color = 'danger';
-              }
-          }
-      }
+            if ($rooms->getMaxParticipants() && (sizeof($rooms->getUser()->toArray()) >= $rooms->getMaxParticipants()) && $rooms->getWaitinglist() == true) {
+                if ($rooms->getTextWhenRoomWarteliste()) {
+                    $snack = $rooms->getTextWhenRoomWarteliste();
+                } else {
+                    $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht. Aber sie können sich auf die Warteliste einschreiben.');
+                }
+                $color = 'warning';
+                if ($rooms->getMaxWaitingList() !== null && sizeof($rooms->getWaitinglists()) >= $rooms->getMaxWaitingList()) {
+                    if ($rooms->getTextWhenNoSpace()) {
+                        $snack = $rooms->getTextWhenNoSpace();
+                    } else {
+                        $snack = $translator->trans('Die maximale Teilnehmeranzahl ist bereits erreicht.');
+                    }
+                    $color = 'danger';
+                }
+            }
+        }
 
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
-            $group = $request->get('group',array());
+            $group = $request->get('group', array());
 
             $isOrganizer = false;
-            if ($rooms->getModerator() == $this->getUser()){
+            if ($rooms->getModerator() == $this->getUser()) {
                 $isOrganizer = true;
             }
 
-            $res = $subcriptionService->subscripe($data, $rooms,$isOrganizer, $group, $moderator);
-            if ($isOrganizer && isset($res['sub'])){
-                $subcriptionService->acceptSub($res['sub'],true);
-                $snack= $translator->trans('Sie haben den Teilnehmer erfolgreich angemeldet');
-                $color= 'success';
+            $res = $subcriptionService->subscripe($data, $rooms, $isOrganizer, $group, $moderator);
+            if ($isOrganizer && isset($res['sub'])) {
+                $subcriptionService->acceptSub($res['sub'], true);
+                $snack = $translator->trans('Sie haben den Teilnehmer erfolgreich angemeldet');
+                $color = 'success';
                 $modalUrl = base64_encode($this->generateUrl('room_add_user', array('room' => $rooms->getId())));
-                    return $this->redirectToRoute('dashboard', array(
-                        'modalUrl'=>$modalUrl,
+                return $this->redirectToRoute('dashboard', array(
+                        'modalUrl' => $modalUrl,
                         'color' => $color,
                         'snack' => $snack,
-                        )
-                    );
+                    )
+                );
             }
             $snack = $res['text'];
             $color = $res['color'];
@@ -203,7 +217,7 @@ class ShareLinkController extends AbstractController
     public function doupleoptin($uid, SubcriptionService $subcriptionService, TranslatorInterface $translator, UserService $userService, PexelService $pexelService): Response
     {
         $subscriber = $this->em->getRepository(Subscriber::class)->findOneBy(array('uid' => $uid));
-        $res = $subcriptionService->acceptSub($subscriber,false);
+        $res = $subcriptionService->acceptSub($subscriber, false);
         $standort = null;
         if ($subscriber) {
             $standort = $subscriber->getRoom()->getStandort();
