@@ -2,7 +2,7 @@
     {{ 'Name'|trans }}: {{ room.name }}
 </b>
 
-<p>{{ 'Moderator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
+<p>{{ 'Organisator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
     {{ 'Datum'|trans }}: {{ room.start|date('d.m.Y') }}<br>
     {{ 'Startzeit'|trans }}: {{ room.start|date('H:i') }}<br>
     {{ 'Geplante Dauer'|trans }}: {{ room.duration }} {{ 'Minuten'|trans }}<br>
@@ -11,7 +11,7 @@
         {{ 'Einlass'|trans }}: {{ room.entryDateTime|date('d.m.Y H:i') }}<br>
     {% endif %}
     {% if room.agenda is not null %}
-        {{ 'Agenda:'|trans }}:<br> {{ room.agenda|markdown_to_html }}<br>
+        {{ 'Agenda'|trans }}:<br> {{ room.agenda|markdown_to_html }}<br>
     {% endif %}
     {% if room.additionalInfo is not null %}
         {{ 'Zusätzliche Infos:'|trans }}:<br> {{ room.additionalInfo|markdown_to_html }}<br>

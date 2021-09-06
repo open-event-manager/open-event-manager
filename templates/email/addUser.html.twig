@@ -1,6 +1,6 @@
 {% extends 'email/base.html.twig' %}
 {% block header %}
-    - -{{'Einladung zu einem Event'|trans}}- -
+    - -{{'Anmeldebestätigung zu einem Event'|trans}}- -
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
         {{'Hallo!'|trans}}
     </b>
     <p>
-        {% trans with {'{name}': room.standort.name} %}Sie wurden gerade zu einem Event in: {name} eingeladen.{% endtrans %}
+        {% trans with {'{name}': room.standort.name} %}Sie wurden gerade zu einem Event in: {name} angemeldet.{% endtrans %}
     </p>
 
 

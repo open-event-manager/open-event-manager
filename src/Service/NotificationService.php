@@ -53,7 +53,7 @@ class NotificationService
                 'location' => $location,
                 'description' => $this->translator->trans('Sie wurden zu einem Event in: {name} hinzugefügt.', array('{name}' => $rooms->getStandort()->getName())) .
                     '\n\n' .
-                    $this->translator->trans('Einladung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}', array('{location}'=>$location,'{name}' => $rooms->getName(), '{moderator}' => $rooms->getModerator()->getFirstName() . ' ' . $rooms->getModerator()->getLastName()))
+                    $this->translator->trans('Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}', array('{location}'=>$location,'{name}' => $rooms->getName(), '{moderator}' => $rooms->getModerator()->getFirstName() . ' ' . $rooms->getModerator()->getLastName()))
                     . '\n\n' .
                     '\n\n'.
                     $this->translator->trans('Sie erhalten diese E-Mail, weil Sie zu diesem Event eingeladen wurden.'),
