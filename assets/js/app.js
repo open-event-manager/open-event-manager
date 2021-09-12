@@ -24,7 +24,7 @@ import autosize from 'autosize'
 import ClipboardJS from 'clipboard'
 import {initScheduling} from './scheduling'
 import * as Toastr from 'toastr'
-
+import {initFreeFields} from './freeField'
 $.urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results == null) {
@@ -170,6 +170,7 @@ function initServerFeatures() {
 
 $('#loadContentModal').on('shown.bs.modal', function (e) {
     initScheduling();
+    initFreeFields();
     $('[data-toggle="popover"]').popover({html: true});
     $('.flatpickr').flatpickr({
         minDate: "today",
