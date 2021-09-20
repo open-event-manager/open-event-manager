@@ -91,9 +91,7 @@ class TeilnehmerExcelService
             $participants->setCellValue($alphas[$count++] . $count2, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
             $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
             $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
-            dump($mapping);
             foreach($data->getFreeFieldsFromRoom($rooms) as $ff){
-                dump($ff);
                 $participants->setCellValue($alphas[$mapping[$ff->getFreeField()->getId()]] . $count2, $ff->getAnswer());
             }
             $count2++;
