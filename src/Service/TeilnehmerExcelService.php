@@ -30,6 +30,7 @@ class TeilnehmerExcelService
 
     function generateTeilnehmerliste(Rooms $rooms)
     {
+        $mapping = array();
         $alphas = $this->createColumnsArray('ZZ');
         $count = 0;
         $count2 = 1;
@@ -61,6 +62,12 @@ class TeilnehmerExcelService
         $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Organisator'));
         $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Gruppenleiter ID'));
         $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('GruppenmitgliederID'));
+        foreach ($rooms->getFreeFields() as $ff){
+            $mapping[$ff->getId()] = $count;
+            $participants->setCellValue($alphas[$count++] . $count2, $ff->getLabel());
+        }
+
+
         $count = 0;
         $count2++;
         foreach ($rooms->getUser() as $data) {
@@ -84,6 +91,11 @@ class TeilnehmerExcelService
             $participants->setCellValue($alphas[$count++] . $count2, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
             $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
             $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
+            dump($mapping);
+            foreach($data->getFreeFieldsFromRoom($rooms) as $ff){
+                dump($ff);
+                $participants->setCellValue($alphas[$mapping[$ff->getFreeField()->getId()]] . $count2, $ff->getAnswer());
+            }
             $count2++;
             $count = 0;
         }

@@ -15,8 +15,8 @@ class FreeFieldType extends AbstractType
     {
 
         $builder
-            ->add('label', TextType::class, ['required' => true, 'attr' => ['class' => 'd-inline w-75','placeholder'=>'label.FreefieldName'],'translation_domain' => 'form'])
-            ->add('required', CheckboxType::class, ['required' => false, 'label'=>'label.required', 'attr' => ['class' => 'd-inline w-75'],'translation_domain' => 'form']);
+            ->add('label', TextType::class, ['required' => true, 'attr' => ['class' => 'd-inline w-100','placeholder'=>'label.freefieldName'],'translation_domain' => 'form'])
+            ->add('required', CheckboxType::class, ['required' => false, 'label'=>'label.required','translation_domain' => 'form']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

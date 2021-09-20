@@ -46,6 +46,7 @@ class RoomController extends AbstractController
             if ($room->getModerator() !== $this->getUser()) {
                 return $this->redirectToRoute('dashboard', ['snack' => $translator->trans('Keine Berechtigung')]);
             }
+
             $snack = $translator->trans('Event erfolgreich bearbeitet');
             $title = $translator->trans('Event bearbeiten');
             $sequence = $room->getSequence() + 1;
@@ -72,7 +73,7 @@ class RoomController extends AbstractController
             $title = $translator->trans('Neues Event planen');
         }
         $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
-
+        $freeFieldsOld = $room->getFreeFields()->toArray();
 
         $form = $this->createForm(RoomType::class, $room, ['standort' => $standort, 'action' => $this->generateUrl('room_new', ['id' => $room->getId()])]);
 
@@ -93,8 +94,15 @@ class RoomController extends AbstractController
                 $snack = $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.');
                 return $this->redirectToRoute('dashboard', array('snack' => $snack, 'color' => 'danger'));
             }
-            $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
             $em = $this->getDoctrine()->getManager();
+            foreach ($freeFieldsOld as $field){
+                if(!in_array($field,$room->getFreeFields()->toArray())){
+                    $em->remove($field);
+                    $room->removeFreeField($field);
+                }
+            }
+            $room->setEnddate((clone $room->getStart())->modify('+ ' . $room->getDuration() . ' minutes'));
+
             $em->persist($room);
             $em->flush();
             if (sizeof($room->getSchedulings()->toArray()) < 1) {

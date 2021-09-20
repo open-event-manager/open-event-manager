@@ -134,7 +134,7 @@ class ShareLinkController extends AbstractController
         }
 
         $data = array('email' => '', 'group' => array());
-        $form = $this->createForm(PublicRegisterType::class, $data);
+        $form = $this->createForm(PublicRegisterType::class, $data,array('freeFields'=>$rooms->getFreeFields()));
         $form->handleRequest($request);
         $errors = array();
         $snack = $translator->trans('Bitte geben Sie ihre Daten ein');
@@ -178,7 +178,6 @@ class ShareLinkController extends AbstractController
             if ($rooms->getModerator() == $this->getUser()) {
                 $isOrganizer = true;
             }
-
             $res = $subcriptionService->subscripe($data, $rooms, $isOrganizer, $group, $moderator);
             if ($isOrganizer && isset($res['sub'])) {
                 $subcriptionService->acceptSub($res['sub'], true);

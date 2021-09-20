@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FreeFieldRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,16 @@ class FreeField
      * @ORM\JoinColumn(nullable=false)
      */
     private $Room;
+
+    /**
+     * @ORM\OneToMany(targetEntity=FreeFieldsUserAnswer::class, mappedBy="freeField")
+     */
+    private $yes;
+
+    public function __construct()
+    {
+        $this->yes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +82,36 @@ class FreeField
     public function setRoom(?Rooms $Room): self
     {
         $this->Room = $Room;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FreeFieldsUserAnswer[]
+     */
+    public function getYes(): Collection
+    {
+        return $this->yes;
+    }
+
+    public function addYe(FreeFieldsUserAnswer $ye): self
+    {
+        if (!$this->yes->contains($ye)) {
+            $this->yes[] = $ye;
+            $ye->setFreeField($this);
+        }
+
+        return $this;
+    }
+
+    public function removeYe(FreeFieldsUserAnswer $ye): self
+    {
+        if ($this->yes->removeElement($ye)) {
+            // set the owning side to null (unless already changed)
+            if ($ye->getFreeField() === $this) {
+                $ye->setFreeField(null);
+            }
+        }
 
         return $this;
     }
