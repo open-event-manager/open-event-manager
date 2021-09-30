@@ -81,6 +81,9 @@ label:
   textWhenNoSpace: Text wenn keine Plätze mehr vorhanden
   silentMode: Keine E-Mail Benachrichtigung
   textWhenRoomWarteliste: Wartelistentext
+  freefieldName: Freifeld Name
+  required: Dieses Feld muss ausgefüllt werden
+  freefield: Sonstige Angaben
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
