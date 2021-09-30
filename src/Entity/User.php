@@ -156,6 +156,11 @@ class User extends BaseUser
      */
     private $address;
 
+    /**
+     * @ORM\OneToMany(targetEntity=FreeFieldsUserAnswer::class, mappedBy="user")
+     */
+    private $freeFieldsUserAnswers;
+
 
 
     public function __construct()
@@ -173,6 +178,7 @@ class User extends BaseUser
         $this->roomsStorno = new ArrayCollection();
         $this->eventGroups = new ArrayCollection();
         $this->eventGroupsMemebers = new ArrayCollection();
+        $this->freeFieldsUserAnswers = new ArrayCollection();
 
     }
 
@@ -704,5 +710,43 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return Collection|FreeFieldsUserAnswer[]
+     */
+    public function getFreeFieldsUserAnswers(): Collection
+    {
+        return $this->freeFieldsUserAnswers;
+    }
+
+    public function addFreeFieldsUserAnswer(FreeFieldsUserAnswer $freeFieldsUserAnswer): self
+    {
+        if (!$this->freeFieldsUserAnswers->contains($freeFieldsUserAnswer)) {
+            $this->freeFieldsUserAnswers[] = $freeFieldsUserAnswer;
+            $freeFieldsUserAnswer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFreeFieldsUserAnswer(FreeFieldsUserAnswer $freeFieldsUserAnswer): self
+    {
+        if ($this->freeFieldsUserAnswers->removeElement($freeFieldsUserAnswer)) {
+            // set the owning side to null (unless already changed)
+            if ($freeFieldsUserAnswer->getUser() === $this) {
+                $freeFieldsUserAnswer->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+    public function getFreeFieldsFromRoom(Rooms $rooms){
+        $res = array();
+        foreach ($this->freeFieldsUserAnswers as $data){
+            if ($data->getFreeField()->getRoom() == $rooms){
+                $res[] = $data;
+            }
+        }
+        return $res;
+    }
 
 }

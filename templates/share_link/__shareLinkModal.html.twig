@@ -15,19 +15,37 @@
 
             <div class="input-group mb-3">
                 <input id="linkPart" readonly type="text" class="form-control" value="{{ absolute_url(path('public_subscribe_participant',{'uid':room.uidParticipant})) }}">
+
                 <div class="input-group-append">
                     <button class="btn btn-md btn-outline-primary m-0 px-3 py-2 z-depth-0 waves-effect copyLink" type="button"  data-clipboard-target="#linkPart" >   <i class="far fa-clipboard"></i></button>
-                </div>
+                    <button class="btn btn-md btn-outline-primary m-0 px-3 py-2 z-depth-0 waves-effect copyLink" type="button" data-toggle="collapse" data-target="#qrcodeParticipant" aria-expanded="false" aria-controls="qrcodeParticipant" >
+                        <i class="fas fa-qrcode"></i>
+                    </button>
+
+
+        </div>
             </div>
+        <div class="collapse" id="qrcodeParticipant">
+            <div class="mt-3">
+                <img src='{{ qr_code_data_uri(absolute_url(path('public_subscribe_participant',{'uid':room.uidParticipant}))) }}'/>
+            </div>
+        </div>
             <h5>{{'Einladungslink für Moderatoren'|trans}}</h5>
 
             <div class="input-group mb-3">
                 <input id="linkModerator" readonly type="text" class="form-control" value="{{ absolute_url(path('public_subscribe_participant',{'uid':room.uidModerator})) }}">
                 <div class="input-group-append">
                     <button class="btn btn-md btn-outline-primary m-0 px-3 py-2 z-depth-0 waves-effect copyLink" type="button"  data-clipboard-target="#linkModerator" >   <i class="far fa-clipboard"></i></button>
+                    <button class="btn btn-md btn-outline-primary m-0 px-3 py-2 z-depth-0 waves-effect copyLink" type="button" data-toggle="collapse" data-target="#qrcodeModerator" aria-expanded="false" aria-controls="qrcodeModerator" >
+                        <i class="fas fa-qrcode"></i>
+                    </button>
                 </div>
             </div>
-
+            <div class="collapse" id="qrcodeModerator">
+                <div class="mt-3">
+                    <img src='{{ qr_code_data_uri(absolute_url(path('public_subscribe_participant',{'uid':room.uidModerator}))) }}'/>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -16,6 +16,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -85,7 +86,14 @@ class RoomType extends AbstractType
             ->add('maxGroupSize', NumberType::class, array('required' => false, 'label' => 'label.maxGroupSize', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('showInCalendarWhenNoSpace', CheckboxType::class, array('required' => false, 'label' => 'label.showInCalendarWhenNoSpace', 'translation_domain' => 'form'))
             ->add('silentMode', CheckboxType::class, array(  "mapped" => false, 'required' => false, 'label' => 'label.silentMode', 'translation_domain' => 'form'))
-
+            ->add('freeFields', CollectionType::class,
+                ['entry_type' => FreeFieldType::class,
+                    'entry_options' => ['label' => 'false',],
+                    'allow_add' => true,
+                    'allow_delete' =>true,
+                    'by_reference' => false,
+                    'label' => false,
+                    'translation_domain' => 'form',])
             ->add('submit', SubmitType::class, ['attr' => array('class' => 'btn btn-outline-primary'), 'label' => 'label.speichern', 'translation_domain' => 'form']);
     }
 

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RoomsRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Rooms
 {
@@ -207,6 +208,11 @@ class Rooms
      */
     private $textWhenRoomWarteliste;
 
+    /**
+     * @ORM\OneToMany(targetEntity=FreeField::class, mappedBy="Room",cascade={"persist"})
+     */
+    private $freeFields;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -216,6 +222,7 @@ class Rooms
         $this->waitinglists = new ArrayCollection();
         $this->storno = new ArrayCollection();
         $this->groups = new ArrayCollection();
+        $this->freeFields = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -777,6 +784,36 @@ class Rooms
     public function setTextWhenRoomWarteliste(?string $textWhenRoomWarteliste): self
     {
         $this->textWhenRoomWarteliste = $textWhenRoomWarteliste;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FreeField[]
+     */
+    public function getFreeFields(): Collection
+    {
+        return $this->freeFields;
+    }
+
+    public function addFreeField(FreeField $freeField): self
+    {
+        if (!$this->freeFields->contains($freeField)) {
+            $this->freeFields[] = $freeField;
+            $freeField->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFreeField(FreeField $freeField): self
+    {
+        if ($this->freeFields->removeElement($freeField)) {
+            // set the owning side to null (unless already changed)
+            if ($freeField->getRoom() === $this) {
+                $freeField->setRoom(null);
+            }
+        }
 
         return $this;
     }

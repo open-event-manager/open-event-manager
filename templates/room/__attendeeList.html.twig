@@ -7,7 +7,11 @@
                title="{{ user.firstName }} {{ user.lastName }}"
                data-content="
 {{ 'Email'|trans }}: <a href='mailto:{{ user.email }}'>{{ user.email }}</a><br>
-                                {{ 'Telefon'|trans }}: <a href='tel:{{ user.phone }}'>{{ user.phone }}</a>"><i
+                                {{ 'Telefon'|trans }}: <a href='tel:{{ user.phone }}'>{{ user.phone }}</a><br>
+{% for ff in user.freeFieldsFromRoom(room) %}
+{{ ff.freefield.label }}: {{ ff.answer }}<br>
+{% endfor %}
+"<i
                         class="fa fa-info-circle"></i></a>
             <a href="{{ path('room_repeat_user',{'id':room.id,'user_id':user.id}) }}" title="{{ 'Einladungsemail erneut senden'|trans }}"><i class="far fa-share-square"></i></a>
 

@@ -4,6 +4,8 @@
 namespace App\Service;
 
 
+use App\Entity\FreeField;
+use App\Entity\FreeFieldsUserAnswer;
 use App\Entity\Group;
 use App\Entity\Rooms;
 use App\Entity\RoomsUser;
@@ -89,6 +91,23 @@ class SubcriptionService
         $user->setLastName($userData['lastName']);
         $user->setPhone($userData['phone']);
         $user->setAddress($userData['address']);
+        $freeFields = $rooms->getFreeFields();
+        foreach ($freeFields as $data2){
+            try {
+                $answer = new FreeFieldsUserAnswer();
+                $answer->setAnswer($userData['freeFields']['freeFields_'.$data2->getId()]);
+                $answer->setUser($user);
+                $answer->setFreeField($data2);
+                $answer->setCreatedAt(new \DateTime());
+                $this->em->persist($answer);
+            }catch (\Exception $exception){
+                if ($data2->getRequired()){
+                    $res['text'] = $this->translator->trans('Sie haben doppelte E-Mail Adressen eingetragen');
+                    $res['color'] = 'danger';
+                    return $res;
+                }
+            }
+        }
         $this->em->persist($user);
         $this->em->flush();
             $this->logger->log('Added a new User to the database', array('email' => $user->getEmail(), 'id' => $user->getId()));

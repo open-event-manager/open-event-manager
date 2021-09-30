@@ -8,6 +8,7 @@
     "composer/package-versions-deprecated": "^1.10",
     "dpolac/twig-lambda": "^1.0",
     "eluceo/ical": "0.16.*",
+    "endroid/qr-code-bundle": "^4.0",
     "erusev/parsedown": "^1.7",
     "jms/i18n-routing-bundle": "dev-master",
     "knpuniversity/oauth2-client-bundle": "^2.5",
