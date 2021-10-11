@@ -1017,7 +1017,7 @@
       </trans-unit>
       <trans-unit id="mF7KXhV" resname="Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}">
         <source>Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</source>
-        <target>__Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</target>
+        <target>Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</target>
       </trans-unit>
       <trans-unit id="0Hg4yrH" resname="Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}">
         <source>Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</source>
