@@ -1021,37 +1021,37 @@
       </trans-unit>
       <trans-unit id="0Hg4yrH" resname="Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}">
         <source>Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</source>
-        <target>__Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</target>
+        <target>Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</target>
       </trans-unit>
       <trans-unit id="EL6bIdi" resname="Anmeldebestätigung zu einem Event">
         <source>Anmeldebestätigung zu einem Event</source>
-        <target>__Anmeldebestätigung zu einem Event</target>
+        <target>Anmeldebestätigung zu einem Event</target>
       </trans-unit>
       <trans-unit id="OxqnBBD" resname="Anmeldebestätigung zu einer Terminplanung">
         <source>Anmeldebestätigung zu einer Terminplanung</source>
-        <target>__Anmeldebestätigung zu einer Terminplanung</target>
+        <target>Anmeldebestätigung zu einer Terminplanung</target>
       </trans-unit>
       <trans-unit id="g11VFDH" resname="Sie sind auf der Warteliste für das Event {name} eingetragen.&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.">
         <source>Sie sind auf der Warteliste für das Event {name} eingetragen.
     &lt;/p&gt;
     &lt;p&gt;
             Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.</source>
-        <target><![CDATA[__Sie sind auf der Warteliste für das Event {name} eingetragen.
+        <target><![CDATA[Sie sind auf der Warteliste für das Event {name} eingetragen.
     </p>
     <p>
             Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.]]></target>
       </trans-unit>
       <trans-unit id="Yl1sHYs" resname="Sie wurden gerade zu einem Event in: {name} angemeldet.">
         <source>Sie wurden gerade zu einem Event in: {name} angemeldet.</source>
-        <target>__Sie wurden gerade zu einem Event in: {name} angemeldet.</target>
+        <target>Sie wurden gerade zu einem Event in: {name} angemeldet.</target>
       </trans-unit>
       <trans-unit id="_WD.NB0" resname="Bitte bestätigen Sie Ihre Anmeldung">
         <source>Bitte bestätigen Sie Ihre Anmeldung</source>
-        <target>__Bitte bestätigen Sie Ihre Anmeldung</target>
+        <target>Bitte bestätigen Sie Ihre Anmeldung</target>
       </trans-unit>
       <trans-unit id="Mchst89" resname="Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.">
         <source>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</source>
-        <target>__Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</target>
+        <target>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</target>
       </trans-unit>
     </body>
   </file>
