@@ -1,6 +1,6 @@
 {% extends 'email/base.html.twig' %}
 {% block header %}
-    -- {{ 'Bestätigung Ihrer Anmeldung'|trans }} --
+    -- {{ 'Bitte bestätigen Sie Ihre Anmeldung'|trans }} --
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
     </b>
     <p>
         {% trans with {'{name}': room.name|escape} %}
-            Sie haben sich zum Event {name} angemeldet.
+            Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.
         {% endtrans %}
     </p>
     <p>
@@ -27,7 +27,7 @@
     <b>
         {{ 'Name'|trans }}: {{ room.name }}
     </b>
-    <p>{{ 'Moderator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
+    <p>{{ 'Organisator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
         {{ 'Datum'|trans }}: {{ room.start|date('d.m.Y') }}<br>
         {{ 'Startzeit'|trans }}: {{ room.start|date('H:i') }}<br>
         {{ 'Geplante Dauer'|trans }}: {{ room.duration }} {{ 'Minuten'|trans }}</p>

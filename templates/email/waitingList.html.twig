@@ -13,18 +13,18 @@
     <p>
         {% trans with {'{name}': room.name|escape} %}
             Sie sind auf der Warteliste für das Event {name} eingetragen.
+    </p>
+    <p>
+            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.
         {% endtrans %}
     </p>
     <p>
-        <br>
-        <br>
-    <br>
         <br>
     </p>
     <b>
         {{ 'Name'|trans }}: {{ room.name }}
     </b>
-    <p>{{ 'Moderator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
+    <p>{{ 'Organisator'|trans }}: {{ room.moderator.firstName }} {{ room.moderator.lastName }}<br>
         {{ 'Datum'|trans }}: {{ room.start|date('d.m.Y') }}<br>
         {{ 'Startzeit'|trans }}: {{ room.start|date('H:i') }}<br>
         {{ 'Geplante Dauer'|trans }}: {{ room.duration }} {{ 'Minuten'|trans }}</p>

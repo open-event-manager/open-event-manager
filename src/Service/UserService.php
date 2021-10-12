@@ -58,14 +58,14 @@ class UserService
             //we have a not sheduled meeting. So the participabts are getting invited directly
 
             $content = $this->twig->render('email/addUser.html.twig', ['user' => $user, 'room' => $room]);
-            $subject = $this->translator->trans('Neue Einladung zu einem Event');
+            $subject = $this->translator->trans('Anmeldebestätigung zu einem Event');
             $ics = $this->notificationService->createIcs($room, $user, 'REQUEST');
             $attachement[] = array('type' => 'text/calendar', 'filename' => $room->getName() . '.ics', 'body' => $ics);
             $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort(), $attachement);
         } else {
             //we have a shedule Meting. the participants only got a link to shedule their appointments
             $content = $this->twig->render('email/scheduleMeeting.html.twig', ['user' => $user, 'room' => $room,]);
-            $subject = $this->translator->trans('Neue Einladung zu einer Terminplanung');
+            $subject = $this->translator->trans('Anmeldebestätigung zu einer Terminplanung');
             $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort());
         }
         return true;

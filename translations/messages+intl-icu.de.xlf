@@ -1015,53 +1015,43 @@
         <source>Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.</source>
         <target>Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.</target>
       </trans-unit>
-      <trans-unit id=".DR5KXk" resname="Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.">
-        <source>Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.</source>
-        <target>Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.</target>
+      <trans-unit id="mF7KXhV" resname="Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}">
+        <source>Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</source>
+        <target>Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</target>
       </trans-unit>
-      <trans-unit id="3RRMXxh" resname="Teilnehmer können sich selbst du dem Event einschreiben.">
-        <source>Teilnehmer können sich selbst du dem Event einschreiben.</source>
-        <target>Teilnehmer können sich selbst du dem Event einschreiben.</target>
+      <trans-unit id="0Hg4yrH" resname="Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}">
+        <source>Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</source>
+        <target>Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</target>
       </trans-unit>
-      <trans-unit id="2O3YlIS" resname="Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.">
-        <source>Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.</source>
-        <target>Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.</target>
+      <trans-unit id="EL6bIdi" resname="Anmeldebestätigung zu einem Event">
+        <source>Anmeldebestätigung zu einem Event</source>
+        <target>Anmeldebestätigung zu einem Event</target>
       </trans-unit>
-      <trans-unit id="wqDbrNn" resname="Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.">
-        <source>Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.</source>
-        <target>Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.</target>
+      <trans-unit id="OxqnBBD" resname="Anmeldebestätigung zu einer Terminplanung">
+        <source>Anmeldebestätigung zu einer Terminplanung</source>
+        <target>Anmeldebestätigung zu einer Terminplanung</target>
       </trans-unit>
-      <trans-unit id="g8srO4M" resname="Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.">
-        <source>Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.</source>
-        <target>Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.</target>
+      <trans-unit id="g11VFDH" resname="Sie sind auf der Warteliste für das Event {name} eingetragen.&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.">
+        <source>Sie sind auf der Warteliste für das Event {name} eingetragen.
+    &lt;/p&gt;
+    &lt;p&gt;
+            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.</source>
+        <target><![CDATA[Sie sind auf der Warteliste für das Event {name} eingetragen.
+    </p>
+    <p>
+            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.]]></target>
       </trans-unit>
-      <trans-unit id="hJQUPlJ" resname="Die Maximale Anzahl an Teilnehmern auf der Warteliste">
-        <source>Die Maximale Anzahl an Teilnehmern auf der Warteliste</source>
-        <target>Die Maximale Anzahl an Teilnehmern auf der Warteliste</target>
+      <trans-unit id="Yl1sHYs" resname="Sie wurden gerade zu einem Event in: {name} angemeldet.">
+        <source>Sie wurden gerade zu einem Event in: {name} angemeldet.</source>
+        <target>Sie wurden gerade zu einem Event in: {name} angemeldet.</target>
       </trans-unit>
-      <trans-unit id="7rZfAUD" resname="Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.">
-        <source>Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.</source>
-        <target>Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.</target>
+      <trans-unit id="_WD.NB0" resname="Bitte bestätigen Sie Ihre Anmeldung">
+        <source>Bitte bestätigen Sie Ihre Anmeldung</source>
+        <target>Bitte bestätigen Sie Ihre Anmeldung</target>
       </trans-unit>
-      <trans-unit id="cMYkjm_" resname="Es wird erlaubt, das sich Gruppen bei einem Event anmelden können">
-        <source>Es wird erlaubt, das sich Gruppen bei einem Event anmelden können</source>
-        <target>Es wird erlaubt, das sich Gruppen bei einem Event anmelden können</target>
-      </trans-unit>
-      <trans-unit id="UHUiQOc" resname="Hier kann die maximale Gruppengröße angegeben werden.">
-        <source>Hier kann die maximale Gruppengröße angegeben werden.</source>
-        <target>Hier kann die maximale Gruppengröße angegeben werden.</target>
-      </trans-unit>
-      <trans-unit id="XiKrSv2" resname="Dieses Event wird auf der Standortseite angezeigt.">
-        <source>Dieses Event wird auf der Standortseite angezeigt.</source>
-        <target>Dieses Event wird auf der Standortseite angezeigt.</target>
-      </trans-unit>
-      <trans-unit id="1tKAt5r" resname="Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.">
-        <source>Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.</source>
-        <target>Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.</target>
-      </trans-unit>
-      <trans-unit id="vhwu152" resname="Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut &quot;Ausgebucht&quot; angehängt.">
-        <source>Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut "Ausgebucht" angehängt.</source>
-        <target>Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut "Ausgebucht" angehängt.</target>
+      <trans-unit id="Mchst89" resname="Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.">
+        <source>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</source>
+        <target>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</target>
       </trans-unit>
     </body>
   </file>

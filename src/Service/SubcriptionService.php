@@ -118,7 +118,7 @@ class SubcriptionService
             if (!$isOrganizer) {
                 $this->notifier->sendNotification(
                     $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
-                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Veranstaltung: {name}', array('{name}' => $rooms->getName())),
+                    $this->translator->trans('Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}', array('{name}' => $rooms->getName())),
                     $user,
                     $rooms->getStandort()
                 );
@@ -152,7 +152,7 @@ class SubcriptionService
                 $this->logger->log('Send Email with Double opt in', array('email' => $user->getEmail(), 'id' => $user->getId()));
                 $this->notifier->sendNotification(
                     $this->twig->render('email/subscriptionToRoom.html.twig', array('room' => $rooms, 'subsription' => $subscriber)),
-                    $this->translator->trans('Bestätigung ihrer Anmeldung zur Veranstaltung: {name}', array('{name}' => $rooms->getName())),
+                    $this->translator->trans('Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}', array('{name}' => $rooms->getName())),
                     $user,
                     $rooms->getStandort()
                 );
