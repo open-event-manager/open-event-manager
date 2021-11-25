@@ -124,7 +124,7 @@
                                         {% elseif laf_customTextOnCalenderView is defined and laf_customTextOnCalenderView is not null and laf_customTextOnCalenderView == "hide" %}
                                         {% else %}
                                             <p>
-                                                 {{ laf_CalendarText }}
+                                                 {{ laf_CalendarText|raw }}
                                             </p>
                                         {% endif %}
                                     {% endif %}
