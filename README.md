@@ -22,6 +22,7 @@ We use a double-opt-in process where you will receive a confirmation email conta
 It is always possible to leave the mailing list.
 
 ### Partners and Sponsors
+This project was backed in cooperation with __re@di — regional.digital__
 <div style="text-align: center">
 
 <img src="https://readi.de/wp-content/uploads/sites/5/2020/10/cropped-Logo-Simplified-mit-Text-e1602047847827.png" width="200px">

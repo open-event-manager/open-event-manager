@@ -27,3 +27,5 @@ twig:
         laf_hideDashboardOnCalenderView: '%env(laf_hideDashboardOnCalenderView)%'
         laf_hideButtonsOnCalenderView: '%env(laf_hideButtonsOnCalenderView)%'
         laf_customTextOnCalenderView: '%env(laf_customTextOnCalenderView)%'
+        laf_CalendarText: '%env(laf_CalendarText)%'
+        laf_loginButton: '%env(laf_loginButton)%'

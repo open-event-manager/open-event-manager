@@ -53,7 +53,7 @@
             </style>
             <div class="row justify-content-center">
                 <div class="col-lg-10 d-flex justify-content-end align-items-center">
-                    <a href="{{ path('dashboard') }}" class="btn btn-primary">{{ 'Login'|trans }}</a>
+                    <a href="{{ path('dashboard') }}" class="btn btn-primary">{{ laf_loginButton }}</a>
 
                         <a class=" dropdown-toggle" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -124,7 +124,7 @@
                                         {% elseif laf_customTextOnCalenderView is defined and laf_customTextOnCalenderView is not null and laf_customTextOnCalenderView == "hide" %}
                                         {% else %}
                                             <p>
-                                                {% trans %}Wer eine datenschutzfreundliche Event-Manager Software benötigt, kommt um den Open Event-Manager nicht herum{% endtrans %}
+                                                 {{ laf_CalendarText|raw }}
                                             </p>
                                         {% endif %}
                                     {% endif %}
@@ -193,9 +193,9 @@
                                     Matomo Opt-out
                                 </a><br>
                             {% endif %}
-                            <a href="https://h2-invent.com" target="_blank" class="small">Made with ❤ by H2 invent •
-                                2019-{{ 'now'|date('Y') }}
-                                • v{{ laf_version }}</a>
+                           <small>Made with ❤ by H2 invent and re@di — regional.digital•
+                               2019-{{ 'now'|date('Y') }}
+                               • v{{ laf_version }}</small>
                         </div>
                         <div class="col-md-2 text-md-center d-none d-sm-block">
                             <a href="https://github.com/open-event-manager/open-event-manager/blob/master/LICENSE" target="_blank"
