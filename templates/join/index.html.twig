@@ -26,6 +26,8 @@
 
                     <h3 class="h3-responsive text-center">{{ 'Öffentliche Events'|trans }}</h3>
                     <div class="max-vh60">
+
+
                         <ul class="list-group">
 
                             {% for r in standort|roomsinFuture %}
@@ -47,6 +49,9 @@
 
                         </ul>
                     </div>
+                {% else %}
+
+                    <h5>{{ 'Keine öffentlichen Veranstaltungen geplant'|trans }}</h5>
 
                 {% endif %}
             </div>

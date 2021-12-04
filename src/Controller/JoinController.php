@@ -94,7 +94,6 @@ class JoinController extends AbstractController
 
         return $this->render('join/index.html.twig', [
             'form' => $form->createView(),
-            'snack' => $snack,
             'standort' => $standort,
 
 

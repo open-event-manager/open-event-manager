@@ -70,6 +70,8 @@ class RoomType extends AbstractType
                 ]
             ])
             ->add('entryDateTime', DateTimeType::class, ['required'=>false, 'attr' => ['class' => 'flatpickr'], 'label' => 'label.entryDateTime', 'translation_domain' => 'form', 'widget' => 'single_text'])
+            ->add('showAfterDate', DateTimeType::class, ['required'=>false, 'attr' => ['class' => 'flatpickr','placeholder'=>'placeholder.showAterDate'], 'label' => 'label.showAterDate', 'translation_domain' => 'form', 'widget' => 'single_text'])
+
             ->add('promoter', TextType::class, ['required' => false, 'label' => 'label.promoter', 'translation_domain' => 'form'])
             ->add('additionalInfo', TextareaType::class, ['required' => false, 'label' => 'label.additionalInfo', 'translation_domain' => 'form'])
             ->add('scheduleMeeting', CheckboxType::class, array('required' => false, 'label' => 'label.scheduleMeeting', 'translation_domain' => 'form'))
@@ -86,6 +88,7 @@ class RoomType extends AbstractType
             ->add('maxGroupSize', NumberType::class, array('required' => false, 'label' => 'label.maxGroupSize', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('showInCalendarWhenNoSpace', CheckboxType::class, array('required' => false, 'label' => 'label.showInCalendarWhenNoSpace', 'translation_domain' => 'form'))
             ->add('silentMode', CheckboxType::class, array(  "mapped" => false, 'required' => false, 'label' => 'label.silentMode', 'translation_domain' => 'form'))
+
             ->add('freeFields', CollectionType::class,
                 ['entry_type' => FreeFieldType::class,
                     'entry_options' => ['label' => 'false',],

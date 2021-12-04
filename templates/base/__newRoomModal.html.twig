@@ -165,6 +165,22 @@
                                    data-content="{{ 'Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.'|trans }}"><i
                                             class="fa fa-question-circle"></i></a>
                             </div>
+
+                            <div class="col-lg-12">
+                                <div id="showAfterDate" class=" collapse">
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        {{ form_row(form.showAfterDate) }}
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                           data-content="{{ 'Dieses Event wird erst nach dem eingegebenen Zeitpunkt auf der Standortseite sowie dem globalen Kalender angezeigt.'|trans }}"><i
+                                                    class="fa fa-question-circle"></i></a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
                             <div class="col-sm-11">
                                 {{ form_row(form.showInCalendarWhenNoSpace) }}
                             </div>

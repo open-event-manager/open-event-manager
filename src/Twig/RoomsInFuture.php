@@ -46,7 +46,13 @@ class RoomsInFuture extends AbstractExtension
             ->andWhere($qb->expr()->isNotNull('rooms.moderator'))
             ->setParameter('standort', $standort)
             ->setParameter('now', $now)
-            ->orderBy('rooms.start', 'ASC');
+            ->andWhere($qb->expr()->orX(
+                $qb->expr()->isNull('rooms.showAfterDate'),
+                $qb->expr()->lte('rooms.showAfterDate', ':now')
+            ))
+            ->setParameter('now', $now)
+            ->orderBy('rooms.start', 'ASC')
+            ->setParameter('now', new \DateTime());
         $rooms = $qb->getQuery()->getResult();
 
         return $rooms;
