@@ -19,6 +19,10 @@ class TeilnehmerExcelService
     private $translator;
     private $tokenStorage;
     private $em;
+    private $sheet;
+    private $alphas;
+    private $lineCounter;
+
     public function __construct(TranslatorInterface $translator, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager)
     {
         $this->spreadsheet = new Spreadsheet();
@@ -28,126 +32,169 @@ class TeilnehmerExcelService
         $this->em = $entityManager;
     }
 
-    function generateTeilnehmerliste(Rooms $rooms)
+    function generateSpreadsheet()
+    {
+        $this->sheet = $this->spreadsheet->createSheet();
+        $this->sheet->setTitle($this->translator->trans('Teilnehmer'));
+        $this->alphas = $this->createColumnsArray('ZZ');
+        $this->lineCounter = 1;
+    }
+
+    function generateHeader(Rooms $rooms)
     {
         $mapping = array();
-        $alphas = $this->createColumnsArray('ZZ');
         $count = 0;
-        $count2 = 1;
-        $participants = $this->spreadsheet->createSheet();
-        $participants->setTitle($this->translator->trans('Teilnehmer'));
-
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Standort'));
-        $participants->setCellValue($alphas[$count++] . $count2, $rooms->getStandort()->getName());
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Standort'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $rooms->getStandort()->getName());
         $count = 0;
-        $count2++;
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Adresse'));
-        $participants->setCellValue($alphas[$count++] . $count2,
-            $rooms->getStandort()->getStreet(). ' '.$rooms->getStandort()->getNumber(). ', '. $rooms->getStandort()->getPlz(). ' '.$rooms->getStandort()->getCity());
+        $this->lineCounter++;
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Adresse'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter,
+            $rooms->getStandort()->getStreet() . ' ' . $rooms->getStandort()->getNumber() . ', ' . $rooms->getStandort()->getPlz() . ' ' . $rooms->getStandort()->getCity());
         $count = 0;
-        $count2++;
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Raumnummer'));
-        $participants->setCellValue($alphas[$count++] . $count2,
+        $this->lineCounter++;
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Raumnummer'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter,
             $rooms->getStandort()->getRoomnumber());
         $count = 0;
-        $count2++;
-        $count2++;
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Anwesend'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Vorname'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Nachname'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Email'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Adresse'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Telefon'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Status'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Organisator'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Gruppenleiter ID'));
-        $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('GruppenmitgliederID'));
-        foreach ($rooms->getFreeFields() as $ff){
+        $this->lineCounter++;
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Datum'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter,
+            $rooms->getStart()->format('d.m.Y'));
+        $count = 0;
+        $this->lineCounter++;
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Uhrzeit'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter,
+            $rooms->getStart()->format('H:i'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter,
+            $rooms->getEnddate()->format('H:i'));
+        $count = 0;
+        $this->lineCounter++;
+        $this->lineCounter++;
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Anwesend'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Vorname'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Nachname'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Email'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Adresse'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Telefon'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Status'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Organisator'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Gruppenleiter ID'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('GruppenmitgliederID'));
+        foreach ($rooms->getFreeFields() as $ff) {
             $mapping[$ff->getId()] = $count;
-            $participants->setCellValue($alphas[$count++] . $count2, $ff->getLabel());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $ff->getLabel());
         }
 
+    }
 
+    private function generateParticipants(Rooms $rooms)
+    {
+        $mapping = array();
         $count = 0;
-        $count2++;
+        $this->lineCounter++;
         foreach ($rooms->getUser() as $data) {
-            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data,$rooms);
+            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data, $rooms);
             $groupArr = array();
-            foreach ($group as $data2){
-                $groupArr[]=$data2->getId();
+            foreach ($group as $data2) {
+                $groupArr[] = $data2->getId();
             }
-            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader'=>$data,'rooms'=>$rooms));
+            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader' => $data, 'rooms' => $rooms));
             $groupLeaderArr = array();
-            foreach ($groupleader as $data2){
-                $groupLeaderArr[]=$data2->getId();
+            foreach ($groupleader as $data2) {
+                $groupLeaderArr[] = $data2->getId();
             }
-            $participants->setCellValue($alphas[$count++] . $count2, '');
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getAddress());
-            $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-            $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Teilnehmer'));
-            $participants->setCellValue($alphas[$count++] . $count2, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
-            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
-            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
-            foreach($data->getFreeFieldsFromRoom($rooms) as $ff){
-                $participants->setCellValue($alphas[$mapping[$ff->getFreeField()->getId()]] . $count2, $ff->getAnswer());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, '');
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getFirstName());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getLastName());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getEmail());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getAddress());
+            $this->sheet->setCellValueExplicit($this->alphas[$count++] . $this->lineCounter, $data->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Teilnehmer'));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupLeaderArr));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupArr));
+            foreach ($data->getFreeFieldsFromRoom($rooms) as $ff) {
+                $this->sheet->setCellValue($this->alphas[$mapping[$ff->getFreeField()->getId()]] . $this->lineCounter, $ff->getAnswer());
             }
-            $count2++;
+            $this->lineCounter++;
             $count = 0;
         }
         foreach ($rooms->getWaitinglists() as $data) {
-            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data,$rooms);
+            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data, $rooms);
             $groupArr = array();
-            foreach ($group as $data2){
-                $groupArr[]=$data2->getId();
+            foreach ($group as $data2) {
+                $groupArr[] = $data2->getId();
             }
-            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader'=>$data,'rooms'=>$rooms));
+            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader' => $data, 'rooms' => $rooms));
             $groupLeaderArr = array();
-            foreach ($groupleader as $data2){
-                $groupLeaderArr[]=$data2->getId();
+            foreach ($groupleader as $data2) {
+                $groupLeaderArr[] = $data2->getId();
             }
-            $participants->setCellValue($alphas[$count++] . $count2, '');
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getFirstName());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getLastName());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getEmail());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getUser()->getAddress());
-            $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-            $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Warteliste'));
-            $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
-            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
-            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
-            $count2++;
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, '');
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getFirstName());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getLastName());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getEmail());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getAddress());
+            $this->sheet->setCellValueExplicit($this->alphas[$count++] . $this->lineCounter, $data->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Warteliste'));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Nein'));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupLeaderArr));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupArr));
+            $this->lineCounter++;
             $count = 0;
         }
         foreach ($rooms->getStorno() as $data) {
-            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data,$rooms);
+            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data, $rooms);
             $groupArr = array();
-            foreach ($group as $data2){
-                $groupArr[]=$data2->getId();
+            foreach ($group as $data2) {
+                $groupArr[] = $data2->getId();
             }
-            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader'=>$data,'rooms'=>$rooms));
+            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader' => $data, 'rooms' => $rooms));
             $groupLeaderArr = array();
-            foreach ($groupleader as $data2){
-                $groupLeaderArr[]=$data2->getId();
+            foreach ($groupleader as $data2) {
+                $groupLeaderArr[] = $data2->getId();
             }
-            $participants->setCellValue($alphas[$count++] . $count2, '');
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getFirstName());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getLastName());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getEmail());
-            $participants->setCellValue($alphas[$count++] . $count2, $data->getAddress());
-            $participants->setCellValueExplicit($alphas[$count++] . $count2, $data->getPhone(),\PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-            $participants->setCellValue($alphas[$count++] . $count2, $this->translator->trans('Storniert'));
-            $participants->setCellValue($alphas[$count++] . $count2,  $this->translator->trans('Nein'));
-            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupLeaderArr));
-            $participants->setCellValue($alphas[$count++] . $count2, implode(', ',$groupArr));
-            $count2++;
-            $count = 0;
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, '');
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getFirstName());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getLastName());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getEmail());
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getAddress());
+            $this->sheet->setCellValueExplicit($this->alphas[$count++] . $this->lineCounter, $data->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Storniert'));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Nein'));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupLeaderArr));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupArr));
+        }
+    }
+    function generateTeilnehmerliste(Rooms $rooms)
+    {
+        $this->generateSpreadsheet();
+        $this->generateHeader($rooms);
+        $this->generateParticipants($rooms);
+        $this->spreadsheet->removeSheetByIndex(0);
+        $fileName = 'teilnehmer_' . $rooms->getName() . '.xlsx';
+        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+
+        // Create the excel file in the tmp directory of the system
+        $this->writer->save($temp_file);
+
+        // Return the excel file as an attachment
+        return $temp_file;
+
+    }
+    function generateTeilnehmerDayList($rooms,$fileName)
+    {
+        $this->generateSpreadsheet();
+        foreach ($rooms as $data){
+            $this->generateHeader($data);
+            $this->generateParticipants($data);
+            $this->lineCounter++;
+            $this->lineCounter++;
         }
 
         $this->spreadsheet->removeSheetByIndex(0);
-        $fileName = 'teilnehmer_'.$rooms->getName().'.xlsx';
+        $fileName = $fileName . '.xlsx';
         $temp_file = tempnam(sys_get_temp_dir(), $fileName);
 
         // Create the excel file in the tmp directory of the system
@@ -158,7 +205,8 @@ class TeilnehmerExcelService
 
     }
 
-    private function createColumnsArray($end_column, $first_letters = '')
+    private
+    function createColumnsArray($end_column, $first_letters = '')
     {
         $columns = array();
         $length = strlen($end_column);
