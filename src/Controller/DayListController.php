@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use function Doctrine\ORM\QueryBuilder;
 
 class DayListController extends AbstractController
@@ -33,5 +34,13 @@ class DayListController extends AbstractController
             ->getQuery()
             ->getResult();
         return $this->file($teilnehmerExcelService->generateTeilnehmerDayList($rooms,md5(uniqid()) ), $from->format('d.m.Y').' - '.$to->format('d.m.Y') . '.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+    /**
+     * @Route("/room/day/list/modal", name="day_list_modal")
+     */
+    public function modal(Request $request, TeilnehmerExcelService $teilnehmerExcelService,TranslatorInterface $translator): Response
+    {
+
+        return $this->render('day_list/index.html.twig',array('title'=>$translator->trans('Export eines Zeitraums')));
     }
 }
