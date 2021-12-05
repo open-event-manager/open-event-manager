@@ -36,16 +36,22 @@ class DashboardController extends AbstractController
     public function index(Request $request, RoomSpaceService $roomSpaceService)
     {
         $qb = $this->getDoctrine()->getRepository(Rooms::class)->createQueryBuilder('rooms');
+        $now = new \DateTime();
         $qb->andWhere('rooms.showRoomOnCalendar = true')
-            ->andWhere($qb->expr()->isNotNull('rooms.moderator'));
+            ->andWhere($qb->expr()->isNotNull('rooms.moderator'))
+            ->andWhere($qb->expr()->orX(
+                $qb->expr()->isNull('rooms.showAfterDate'),
+                $qb->expr()->lte('rooms.showAfterDate',':now')
+            ))
+        ->setParameter('now',$now);
         $tmp = $qb->getQuery()->getResult();
         $events = array();
-        foreach ($tmp as $data){
-            if($roomSpaceService->isRoomSpace($data) || $data->getShowInCalendarWhenNoSpace() == null){
-                $events[] = array('data'=>$data, 'space'=>$roomSpaceService->isRoomSpace($data));
+        foreach ($tmp as $data) {
+            if ($roomSpaceService->isRoomSpace($data) || $data->getShowInCalendarWhenNoSpace() == null) {
+                $events[] = array('data' => $data, 'space' => $roomSpaceService->isRoomSpace($data));
             }
         }
-        return $this->render('dashboard/start.html.twig', ['events'=>$events]);
+        return $this->render('dashboard/start.html.twig', ['events' => $events]);
     }
 
 
@@ -71,7 +77,7 @@ class DashboardController extends AbstractController
         $roomsToday = $this->getDoctrine()->getRepository(Rooms::class)->findTodayRooms($this->getUser());
 
         $standort = $serverUserManagment->getStandortsFromUser($this->getUser());
-        if(!$this->getUser()->getUid()){
+        if (!$this->getUser()->getUid()) {
             $user = $this->getUser();
             $user->setUid(md5(uniqid()));
             $em = $this->getDoctrine()->getManager();
@@ -81,10 +87,10 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/index.html.twig', [
             'roomsFuture' => $future,
             'roomsPast' => $roomsPast,
-            'runningRooms'=>$roomsNow,
+            'runningRooms' => $roomsNow,
             'todayRooms' => $roomsToday,
             'snack' => $request->get('snack'),
-            'standort'=>$standort,
+            'standort' => $standort,
         ]);
     }
 

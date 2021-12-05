@@ -213,9 +213,21 @@ $('#loadContentModal').on('shown.bs.modal', function (e) {
         if ($('#room_showRoomOnCalendar').prop('checked')) {
             $('#showInCalendarWhenNoSpace').collapse('show')
         } else {
-            console.log('test');
             $('#showInCalendarWhenNoSpace').collapse('hide')
         }
+        if ($('#room_showRoomOnJoinpage').prop('checked') || $('#room_showRoomOnCalendar').prop('checked')) {
+            $('#showAfterDate').collapse('show')
+        } else {
+            $('#showAfterDate').collapse('hide')
+        }
+        $('#room_showRoomOnJoinpage, #room_showRoomOnCalendar').change(function () {
+            if ($('#room_showRoomOnJoinpage').prop('checked') || $('#room_showRoomOnCalendar').prop('checked')) {
+                $('#showAfterDate').collapse('show')
+            } else {
+                $('#showAfterDate').collapse('hide')
+            }
+        });
+
         $('#room_public').change(function () {
             if ($('#room_public').prop('checked')) {
                 $('#maxParticipants').collapse('show')

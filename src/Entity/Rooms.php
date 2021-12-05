@@ -213,6 +213,11 @@ class Rooms
      */
     private $freeFields;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $showAfterDate;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -814,6 +819,18 @@ class Rooms
                 $freeField->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getShowAfterDate(): ?\DateTimeInterface
+    {
+        return $this->showAfterDate;
+    }
+
+    public function setShowAfterDate(?\DateTimeInterface $showAfterDate): self
+    {
+        $this->showAfterDate = $showAfterDate;
 
         return $this;
     }
