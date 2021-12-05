@@ -289,6 +289,15 @@ class RoomController extends AbstractController
 
         $roomOld = $this->getDoctrine()->getRepository(Rooms::class)->find($request->get('room'));
         $room = clone $roomOld;
+        $freeFieldsOld = $roomOld->getFreeFields()->toArray();
+        foreach ($roomOld->getFreeFields() as $data){
+            $freeTmp = clone $data;
+            $room->addFreeField($freeTmp);
+        }
+        foreach ($freeFieldsOld as $data){
+            $room->removeFreeField($data);
+        }
+
         $room->setUid(rand(01, 99) . time());
         $room->setSequence(0);
 
