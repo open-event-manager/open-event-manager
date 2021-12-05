@@ -28,6 +28,16 @@
             {% endfor %}
         </ul>
     {% endif %}
+    <b>{{ 'Anmeldedaten'|trans }}</b>
+    <ul>
+    <li><b>{{ 'Name'|trans }}:</b> {{ user.firstName }} {{ user.lastName }}
+    <li><b>{{ 'E-Mail'|trans }}:</b> {{ user.email }}
+    <li><b>{{ 'Adresse'|trans }}:</b> {{ user.address }}
+    <li><b>{{ 'Telefon'|trans }}:</b> {{ user.phone }}
+    {% for ff in user.freeFieldsFromRoom(room) %}
+    <li><b>{{ ff.freefield.label }}:</b> {{ ff.answer }}<br>
+    {% endfor %}
+    </ul>
 {% endif %}
 <b>Standort:</b>
 <p>{{ room.standort.name }}<br>
