@@ -84,6 +84,7 @@ label:
   freefieldName: Freifeld Name
   required: Dieses Feld muss ausgefüllt werden
   freefield: Sonstige Angaben
+  showAterDate: Diesen Termin erst nach diesem Datum öffentlich anzeigen
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
@@ -91,4 +92,5 @@ choice:
 placeholder:
   maxParticipants: Keine Limitierung
   textWhenNoSpace: Keine Text
+  showAterDate: Leerlassen für sofortiges Anzeigen
 
