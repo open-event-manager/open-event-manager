@@ -27,6 +27,9 @@
             <li><a href="{{ path('room_clone',{'room':room.id}) }}"
                    class="loadContent dropdown-item">
                     {{ 'Duplizieren'|trans }}</a></li>
+            <li><a href="{{ path('create_events',{'roomId':room.id}) }}"
+                   class="loadContent dropdown-item">
+                    {{ 'Diesen Termin N mal wiederholen'|trans }}</a></li>
         {% endif %}
         {% if room.scheduleMeeting %}
             <li><a href="{{ path('schedule_admin_new',{'id':room.id}) }}"
