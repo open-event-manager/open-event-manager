@@ -606,9 +606,9 @@
         <source>Aktuell sind keine Events vorhanden. Erstellen Sie
                             &lt;u&gt;&lt;a href="{url}" class="loadContent"&gt;hier&lt;/a&gt;&lt;/u&gt;
                             eine neues Event.</source>
-        <target state="needs-translation">Aktuell sind keine Events vorhanden. Erstellen Sie
-                            &lt;u&gt;&lt;a href="{url}" class="loadContent"&gt;hier&lt;/a&gt;&lt;/u&gt;
-                            eine neues Event.</target>
+        <target state="needs-translation"><![CDATA[Aktuell sind keine Events vorhanden. Erstellen Sie
+                            <u><a href="{url}" class="loadContent">hier</a></u>
+                            eine neues Event.]]></target>
       </trans-unit>
       <trans-unit id="WGh6kGc" resname="Aktuell sind keine vergangenen Events vorhanden.">
         <source>Aktuell sind keine vergangenen Events vorhanden.</source>
@@ -758,9 +758,9 @@
         <source>Sie wollen dieses Event komfortabel in einer Übersicht verwalten?
                                     &lt;br&gt;
                                     Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;an.</source>
-        <target state="needs-translation">Sie wollen dieses Event komfortabel in einer Übersicht verwalten?
-                                    &lt;br&gt;
-                                    Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;an.</target>
+        <target state="needs-translation"><![CDATA[Sie wollen dieses Event komfortabel in einer Übersicht verwalten?
+                                    <br>
+                                    Dann melden Sie sich <a href="{url}">hier</a>&nbsp;an.]]></target>
       </trans-unit>
       <trans-unit id="SBXAIxU" resname="Sie wollen selber ein Event&#10;                                    &lt;b&gt;kostenlos&lt;/b&gt; planen oder dieses Event komfortabel&#10;                                                     in einer Übersicht verwalten?&lt;br&gt;&#10;                                    Dann melden Sie sich &lt;a href=&quot;{url}&quot;&gt;hier&lt;/a&gt;&amp;nbsp;&lt;b&gt;kostenlos&lt;/b&gt;&#10;                                    an.">
         <source>Sie wollen selber ein Event
@@ -768,11 +768,11 @@
                                                      in einer Übersicht verwalten?&lt;br&gt;
                                     Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;&lt;b&gt;kostenlos&lt;/b&gt;
                                     an.</source>
-        <target state="needs-translation">Sie wollen selber ein Event
-                                    &lt;b&gt;kostenlos&lt;/b&gt; planen oder dieses Event komfortabel
-                                                     in einer Übersicht verwalten?&lt;br&gt;
-                                    Dann melden Sie sich &lt;a href="{url}"&gt;hier&lt;/a&gt;&amp;nbsp;&lt;b&gt;kostenlos&lt;/b&gt;
-                                    an.</target>
+        <target state="needs-translation"><![CDATA[Sie wollen selber ein Event
+                                    <b>kostenlos</b> planen oder dieses Event komfortabel
+                                                     in einer Übersicht verwalten?<br>
+                                    Dann melden Sie sich <a href="{url}">hier</a>&nbsp;<b>kostenlos</b>
+                                    an.]]></target>
       </trans-unit>
       <trans-unit id="Kj5A1Ra" resname="Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste dieses Events  stehen.">
         <source>Sie erhalten diese E-Mail, da Sie auf der Teilnehmerliste dieses Events  stehen.</source>
@@ -801,8 +801,8 @@
       <trans-unit id="rt24aT4" resname="Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. &lt;br&gt;&#10;            Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.">
         <source>Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. &lt;br&gt;
             Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.</source>
-        <target state="needs-translation">Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. &lt;br&gt;
-            Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.</target>
+        <target state="needs-translation"><![CDATA[Ihre Open-Event-Manager-Enterprise Lizenz läuft bald aus. <br>
+            Verlängern Sie Ihre Lizenz jetzt gleich um weiterhin alle Features wie gewohnt nutzen zu können.]]></target>
       </trans-unit>
       <trans-unit id="Or7jygk" resname="Neuer Teilnehmer auf der Warteliste">
         <source>Neuer Teilnehmer auf der Warteliste</source>
@@ -874,19 +874,19 @@
             und die &lt;a href="{privacyUrl}" target="_blank" referrerpolicy="no-referrer"&gt;
             &lt;u&gt;Datenschutzhinweise von {name}&lt;/u&gt;&lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
             gelesen und nehme diese zur Kenntnis.</source>
-        <target state="needs-translation">Ich habe die &lt;a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer"&gt;
-            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
-            und die &lt;a href="{privacyUrl}" target="_blank" referrerpolicy="no-referrer"&gt;
-            &lt;u&gt;Datenschutzhinweise von {name}&lt;/u&gt;&lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
-            gelesen und nehme diese zur Kenntnis.</target>
+        <target state="needs-translation"><![CDATA[Ich habe die <a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer">
+            <u>Datenschutzhinweise des Open-Event-Manager</u> <i class="fa fa-external-link-alt"></i></a>
+            und die <a href="{privacyUrl}" target="_blank" referrerpolicy="no-referrer">
+            <u>Datenschutzhinweise von {name}</u><i class="fa fa-external-link-alt"></i></a>
+            gelesen und nehme diese zur Kenntnis.]]></target>
       </trans-unit>
       <trans-unit id="x2pRIyb" resname="Ich habe die &lt;a href=&quot;{dataPrivay}&quot; target=&quot;_blank&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&#10;            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt;&#10;            gelesen und nehme diese zur Kenntnis.">
         <source>Ich habe die &lt;a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer"&gt;
             &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
             gelesen und nehme diese zur Kenntnis.</source>
-        <target state="needs-translation">Ich habe die &lt;a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer"&gt;
-            &lt;u&gt;Datenschutzhinweise des Open-Event-Manager&lt;/u&gt; &lt;i class="fa fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;
-            gelesen und nehme diese zur Kenntnis.</target>
+        <target state="needs-translation"><![CDATA[Ich habe die <a href="{dataPrivay}" target="_blank" referrerpolicy="no-referrer">
+            <u>Datenschutzhinweise des Open-Event-Manager</u> <i class="fa fa-external-link-alt"></i></a>
+            gelesen und nehme diese zur Kenntnis.]]></target>
       </trans-unit>
       <trans-unit id="aIVKP4x" resname="Wollen Sie den Teilnehmer wirklich zu dem Event hinzufügen">
         <source>Wollen Sie den Teilnehmer wirklich zu dem Event hinzufügen</source>
@@ -918,11 +918,11 @@
       </trans-unit>
       <trans-unit id="aKf8kVk" resname="Sie haben sich gerade erfolgreich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;br&gt;abgemeldet.">
         <source>Sie haben sich gerade erfolgreich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;br&gt;abgemeldet.</source>
-        <target state="needs-translation">Sie haben sich gerade erfolgreich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;br&gt;abgemeldet.</target>
+        <target state="needs-translation"><![CDATA[Sie haben sich gerade erfolgreich von dem Event:<br><b>{event}</b><br>abgemeldet.]]></target>
       </trans-unit>
       <trans-unit id="ksvjO7n" resname="Wollen Sie sich wirklich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;/br&gt;abmelden.">
         <source>Wollen Sie sich wirklich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;/br&gt;abmelden.</source>
-        <target state="needs-translation">Wollen Sie sich wirklich von dem Event:&lt;br&gt;&lt;b&gt;{event}&lt;/b&gt;&lt;/br&gt;abmelden.</target>
+        <target state="needs-translation"><![CDATA[Wollen Sie sich wirklich von dem Event:<br><b>{event}</b></br>abmelden.]]></target>
       </trans-unit>
       <trans-unit id="ZBW_6eN" resname="Ich möchte mich wirklich abmelden">
         <source>Ich möchte mich wirklich abmelden</source>
@@ -1037,10 +1037,10 @@
     &lt;/p&gt;
     &lt;p&gt;
             Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.</source>
-        <target state="needs-translation">Sie sind auf der Warteliste für das Event {name} eingetragen.
-    &lt;/p&gt;
-    &lt;p&gt;
-            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.</target>
+        <target state="needs-translation"><![CDATA[Sie sind auf der Warteliste für das Event {name} eingetragen.
+    </p>
+    <p>
+            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.]]></target>
       </trans-unit>
       <trans-unit id="Yl1sHYs" resname="Sie wurden gerade zu einem Event in: {name} angemeldet.">
         <source>Sie wurden gerade zu einem Event in: {name} angemeldet.</source>
@@ -1053,6 +1053,86 @@
       <trans-unit id="Mchst89" resname="Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.">
         <source>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</source>
         <target state="needs-translation">Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</target>
+      </trans-unit>
+      <trans-unit id="lC49ouI" resname="Diesen Termin N mal wiederholen">
+        <source>Diesen Termin N mal wiederholen</source>
+        <target state="needs-translation">Diesen Termin N mal wiederholen</target>
+      </trans-unit>
+      <trans-unit id=".DR5KXk" resname="Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.">
+        <source>Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.</source>
+        <target state="needs-translation">Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.</target>
+      </trans-unit>
+      <trans-unit id="3RRMXxh" resname="Teilnehmer können sich selbst du dem Event einschreiben.">
+        <source>Teilnehmer können sich selbst du dem Event einschreiben.</source>
+        <target state="needs-translation">Teilnehmer können sich selbst du dem Event einschreiben.</target>
+      </trans-unit>
+      <trans-unit id="2O3YlIS" resname="Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.">
+        <source>Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.</source>
+        <target state="needs-translation">Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.</target>
+      </trans-unit>
+      <trans-unit id="wqDbrNn" resname="Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.">
+        <source>Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.</source>
+        <target state="needs-translation">Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="g8srO4M" resname="Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.">
+        <source>Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.</source>
+        <target state="needs-translation">Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.</target>
+      </trans-unit>
+      <trans-unit id="hJQUPlJ" resname="Die Maximale Anzahl an Teilnehmern auf der Warteliste">
+        <source>Die Maximale Anzahl an Teilnehmern auf der Warteliste</source>
+        <target state="needs-translation">Die Maximale Anzahl an Teilnehmern auf der Warteliste</target>
+      </trans-unit>
+      <trans-unit id="7rZfAUD" resname="Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.">
+        <source>Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.</source>
+        <target state="needs-translation">Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="cMYkjm_" resname="Es wird erlaubt, das sich Gruppen bei einem Event anmelden können">
+        <source>Es wird erlaubt, das sich Gruppen bei einem Event anmelden können</source>
+        <target state="needs-translation">Es wird erlaubt, das sich Gruppen bei einem Event anmelden können</target>
+      </trans-unit>
+      <trans-unit id="UHUiQOc" resname="Hier kann die maximale Gruppengröße angegeben werden.">
+        <source>Hier kann die maximale Gruppengröße angegeben werden.</source>
+        <target state="needs-translation">Hier kann die maximale Gruppengröße angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="XiKrSv2" resname="Dieses Event wird auf der Standortseite angezeigt.">
+        <source>Dieses Event wird auf der Standortseite angezeigt.</source>
+        <target state="needs-translation">Dieses Event wird auf der Standortseite angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="1tKAt5r" resname="Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.">
+        <source>Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.</source>
+        <target state="needs-translation">Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.</target>
+      </trans-unit>
+      <trans-unit id="jbr5KMU" resname="Dieses Event wird erst nach dem eingegebenen Zeitpunkt auf der Standortseite sowie dem globalen Kalender angezeigt.">
+        <source>Dieses Event wird erst nach dem eingegebenen Zeitpunkt auf der Standortseite sowie dem globalen Kalender angezeigt.</source>
+        <target state="needs-translation">Dieses Event wird erst nach dem eingegebenen Zeitpunkt auf der Standortseite sowie dem globalen Kalender angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="vhwu152" resname="Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut &quot;Ausgebucht&quot; angehängt.">
+        <source>Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut "Ausgebucht" angehängt.</source>
+        <target state="needs-translation">Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut "Ausgebucht" angehängt.</target>
+      </trans-unit>
+      <trans-unit id="O1AzdH2" resname="Freie Textfelder für die Anmeldung">
+        <source>Freie Textfelder für die Anmeldung</source>
+        <target state="needs-translation">Freie Textfelder für die Anmeldung</target>
+      </trans-unit>
+      <trans-unit id="lMrGa6K" resname="Hier können Sie freie Felder definieren. Diese können von den Teilnehmern während des Anmelddevorgangs ausgefüllt werden">
+        <source>Hier können Sie freie Felder definieren. Diese können von den Teilnehmern während des Anmelddevorgangs ausgefüllt werden</source>
+        <target state="needs-translation">Hier können Sie freie Felder definieren. Diese können von den Teilnehmern während des Anmelddevorgangs ausgefüllt werden</target>
+      </trans-unit>
+      <trans-unit id="ztybqNM" resname="Freies Feld hinzufügen">
+        <source>Freies Feld hinzufügen</source>
+        <target state="needs-translation">Freies Feld hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="7U.I90f" resname="Anmeldedaten">
+        <source>Anmeldedaten</source>
+        <target state="needs-translation">Anmeldedaten</target>
+      </trans-unit>
+      <trans-unit id="L65vsws" resname="E-Mail">
+        <source>E-Mail</source>
+        <target state="needs-translation">E-Mail</target>
+      </trans-unit>
+      <trans-unit id="ZwigaeJ" resname="Keine öffentlichen Veranstaltungen geplant">
+        <source>Keine öffentlichen Veranstaltungen geplant</source>
+        <target state="needs-translation">Keine öffentlichen Veranstaltungen geplant</target>
       </trans-unit>
     </body>
   </file>
