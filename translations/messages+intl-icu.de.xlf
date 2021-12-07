@@ -1053,6 +1053,86 @@
         <source>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</source>
         <target>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</target>
       </trans-unit>
+      <trans-unit id="lC49ouI" resname="Diesen Termin N mal wiederholen">
+        <source>Diesen Termin N mal wiederholen</source>
+        <target>Diesen Termin N mal wiederholen</target>
+      </trans-unit>
+      <trans-unit id=".DR5KXk" resname="Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.">
+        <source>Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.</source>
+        <target>Stiller Bearbeitungsmodus. Wenn keine Veränderung der Zeit durchgeführt wird, kann über diese Option verhindert werden, dass die Teilnehmer mit einer E-Mail über die Bearbeitung des Events informiert werden.</target>
+      </trans-unit>
+      <trans-unit id="3RRMXxh" resname="Teilnehmer können sich selbst du dem Event einschreiben.">
+        <source>Teilnehmer können sich selbst du dem Event einschreiben.</source>
+        <target>Teilnehmer können sich selbst du dem Event einschreiben.</target>
+      </trans-unit>
+      <trans-unit id="2O3YlIS" resname="Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.">
+        <source>Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.</source>
+        <target>Maximale Anzahl an Teilnehmer welche sich zu dem Event anmelden dürfen.</target>
+      </trans-unit>
+      <trans-unit id="wqDbrNn" resname="Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.">
+        <source>Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.</source>
+        <target>Wenn keine Plätze mehr vorhanden, wird dieser Text im Banner angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="g8srO4M" resname="Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.">
+        <source>Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.</source>
+        <target>Wenn keine Plätze mehr auf der Teilnehmerliste vorhanden sind, dann werden neue Teilnehmer auf eine Warteliste geschrieben.</target>
+      </trans-unit>
+      <trans-unit id="hJQUPlJ" resname="Die Maximale Anzahl an Teilnehmern auf der Warteliste">
+        <source>Die Maximale Anzahl an Teilnehmern auf der Warteliste</source>
+        <target>Die Maximale Anzahl an Teilnehmern auf der Warteliste</target>
+      </trans-unit>
+      <trans-unit id="7rZfAUD" resname="Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.">
+        <source>Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.</source>
+        <target>Wenn keine Plätze mehr vorhanden aber noch Plätze auf der Warteliste vorhanden sind, wird dieser Text im Banner angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="cMYkjm_" resname="Es wird erlaubt, das sich Gruppen bei einem Event anmelden können">
+        <source>Es wird erlaubt, das sich Gruppen bei einem Event anmelden können</source>
+        <target>Es wird erlaubt, das sich Gruppen bei einem Event anmelden können</target>
+      </trans-unit>
+      <trans-unit id="UHUiQOc" resname="Hier kann die maximale Gruppengröße angegeben werden.">
+        <source>Hier kann die maximale Gruppengröße angegeben werden.</source>
+        <target>Hier kann die maximale Gruppengröße angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="XiKrSv2" resname="Dieses Event wird auf der Standortseite angezeigt.">
+        <source>Dieses Event wird auf der Standortseite angezeigt.</source>
+        <target>Dieses Event wird auf der Standortseite angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="1tKAt5r" resname="Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.">
+        <source>Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.</source>
+        <target>Dieses Event soll auf dem großen Kalender auf der Startseite angezeigt werden.</target>
+      </trans-unit>
+      <trans-unit id="jbr5KMU" resname="Dieses Event wird erst nach dem eingegebenen Zeitpunkt auf der Standortseite sowie dem globalen Kalender angezeigt.">
+        <source>Dieses Event wird erst nach dem eingegebenen Zeitpunkt auf der Standortseite sowie dem globalen Kalender angezeigt.</source>
+        <target>Dieses Event wird erst nach dem eingegebenen Zeitpunkt auf der Standortseite sowie dem globalen Kalender angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="vhwu152" resname="Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut &quot;Ausgebucht&quot; angehängt.">
+        <source>Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut "Ausgebucht" angehängt.</source>
+        <target>Dieses Event soll auf der Startseite angezeigt werden, auch wenn kein Platz mehr vorhanden ist. Dafür wird ein roter Punkt angezeigt und der Wortlaut "Ausgebucht" angehängt.</target>
+      </trans-unit>
+      <trans-unit id="O1AzdH2" resname="Freie Textfelder für die Anmeldung">
+        <source>Freie Textfelder für die Anmeldung</source>
+        <target>Freie Textfelder für die Anmeldung</target>
+      </trans-unit>
+      <trans-unit id="lMrGa6K" resname="Hier können Sie freie Felder definieren. Diese können von den Teilnehmern während des Anmelddevorgangs ausgefüllt werden">
+        <source>Hier können Sie freie Felder definieren. Diese können von den Teilnehmern während des Anmelddevorgangs ausgefüllt werden</source>
+        <target>Hier können Sie freie Felder definieren. Diese können von den Teilnehmern während des Anmelddevorgangs ausgefüllt werden</target>
+      </trans-unit>
+      <trans-unit id="ztybqNM" resname="Freies Feld hinzufügen">
+        <source>Freies Feld hinzufügen</source>
+        <target>Freies Feld hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="7U.I90f" resname="Anmeldedaten">
+        <source>Anmeldedaten</source>
+        <target>Anmeldedaten</target>
+      </trans-unit>
+      <trans-unit id="L65vsws" resname="E-Mail">
+        <source>E-Mail</source>
+        <target>E-Mail</target>
+      </trans-unit>
+      <trans-unit id="ZwigaeJ" resname="Keine öffentlichen Veranstaltungen geplant">
+        <source>Keine öffentlichen Veranstaltungen geplant</source>
+        <target>Keine öffentlichen Veranstaltungen geplant</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
