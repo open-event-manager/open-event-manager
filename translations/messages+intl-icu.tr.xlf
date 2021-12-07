@@ -1015,6 +1015,44 @@
         <source>Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.</source>
         <target state="needs-translation">Bestätigen Sie die E-Mailadresse nur, wenn Sie die Person persönlich überprüft haben.</target>
       </trans-unit>
+      <trans-unit id="mF7KXhV" resname="Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}">
+        <source>Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</source>
+        <target state="needs-translation">Anmeldebestätigung zu einem Event\nName: {name} \nOrganisator: {moderator} \nVeranstaltungsort: {location}</target>
+      </trans-unit>
+      <trans-unit id="0Hg4yrH" resname="Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}">
+        <source>Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</source>
+        <target state="needs-translation">Bitte bestätigen Sie Ihre Anmeldung zur Veranstaltung: {name}</target>
+      </trans-unit>
+      <trans-unit id="EL6bIdi" resname="Anmeldebestätigung zu einem Event">
+        <source>Anmeldebestätigung zu einem Event</source>
+        <target state="needs-translation">Anmeldebestätigung zu einem Event</target>
+      </trans-unit>
+      <trans-unit id="OxqnBBD" resname="Anmeldebestätigung zu einer Terminplanung">
+        <source>Anmeldebestätigung zu einer Terminplanung</source>
+        <target state="needs-translation">Anmeldebestätigung zu einer Terminplanung</target>
+      </trans-unit>
+      <trans-unit id="g11VFDH" resname="Sie sind auf der Warteliste für das Event {name} eingetragen.&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.">
+        <source>Sie sind auf der Warteliste für das Event {name} eingetragen.
+    &lt;/p&gt;
+    &lt;p&gt;
+            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.</source>
+        <target state="needs-translation">Sie sind auf der Warteliste für das Event {name} eingetragen.
+    &lt;/p&gt;
+    &lt;p&gt;
+            Sobald wieder ein Platz frei wird erhalten Sie eine automatische Anmeldebestätigung.</target>
+      </trans-unit>
+      <trans-unit id="Yl1sHYs" resname="Sie wurden gerade zu einem Event in: {name} angemeldet.">
+        <source>Sie wurden gerade zu einem Event in: {name} angemeldet.</source>
+        <target state="needs-translation">Sie wurden gerade zu einem Event in: {name} angemeldet.</target>
+      </trans-unit>
+      <trans-unit id="_WD.NB0" resname="Bitte bestätigen Sie Ihre Anmeldung">
+        <source>Bitte bestätigen Sie Ihre Anmeldung</source>
+        <target state="needs-translation">Bitte bestätigen Sie Ihre Anmeldung</target>
+      </trans-unit>
+      <trans-unit id="Mchst89" resname="Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.">
+        <source>Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</source>
+        <target state="needs-translation">Bitte bestätigen Sie Ihre Anmeldung zum Event {name}.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

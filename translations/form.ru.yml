@@ -78,10 +78,19 @@ label:
   promoter: Организатор
   additionalInfo: Дополнительная информация (уценка)
   showInCalendarWhenNoSpace: Termin im Kalender ausblenden wenn keine Plätze mehr vorhanden
+  textWhenNoSpace: Text wenn keine Plätze mehr vorhanden
+  silentMode: Keine E-Mail Benachrichtigung
+  textWhenRoomWarteliste: Wartelistentext
+  freefieldName: Freifeld Name
+  required: Dieses Feld muss ausgefüllt werden
+  freefield: Sonstige Angaben
+  showAterDate: Diesen Termin erst nach diesem Datum öffentlich anzeigen
 choice:
   tls: STARTTLS / TLS 
   ssl: SSL
   none: Ни одного
 placeholder:
   maxParticipants: Без ограничений
+  textWhenNoSpace: Keine Text
+  showAterDate: Leerlassen für sofortiges Anzeigen
 
