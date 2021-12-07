@@ -85,10 +85,20 @@ label:
   required: Dieses Feld muss ausgefüllt werden
   freefield: Sonstige Angaben
   showAterDate: Diesen Termin erst nach diesem Datum öffentlich anzeigen
+  amount: Anzahl an Wiederholungen
+  distance: Abstand zum nächsten Termin (Anfang zu Anfang)
+  unit: Einheit
+  addUsers: Teilnehmer zu den Klonen hinzufügen
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
   none: 无
+  min: Minuten
+  hour: Stunden
+  day: Tage
+  week: Wochen
+  month: Monate
+  year: Jahre
 placeholder:
   maxParticipants: 无限制
   textWhenNoSpace: Keine Text
