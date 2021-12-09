@@ -22,7 +22,7 @@ class TeilnehmerExcelService
     private $sheet;
     private $alphas;
     private $lineCounter;
-
+    private $mapping;
     public function __construct(TranslatorInterface $translator, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager)
     {
         $this->spreadsheet = new Spreadsheet();
@@ -42,7 +42,7 @@ class TeilnehmerExcelService
 
     function generateHeader(Rooms $rooms)
     {
-        $mapping = array();
+        $this->mapping = array();
         $count = 0;
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Standort'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $rooms->getStandort()->getName());
@@ -82,7 +82,9 @@ class TeilnehmerExcelService
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Gruppenleiter ID'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('GruppenmitgliederID'));
         foreach ($rooms->getFreeFields() as $ff) {
-            $mapping[$ff->getId()] = $count;
+            dump($ff);
+            dump($this->mapping);
+            $this->mapping[$ff->getId()] = $count;
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $ff->getLabel());
         }
 
@@ -90,7 +92,7 @@ class TeilnehmerExcelService
 
     private function generateParticipants(Rooms $rooms)
     {
-        $mapping = array();
+
         $count = 0;
         $this->lineCounter++;
         foreach ($rooms->getUser() as $data) {
@@ -114,8 +116,10 @@ class TeilnehmerExcelService
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupLeaderArr));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupArr));
-            foreach ($data->getFreeFieldsFromRoom($rooms) as $ff) {
-                $this->sheet->setCellValue($this->alphas[$mapping[$ff->getFreeField()->getId()]] . $this->lineCounter, $ff->getAnswer());
+            foreach($data->getFreeFieldsFromRoom($rooms) as $ff){
+                dump($ff);
+                dump($this->mapping);
+                $this->sheet->setCellValue($this->alphas[$this->mapping[$ff->getFreeField()->getId()]] . $this->lineCounter, $ff->getAnswer());
             }
             $this->lineCounter++;
             $count = 0;

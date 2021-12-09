@@ -31,6 +31,7 @@ class DayListController extends AbstractController
             ->setParameter('from', $from)
             ->setParameter('to', $to)
             ->setParameter('moderator', $this->getUser())
+            ->orderBy('rooms.start','ASC')
             ->getQuery()
             ->getResult();
         return $this->file($teilnehmerExcelService->generateTeilnehmerDayList($rooms,md5(uniqid()) ), $from->format('d.m.Y').' - '.$to->format('d.m.Y') . '.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
