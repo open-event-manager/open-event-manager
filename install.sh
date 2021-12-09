@@ -30,6 +30,7 @@ fi
 php bin/console doctrine:schema:create
 php bin/console cache:clear
 php bin/console doctrine:schema:update --force
+php bin/console doctrine:migrations:mig
 php bin/console doctrine:migrations:version --add --all
 echo --------------------------------------------------------------------------
 echo -----------------We looking for all the other parameters-------------------
