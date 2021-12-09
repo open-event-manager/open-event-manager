@@ -94,15 +94,24 @@ class SubcriptionService
         $freeFields = $rooms->getFreeFields();
         foreach ($freeFields as $data2){
             try {
-                $answer = new FreeFieldsUserAnswer();
-                $answer->setAnswer($userData['freeFields']['freeFields_'.$data2->getId()]);
-                $answer->setUser($user);
-                $answer->setFreeField($data2);
-                $answer->setCreatedAt(new \DateTime());
-                $this->em->persist($answer);
+                if($userData['freeFields']['freeFields_'.$data2->getId()]){
+                    $answer = new FreeFieldsUserAnswer();
+                    $answer->setAnswer($userData['freeFields']['freeFields_'.$data2->getId()]);
+                    $answer->setUser($user);
+                    $answer->setFreeField($data2);
+                    $answer->setCreatedAt(new \DateTime());
+                    $this->em->persist($answer);
+                }else{
+                    if ($data2->getRequired()) {
+                        $res['text'] = $this->translator->trans('Sie haben eine benötigtes Feld nicht angegeben');
+                        $res['color'] = 'danger';
+                        return $res;
+                    }
+                }
+
             }catch (\Exception $exception){
                 if ($data2->getRequired()){
-                    $res['text'] = $this->translator->trans('Sie haben doppelte E-Mail Adressen eingetragen');
+                    $res['text'] = $this->translator->trans('Sie haben eine benötigtes Feld nicht angegeben');
                     $res['color'] = 'danger';
                     return $res;
                 }
