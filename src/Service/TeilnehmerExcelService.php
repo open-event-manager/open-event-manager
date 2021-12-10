@@ -82,8 +82,6 @@ class TeilnehmerExcelService
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Gruppenleiter ID'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('GruppenmitgliederID'));
         foreach ($rooms->getFreeFields() as $ff) {
-            dump($ff);
-            dump($this->mapping);
             $this->mapping[$ff->getId()] = $count;
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $ff->getLabel());
         }
@@ -117,8 +115,6 @@ class TeilnehmerExcelService
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupLeaderArr));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupArr));
             foreach($data->getFreeFieldsFromRoom($rooms) as $ff){
-                dump($ff);
-                dump($this->mapping);
                 $this->sheet->setCellValue($this->alphas[$this->mapping[$ff->getFreeField()->getId()]] . $this->lineCounter, $ff->getAnswer());
             }
             $this->lineCounter++;
