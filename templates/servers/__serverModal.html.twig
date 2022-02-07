@@ -39,19 +39,17 @@
                                              {{ 'Meine Standort-Seite'|trans }}
                                 </a><br>
                                 {% if s.administrator == app.user %}
-                                    {% if s|validateLicense %}
+
                                         <a href="{{ path('servers_enterprise',{'id':s.id}) }}" data-dismiss="modal"
-                                           class="loadContent"><span
-                                                    class="badge badge-success">pro</span> {{ 'Enterprise Einstellungen'|trans }}
+                                           class="loadContent">{{ 'Enterprise Einstellungen'|trans }}
                                         </a>
                                         <br>
                                         <a href="{{ path('server_check_email',{'id':s.id}) }}">
-                                            <span
-                                                    class="badge badge-success">pro</span> {{ 'Teste SMTP'|trans }}</a>
+                                             {{ 'Teste SMTP'|trans }}</a>
                                         <br>
 
 
-                                    {% endif %}
+
                                 {% endif %}
                             </div>
                             <div class="col-md-4">

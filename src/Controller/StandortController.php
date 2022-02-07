@@ -75,7 +75,7 @@ class StandortController extends AbstractController
     {
 
         $server = $this->getDoctrine()->getRepository(Standort::class)->findOneBy(array('id' => $request->get('id')));
-        if ($server->getAdministrator() !== $this->getUser() || !$licenseService->verify($server)) {
+        if ($server->getAdministrator() !== $this->getUser()) {
             return $this->redirectToRoute('dashboard', ['snack' => 'Keine Berechtigung']);
         }
         $title = $translator->trans('Jitsi-Admin Enterprise Einstellungen');

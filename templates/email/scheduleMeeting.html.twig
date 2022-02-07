@@ -32,7 +32,7 @@
     </p>
 
     <p>
-        {% if standort is defined and  standort is not null and standort|validateLicense and standort.serverEmailBody is not null %}
+        {% if standort is defined and  standort is not null and standort.serverEmailBody is not null %}
             {{ standort.serverEmailBody|nl2br }}
         {% endif %}
     </p>
