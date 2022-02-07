@@ -13,6 +13,7 @@
             <div class="mt-3">
                 <div class="row">
                     <div class="col-lg-12">
+                        <div class="d-none">
                         <h4>{{ 'Logo'|trans }}</h4>
                         {{ form_row(form.logoUrl) }}
                         <p class="small">
@@ -52,17 +53,20 @@
                         {{ form_row(form.smtpPassword) }}
                         {{ form_row(form.smtpEmail) }}
                         {{ form_row(form.smtpSenderName) }}
+                            <h4>{{ 'Hintergrundbild'|trans }}</h4>
+                            {{ form_row(form.showStaticBackgroundColor) }}
+                            {{ form_row(form.staticBackgroundColor) }}
+                            <hr>
+                            {{ form_row(form.apiKey) }}
+                            <button class="btn btn-primary generateApiKey">{{ 'API-Key neu genereieren'|trans }}</button>
+                        </div>
                         <hr>
                         {{ form_row(form.serverEmailHeader) }}
                         {{ form_row(form.serverEmailBody) }}
                         <hr>
-                        <h4>{{ 'Hintergrundbild'|trans }}</h4>
-                        {{ form_row(form.showStaticBackgroundColor) }}
-                        {{ form_row(form.staticBackgroundColor) }}
 
-                    <hr>
-                        {{ form_row(form.apiKey) }}
-                        <button class="btn btn-primary generateApiKey">{{ 'API-Key neu genereieren'|trans }}</button>
+
+
                     </div>
                 </div>
 

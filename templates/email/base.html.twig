@@ -24,13 +24,14 @@
         <row>
             <columns>
                 <h1 class="text-center">
-                    {% if standort is defined and  standort is not null and standort|validateLicense and standort.serverEmailHeader is not null %}
-                        {{ standort.serverEmailHeader }}
+                    {% if standort is defined and  standort is not null and standort.serverEmailHeader is not null %}
+                        {{ standort.serverEmailHeader }}<br>
                     {% else %}
-                        {% block header %}
 
-                        {% endblock %}
                     {% endif %}
+                    {% block header %}
+
+                    {% endblock %}
                 </h1>
 
             </columns>
