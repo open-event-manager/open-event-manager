@@ -121,12 +121,12 @@ class TeilnehmerExcelService
             $count = 0;
         }
         foreach ($rooms->getWaitinglists() as $data) {
-            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data, $rooms);
+            $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data->getUser(), $rooms);
             $groupArr = array();
             foreach ($group as $data2) {
                 $groupArr[] = $data2->getId();
             }
-            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader' => $data, 'rooms' => $rooms));
+            $groupleader = $this->em->getRepository(Group::class)->findBy(array('leader' => $data->getUser(), 'rooms' => $rooms));
             $groupLeaderArr = array();
             foreach ($groupleader as $data2) {
                 $groupLeaderArr[] = $data2->getId();
@@ -136,7 +136,7 @@ class TeilnehmerExcelService
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getLastName());
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getEmail());
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getAddress());
-            $this->sheet->setCellValueExplicit($this->alphas[$count++] . $this->lineCounter, $data->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+            $this->sheet->setCellValueExplicit($this->alphas[$count++] . $this->lineCounter, $data->getUser()->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Warteliste'));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Nein'));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupLeaderArr));
