@@ -17,7 +17,7 @@ class AddSlugToServerCommand extends Command
     protected static $defaultName = 'app:addSlugToServer';
     private $em;
     private $serverService;
-    public function __construct(string $name = null, EntityManagerInterface $entityManager, StandortService $serverService)
+    public function __construct(EntityManagerInterface $entityManager, StandortService $serverService,string $name = null)
     {
         parent::__construct($name);
         $this->em = $entityManager;

@@ -11,6 +11,7 @@ import('popper.js');
 global.$ = global.jQuery = $;
 import('mdbootstrap');
 import {initCalendar} from './fullcalendar'
+import {initSchedulePublic} from "./scheduling";
 
 
 $(document).ready(function () {
@@ -22,6 +23,7 @@ $(document).ready(function () {
 
     initGroups();
     initCalendar();
+    initSchedulePublic();
 });
 $(window).on('load', function () {
     $('[data-toggle="popover"]').popover({html: true});
