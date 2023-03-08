@@ -161,6 +161,11 @@ class User extends BaseUser
      */
     private $freeFieldsUserAnswers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UserEventCreated::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $userEventCreateds;
+
 
 
     public function __construct()
@@ -179,6 +184,7 @@ class User extends BaseUser
         $this->eventGroups = new ArrayCollection();
         $this->eventGroupsMemebers = new ArrayCollection();
         $this->freeFieldsUserAnswers = new ArrayCollection();
+        $this->userEventCreateds = new ArrayCollection();
 
     }
 
@@ -747,6 +753,36 @@ class User extends BaseUser
             }
         }
         return $res;
+    }
+
+    /**
+     * @return Collection|UserEventCreated[]
+     */
+    public function getUserEventCreateds(): Collection
+    {
+        return $this->userEventCreateds;
+    }
+
+    public function addUserEventCreated(UserEventCreated $userEventCreated): self
+    {
+        if (!$this->userEventCreateds->contains($userEventCreated)) {
+            $this->userEventCreateds[] = $userEventCreated;
+            $userEventCreated->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserEventCreated(UserEventCreated $userEventCreated): self
+    {
+        if ($this->userEventCreateds->removeElement($userEventCreated)) {
+            // set the owning side to null (unless already changed)
+            if ($userEventCreated->getUser() === $this) {
+                $userEventCreated->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }

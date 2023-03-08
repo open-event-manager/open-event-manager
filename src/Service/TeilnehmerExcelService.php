@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Group;
 use App\Entity\Rooms;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -23,13 +24,15 @@ class TeilnehmerExcelService
     private $alphas;
     private $lineCounter;
     private $mapping;
-    public function __construct(TranslatorInterface $translator, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager)
+    private $userEventCreateService;
+    public function __construct(TranslatorInterface $translator, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager, UserEventCreateService $userEventCreateService)
     {
         $this->spreadsheet = new Spreadsheet();
         $this->writer = new Xlsx($this->spreadsheet);
         $this->translator = $translator;
         $this->tokenStorage = $tokenStorage;
         $this->em = $entityManager;
+        $this->userEventCreateService = $userEventCreateService;
     }
 
     function generateSpreadsheet()
@@ -78,6 +81,7 @@ class TeilnehmerExcelService
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Adresse'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Telefon'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Status'));
+        $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Angemeldet am'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Organisator'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Gruppenleiter ID'));
         $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('GruppenmitgliederID'));
@@ -93,7 +97,16 @@ class TeilnehmerExcelService
 
         $count = 0;
         $this->lineCounter++;
+        $userTmp = array();
         foreach ($rooms->getUser() as $data) {
+            if (sizeof($this->em->getRepository(Group::class)->atendeeIsInGroup($data, $rooms)) === 0) {
+                $userTmp[] = $data;
+                $userTmp = array_merge($userTmp,$this->em->getRepository(User::class)->userFromLeaderAndRoom($data, $rooms));
+            }
+        }
+
+
+        foreach ($userTmp as $data) {
             $group = $this->em->getRepository(Group::class)->atendeeIsInGroup($data, $rooms);
             $groupArr = array();
             foreach ($group as $data2) {
@@ -111,10 +124,11 @@ class TeilnehmerExcelService
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $data->getAddress());
             $this->sheet->setCellValueExplicit($this->alphas[$count++] . $this->lineCounter, $data->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->translator->trans('Teilnehmer'));
+            $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $this->userEventCreateService->generateCreatedString($data,$rooms));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, $rooms->getModerator() == $data ? $this->translator->trans('Ja') : $this->translator->trans('Nein'));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupLeaderArr));
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupArr));
-            foreach($data->getFreeFieldsFromRoom($rooms) as $ff){
+            foreach ($data->getFreeFieldsFromRoom($rooms) as $ff) {
                 $this->sheet->setCellValue($this->alphas[$this->mapping[$ff->getFreeField()->getId()]] . $this->lineCounter, $ff->getAnswer());
             }
             $this->lineCounter++;
@@ -167,6 +181,7 @@ class TeilnehmerExcelService
             $this->sheet->setCellValue($this->alphas[$count++] . $this->lineCounter, implode(', ', $groupArr));
         }
     }
+
     function generateTeilnehmerliste(Rooms $rooms)
     {
         $this->generateSpreadsheet();
@@ -183,10 +198,11 @@ class TeilnehmerExcelService
         return $temp_file;
 
     }
-    function generateTeilnehmerDayList($rooms,$fileName)
+
+    function generateTeilnehmerDayList($rooms, $fileName)
     {
         $this->generateSpreadsheet();
-        foreach ($rooms as $data){
+        foreach ($rooms as $data) {
             $this->generateHeader($data);
             $this->generateParticipants($data);
             $this->lineCounter++;
