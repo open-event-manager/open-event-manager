@@ -11,6 +11,7 @@ use App\Form\Type\RoomType;
 use App\Service\PexelService;
 use App\Service\SchedulingService;
 use App\Service\ServerUserManagment;
+use App\Service\UserEventCreateService;
 use App\Service\UserService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,7 @@ class ScheduleController extends AbstractController
     /**
      * @Route("room/schedule/new", name="schedule_admin_new")
      */
-    public function new( Request $request, TranslatorInterface $translator, ServerUserManagment $serverUserManagment, UserService $userService): Response
+    public function new( Request $request, TranslatorInterface $translator, ServerUserManagment $serverUserManagment, UserService $userService, UserEventCreateService $userEventCreateService): Response
     {
         if ($request->get('id')) {
             $room = $this->getDoctrine()->getRepository(Rooms::class)->findOneBy(array('id' => $request->get('id')));

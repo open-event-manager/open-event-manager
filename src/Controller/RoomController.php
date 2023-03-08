@@ -7,10 +7,12 @@ use App\Entity\Rooms;
 use App\Entity\Scheduling;
 use App\Entity\Standort;
 use App\Entity\User;
+use App\Entity\UserEventCreated;
 use App\Form\Type\NewMemberType;
 use App\Form\Type\RoomType;
 use App\Service\LoggerService;
 use App\Service\ServerUserManagment;
+use App\Service\UserEventCreateService;
 use App\Service\UserService;
 use App\Service\InviteService;
 
@@ -38,7 +40,7 @@ class RoomController extends AbstractController
     /**
      * @Route("/room/new", name="room_new")
      */
-    public function newRoom(Request $request, UserService $userService, TranslatorInterface $translator, ServerUserManagment $serverUserManagment)
+    public function newRoom(Request $request, UserService $userService, TranslatorInterface $translator, ServerUserManagment $serverUserManagment, UserEventCreateService $userEventCreateService)
     {
         $roomOld = null;
         if ($request->get('id')) {
@@ -61,6 +63,7 @@ class RoomController extends AbstractController
         } else {
             $room = new Rooms();
             $room->addUser($this->getUser());
+
             $room->setDuration(60);
             $room->setUid(rand(01, 99) . time());
             $room->setModerator($this->getUser());
@@ -105,6 +108,7 @@ class RoomController extends AbstractController
 
             $em->persist($room);
             $em->flush();
+
             if (sizeof($room->getSchedulings()->toArray()) < 1) {
                 $schedule = new Scheduling();
                 $schedule->setUid(md5(uniqid()));

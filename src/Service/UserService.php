@@ -27,8 +27,8 @@ class UserService
     private $url;
     private $translator;
     private $em;
-
-    public function __construct(EntityManagerInterface $entityManager, TranslatorInterface $translator, MailerService $mailerService, ParameterBagInterface $parameterBag, Environment $environment, NotificationService $notificationService, UrlGeneratorInterface $urlGenerator)
+    private $userCreateService;
+    public function __construct(EntityManagerInterface $entityManager, TranslatorInterface $translator, MailerService $mailerService, ParameterBagInterface $parameterBag, Environment $environment, NotificationService $notificationService, UrlGeneratorInterface $urlGenerator, UserEventCreateService $userEventCreateService)
     {
         $this->mailer = $mailerService;
         $this->parameterBag = $parameterBag;
@@ -37,6 +37,7 @@ class UserService
         $this->url = $urlGenerator;
         $this->translator = $translator;
         $this->em = $entityManager;
+        $this->userCreateService = $userEventCreateService;
     }
 
     function generateUrl(Rooms $room, User $user)
@@ -68,6 +69,7 @@ class UserService
             $subject = $this->translator->trans('Anmeldebestätigung zu einer Terminplanung');
             $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort());
         }
+        $this->userCreateService->createEvent($user,$room);
         return true;
     }
 

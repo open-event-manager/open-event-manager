@@ -218,6 +218,11 @@ class Rooms
      */
     private $showAfterDate;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UserEventCreated::class, mappedBy="event", orphanRemoval=true)
+     */
+    private $userEventCreateds;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -228,6 +233,7 @@ class Rooms
         $this->storno = new ArrayCollection();
         $this->groups = new ArrayCollection();
         $this->freeFields = new ArrayCollection();
+        $this->userEventCreateds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -831,6 +837,36 @@ class Rooms
     public function setShowAfterDate(?\DateTimeInterface $showAfterDate): self
     {
         $this->showAfterDate = $showAfterDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserEventCreated[]
+     */
+    public function getUserEventCreateds(): Collection
+    {
+        return $this->userEventCreateds;
+    }
+
+    public function addUserEventCreated(UserEventCreated $userEventCreated): self
+    {
+        if (!$this->userEventCreateds->contains($userEventCreated)) {
+            $this->userEventCreateds[] = $userEventCreated;
+            $userEventCreated->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserEventCreated(UserEventCreated $userEventCreated): self
+    {
+        if ($this->userEventCreateds->removeElement($userEventCreated)) {
+            // set the owning side to null (unless already changed)
+            if ($userEventCreated->getEvent() === $this) {
+                $userEventCreated->setEvent(null);
+            }
+        }
 
         return $this;
     }
