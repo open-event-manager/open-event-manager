@@ -3,9 +3,14 @@
     <h1 class="h1-responsive text-center">{{ room.name }}</h1>
     <p class="text-center"><a href="{{ path('join_index',{'slug':room.standort.slug}) }}"><i class="fa fa-link"></i> {{ room.standort.name }}</a></p>
     <p class=" text-center">{% set locale =  app.request.locale %}
+        {% if room.scheduleMeeting %}
+            {{ 'Einen Termin finden'|trans }}
+        {% else %}
         {{ room.start|format_date(pattern="EEEE",locale=locale) }}
         | {{ room.start|format_datetime('long', 'none', locale=locale) }}
-        | {{ room.start|date('H:i') }}-{{ room.endDate|date('H:i') }}</p>
+        | {{ room.start|date('H:i') }}-{{ room.endDate|date('H:i') }}
+    {% endif %}
+    </p>
     {% if room.moderator != app.user %}
         {% if room.maxParticipants is null %}
             <h4 class="text-center">{% trans with {'{spaces}':room.maxParticipants - room.user|length} %}Unbegrenzte Teilnehmerzahl{% endtrans %}</h4>

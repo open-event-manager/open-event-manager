@@ -200,6 +200,7 @@ class ShareLinkController extends AbstractController
 
         }
         $standort = $rooms->getStandort();
+
         return $this->render('share_link/subscribe.html.twig', [
             'form' => $form->createView(),
             'snack' => $snack,
@@ -224,7 +225,9 @@ class ShareLinkController extends AbstractController
 
         $message = $res['message'];
         $title = $res['title'];
-
+        if ($subscriber && $subscriber->getRoom()->getScheduleMeeting()){
+            return $this->redirectToRoute('schedule_public_main',array('scheduleId'=>$subscriber->getRoom()->getSchedulings()[0]->getUid(),'userId'=>$subscriber->getUser()->getUid()));
+        }
         return $this->render('share_link/subscribeSuccess.html.twig', array('standort' => $standort, 'message' => $message, 'title' => $title));
     }
 }
