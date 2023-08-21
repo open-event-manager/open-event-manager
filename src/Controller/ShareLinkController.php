@@ -18,6 +18,7 @@ use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -132,8 +133,22 @@ class ShareLinkController extends AbstractController
         if (!$rooms || $rooms->getModerator() === null) {
             return $this->redirectToRoute('join_index_no_slug', ['snack' => $translator->trans('Fehler, Bitte kontrollieren Sie ihre Daten.'), 'color' => 'danger']);
         }
-
         $data = array('email' => '', 'group' => array());
+        if ($request->cookies->get('share_data_email')){
+            $data['email'] = $request->cookies->get('share_data_email');
+        }
+        if ($request->cookies->get('share_data_firstName')){
+            $data['firstName'] = $request->cookies->get('share_data_firstName');
+        }
+        if ($request->cookies->get('share_data_lastName')){
+            $data['lastName'] = $request->cookies->get('share_data_lastName');
+        }
+        if ($request->cookies->get('share_data_email')){
+            $data['phone'] = $request->cookies->get('share_data_phone');
+        }
+        if ($request->cookies->get('share_data_email')){
+            $data['address'] = $request->cookies->get('share_data_address');
+        }
         $form = $this->createForm(PublicRegisterType::class, $data,array('freeFields'=>$rooms->getFreeFields()));
         $form->handleRequest($request);
         $errors = array();
@@ -195,7 +210,13 @@ class ShareLinkController extends AbstractController
             $color = $res['color'];
 
             if (!$res['error']) {
-                return $this->redirectToRoute('public_subscribe_participant', array('color' => $color, 'snack' => $snack, 'uid' => $uid));
+                $res =$this->redirectToRoute('public_subscribe_participant', array('color' => $color, 'snack' => $snack, 'uid' => $uid));
+                $res->headers->setCookie(Cookie::create('share_data_email', $data['email']));
+                $res->headers->setCookie(Cookie::create('share_data_firstName', $data['firstName']));
+                $res->headers->setCookie(Cookie::create('share_data_lastName', $data['lastName']));
+                $res->headers->setCookie(Cookie::create('share_data_phone', $data['phone']));
+                $res->headers->setCookie(Cookie::create('share_data_address', $data['address']));
+                return $res;
             }
 
         }
