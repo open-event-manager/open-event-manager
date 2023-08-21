@@ -1,3 +1,8 @@
+//import(/* webpackChunkName: "H2" */ '../css/app.scss');
+import $ from 'jquery';
+
+global.$ = global.jQuery = $;
+
 import {Calendar} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -20,7 +25,19 @@ function initCalendar() {
             navLinks: true, // can click day/week names to navigate views
             editable: false,
             dayMaxEvents: true, // allow "more" link when too many events
-            events: events
+            events: events,
+            eventMouseEnter: function(event, jsEvent, view) {
+                console.log('test');
+                console.log(this);
+                console.log(event.event._def);
+                var props = event.event._def.extendedProps;
+                $(event.el).closest('.fc-daygrid-event').append('<div id=\"'+event.id+'\" class=\"hover-end\">'+'<b>'+event.event._def.title+'</b><p>'+props.start+'<br>'+props.end+'<br>'+props.freeSpace+'</p></div>');
+            },
+
+            eventMouseLeave: function(event, jsEvent, view) {
+                console.log('test2');
+                 $('#'+event.id).remove();
+            }
         });
 
         calendar.render();

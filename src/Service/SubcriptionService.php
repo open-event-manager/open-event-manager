@@ -247,7 +247,9 @@ class SubcriptionService
                 $this->em->remove($subscriber);
                 $this->em->flush();
             }
-
+            if ($room && $subscriber->getRoom()){
+                $this->userService->sendEmailOnNewRegister($room,$subscriber->getUser());
+            }
 
         } catch (\Exception $exception) {
             $this->logger->log('An Error ocured ans the USer is asked to click the link again', array('email' => $subscriber->getUser()->getEmail(), 'id' => $subscriber->getUser()->getId(), 'event' => $room->getId()));

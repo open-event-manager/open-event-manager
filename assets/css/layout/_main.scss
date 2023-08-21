@@ -72,16 +72,34 @@ a {
 .btn-info {
   background-color: $contrast-dark !important;
 }
-.btn-dashboard{
-  background-color: $btn-primary!important;
-  border: none!important;
+
+.btn-dashboard {
+  background-color: $btn-primary !important;
+  border: none !important;
 }
-.btn-outline-dashboard{
+
+.btn-outline-dashboard {
   border: 0.2rem solid $btn-primary;
 }
-#snackbar{
+
+#snackbar {
   cursor: pointer;
 }
-strong{
-  font-weight: bold!important;
+
+strong {
+  font-weight: bold !important;
 }
+
+.hover-end {
+  padding: 4px;
+  margin: 0;
+  font-size: 1em;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+

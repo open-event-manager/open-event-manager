@@ -63,6 +63,8 @@ class UserService
             $ics = $this->notificationService->createIcs($room, $user, 'REQUEST');
             $attachement[] = array('type' => 'text/calendar', 'filename' => $room->getName() . '.ics', 'body' => $ics);
             $this->notificationService->sendNotification($content, $subject, $user, $room->getStandort(), $attachement);
+
+
         } else {
             //we have a shedule Meting. the participants only got a link to shedule their appointments
             $content = $this->twig->render('email/scheduleMeeting.html.twig', ['user' => $user, 'room' => $room,]);
@@ -71,6 +73,14 @@ class UserService
         }
         $this->userCreateService->createEvent($user,$room);
         return true;
+    }
+
+    function sendEmailOnNewRegister(Rooms  $room, User $user){
+        if ($room->getSendEmailOnRegister()){
+            $content = $this->twig->render('email/newUserRegistered.html.twig', ['user' => $user, 'room' => $room]);
+            $subject = $this->translator->trans('Neue Anmeldung zu einem Event');
+            $this->notificationService->sendNotification($content, $subject, $room->getModerator(), $room->getStandort());
+        }
     }
 
     function addWaitinglist(User $user, Rooms $room)
