@@ -89,6 +89,8 @@ label:
   distance: Abstand zum nächsten Termin (Anfang zu Anfang)
   unit: Einheit
   addUsers: Teilnehmer zu den Klonen hinzufügen
+  sendEmailOnRegister: Sende eine Benachrichtigung bei jeder Anmeldung
+  allowQuickRegistration: Erlaube Schnellregistrierung. (Nur E-Mail und Name erforderlich)
 choice:
   tls: STARTTLS / TLS 
   ssl: SSL
