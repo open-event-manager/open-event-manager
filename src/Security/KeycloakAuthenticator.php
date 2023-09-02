@@ -74,7 +74,6 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
     {
         $client = $this->clientRegistry->getClient('keycloak_main');
         $accessToken = $this->fetchAccessToken($client);
-        dump($accessToken);
         $request->getSession()->set('id_token', $accessToken->getValues()['id_token']);
         $passport = new SelfValidatingPassport(
             new UserBadge(
