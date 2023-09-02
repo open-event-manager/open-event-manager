@@ -74,6 +74,22 @@
                                 <div id="maxParticipants" class=" collapse">
                                     <div class="row">
                                         <div class="col-sm-11">
+                                            {{ form_row(form.sendEmailOnRegister) }}
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                               data-content="{{ 'Sendet bei jeder Registirierung durch einen Teilnehmenden eine Benachrichtigung an den Organisator'|trans }}"><i
+                                                        class="fa fa-question-circle"></i></a>
+                                        </div>
+                                        <div class="col-sm-11">
+                                            {{ form_row(form.allowQuickRegistration) }}
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                                               data-content="{{ 'Der Registirierende Teilnehmende muss nur seine E-Mail Adresse und Namen angeben. Eine vollständige Adresse muss nicht angegeben werden.'|trans }}"><i
+                                                        class="fa fa-question-circle"></i></a>
+                                        </div>
+                                        <div class="col-sm-11">
                                             {{ form_row(form.maxParticipants) }}
                                         </div>
                                         <div class="col-sm-1">

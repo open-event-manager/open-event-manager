@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Service\CreateHttpsUrl;
+use App\Service\ThemeService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\Provider\Auth0Client;
+use Stevenmaguire\OAuth2\Client\Provider\Keycloak;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LoginController extends AbstractController
 {
@@ -45,15 +49,35 @@ class LoginController extends AbstractController
             die;
         }
     }
-    /**
-     * @Route("/logout_keycloak", name="logout_keycloak")
-     */
-    public function logout(ClientRegistry $clientRegistry, Request $request)
-    {
-        $url = $this->getParameter('KEYCLOAK_URL')
-            .'/realms/'.$this->getParameter('KEYCLOAK_REALM')
-            .'/protocol/openid-connect/logout?redirect_uri='.$this->generateUrl('index',[],UrlGenerator::ABSOLUTE_URL);
-        return $this->redirect($url);
 
+
+    /**
+     * @Route("/room/logout_keycloak", name="logout_keycloak")
+     */
+    public function logout(
+        ClientRegistry $clientRegistry,
+        Request        $request
+    )
+    {
+        $provider = new Keycloak(
+            [
+                'authServerUrl' => $this->getParameter('KEYCLOAK_URL'),
+                'realm' => $this->getParameter('KEYCLOAK_REALM'),
+                'clientId' => $this->getParameter('KEYCLOAK_ID'),
+                'clientSecret' => $this->getParameter('KEYCLOAK_SECRET'),
+            ]
+        );
+
+
+        $options = [
+            'id_token_hint' => $request->getSession()->get('id_token'),
+            'post_logout_redirect_uri' => $this->generateUrl('app_logout',[], UrlGeneratorInterface::ABSOLUTE_URL),
+        ];
+
+
+        $url = $provider->getLogoutUrl(
+            $options
+        );
+        return $this->redirect($url);
     }
 }

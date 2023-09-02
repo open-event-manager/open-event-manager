@@ -32,7 +32,11 @@
 
                             {% for r in standort|roomsinFuture %}
                                 <li class="list-group-item d-flex align-items-center justify-content-between">
-                                    <b>{{ r.start|date('d.m.Y | H:i') }}</b>
+                                   <p> <b>{{ r.start|date('d.m.Y | H:i') }}</b>
+                                       {% if r.maxParticipants%}<br><small> {{ 'Freie Plätze: {s}'|trans({'{s}':r|roomHasSpace?r.maxParticipants-r.user|length:0}) }}</small>{% endif %}
+                                       <br>
+
+                                   </p>
                                     <h5>{{ r.name }} <a tabindex="0" data-toggle="popover"
                                                         data-trigger="focus"
                                                         title="{{ 'Agenda'|trans }}"
@@ -54,6 +58,66 @@
                     <h5>{{ 'Keine öffentlichen Veranstaltungen geplant'|trans }}</h5>
 
                 {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+                <div class="col-lg-12">
+                    <div id="calendar">
+
+                    </div>
+
+                </div>
+
+                <script>
+                    events = [
+                        {% for e in standort|roomsinFuture %}
+                        {
+                            title: '{{ e.name }}',
+                            start: '{{ e.start|date('Y-m-d') }}T{{ e.start|date('H:i:s') }}',
+                            end: '{{ e.enddate|date('Y-m-d') }}T{{ e.enddate|date('H:i:s') }}',
+                            url: '{{ path('public_subscribe_participant',{'uid':e.uidParticipant}) }}',
+                            extendedProps: {
+                                {% if e.allowQuickRegistration != true %}
+                                type:'redirect',
+                                {% else %}
+                                type:'modal',
+                                {% endif %}
+                                start: '{{ e.start|date('H:i') }}',
+                                end:' {{ e.enddate|date('H:i') }}',
+                                freeSpace:'{{ 'Freie Plätze: {s}'|trans({'{s}':e|roomHasSpace?e.maxParticipants-e.user|length:0}) }}',
+                            },
+                            {% if e|roomHasSpace == true %}
+                            backgroundColor: '#25a20b',
+                            {% else %}
+                            backgroundColor: '#ff0000',
+                            {% endif %}
+
+                        },
+                        {% endfor %}
+                    ]
+                </script>
+
+                {% for e in standort|roomsinFuture %}
+                    {% if e.allowQuickRegistration == true %}
+                    <div id="calendar_quick_register{{ e.id }}" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                                    <h4 class="modal-title">{{ e.name }}</h4>
+                                </div>
+                                <div class="modal-body">
+                                test</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
         <div class="row form-group">

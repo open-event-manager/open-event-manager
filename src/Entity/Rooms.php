@@ -223,6 +223,16 @@ class Rooms
      */
     private $userEventCreateds;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sendEmailOnRegister;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $allowQuickRegistration;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -867,6 +877,30 @@ class Rooms
                 $userEventCreated->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSendEmailOnRegister(): ?bool
+    {
+        return $this->sendEmailOnRegister;
+    }
+
+    public function setSendEmailOnRegister(?bool $sendEmailOnRegister): self
+    {
+        $this->sendEmailOnRegister = $sendEmailOnRegister;
+
+        return $this;
+    }
+
+    public function getAllowQuickRegistration(): ?bool
+    {
+        return $this->allowQuickRegistration;
+    }
+
+    public function setAllowQuickRegistration(?bool $allowQuickRegistration): self
+    {
+        $this->allowQuickRegistration = $allowQuickRegistration;
 
         return $this;
     }

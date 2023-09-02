@@ -88,7 +88,8 @@ class RoomType extends AbstractType
             ->add('maxGroupSize', NumberType::class, array('required' => false, 'label' => 'label.maxGroupSize', 'translation_domain' => 'form', 'attr' => array('placeholder' => 'placeholder.maxParticipants')))
             ->add('showInCalendarWhenNoSpace', CheckboxType::class, array('required' => false, 'label' => 'label.showInCalendarWhenNoSpace', 'translation_domain' => 'form'))
             ->add('silentMode', CheckboxType::class, array(  "mapped" => false, 'required' => false, 'label' => 'label.silentMode', 'translation_domain' => 'form'))
-
+            ->add('sendEmailOnRegister', CheckboxType::class, array(  'required' => false, 'label' => 'label.sendEmailOnRegister', 'translation_domain' => 'form'))
+            ->add('allowQuickRegistration', CheckboxType::class, array(  'required' => false, 'label' => 'label.allowQuickRegistration', 'translation_domain' => 'form'))
             ->add('freeFields', CollectionType::class,
                 ['entry_type' => FreeFieldType::class,
                     'entry_options' => ['label' => 'false',],
