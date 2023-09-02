@@ -24,7 +24,7 @@ class LoginControllerKeycloak extends AbstractController
      */
     public function register(ClientRegistry $clientRegistry): Response
     {
-        $url = $this->getParameter('KEYCLOAK_URL').'/'.$this->getParameter('KEYCLOAK_REALM').'/protocol/openid-connect/registrations?client_id='.
+        $url = $this->getParameter('KEYCLOAK_URL').'/realms/'.$this->getParameter('KEYCLOAK_REALM').'/protocol/openid-connect/registrations?client_id='.
             $this->getParameter('KEYCLOAK_ID').
             '&response_type=code&scope=openid email&redirect_uri='.$this->generateUrl('connect_keycloak_check',array(),UrlGeneratorInterface::ABSOLUTE_URL).'&kc_locale=de';
         return $this->redirect($url);
@@ -41,7 +41,7 @@ class LoginControllerKeycloak extends AbstractController
      */
     public function edit(ClientRegistry $clientRegistry, Request $request)
     {
-        $url = $this->getParameter('KEYCLOAK_URL').'/'.$this->getParameter('KEYCLOAK_REALM').'/account';
+        $url = $this->getParameter('KEYCLOAK_URL').'/realms/'.$this->getParameter('KEYCLOAK_REALM').'/account';
         return $this->redirect($url);
     }
     /**
@@ -49,7 +49,7 @@ class LoginControllerKeycloak extends AbstractController
      */
     public function password(ClientRegistry $clientRegistry, Request $request)
     {
-        $url = $this->getParameter('KEYCLOAK_URL').'/'.$this->getParameter('KEYCLOAK_REALM').'/account/password';
+        $url = $this->getParameter('KEYCLOAK_URL').'/realms/'.$this->getParameter('KEYCLOAK_REALM').'/account/password';
         return $this->redirect($url);
     }
 }
