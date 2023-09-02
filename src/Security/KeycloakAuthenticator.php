@@ -47,7 +47,7 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
         TokenStorageInterface  $tokenStorage,
         ClientRegistry         $clientRegistry,
         EntityManagerInterface $em,
-        RouterInterface        $router,
+        RouterInterface        $router
     )
     {
         $this->clientRegistry = $clientRegistry;
