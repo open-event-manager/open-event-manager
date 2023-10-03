@@ -78,10 +78,31 @@ label:
   promoter: Etkinlik sorumlusu
   additionalInfo: Ek bilgi (markdown)
   showInCalendarWhenNoSpace: Termin im Kalender ausblenden wenn keine Plätze mehr vorhanden
+  textWhenNoSpace: Text wenn keine Plätze mehr vorhanden
+  silentMode: Keine E-Mail Benachrichtigung
+  textWhenRoomWarteliste: Wartelistentext
+  freefieldName: Freifeld Name
+  required: Dieses Feld muss ausgefüllt werden
+  freefield: Sonstige Angaben
+  showAterDate: Diesen Termin erst nach diesem Datum öffentlich anzeigen
+  amount: Anzahl an Wiederholungen
+  distance: Abstand zum nächsten Termin (Anfang zu Anfang)
+  unit: Einheit
+  addUsers: Teilnehmer zu den Klonen hinzufügen
+  sendEmailOnRegister: Sende eine Benachrichtigung bei jeder Anmeldung
+  allowQuickRegistration: Erlaube Schnellregistrierung. (Nur E-Mail und Name erforderlich)
 choice:
   tls: STARTTLS/TLS
   ssl: SSL
   none: Yok
+  min: Minuten
+  hour: Stunden
+  day: Tage
+  week: Wochen
+  month: Monate
+  year: Jahre
 placeholder:
   maxParticipants: Limitsiz
+  textWhenNoSpace: Keine Text
+  showAterDate: Leerlassen für sofortiges Anzeigen
 
