@@ -139,11 +139,12 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
                         $existingUser->setUsername($username);
                         $existingUser->setGroups($groups);
                         $this->em->persist($existingUser);
-
+                        $this->em->flush();
+                        return $existingUser;
                     }
 
                     // the user never logged in with this email adress neither keycloak
-                    if ($this->paramterBag->get('strict_allow_user_creation') == 1) {
+
                         // if the creation of a user is allowed from the security policies
                         if (!$username) {
                             $username = $email;
@@ -156,7 +157,7 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
                         $this->em->persist($newUser);
                         $this->em->flush();
                         return $newUser;
-                    }
+
                     return null;
                 }
             )
@@ -166,7 +167,6 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
 
         return $passport;
     }
-
 
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?Response

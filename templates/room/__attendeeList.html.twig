@@ -12,8 +12,9 @@
 {{ ff.freefield.label }}: {{ ff.answer }}<br>
 {% endfor %}
 "<i
-                        class="fa fa-info-circle"></i></a>
-            <a href="{{ path('room_repeat_user',{'id':room.id,'user_id':user.id}) }}" title="{{ 'Einladungsemail erneut senden'|trans }}"><i class="far fa-share-square"></i></a>
+                    class="fa fa-info-circle"></i></a>
+            <a href="{{ path('room_repeat_user',{'id':room.id,'user_id':user.id}) }}"
+               title="{{ 'Einladungsemail erneut senden'|trans }}"><i class="far fa-share-square"></i></a>
 
             <a class="small directSend {% if roomPermissions(user,room).moderator == true %}text-success{% endif %}"
                href="{{ path('room_add_moderator',{'room':room.id,'user':user.id}) }}"
@@ -58,6 +59,10 @@
                    data-url="{{ path('room_add_user',{'room':room.id}) }}"
                 ><i class="far fa-comments"></i></a>
             {% endif %}
+            {% if user.keycloakId is not null %}
+                <a href="{{ path('transfer_ownership',{'new_user':user.id,'room_id':room.id}) }}" class="confirmHref"
+                   title="{{ 'Dieses Event übertragen'|trans }}"><i class="fa fa-exchange-alt"></i></a>
+            {% endif %}
 
             <a class="small confirmHref"
                href="{{ path('room_user_remove',{'room':room.id,'user':user.id}) }}"><i
@@ -65,17 +70,21 @@
             {% if userFromUsergroup(user,room)|length > 0 %}
                 <ul>
                     {% for u in userFromUsergroup(user,room) %}
-                        <li>{% if u.email is not null %}{{ u.email }}{% else%}{{ u.firstName }} {{ u.lastName }}{% endif%} <a tabindex="0" data-toggle="popover" data-trigger="focus"
-                                             title="{{ u.firstName }} {{ u.lastName }}"
-                                             data-content="
+                        <li>{% if u.email is not null %}{{ u.email }}{% else %}{{ u.firstName }} {{ u.lastName }}{% endif %}
+                            <a tabindex="0" data-toggle="popover" data-trigger="focus"
+                               title="{{ u.firstName }} {{ u.lastName }}"
+                               data-content="
 {{ 'Email'|trans }}: <a href='mailto:{{ u.email }}'>{{ u.email }}</a><br>
                               </a>"> <i
                                         class="fa fa-info-circle"></i></a>
                             {% if u.email is not null %}
-                            <a href="{{ path('room_repeat_user',{'id':room.id,'user_id':u.id}) }}" title="{{ 'Einladungsemail erneut senden'|trans }}"><i class="far fa-share-square"></i></a>
+                                <a href="{{ path('room_repeat_user',{'id':room.id,'user_id':u.id}) }}"
+                                   title="{{ 'Einladungsemail erneut senden'|trans }}"><i
+                                            class="far fa-share-square"></i></a>
                             {% endif %}
+
                             <a class="small confirmHref"
-                                            href="{{ path('room_user_remove',{'room':room.id,'user':u.id}) }}"><i
+                               href="{{ path('room_user_remove',{'room':room.id,'user':u.id}) }}"><i
                                         class="fa fa-trash"></i> </a></li>
                     {% endfor %}
                 </ul>
