@@ -10,10 +10,12 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class TransferOwnerShipService
 {
+    private $entityManager;
     public function __construct(
-        private EntityManagerInterface $entityManager,
+         EntityManagerInterface $entityManager
     )
     {
+        $this->entityManager = $entityManager;
     }
 
     public function transferOwnerShip(Rooms $room, User $newOwner)
