@@ -16,24 +16,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TransferOwnershipController extends AbstractController
 {
+    private $userRepository;
+    private $roomsRepository;
+    private $transferOwnerShipService;
+
     public function __construct(
-        private UserRepository           $userRepository,
-        private RoomsRepository          $roomsRepository,
-        private TransferOwnerShipService $transferOwnerShipService
+        UserRepository           $userRepo,
+        RoomsRepository          $roomsRepository,
+        TransferOwnerShipService $transferOwnerShipService
     )
     {
+        $this->userRepository = $userRepo;
+        $this->roomsRepository = $roomsRepository;
+        $this->transferOwnerShipService = $transferOwnerShipService;
     }
 
-    #[Route('/transfer/ownership', name: 'transfer_ownership')]
+    /**
+     * @Route("/transfer/ownership", name="transfer_ownership")
+     */
     public function index(Request $request): Response
     {
         $newOwner = $this->userRepository->find($request->get('new_user'));
         $room = $this->roomsRepository->find($request->get('room_id'));
-        if ($room->getModerator() === $this->getUser()){
-            $this->transferOwnerShipService->transferOwnerShip(room: $room, newOwner: $newOwner);
+        if ($room->getModerator() === $this->getUser()) {
+            $this->transferOwnerShipService->transferOwnerShip( $room, $newOwner);
         }
 
-        return  $this->redirectToRoute('dashboard');
+        return $this->redirectToRoute('dashboard');
 
 
     }
