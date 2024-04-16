@@ -47,7 +47,8 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
         TokenStorageInterface  $tokenStorage,
         ClientRegistry         $clientRegistry,
         EntityManagerInterface $em,
-        RouterInterface        $router
+        RouterInterface        $router,
+        UserCreatorService     $userCreatorService
     )
     {
         $this->clientRegistry = $clientRegistry;
@@ -56,7 +57,7 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
         $this->tokenStorage = $tokenStorage;
         $this->paramterBag = $parameterBag;
         $this->logger = $logger;
-
+        $this->userCreatorService = $userCreatorService;
     }
 
     public function supports(Request $request): bool
@@ -145,18 +146,18 @@ class KeycloakAuthenticator extends OAuth2Authenticator implements Authenticatio
 
                     // the user never logged in with this email adress neither keycloak
 
-                        // if the creation of a user is allowed from the security policies
-                        if (!$username) {
-                            $username = $email;
-                        }
-                        $newUser = $this->userCreatorService->createUser($email, $username, $firstName, $lastName);
-                        $newUser
-                            ->setLastLogin(new \DateTime())
-                            ->setKeycloakId($id)
-                            ->setGroups($groups);
-                        $this->em->persist($newUser);
-                        $this->em->flush();
-                        return $newUser;
+                    // if the creation of a user is allowed from the security policies
+                    if (!$username) {
+                        $username = $email;
+                    }
+                    $newUser = $this->userCreatorService->createUser($email, $username, $firstName, $lastName);
+                    $newUser
+                        ->setLastLogin(new \DateTime())
+                        ->setKeycloakId($id)
+                        ->setGroups($groups);
+                    $this->em->persist($newUser);
+                    $this->em->flush();
+                    return $newUser;
 
                     return null;
                 }
