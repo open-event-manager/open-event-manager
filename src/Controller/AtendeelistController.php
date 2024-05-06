@@ -22,6 +22,6 @@ class AtendeelistController extends AbstractController
         if(!$rooms){
             throw new NotFoundHttpException('Not found');
         }
-        return $this->file($teilnehmerExcelService->generateTeilnehmerliste($rooms), $rooms->getName() . '.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
+        return $this->file($teilnehmerExcelService->generateTeilnehmerliste($rooms), str_replace("\\", "_", str_replace("/", "_", $rooms->getName())) . '.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
     }
 }
