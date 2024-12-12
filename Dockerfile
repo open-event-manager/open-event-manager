@@ -48,9 +48,7 @@ RUN echo "#!/bin/sh" > /docker-entrypoint-init.d/01-symfony.sh \
     && chmod +x /docker-entrypoint-init.d/01-symfony.sh
 
 RUN wget https://github.com/open-event-manager/open-event-manager/archive/refs/tags/${VERSION}.tar.gz -O artifact.tar.gz \
-    && tar --strip-components=1 -xvzf artifact.tar.gz \
-    && chown -R nobody public \
-    && chmod -R 700 public
+    && tar --strip-components=1 -xvzf artifact.tar.gz
 
 RUN mv /etc/php7/conf.d/custom.ini /etc/php7/custom.ini
 
@@ -76,7 +74,7 @@ RUN apk del \
 RUN rm -r node_modules \
     && rm artifact.tar.gz \
     && rm -r var/cache \
-    && chown -R nobody var
+    && chown -R nobody .
 
 USER nobody
 
